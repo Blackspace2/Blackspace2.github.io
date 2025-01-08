@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="B样条曲线原理以及python实现">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="B样条曲线原理以及python实现">
+<meta property="og:url" content="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/index.html">
+<meta property="og:site_name" content="Peace">
+<meta property="og:description" content="B样条曲线原理以及python实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-08T03:11:07.174Z">
+<meta property="article:modified_time" content="2025-01-08T16:44:52.027Z">
+<meta property="article:author" content="smile">
+<meta property="article:tag" content="B样条">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/","path":"2025/01/08/B样条曲线/","title":"B样条曲线原理以及python实现"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>B样条曲线原理以及python实现 | Peace</title>
+  
+
+
+
+
+
+
+
+
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+  <meting-js
+    server="netease"
+    type="playlist"
+    fixed="true"
+    id="820190718"
+    auto=""
+    mini="true"
+    autoplay="false"
+    theme="#C62828"
+    loop="all"
+    order="list"
+    preload="metadata"
+    volume=""
+    mutex="true"
+    list-folded="true"
+    list-max-height="340px"
+    storage-name="metingjs" >
+  </meting-js>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Peace" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Peace</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Sider mens eadem mutato</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#b%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-text">1. B样条曲线的计算公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A"><span class="nav-text">2 参数解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pu"><span class="nav-text">2.1 \(P(u)\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p_i"><span class="nav-text">2.2 \(p_i\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b_ik"><span class="nav-text">2.3 \(B_{i,k}\)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python-%E5%AE%9E%E7%8E%B0"><span class="nav-text">4 python 实现</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="smile"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">smile</p>
+  <div class="site-description" itemprop="description">记录学习生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zezhong_xie@163.com" title="E-Mail → mailto:zezhong_xie@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Blackspace2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Blackspace2" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="smile">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peace">
+      <meta itemprop="description" content="记录学习生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="B样条曲线原理以及python实现 | Peace">
+      <meta itemprop="description" content="B样条曲线原理以及python实现">
+    </span>
+
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          B样条曲线原理以及python实现
+        </h1>
+
+        <div class="post-meta-container">
+
+          <div class="post-meta">
+    
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-08 11:11:07" itemprop="dateCreated datePublished" datetime="2025-01-08T11:11:07+08:00">2025-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-09 00:44:52" itemprop="dateModified" datetime="2025-01-09T00:44:52+08:00">2025-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/B%E6%A0%B7%E6%9D%A1/" itemprop="url" rel="index"><span itemprop="name">B样条</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/B%E6%A0%B7%E6%9D%A1/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>802</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">B样条曲线原理以及python实现</div>
+          
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+<h1 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h1>
+<p>B 样条曲线 <span class="math inline">\(P(u)\)</span>
+可以表示为控制点和基函数的加权和：</p>
+<p><span class="math display">\[
+P(u)=\sum^{n}_{i=0} p_i B_{i,k}(u) \ ,u\in \left[ u_{k-1}, u_{k+1}
+\right]
+\]</span></p>
+<h1 id="参数解释">2 参数解释</h1>
+<h2 id="pu">2.1 <span class="math inline">\(P(u)\)</span></h2>
+<p>B 样条曲线上的点，也是我们所要求的结果</p>
+<h2 id="p_i">2.2 <span class="math inline">\(p_i\)</span></h2>
+<p>控制点，一共有 <span class="math inline">\(n+1\)</span> 个，即 <span
+class="math inline">\(i=0,1,2,..,n\)</span></p>
+<h2 id="b_ik">2.3 <span class="math inline">\(B_{i,k}\)</span></h2>
+<p>基函数 ## 2.4 <span class="math inline">\(u\)</span>
+相当于自变量，有效区间为 <span class="math inline">\(\left[ u_{k-1},
+u_{k+1} \right]\)</span> ## 2.5 <span class="math inline">\(k\)</span> B
+样条曲线的<strong>次数</strong></p>
+<p>次数 = 阶数 - 1</p>
+<p>k = m - n - 1</p>
+<h1 id="python-实现">4 python 实现</h1>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参考</span></span><br><span class="line"><span class="comment"># https://b23.tv/e93CqZR</span></span><br><span class="line"><span class="comment"># https://blog.csdn.net/deepsprings/article/details/107828889?spm=1001.2014.3001.5506</span></span><br><span class="line"><span class="comment"># https://zhuanlan.zhihu.com/p/686518292</span></span><br><span class="line"><span class="comment"># 《计算几何算法与实现》——孔令德</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hartley-Judd algorithem</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_B</span>(<span class="params">i, k, knots, u</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    de Boor-Cox recursion</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        i (int): ith point idx</span></span><br><span class="line"><span class="string">        k (int): degree of b-spline , equal to ord - 1</span></span><br><span class="line"><span class="string">        knots (ndarray): 1 dim</span></span><br><span class="line"><span class="string">        u : independent variable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        B: B_&#123;i,k&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">        B = <span class="number">1</span> <span class="keyword">if</span> knots[i] &lt;= u &lt;= knots[i + <span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span>  <span class="comment">#</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        coef1 = coef2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> knots[i + k - <span class="number">1</span>] - knots[i] != <span class="number">0</span>:</span><br><span class="line">            coef1 = (u - knots[i]) / (knots[i + k - <span class="number">1</span>] - knots[i])</span><br><span class="line">        <span class="keyword">if</span> knots[i + k] - knots[i + <span class="number">1</span>] != <span class="number">0</span>:</span><br><span class="line">            coef2 = (knots[i + k] - u) / (knots[i + k] - knots[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        B = coef1 * cal_B(i, k - <span class="number">1</span>, knots, u) + coef2 * cal_B(i + <span class="number">1</span>, k - <span class="number">1</span>, knots, u)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_curve</span>(<span class="params">control_points, knots, t</span>):</span><br><span class="line"></span><br><span class="line">    num, dims = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    k = <span class="built_in">len</span>(knots) - n - <span class="number">1</span>  <span class="comment"># degree of b-spline</span></span><br><span class="line"></span><br><span class="line">    N = <span class="built_in">len</span>(t)</span><br><span class="line">    P = np.zeros((N, dims))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        u = t[idx]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">            P[idx, :] += control_points[i, :] * cal_B(i, k, knots, u)</span><br><span class="line">    <span class="keyword">return</span> P</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 体验 https://superjerryshen.github.io/b-spline-demos/#/uniform-b-spline-of-order-3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">    <span class="comment"># control_points = np.array([[50, 50], [100, 300], [300, 100], [380, 200], [400, 600]])</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># https://pmagunia.com/dataset/r-dataset-package-mass-mcycle</span></span><br><span class="line">    control_points = np.loadtxt(<span class="string">r&quot;8_testdata.csv&quot;</span>, delimiter=<span class="string">&quot;,&quot;</span>, skiprows=<span class="number">1</span>, dtype=<span class="built_in">float</span>)[::<span class="number">5</span>][:-<span class="number">2</span>]</span><br><span class="line">    <span class="comment"># 先采样取控制点，[:-2]的操作是为了满足分段B样条的条件</span></span><br><span class="line">    </span><br><span class="line">    N = <span class="number">500</span></span><br><span class="line">    t = np.linspace(<span class="number">0.0</span>, <span class="number">1.0</span>, N)</span><br><span class="line"></span><br><span class="line">    uniform_knots = uniform_node(control_points)</span><br><span class="line">    quasi_knots = quasi_uniform_node(control_points)</span><br><span class="line">    piecewise_knots = piecewise_node(control_points)</span><br><span class="line">    non_knots = non_uniform_node(control_points)</span><br><span class="line"></span><br><span class="line">    P_uniform = cal_curve(control_points, uniform_knots, t)</span><br><span class="line">    P_quasi = cal_curve(control_points, quasi_knots, t)</span><br><span class="line">    P_piecewise = cal_curve(control_points, piecewise_knots, t)</span><br><span class="line">    P_non = cal_curve(control_points, non_knots, t)</span><br><span class="line"></span><br><span class="line">    fig, axs = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 均匀 会闭合</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(P_uniform[:, <span class="number">0</span>], P_uniform[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 准均匀</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(P_quasi[:, <span class="number">0</span>], P_quasi[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;quasi&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分段</span></span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(P_piecewise[:, <span class="number">0</span>], P_piecewise[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;piecewise&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].legend()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># HJ 非均匀</span></span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(P_non[:, <span class="number">0</span>], P_non[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;non uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+    <div>
+         <div>
+    
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------
+    </div>
+    
+</div> 
+    </div>
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="smile 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="smile 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>smile
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/" title="B样条曲线原理以及python实现">https://blackspace2.github.io/2025/01/08/B样条曲线/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/https:/github.com/Blackspace2">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/B%E6%A0%B7%E6%9D%A1/" rel="tag"><i class="fa fa-tag"></i> B样条</a>
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/05/first-blog/" rel="next" title="first blog">
+                  first blog <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">smile</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">1k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        本站总访客量<span id="busuanzi_value_site_uv"></span>次
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>人次
+      </span>
+    </span>
+</div>
+
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("01/05/2025 16:48:27");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+
+
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>
