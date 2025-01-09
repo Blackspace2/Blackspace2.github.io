@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-08T16:44:52.027Z</updated>
+  <updated>2025-01-09T06:51:08.825Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -17,20 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>B样条曲线原理以及python实现</title>
+    <title>B样条曲线以及其python实现</title>
     <link href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/"/>
     <id>https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</id>
     <published>2025-01-08T03:11:07.174Z</published>
-    <updated>2025-01-08T16:44:52.027Z</updated>
+    <updated>2025-01-09T06:51:08.825Z</updated>
     
     
-    <summary type="html">B样条曲线原理以及python实现</summary>
+    <summary type="html">B样条曲线及其python实现</summary>
     
     
     
-    <category term="B样条" scheme="https://blackspace2.github.io/categories/B%E6%A0%B7%E6%9D%A1/"/>
+    <category term="样条拟合" scheme="https://blackspace2.github.io/categories/%E6%A0%B7%E6%9D%A1%E6%8B%9F%E5%90%88/"/>
     
-    <category term="python" scheme="https://blackspace2.github.io/categories/B%E6%A0%B7%E6%9D%A1/python/"/>
+    <category term="B样条" scheme="https://blackspace2.github.io/categories/%E6%A0%B7%E6%9D%A1%E6%8B%9F%E5%90%88/B%E6%A0%B7%E6%9D%A1/"/>
     
     
     <category term="B样条" scheme="https://blackspace2.github.io/tags/B%E6%A0%B7%E6%9D%A1/"/>
@@ -44,37 +44,10 @@
     <link href="https://blackspace2.github.io/2025/01/05/first-blog/"/>
     <id>https://blackspace2.github.io/2025/01/05/first-blog/</id>
     <published>2025-01-05T09:55:16.000Z</published>
-    <updated>2025-01-08T16:40:57.477Z</updated>
+    <updated>2025-01-09T06:46:11.610Z</updated>
     
     
     <summary type="html">&lt;p&gt;这是第一篇博客，测试&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="类别1" scheme="https://blackspace2.github.io/categories/%E7%B1%BB%E5%88%AB1/"/>
-    
-    
-    <category term="标签1" scheme="https://blackspace2.github.io/tags/%E6%A0%87%E7%AD%BE1/"/>
-    
-    <category term="标签2" scheme="https://blackspace2.github.io/tags/%E6%A0%87%E7%AD%BE2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://blackspace2.github.io/2025/01/05/hello-world/"/>
-    <id>https://blackspace2.github.io/2025/01/05/hello-world/</id>
-    <published>2025-01-05T08:49:07.928Z</published>
-    <updated>2025-01-07T15:06:19.521Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
-first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
-more info. If you get any problems when using Hexo, you can find the
-answer in &lt;a
-href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or
-you can ask me on &lt;a
-href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
     
     
     
