@@ -45,30 +45,6 @@
 
 
 
-
-  <!-- require APlayer -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-  <!-- require MetingJS -->
-  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-  <meting-js
-    server="netease"
-    type="playlist"
-    fixed="true"
-    id="820190718"
-    auto=""
-    mini="true"
-    autoplay="false"
-    theme="#C62828"
-    loop="all"
-    order="list"
-    preload="metadata"
-    volume=""
-    mutex="true"
-    list-folded="true"
-    list-max-height="340px"
-    storage-name="metingjs" >
-  </meting-js>
 <link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
@@ -430,26 +406,6 @@ setInterval("createtime()",250);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://blackspace2.github.io/archives/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: 'unset',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app/","el":"#twikoo-comments"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
@@ -471,6 +427,26 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <div class="moon-menu">
   <div class="moon-menu-items">
     
