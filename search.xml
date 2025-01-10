@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo 中的 markdown 语法</title>
-    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="页内跳转">1. 页内跳转</h1>
-<p>跳转到地方后面加上
-<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
-需要跳转的地方 <code>[跳转到](#jump)</code></p>
-<h1 id="嵌入图片">2. 嵌入图片</h1>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置： <figure class="highlight yml"><figcaption><span>yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。
-此时图片引用语法： <code>![文本](图片名字)</code></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>test blog</title>
-    <url>/2025/01/05/first-blog/</url>
-    <content><![CDATA[<p>这是一篇测试博客</p>
-<span id="more"></span>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#inlcude <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hellp, world&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="note success"><h4 id="success-header">Success Header</h4>
-<p><strong>Welcome</strong> to <a href="https://hexo.io">Hexo!</a></p>
-</div>
-<p><span class="math display">\[a^2 + b^2 = c^2\]</span></p>
-]]></content>
-  </entry>
-  <entry>
     <title>B样条曲线以及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<span id="more"></span>
@@ -165,5 +138,32 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
         <tag>B样条</tag>
         <tag>python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hexo 中的 markdown 语法</title>
+    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="页内跳转">1. 页内跳转</h1>
+<p>跳转到地方后面加上
+<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
+需要跳转的地方 <code>[跳转到](#jump)</code></p>
+<h1 id="嵌入图片">2. 嵌入图片</h1>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置： <figure class="highlight yml"><figcaption><span>yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。
+此时图片引用语法： <code>![文本](图片名字)</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>test blog</title>
+    <url>/2025/01/05/first-blog/</url>
+    <content><![CDATA[<p>这是一篇测试博客</p>
+<span id="more"></span>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#inlcude <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hellp, world&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note success"><h4 id="success-header">Success Header</h4>
+<p><strong>Welcome</strong> to <a href="https://hexo.io">Hexo!</a></p>
+</div>
+<p><span class="math display">\[a^2 + b^2 = c^2\]</span></p>
+]]></content>
   </entry>
 </search>
