@@ -1,7 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>B样条曲线简述及其python实现</title>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="符号约定">1. 符号约定</h1>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h1 id="求导">2. 求导</h1>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">分母布局</a></li><li class="tab"><a href="#first-unique-name-2">分子布局</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><span class="math display">\[\begin{equation*}
+\begin{aligned}
+\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\boldsymbol{A}^T \\
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}=\boldsymbol{\alpha}\\
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+\boldsymbol{A}} &amp;= \boldsymbol{y}\boldsymbol{x}^{T}  \\
+\frac{\partial
+\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
+\xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
+\end{aligned}     
+\end{equation*}
+\]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\boldsymbol{A}  \\
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}=\boldsymbol{\alpha}^T  \\
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+\boldsymbol{A}} &amp;= \boldsymbol{y}^{T}\boldsymbol{x} \\
+\frac{\partial
+\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{x}^T\boldsymbol{A}^T+\boldsymbol{x}^T\boldsymbol{A}\
+\xlongequal{\text{if A is symmetric}} 2\boldsymbol{x}^T \boldsymbol{A}
+\\
+\end{aligned}
+\end{equation*}
+\]</span></p></div></div></div>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>矩阵计算</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>非线性最小二乘</title>
+    <url>/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</url>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="引言">1. 引言</h1>
+<p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
+\underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
+\]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
+\mathbb{R}^n\)</span> ， <span class="math inline">\(f\)</span>
+是任意一个非线性函数，假设他有 <span class="math inline">\(m\)</span>
+维： <span class="math inline">\(f(\boldsymbol{x}) \in
+\mathbb{R}^m\)</span> 。</p>
+<p>考虑 <span class="math inline">\(f\)</span>
+的形式基本有两种解决方法：解析法和迭代法。</p>
+<h2 id="解析法">1.1 解析法</h2>
+<p>当 <span class="math inline">\(f\)</span>
+的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
+0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
+的最优值： <span class="math display">\[
+\frac{\partial f}{\partial \boldsymbol{x}}=0 \nonumber
+\]</span> 解上述方程即可得到目标函数导数为 0
+的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
+显然这种方法较为局限。</p>
+<h2 id="迭代法">1.2 迭代法</h2>
+<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：<br />
+1. 给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
+；<br />
+2. 对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
+<span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
+class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
+3. 如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；<br />
+4. 否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k\)</span>，返回2。</p>
+<p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
+\boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
+<h1 id="一阶和二阶梯度法最速下降法和牛顿法">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</h1>
+<p>求解增量最直观的方法就是将 <strong>目标函数</strong> 在 <span
+class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
+class="math display">\[
+\|f(\boldsymbol{x}+\Delta\boldsymbol{x})
+\|_{2}^{2}=\|f(\boldsymbol{x})\|_{2}^{2}+\boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+\frac{1}{2}\Delta \boldsymbol{x }^T \boldsymbol{H} \Delta
+\boldsymbol{x}.
+\]</span></p>
+<p>这里 <span class="math inline">\(\boldsymbol{J}\)</span> 是 <span
+class="math inline">\(\|f(\boldsymbol{x}) \|_{2}^{2}\)</span> 关于 <span
+class="math inline">\(x\)</span> 的导数（雅可比矩阵），<span
+class="math inline">\(\boldsymbol{H}\)</span>
+则是二阶导数（黑塞矩阵）。我们可以选择保留泰勒展开的一阶或二阶项，对应的求解方法则为一阶梯度或二阶梯度法。</p>
+<p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
+\Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
+\]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
+它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该
+方向上取一个步长
+λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
+<p>如果保留二阶梯度，那么增量的解为： <span class="math display">\[
+\boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
+\]</span> 该方法称又为牛顿法。<br />
+我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
+<span class="math inline">\(\boldsymbol{H}\)</span>
+矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
+<h1 id="gauss-newton">3. Gauss-Newton</h1>
+<p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
+class="math inline">\(f(\boldsymbol{x})\)</span>
+进行一阶的泰勒展开：<br />
+<span class="math display">\[
+f(\boldsymbol{x}+\Delta \boldsymbol{x}) \approx
+f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}
+\]</span><br />
+这里 <span class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span>
+是 <span class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
+class="math inline">\(\boldsymbol{x}\)</span> 的导数，实际上是一个 <span
+class="math inline">\(m\times m\)</span>
+的矩阵，也是一个雅可比矩阵。</p>
+<div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
+<span class="math inline">\(\boldsymbol{x}\)</span>
+处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
+href="#2-一阶和二阶梯度法最速下降法和牛顿法">梯度法</a>
+中进行区分对比！</p>
+</div>
+<p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
+class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
+class="math inline">\(\|f(\boldsymbol{x}+\Delta\boldsymbol{x})\|_{2}^{2}\)</span>
+达到最小。即<br />
+<span class="math display">\[
+\Delta \boldsymbol{x}^{*}=arg\  \underset{\Delta \boldsymbol{x}}{min}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}
+\]</span> 将目标函数展开化简得： <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}&amp;=\frac{1}{2}(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})^T(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})
+\\
+&amp;=\frac{1}{2}(\|f(\boldsymbol{x})\|_{2}^{2} +
+2f(\boldsymbol{x})^T\boldsymbol{J}(\boldsymbol{x}+\Delta\boldsymbol{x}^T
+\boldsymbol{J}(\boldsymbol{x})^T\boldsymbol{J}(x)^T\Delta
+\boldsymbol{x}))
+\end{aligned}
+\end{equation*}
+\]</span></p>
+<p>求上述目标函数对 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 的导数，并令其为 0： <span
+class="math display">\[\nonumber
+2\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+2\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})=0
+\]</span></p>
+<p>可以得到： <span class="math display">\[
+\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
+\]</span></p>
+<h1 id="levenberg-marquadt">4. Levenberg-Marquadt</h1>
+<h1 id="参考资料">5. 参考资料</h1>
+<p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
+]]></content>
+      <categories>
+        <category>最优化</category>
+        <category>非线性最小二乘</category>
+      </categories>
+      <tags>
+        <tag>非线性最小二乘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<span id="more"></span>
 <h1 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h1>
@@ -72,7 +254,7 @@ class="math inline">\(k+1\)</span>，所有内节点呈现均匀分布。<br />
 在代码实现中，我们可以让节点矢量首尾分别为 <span
 class="math inline">\(k\)</span> 个 0 和 1，然后中间 <span
 class="math inline">\(n-k+2\)</span> 为 0 到 1 的均匀分布就行了，即
-<span class="math display">\[
+<span class="math display">\[ \nonumber
 \left[ \begin{matrix}
     \underset{k}{\underbrace{0,0,...,0}},\
     \underset{n-k+2}{\underbrace{0,...,1}},\
@@ -131,7 +313,7 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
 <strong>[4]</strong>《计算几何算法与实现》—— 孔令德</p>
 ]]></content>
       <categories>
-        <category>样条拟合</category>
+        <category>计算机图形学</category>
         <category>B样条</category>
       </categories>
       <tags>

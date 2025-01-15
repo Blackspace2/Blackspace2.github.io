@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-10T07:48:23.121Z</updated>
+  <updated>2025-01-15T15:12:05.837Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -17,20 +17,62 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>B样条曲线简述及其python实现</title>
+    <title>常用矩阵计算</title>
+    <link href="https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
+    <id>https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</id>
+    <published>2025-01-15T13:25:56.000Z</published>
+    <updated>2025-01-15T15:12:05.837Z</updated>
+    
+    
+    <summary type="html">常用矩阵计算</summary>
+    
+    
+    
+    <category term="数学" scheme="https://blackspace2.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="矩阵计算" scheme="https://blackspace2.github.io/categories/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
+    
+    
+    <category term="矩阵计算" scheme="https://blackspace2.github.io/tags/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>非线性最小二乘</title>
+    <link href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
+    <id>https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</id>
+    <published>2025-01-15T08:32:17.000Z</published>
+    <updated>2025-01-15T15:23:58.683Z</updated>
+    
+    
+    <summary type="html">非线性最小二乘</summary>
+    
+    
+    
+    <category term="最优化" scheme="https://blackspace2.github.io/categories/%E6%9C%80%E4%BC%98%E5%8C%96/"/>
+    
+    <category term="非线性最小二乘" scheme="https://blackspace2.github.io/categories/%E6%9C%80%E4%BC%98%E5%8C%96/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
+    
+    
+    <category term="非线性最小二乘" scheme="https://blackspace2.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B样条曲线简介及其python实现</title>
     <link href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/"/>
     <id>https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</id>
     <published>2025-01-08T03:11:07.174Z</published>
-    <updated>2025-01-10T07:48:23.121Z</updated>
+    <updated>2025-01-15T14:53:38.991Z</updated>
     
     
-    <summary type="html">B样条曲线简述及其python实现</summary>
+    <summary type="html">B样条曲线简介及其python实现</summary>
     
     
     
-    <category term="样条拟合" scheme="https://blackspace2.github.io/categories/%E6%A0%B7%E6%9D%A1%E6%8B%9F%E5%90%88/"/>
+    <category term="计算机图形学" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
-    <category term="B样条" scheme="https://blackspace2.github.io/categories/%E6%A0%B7%E6%9D%A1%E6%8B%9F%E5%90%88/B%E6%A0%B7%E6%9D%A1/"/>
+    <category term="B样条" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/B%E6%A0%B7%E6%9D%A1/"/>
     
     
     <category term="B样条" scheme="https://blackspace2.github.io/tags/B%E6%A0%B7%E6%9D%A1/"/>

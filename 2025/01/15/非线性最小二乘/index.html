@@ -20,25 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://blackspace2.github.io/tags/index.html">
+    <meta name="description" content="非线性最小二乘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非线性最小二乘">
+<meta property="og:url" content="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/index.html">
 <meta property="og:site_name" content="Peace">
+<meta property="og:description" content="非线性最小二乘">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-01-10T06:41:43.452Z">
-<meta property="article:modified_time" content="2025-01-10T06:41:43.452Z">
+<meta property="article:published_time" content="2025-01-15T08:32:17.000Z">
+<meta property="article:modified_time" content="2025-01-15T15:23:58.683Z">
 <meta property="article:author" content="smile">
+<meta property="article:tag" content="非线性最小二乘">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blackspace2.github.io/tags/">
+<link rel="canonical" href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"https://blackspace2.github.io/tags/index.html","path":"tags/index.html","title":"标签"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/","path":"2025/01/15/非线性最小二乘/","title":"非线性最小二乘"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签 | Peace
-</title>
+<title>非线性最小二乘 | Peace</title>
   
 
 
@@ -127,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
@@ -141,6 +143,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">1. 引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%B3%95"><span class="nav-text">1.1 解析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="nav-text">1.2 迭代法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E5%92%8C%E4%BA%8C%E9%98%B6%E6%A2%AF%E5%BA%A6%E6%B3%95%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E5%92%8C%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-text">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gauss-newton"><span class="nav-text">3. Gauss-Newton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#levenberg-marquadt"><span class="nav-text">4. Levenberg-Marquadt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">5. 参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -202,44 +206,324 @@
 
     </div>
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="smile">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peace">
+      <meta itemprop="description" content="记录学习生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="非线性最小二乘 | Peace">
+      <meta itemprop="description" content="非线性最小二乘">
+    </span>
+
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          非线性最小二乘
+        </h1>
+
+        <div class="post-meta-container">
+
+          <div class="post-meta">
     
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+      <time title="创建时间：2025-01-15 16:32:17 / 修改时间：23:23:58" itemprop="dateCreated datePublished" datetime="2025-01-15T16:32:17+08:00">2025-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%80%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">最优化</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%80%E4%BC%98%E5%8C%96/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/" itemprop="url" rel="index"><span itemprop="name">非线性最小二乘</span></a>
+        </span>
+    </span>
 
-<div class="post-meta-container">
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+  
 </div>
 
-</header>
+            <div class="post-description">非线性最小二乘</div>
+          
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    目前共计 4 个标签
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/B%E6%A0%B7%E6%9D%A1/" style="font-size: 12px;" class="tag-cloud-0">B样条</a> <a href="/tags/python/" style="font-size: 12px;" class="tag-cloud-0">python</a> <a href="/tags/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/" style="font-size: 12px;" class="tag-cloud-0">矩阵计算</a> <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/" style="font-size: 12px;" class="tag-cloud-0">非线性最小二乘</a>
-  </div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+<h1 id="引言">1. 引言</h1>
+<p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
+\underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
+\]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
+\mathbb{R}^n\)</span> ， <span class="math inline">\(f\)</span>
+是任意一个非线性函数，假设他有 <span class="math inline">\(m\)</span>
+维： <span class="math inline">\(f(\boldsymbol{x}) \in
+\mathbb{R}^m\)</span> 。</p>
+<p>考虑 <span class="math inline">\(f\)</span>
+的形式基本有两种解决方法：解析法和迭代法。</p>
+<h2 id="解析法">1.1 解析法</h2>
+<p>当 <span class="math inline">\(f\)</span>
+的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
+0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
+的最优值： <span class="math display">\[
+\frac{\partial f}{\partial \boldsymbol{x}}=0 \nonumber
+\]</span> 解上述方程即可得到目标函数导数为 0
+的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
+显然这种方法较为局限。</p>
+<h2 id="迭代法">1.2 迭代法</h2>
+<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：<br />
+1. 给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
+；<br />
+2. 对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
+<span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
+class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
+3. 如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；<br />
+4. 否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k\)</span>，返回2。</p>
+<p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
+\boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
+<h1 id="一阶和二阶梯度法最速下降法和牛顿法">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</h1>
+<p>求解增量最直观的方法就是将 <strong>目标函数</strong> 在 <span
+class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
+class="math display">\[
+\|f(\boldsymbol{x}+\Delta\boldsymbol{x})
+\|_{2}^{2}=\|f(\boldsymbol{x})\|_{2}^{2}+\boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+\frac{1}{2}\Delta \boldsymbol{x }^T \boldsymbol{H} \Delta
+\boldsymbol{x}.
+\]</span></p>
+<p>这里 <span class="math inline">\(\boldsymbol{J}\)</span> 是 <span
+class="math inline">\(\|f(\boldsymbol{x}) \|_{2}^{2}\)</span> 关于 <span
+class="math inline">\(x\)</span> 的导数（雅可比矩阵），<span
+class="math inline">\(\boldsymbol{H}\)</span>
+则是二阶导数（黑塞矩阵）。我们可以选择保留泰勒展开的一阶或二阶项，对应的求解方法则为一阶梯度或二阶梯度法。</p>
+<p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
+\Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
+\]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
+它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该
+方向上取一个步长
+λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
+<p>如果保留二阶梯度，那么增量的解为： <span class="math display">\[
+\boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
+\]</span> 该方法称又为牛顿法。<br />
+我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
+<span class="math inline">\(\boldsymbol{H}\)</span>
+矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
+<h1 id="gauss-newton">3. Gauss-Newton</h1>
+<p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
+class="math inline">\(f(\boldsymbol{x})\)</span>
+进行一阶的泰勒展开：<br />
+<span class="math display">\[
+f(\boldsymbol{x}+\Delta \boldsymbol{x}) \approx
+f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}
+\]</span><br />
+这里 <span class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span>
+是 <span class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
+class="math inline">\(\boldsymbol{x}\)</span> 的导数，实际上是一个 <span
+class="math inline">\(m\times m\)</span>
+的矩阵，也是一个雅可比矩阵。</p>
+<div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
+<span class="math inline">\(\boldsymbol{x}\)</span>
+处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
+href="#2-一阶和二阶梯度法最速下降法和牛顿法">梯度法</a>
+中进行区分对比！</p>
 </div>
+<p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
+class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
+class="math inline">\(\|f(\boldsymbol{x}+\Delta\boldsymbol{x})\|_{2}^{2}\)</span>
+达到最小。即<br />
+<span class="math display">\[
+\Delta \boldsymbol{x}^{*}=arg\  \underset{\Delta \boldsymbol{x}}{min}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}
+\]</span> 将目标函数展开化简得： <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}&amp;=\frac{1}{2}(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})^T(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})
+\\
+&amp;=\frac{1}{2}(\|f(\boldsymbol{x})\|_{2}^{2} +
+2f(\boldsymbol{x})^T\boldsymbol{J}(\boldsymbol{x}+\Delta\boldsymbol{x}^T
+\boldsymbol{J}(\boldsymbol{x})^T\boldsymbol{J}(x)^T\Delta
+\boldsymbol{x}))
+\end{aligned}
+\end{equation*}
+\]</span></p>
+<p>求上述目标函数对 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 的导数，并令其为 0： <span
+class="math display">\[\nonumber
+2\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+2\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})=0
+\]</span></p>
+<p>可以得到： <span class="math display">\[
+\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
+\]</span></p>
+<h1 id="levenberg-marquadt">4. Levenberg-Marquadt</h1>
+<h1 id="参考资料">5. 参考资料</h1>
+<p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
 
-      </div>
-      
-      
-      
     </div>
 
     
     
+    
+    <div>
+         <div>
+    
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------
+    </div>
+    
+</div> 
+    </div>
 
 
+    <footer class="post-footer">
+          <div class="reward-container">
+  
+  
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="smile 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="smile 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>smile
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/" title="非线性最小二乘">https://blackspace2.github.io/2025/01/15/非线性最小二乘/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/Blackspace2">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">GitHub</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/" rel="tag"><i class="fa fa-tag"></i> 非线性最小二乘</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/" rel="prev" title="常用矩阵计算">
+                  <i class="fa fa-angle-left"></i> 常用矩阵计算
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/" rel="next" title="B样条曲线简介及其python实现">
+                  B样条曲线简介及其python实现 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
 </div>
   </main>
 
