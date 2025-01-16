@@ -3,12 +3,12 @@
   <entry>
     <title>常用矩阵计算</title>
     <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="符号约定">1. 符号约定</h1>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
 <p>正常小写字母表示标量；<br />
 加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
 大写字母表示矩阵；</p>
-<h1 id="求导">2. 求导</h1>
+<h2 id="求导">2. 求导</h2>
 <p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
 是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
 区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
@@ -26,7 +26,7 @@
 \frac{\partial
 \boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
 \xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
-\end{aligned}     
+\end{aligned}
 \end{equation*}
 \]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
 \begin{equation*}
@@ -58,8 +58,8 @@
   <entry>
     <title>非线性最小二乘</title>
     <url>/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="引言">1. 引言</h1>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="前言">1. 前言</h2>
 <p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
 \underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
 \]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
@@ -69,7 +69,7 @@
 \mathbb{R}^m\)</span> 。</p>
 <p>考虑 <span class="math inline">\(f\)</span>
 的形式基本有两种解决方法：解析法和迭代法。</p>
-<h2 id="解析法">1.1 解析法</h2>
+<h3 id="解析法">1.1 解析法</h3>
 <p>当 <span class="math inline">\(f\)</span>
 的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
 0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
@@ -78,24 +78,30 @@
 \]</span> 解上述方程即可得到目标函数导数为 0
 的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
 显然这种方法较为局限。</p>
-<h2 id="迭代法">1.2 迭代法</h2>
-<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：<br />
-1. 给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
+<h3 id="迭代法">1.2 迭代法</h3>
+<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：</p>
+<ol type="1">
+<li>给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
 ；<br />
-2. 对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
+</li>
+<li>对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
 class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
 \boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
-3. 如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
 足够小，则停止；<br />
-4. 否则，令 <span
+</li>
+<li>否则，令 <span
 class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
-\boldsymbol{x}_k\)</span>，返回2。</p>
+\boldsymbol{x}_k\)</span>，返回2。</li>
+</ol>
 <p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
 \boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
-<h1 id="一阶和二阶梯度法最速下降法和牛顿法">2.
-一阶和二阶梯度法（最速下降法和牛顿法）</h1>
-<p>求解增量最直观的方法就是将 <strong>目标函数</strong> 在 <span
+<h2 id="一阶和二阶梯度法最速下降法和牛顿法">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</h2>
+<p>求解增量最直观的方法就是将 <strong>目标函数</strong> <span
+id="梯度法"></span> 在 <span
 class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
 class="math display">\[
 \|f(\boldsymbol{x}+\Delta\boldsymbol{x})
@@ -111,18 +117,20 @@ class="math inline">\(\boldsymbol{H}\)</span>
 <p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
 \Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
 \]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
-它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该
-方向上取一个步长
+它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该方向上取一个步长
 λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
-<p>如果保留二阶梯度，那么增量的解为： <span class="math display">\[
+<p>如果保留二阶梯度，那么增量的解为： <span
+class="math display">\[\label{二阶梯度法}
 \boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
-\]</span> 该方法称又为牛顿法。<br />
-我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
+\]</span> 该方法称又为<strong>牛顿法</strong>。</p>
+<h3 id="小结">2.1 小结</h3>
+<p>我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。</p>
+<p>不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
 <span class="math inline">\(\boldsymbol{H}\)</span>
 矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
 class="math inline">\(\boldsymbol{H}\)</span>
 的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
-<h1 id="gauss-newton">3. Gauss-Newton</h1>
+<h2 id="gauss-newton">3. Gauss-Newton</h2>
 <p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
 class="math inline">\(f(\boldsymbol{x})\)</span>
 进行一阶的泰勒展开：<br />
@@ -138,8 +146,7 @@ class="math inline">\(m\times m\)</span>
 <div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
 <span class="math inline">\(\boldsymbol{x}\)</span>
 处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
-href="#2-一阶和二阶梯度法最速下降法和牛顿法">梯度法</a>
-中进行区分对比！</p>
+href="#梯度法">梯度法</a> 中进行区分对比！</p>
 </div>
 <p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
 class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
@@ -170,8 +177,44 @@ class="math display">\[\nonumber
 \boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
 \boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
 \]</span></p>
-<h1 id="levenberg-marquadt">4. Levenberg-Marquadt</h1>
-<h1 id="参考资料">5. 参考资料</h1>
+<p>注意，我们要求解的变量是 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span>，因此这是一个线性方程组，我们称它为<strong>增量方程</strong>，也可以称为<strong>高斯牛顿方程</strong>
+(Gauss Newton equations) 或者<strong>正规方程</strong> (Normal
+equations)。我们把左边的系数定义为 <span
+class="math inline">\(\boldsymbol{H}\)</span>，右边定义为 <span
+class="math inline">\(\boldsymbol{g}\)</span>，那么上式变为：<br />
+<span class="math display">\[
+\boldsymbol{H}\Delta \boldsymbol{x} = \boldsymbol{g}
+\]</span></p>
+<p>高斯牛顿法的步骤可以写为：</p>
+<ol type="1">
+<li>给定初值 <span
+class="math inline">\(\boldsymbol{x}_0\)</span>；<br />
+</li>
+<li>对于第 <span class="math inline">\(k\)</span>
+次迭代，求出当前的雅可比矩阵 <span
+class="math inline">\(\boldsymbol{J}(\boldsymbol{x}_k)\)</span>
+和误差<span class="math inline">\(f(\boldsymbol{x}_k)\)</span>；<br />
+</li>
+<li>求解增量方程： <span class="math inline">\(\boldsymbol{H}\Delta
+\boldsymbol{x}_k = \boldsymbol{g}\)</span> ；<br />
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
+\boldsymbol{x}_k\)</span> ，返回 2。</li>
+</ol>
+<p><strong>求解增量方程是整个优化问题的核心所在</strong>。</p>
+<h3 id="小结-1">3.1 小结</h3>
+<p>和 二阶梯度法（牛顿法）<span
+class="math inline">\(\eqref{二阶梯度法}\)</span>
+的增量解进行对比，可以发现高斯牛顿法中用 <span
+class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+作为牛顿法中二阶 Hessian 矩阵的近似，从而省略了计算 <span
+class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
+<p>todo</p>
+<h2 id="levenberg-marquadt">4. Levenberg-Marquadt</h2>
+<h2 id="参考资料">5. 参考资料</h2>
 <p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
 ]]></content>
       <categories>
@@ -185,27 +228,27 @@ class="math display">\[\nonumber
   <entry>
     <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h1>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h2>
 <p>B 样条曲线 <span class="math inline">\(P(u)\)</span>
 可以表示为控制点和基函数的加权和： <span class="math display">\[
 P(u)=\sum_{i=0}^{n} {p_i B_{i,k}(u)} \ ,u\in \left[ u_{k-1}, u_{k+1}
 \right]
 \tag{1}
 \]</span></p>
-<h1 id="符号解释">2. 符号解释</h1>
-<h2 id="pu">2.1 <span class="math inline">\(P(u)\)</span></h2>
+<h2 id="符号解释">2. 符号解释</h2>
+<h3 id="pu">2.1 <span class="math inline">\(P(u)\)</span></h3>
 <p>B 样条曲线上的点，也是我们所要求的结果。</p>
-<h2 id="p_i">2.2 <span class="math inline">\(p_i\)</span></h2>
+<h3 id="p_i">2.2 <span class="math inline">\(p_i\)</span></h3>
 <p>控制点， <span class="math inline">\(i=0,1,2,..,n\)</span>，一共有
 <span class="math inline">\(n+1\)</span> 个。</p>
-<h2 id="b_ik">2.3 <span class="math inline">\(B_{i,k}\)</span></h2>
+<h3 id="b_ik">2.3 <span class="math inline">\(B_{i,k}\)</span></h3>
 <p>基函数</p>
-<h2 id="u">2.4 <span class="math inline">\(u\)</span> <span
-id="2.4"></span></h2>
+<h3 id="u">2.4 <span class="math inline">\(u\)</span> <span
+id="2.4"></span></h3>
 <p>相当于自变量，有效区间为 <span class="math inline">\(\left[ u_{k-1},
 u_{k+1} \right]\)</span>。</p>
-<h2 id="k">2.5 <span class="math inline">\(k\)</span></h2>
+<h3 id="k">2.5 <span class="math inline">\(k\)</span></h3>
 <p>B
 样条曲线的<strong>次数</strong>，这里要注意次数和阶数的区别和联系：次数
 = 阶数 - 1。</p>
@@ -220,7 +263,7 @@ class="math inline">\(n\)</span> 为控制点的个数减一。</p>
 <code>[0, 0.2, 0.4, 0.6, 0.8, 1]</code>。不同的节点矢量进而产生了不同的
 B 样条种类，例如均匀 B 样条、准均匀 B 样条、分段 B 样条以及非均匀 B
 样条等等。</p>
-<h1 id="基函数的计算">3. 基函数的计算</h1>
+<h2 id="基函数的计算">3. 基函数的计算</h2>
 <p>de Boor-Cox递归方法<br />
 <span class="math display">\[
 B_{i,k}(u)=\frac{u-u_i}{u_{i+1}-u_i}B_{i,k-1}(u)+\frac{u_{i+k}-u}{u_{i+k}-u_{i+1}}B_{i+1,k-1}(u)
@@ -231,21 +274,21 @@ B_{i,k}(u)=\frac{u-u_i}{u_{i+1}-u_i}B_{i,k-1}(u)+\frac{u_{i+k}-u}{u_{i+k}-u_{i+1
 class="math inline">\(u\)</span>，而带下标则指的是节点矢量。</p>
 <p>在代码实现中，我们规定 <span
 class="math inline">\(\frac{0}{0}=0\)</span>。</p>
-<h1 id="节点矢量-knots-的计算">4. 节点矢量 (knots) 的计算</h1>
+<h2 id="节点矢量-knots-的计算">4. 节点矢量 (knots) 的计算</h2>
 <p>节点矢量的取值可以是在 0 到 1
 之间，也可以是其他范围，但是在代码是实现的时候一定要注意前后保持一致。<br />
 本文使用节点矢量取值为 0 到 1，这样也可以表示比例嘛。</p>
 <p>这里需要注意节矢量的长度，也就是 <span
 class="math inline">\(m\)</span>，通过式 <a href="#(2)">(2)</a>
 可知，<span class="math inline">\(m=k+n+1\)</span>。</p>
-<h2 id="均匀节点-uniform-node">4.1 均匀节点 (uniform node)</h2>
+<h3 id="均匀节点-uniform-node">4.1 均匀节点 (uniform node)</h3>
 <p>显然，节点的分布是均匀的，故从 0 到
 1按照节点矢量的长度均匀划分即可。<br />
-（因为要将曲线划分为 <a href="#m">m</a> 段，当然需要 m+1个点）
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)  <span class="comment"># m = n + k + 1</span></span><br></pre></td></tr></table></figure></p>
+（因为要将曲线划分为 <a href="#m">m</a> 段，当然需要 m+1个点）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)  <span class="comment"># m = n + k + 1</span></span><br></pre></td></tr></table></figure>
 <p>均匀 B 样条曲线不一定过首尾控制点，并且在图像上是闭合的</p>
-<h2 id="准均匀节点-quasi-uniform-node">4.2 准均匀节点 (quasi uniform
-node)</h2>
+<h3 id="准均匀节点-quasi-uniform-node">4.2 准均匀节点 (quasi uniform
+node)</h3>
 <p>准均匀节点可以目的在于对曲线的端点进行行为控制，通过设计节点矢量，使得生成的
 B 样条曲线经过首尾控制点。<br />
 <span class="math inline">\(k\)</span>
@@ -256,13 +299,13 @@ class="math inline">\(k\)</span> 个 0 和 1，然后中间 <span
 class="math inline">\(n-k+2\)</span> 为 0 到 1 的均匀分布就行了，即
 <span class="math display">\[ \nonumber
 \left[ \begin{matrix}
-    \underset{k}{\underbrace{0,0,...,0}},\
-    \underset{n-k+2}{\underbrace{0,...,1}},\
-    \underset{k}{\underbrace{1,1,...,1}}\\
+\underset{k}{\underbrace{0,0,...,0}},\
+\underset{n-k+2}{\underbrace{0,...,1}},\
+\underset{k}{\underbrace{1,1,...,1}}\\
 \end{matrix} \right]
 \]</span></p>
 <figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]  <span class="comment"># 拼接</span></span><br></pre></td></tr></table></figure>
-<h2 id="分段节点-piecewise-node">4.3 分段节点 (piecewise node)</h2>
+<h3 id="分段节点-piecewise-node">4.3 分段节点 (piecewise node)</h3>
 <p>基于该节点矢量的 B 样样条曲线又称为分段 Bezier
 曲线，是一组顺序首尾相接且同为 <span class="math inline">\(k\)</span>
 次的 Bezier 曲线。<br />
@@ -270,18 +313,18 @@ class="math inline">\(n-k+2\)</span> 为 0 到 1 的均匀分布就行了，即
 次的分段节点矢量中，首末端节点重复度依旧为 <span
 class="math inline">\(k+1\)</span>，内节点重复度为 <span
 class="math inline">\(k\)</span></p>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br></pre></td></tr></table></figure>
 <p>需要注意 <span class="math inline">\(n-k\)</span> 必须是 <span
 class="math inline">\(k\)</span> 的整数倍，否则不能生成曲线。</p>
-<h2 id="非均匀节点-non-uniform-node">4.4 非均匀节点 (non-uniform
-node)</h2>
+<h3 id="非均匀节点-non-uniform-node">4.4 非均匀节点 (non-uniform
+node)</h3>
 <p>Hartley-Judd 算法 首尾重合度为 <span
 class="math inline">\(k+1\)</span>，内节点定义为：</p>
 <p><span class="math display">\[
 \begin{cases}
-    t_k=0\\
-    t_i=\sum_{j=k+1}^i{\bigl( t_j-t_{j-1} \bigr)} \\
-    t_{n+1}=1\\
+t_k=0\\
+t_i=\sum_{j=k+1}^i{\bigl( t_j-t_{j-1} \bigr)} \\
+t_{n+1}=1\\
 \end{cases}
 \tag{4}
 \]</span> <span class="math display">\[
@@ -289,8 +332,8 @@ t_i-t_{i-1}=\frac{\sum_{j=i-k}^{i-1}{l_j}}{\sum_{i=k+1}^{n+1}{\sum_{j=i-k}^{i-1}
 \tag{5}
 \]</span></p>
 <figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br></pre></td></tr></table></figure>
-<h1 id="python-实现">5. python 实现</h1>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hartley-Judd algorithem</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_B</span>(<span class="params">i, k, knots, u</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    de Boor-Cox recursion</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        i (int): ith point idx</span></span><br><span class="line"><span class="string">        k (int): degree of b-spline , equal to ord - 1</span></span><br><span class="line"><span class="string">        knots (ndarray): 1 dim</span></span><br><span class="line"><span class="string">        u : independent variable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        B: B_&#123;i,k&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">        B = <span class="number">1</span> <span class="keyword">if</span> knots[i] &lt;= u &lt;= knots[i + <span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span>  <span class="comment">#</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        coef1 = coef2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> knots[i + k - <span class="number">1</span>] - knots[i] != <span class="number">0</span>:</span><br><span class="line">            coef1 = (u - knots[i]) / (knots[i + k - <span class="number">1</span>] - knots[i])</span><br><span class="line">        <span class="keyword">if</span> knots[i + k] - knots[i + <span class="number">1</span>] != <span class="number">0</span>:</span><br><span class="line">            coef2 = (knots[i + k] - u) / (knots[i + k] - knots[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        B = coef1 * cal_B(i, k - <span class="number">1</span>, knots, u) + coef2 * cal_B(i + <span class="number">1</span>, k - <span class="number">1</span>, knots, u)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_curve</span>(<span class="params">control_points, knots, t</span>):</span><br><span class="line"></span><br><span class="line">    num, dims = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    k = <span class="built_in">len</span>(knots) - n - <span class="number">1</span>  <span class="comment"># degree of b-spline</span></span><br><span class="line"></span><br><span class="line">    N = <span class="built_in">len</span>(t)</span><br><span class="line">    P = np.zeros((N, dims))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        u = t[idx]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">            P[idx, :] += control_points[i, :] * cal_B(i, k, knots, u)</span><br><span class="line">    <span class="keyword">return</span> P</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 体验 https://superjerryshen.github.io/b-spline-demos/#/uniform-b-spline-of-order-3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">    control_points = np.array([[<span class="number">50</span>, <span class="number">50</span>], [<span class="number">100</span>, <span class="number">300</span>], [<span class="number">300</span>, <span class="number">100</span>], [<span class="number">380</span>, <span class="number">200</span>], [<span class="number">400</span>, <span class="number">600</span>], [<span class="number">500</span>, <span class="number">400</span>], [<span class="number">300</span>, <span class="number">600</span>]])</span><br><span class="line">    </span><br><span class="line">    N = <span class="number">500</span></span><br><span class="line">    t = np.linspace(<span class="number">0.0</span>, <span class="number">1.0</span>, N)</span><br><span class="line"></span><br><span class="line">    uniform_knots = uniform_node(control_points)</span><br><span class="line">    quasi_knots = quasi_uniform_node(control_points)</span><br><span class="line">    piecewise_knots = piecewise_node(control_points)</span><br><span class="line">    non_knots = non_uniform_node(control_points)</span><br><span class="line"></span><br><span class="line">    P_uniform = cal_curve(control_points, uniform_knots, t)</span><br><span class="line">    P_quasi = cal_curve(control_points, quasi_knots, t)</span><br><span class="line">    P_piecewise = cal_curve(control_points, piecewise_knots, t)</span><br><span class="line">    P_non = cal_curve(control_points, non_knots, t)</span><br><span class="line"></span><br><span class="line">    fig, axs = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 均匀 会闭合</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(P_uniform[:, <span class="number">0</span>], P_uniform[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 准均匀</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(P_quasi[:, <span class="number">0</span>], P_quasi[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;quasi&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分段</span></span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(P_piecewise[:, <span class="number">0</span>], P_piecewise[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;piecewise&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].legend()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># HJ 非均匀</span></span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(P_non[:, <span class="number">0</span>], P_non[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;non uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="python-实现">5. python 实现</h2>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hartley-Judd algorithem</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_B</span>(<span class="params">i, k, knots, u</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    de Boor-Cox recursion</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        i (int): ith point idx</span></span><br><span class="line"><span class="string">        k (int): degree of b-spline , equal to ord - 1</span></span><br><span class="line"><span class="string">        knots (ndarray): 1 dim</span></span><br><span class="line"><span class="string">        u : independent variable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        B: B_&#123;i,k&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">        B = <span class="number">1</span> <span class="keyword">if</span> knots[i] &lt;= u &lt;= knots[i + <span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span>  <span class="comment">##</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        coef1 = coef2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> knots[i + k - <span class="number">1</span>] - knots[i] != <span class="number">0</span>:</span><br><span class="line">            coef1 = (u - knots[i]) / (knots[i + k - <span class="number">1</span>] - knots[i])</span><br><span class="line">        <span class="keyword">if</span> knots[i + k] - knots[i + <span class="number">1</span>] != <span class="number">0</span>:</span><br><span class="line">            coef2 = (knots[i + k] - u) / (knots[i + k] - knots[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        B = coef1 * cal_B(i, k - <span class="number">1</span>, knots, u) + coef2 * cal_B(i + <span class="number">1</span>, k - <span class="number">1</span>, knots, u)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_curve</span>(<span class="params">control_points, knots, t</span>):</span><br><span class="line"></span><br><span class="line">    num, dims = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    k = <span class="built_in">len</span>(knots) - n - <span class="number">1</span>  <span class="comment"># degree of b-spline</span></span><br><span class="line"></span><br><span class="line">    N = <span class="built_in">len</span>(t)</span><br><span class="line">    P = np.zeros((N, dims))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        u = t[idx]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">            P[idx, :] += control_points[i, :] * cal_B(i, k, knots, u)</span><br><span class="line">    <span class="keyword">return</span> P</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 体验 https://superjerryshen.github.io/b-spline-demos/##/uniform-b-spline-of-order-3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">    control_points = np.array([[<span class="number">50</span>, <span class="number">50</span>], [<span class="number">100</span>, <span class="number">300</span>], [<span class="number">300</span>, <span class="number">100</span>], [<span class="number">380</span>, <span class="number">200</span>], [<span class="number">400</span>, <span class="number">600</span>], [<span class="number">500</span>, <span class="number">400</span>], [<span class="number">300</span>, <span class="number">600</span>]])</span><br><span class="line">    </span><br><span class="line">    N = <span class="number">500</span></span><br><span class="line">    t = np.linspace(<span class="number">0.0</span>, <span class="number">1.0</span>, N)</span><br><span class="line"></span><br><span class="line">    uniform_knots = uniform_node(control_points)</span><br><span class="line">    quasi_knots = quasi_uniform_node(control_points)</span><br><span class="line">    piecewise_knots = piecewise_node(control_points)</span><br><span class="line">    non_knots = non_uniform_node(control_points)</span><br><span class="line"></span><br><span class="line">    P_uniform = cal_curve(control_points, uniform_knots, t)</span><br><span class="line">    P_quasi = cal_curve(control_points, quasi_knots, t)</span><br><span class="line">    P_piecewise = cal_curve(control_points, piecewise_knots, t)</span><br><span class="line">    P_non = cal_curve(control_points, non_knots, t)</span><br><span class="line"></span><br><span class="line">    fig, axs = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 均匀 会闭合</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(P_uniform[:, <span class="number">0</span>], P_uniform[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 准均匀</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(P_quasi[:, <span class="number">0</span>], P_quasi[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;quasi&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 分段</span></span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(P_piecewise[:, <span class="number">0</span>], P_piecewise[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;piecewise&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].legend()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">## HJ 非均匀</span></span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(P_non[:, <span class="number">0</span>], P_non[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;non uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>效果：<br />
 <img src="BSpline.png" alt="BSpline" /></p>
 <p>todo：<br />
@@ -301,7 +344,7 @@ class="math inline">\(k=m-n-1\)</span>
 class="math inline">\(k = (m+1) - n - 1\)</span>
 的时候，却和正常预期的结果一样，不知道是哪里出问题了。<br />
 有空了再来填补空缺</p>
-<h1 id="参考">6. 参考</h1>
+<h2 id="参考">6. 参考</h2>
 <p><strong>[1]</strong> <a
 href="https://b23.tv/e93CqZR">计算机图形学-中国农大-赵明-B站
 8.5.1~8.6.2</a><br />
@@ -324,16 +367,42 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
   <entry>
     <title>Hexo 中的 markdown 语法</title>
     <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="页内跳转">1. 页内跳转</h1>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="页内跳转">1. 页内跳转</h2>
 <p>跳转到地方后面加上
 <code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
 需要跳转的地方 <code>[跳转到](#jump)</code></p>
-<h1 id="嵌入图片">2. 嵌入图片</h1>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置： <figure class="highlight yml"><figcaption><span>yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。
+<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
 此时图片引用语法： <code>![文本](图片名字)</code></p>
+<h2 id="html-插入图片">3. html 插入图片</h2>
+<p><code>&lt;img src="图片路径" width="像素或者缩放百分比" height="像素或者缩放百分比"/&gt;</code></p>
+<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
+<p>渲染引擎：MathJax<br />
+插件：hexo-renderer-pandoc<br />
+参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
+<p>写行间公式的时候，两个 <code>$$</code>
+一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
+<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
+<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
+<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
+自定义编号，那么 hexo
+依然会跳过这个公式并且对后面的公式进行自动编号。<br />
+当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
+<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
+<code>equation</code> 环境来取消对公式的编号。</p>
+<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
+和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
+<p>参考：<br />
+[1] <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
+官方文档</a><br />
+[2] <a
+href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
+公式编号说明</a></p>
 ]]></content>
   </entry>
 </search>

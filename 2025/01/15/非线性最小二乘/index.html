@@ -28,7 +28,7 @@
 <meta property="og:description" content="非线性最小二乘">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-15T08:32:17.000Z">
-<meta property="article:modified_time" content="2025-01-15T15:23:58.683Z">
+<meta property="article:modified_time" content="2025-01-16T16:25:10.177Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="非线性最小二乘">
 <meta name="twitter:card" content="summary">
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-series"><a href="/series" rel="section"><i class="fa fa-book fa-fw"></i>系列</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-series"><a href="/series" rel="section"><i class="fa fa-book fa-fw"></i>系列</a></li><li class="menu-item menu-item-jottings"><a href="/jottings" rel="section"><i class="fa fa-sticky-note fa-fw"></i>杂记</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -143,8 +143,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">1. 引言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%B3%95"><span class="nav-text">1.1 解析法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="nav-text">1.2 迭代法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E5%92%8C%E4%BA%8C%E9%98%B6%E6%A2%AF%E5%BA%A6%E6%B3%95%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E5%92%8C%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-text">2.
-一阶和二阶梯度法（最速下降法和牛顿法）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gauss-newton"><span class="nav-text">3. Gauss-Newton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#levenberg-marquadt"><span class="nav-text">4. Levenberg-Marquadt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">5. 参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">1. 前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%B3%95"><span class="nav-text">1.1 解析法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="nav-text">1.2 迭代法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E5%92%8C%E4%BA%8C%E9%98%B6%E6%A2%AF%E5%BA%A6%E6%B3%95%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E5%92%8C%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-text">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">2.1 小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gauss-newton"><span class="nav-text">3. Gauss-Newton</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-text">3.1 小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#levenberg-marquadt"><span class="nav-text">4. Levenberg-Marquadt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">5. 参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -248,9 +248,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-01-15 16:32:17 / 修改时间：23:23:58" itemprop="dateCreated datePublished" datetime="2025-01-15T16:32:17+08:00">2025-01-15</time>
+      <time title="创建时间：2025-01-15 16:32:17" itemprop="dateCreated datePublished" datetime="2025-01-15T16:32:17+08:00">2025-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-17 00:25:10" itemprop="dateModified" datetime="2025-01-17T00:25:10+08:00">2025-01-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,14 +286,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
   
 </div>
@@ -300,8 +306,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><span id="more"></span>
-<h1 id="引言">1. 引言</h1>
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="前言">1. 前言</h2>
 <p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
 \underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
 \]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
@@ -311,7 +317,7 @@
 \mathbb{R}^m\)</span> 。</p>
 <p>考虑 <span class="math inline">\(f\)</span>
 的形式基本有两种解决方法：解析法和迭代法。</p>
-<h2 id="解析法">1.1 解析法</h2>
+<h3 id="解析法">1.1 解析法</h3>
 <p>当 <span class="math inline">\(f\)</span>
 的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
 0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
@@ -320,24 +326,30 @@
 \]</span> 解上述方程即可得到目标函数导数为 0
 的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
 显然这种方法较为局限。</p>
-<h2 id="迭代法">1.2 迭代法</h2>
-<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：<br />
-1. 给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
+<h3 id="迭代法">1.2 迭代法</h3>
+<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：</p>
+<ol type="1">
+<li>给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
 ；<br />
-2. 对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
+</li>
+<li>对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
 class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
 \boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
-3. 如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
 足够小，则停止；<br />
-4. 否则，令 <span
+</li>
+<li>否则，令 <span
 class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
-\boldsymbol{x}_k\)</span>，返回2。</p>
+\boldsymbol{x}_k\)</span>，返回2。</li>
+</ol>
 <p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
 \boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
-<h1 id="一阶和二阶梯度法最速下降法和牛顿法">2.
-一阶和二阶梯度法（最速下降法和牛顿法）</h1>
-<p>求解增量最直观的方法就是将 <strong>目标函数</strong> 在 <span
+<h2 id="一阶和二阶梯度法最速下降法和牛顿法">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</h2>
+<p>求解增量最直观的方法就是将 <strong>目标函数</strong> <span
+id="梯度法"></span> 在 <span
 class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
 class="math display">\[
 \|f(\boldsymbol{x}+\Delta\boldsymbol{x})
@@ -353,18 +365,20 @@ class="math inline">\(\boldsymbol{H}\)</span>
 <p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
 \Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
 \]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
-它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该
-方向上取一个步长
+它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该方向上取一个步长
 λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
-<p>如果保留二阶梯度，那么增量的解为： <span class="math display">\[
+<p>如果保留二阶梯度，那么增量的解为： <span
+class="math display">\[\label{二阶梯度法}
 \boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
-\]</span> 该方法称又为牛顿法。<br />
-我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
+\]</span> 该方法称又为<strong>牛顿法</strong>。</p>
+<h3 id="小结">2.1 小结</h3>
+<p>我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。</p>
+<p>不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
 <span class="math inline">\(\boldsymbol{H}\)</span>
 矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
 class="math inline">\(\boldsymbol{H}\)</span>
 的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
-<h1 id="gauss-newton">3. Gauss-Newton</h1>
+<h2 id="gauss-newton">3. Gauss-Newton</h2>
 <p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
 class="math inline">\(f(\boldsymbol{x})\)</span>
 进行一阶的泰勒展开：<br />
@@ -380,8 +394,7 @@ class="math inline">\(m\times m\)</span>
 <div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
 <span class="math inline">\(\boldsymbol{x}\)</span>
 处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
-href="#2-一阶和二阶梯度法最速下降法和牛顿法">梯度法</a>
-中进行区分对比！</p>
+href="#梯度法">梯度法</a> 中进行区分对比！</p>
 </div>
 <p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
 class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
@@ -412,8 +425,44 @@ class="math display">\[\nonumber
 \boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
 \boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
 \]</span></p>
-<h1 id="levenberg-marquadt">4. Levenberg-Marquadt</h1>
-<h1 id="参考资料">5. 参考资料</h1>
+<p>注意，我们要求解的变量是 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span>，因此这是一个线性方程组，我们称它为<strong>增量方程</strong>，也可以称为<strong>高斯牛顿方程</strong>
+(Gauss Newton equations) 或者<strong>正规方程</strong> (Normal
+equations)。我们把左边的系数定义为 <span
+class="math inline">\(\boldsymbol{H}\)</span>，右边定义为 <span
+class="math inline">\(\boldsymbol{g}\)</span>，那么上式变为：<br />
+<span class="math display">\[
+\boldsymbol{H}\Delta \boldsymbol{x} = \boldsymbol{g}
+\]</span></p>
+<p>高斯牛顿法的步骤可以写为：</p>
+<ol type="1">
+<li>给定初值 <span
+class="math inline">\(\boldsymbol{x}_0\)</span>；<br />
+</li>
+<li>对于第 <span class="math inline">\(k\)</span>
+次迭代，求出当前的雅可比矩阵 <span
+class="math inline">\(\boldsymbol{J}(\boldsymbol{x}_k)\)</span>
+和误差<span class="math inline">\(f(\boldsymbol{x}_k)\)</span>；<br />
+</li>
+<li>求解增量方程： <span class="math inline">\(\boldsymbol{H}\Delta
+\boldsymbol{x}_k = \boldsymbol{g}\)</span> ；<br />
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
+\boldsymbol{x}_k\)</span> ，返回 2。</li>
+</ol>
+<p><strong>求解增量方程是整个优化问题的核心所在</strong>。</p>
+<h3 id="小结-1">3.1 小结</h3>
+<p>和 二阶梯度法（牛顿法）<span
+class="math inline">\(\eqref{二阶梯度法}\)</span>
+的增量解进行对比，可以发现高斯牛顿法中用 <span
+class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+作为牛顿法中二阶 Hessian 矩阵的近似，从而省略了计算 <span
+class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
+<p>todo</p>
+<h2 id="levenberg-marquadt">4. Levenberg-Marquadt</h2>
+<h2 id="参考资料">5. 参考资料</h2>
 <p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
 
     </div>
@@ -549,7 +598,7 @@ class="math display">\[\nonumber
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">14 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

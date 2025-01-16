@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-15T15:12:05.837Z</updated>
+  <updated>2025-01-16T15:54:16.742Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
     <id>https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</id>
     <published>2025-01-15T13:25:56.000Z</published>
-    <updated>2025-01-15T15:12:05.837Z</updated>
+    <updated>2025-01-16T15:54:16.742Z</updated>
     
     
     <summary type="html">常用矩阵计算</summary>
@@ -42,7 +42,7 @@
     <link href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
     <id>https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</id>
     <published>2025-01-15T08:32:17.000Z</published>
-    <updated>2025-01-15T15:23:58.683Z</updated>
+    <updated>2025-01-16T16:25:10.177Z</updated>
     
     
     <summary type="html">非线性最小二乘</summary>
@@ -63,7 +63,7 @@
     <link href="https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/"/>
     <id>https://blackspace2.github.io/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</id>
     <published>2025-01-08T03:11:07.174Z</published>
-    <updated>2025-01-15T14:53:38.991Z</updated>
+    <updated>2025-01-16T16:00:22.041Z</updated>
     
     
     <summary type="html">B样条曲线简介及其python实现</summary>
@@ -86,7 +86,7 @@
     <link href="https://blackspace2.github.io/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/"/>
     <id>https://blackspace2.github.io/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</id>
     <published>2025-01-06T23:20:55.000Z</published>
-    <updated>2025-01-09T11:04:04.760Z</updated>
+    <updated>2025-01-16T16:05:25.298Z</updated>
     
     
     <summary type="html">记录 Hexo 中的 markdown 语法</summary>

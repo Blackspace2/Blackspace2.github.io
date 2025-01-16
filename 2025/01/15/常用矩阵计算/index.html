@@ -28,7 +28,7 @@
 <meta property="og:description" content="常用矩阵计算">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-15T13:25:56.000Z">
-<meta property="article:modified_time" content="2025-01-15T15:12:05.837Z">
+<meta property="article:modified_time" content="2025-01-16T15:54:16.742Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="矩阵计算">
 <meta name="twitter:card" content="summary">
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-series"><a href="/series" rel="section"><i class="fa fa-book fa-fw"></i>系列</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-series"><a href="/series" rel="section"><i class="fa fa-book fa-fw"></i>系列</a></li><li class="menu-item menu-item-jottings"><a href="/jottings" rel="section"><i class="fa fa-sticky-note fa-fw"></i>杂记</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E7%BA%A6%E5%AE%9A"><span class="nav-text">1. 符号约定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E5%AF%BC"><span class="nav-text">2. 求导</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E7%BA%A6%E5%AE%9A"><span class="nav-text">1. 符号约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E5%AF%BC"><span class="nav-text">2. 求导</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -247,9 +247,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-01-15 21:25:56 / 修改时间：23:12:05" itemprop="dateCreated datePublished" datetime="2025-01-15T21:25:56+08:00">2025-01-15</time>
+      <time title="创建时间：2025-01-15 21:25:56" itemprop="dateCreated datePublished" datetime="2025-01-15T21:25:56+08:00">2025-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-16 23:54:16" itemprop="dateModified" datetime="2025-01-16T23:54:16+08:00">2025-01-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -299,12 +305,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><span id="more"></span>
-<h1 id="符号约定">1. 符号约定</h1>
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
 <p>正常小写字母表示标量；<br />
 加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
 大写字母表示矩阵；</p>
-<h1 id="求导">2. 求导</h1>
+<h2 id="求导">2. 求导</h2>
 <p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
 是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
 区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
@@ -322,7 +328,7 @@
 \frac{\partial
 \boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
 \xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
-\end{aligned}     
+\end{aligned}
 \end{equation*}
 \]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
 \begin{equation*}
@@ -473,7 +479,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">14 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
