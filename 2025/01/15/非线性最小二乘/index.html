@@ -28,7 +28,7 @@
 <meta property="og:description" content="非线性最小二乘">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-15T08:32:17.000Z">
-<meta property="article:modified_time" content="2025-01-16T16:25:10.177Z">
+<meta property="article:modified_time" content="2025-01-17T08:44:25.370Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="非线性最小二乘">
 <meta name="twitter:card" content="summary">
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -256,7 +256,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-17 00:25:10" itemprop="dateModified" datetime="2025-01-17T00:25:10+08:00">2025-01-17</time>
+      <time title="修改时间：2025-01-17 16:44:25" itemprop="dateModified" datetime="2025-01-17T16:44:25+08:00">2025-01-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,14 +286,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>10 分钟</span>
     </span>
   
 </div>
@@ -377,17 +377,18 @@ class="math display">\[\label{二阶梯度法}
 <span class="math inline">\(\boldsymbol{H}\)</span>
 矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
 class="math inline">\(\boldsymbol{H}\)</span>
-的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
+的计算。所以，接下来我们详细地介绍两类更加实用的方法： Gauss-Newton 和
+Levenberg-Marquadt 。</p>
 <h2 id="gauss-newton">3. Gauss-Newton</h2>
 <p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
 class="math inline">\(f(\boldsymbol{x})\)</span>
 进行一阶的泰勒展开：<br />
-<span class="math display">\[
+<span class="math display">\[\label{局部近似}
 f(\boldsymbol{x}+\Delta \boldsymbol{x}) \approx
 f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}
-\]</span><br />
-这里 <span class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span>
-是 <span class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
+\]</span> 这里 <span
+class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span> 是 <span
+class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
 class="math inline">\(\boldsymbol{x}\)</span> 的导数，实际上是一个 <span
 class="math inline">\(m\times m\)</span>
 的矩阵，也是一个雅可比矩阵。</p>
@@ -434,7 +435,7 @@ class="math inline">\(\boldsymbol{g}\)</span>，那么上式变为：<br />
 <span class="math display">\[
 \boldsymbol{H}\Delta \boldsymbol{x} = \boldsymbol{g}
 \]</span></p>
-<p>高斯牛顿法的步骤可以写为：</p>
+<p>Gauss-Newton 的步骤可以写为：</p>
 <ol type="1">
 <li>给定初值 <span
 class="math inline">\(\boldsymbol{x}_0\)</span>；<br />
@@ -456,12 +457,127 @@ class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
 <h3 id="小结-1">3.1 小结</h3>
 <p>和 二阶梯度法（牛顿法）<span
 class="math inline">\(\eqref{二阶梯度法}\)</span>
-的增量解进行对比，可以发现高斯牛顿法中用 <span
+的增量解进行对比，可以发现 Gauss-Newton 中用 <span
 class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
 作为牛顿法中二阶 Hessian 矩阵的近似，从而省略了计算 <span
 class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
-<p>todo</p>
+<p>Gauss-Newton 的核心在于求解增量方程，但它要求 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+是可逆且正定的，但实际中计算的 <span
+class="math inline">\(\boldsymbol{H}=\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+通常只是半正定的。因此，在使用 Gauss-Newton 的时候可能会出现 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+是奇异或者病态的情况，导致算法不收敛。更严重的是，就算我们假设 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+非奇异也非病态，如果我们求出来的步长 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 太大，也会导致我们采用的局部近似 <span
+class="math inline">\(\eqref{局部近似}\)</span>
+不够准确，这样一来我们甚至都无法保证它的迭代收敛，哪怕是让目标函数变得更大都是有可能的。</p>
+<p>尽管 Gauss-Newton
+有这些缺点，但是它依然值得我们去学习，因为在非线性优化里，相当多的算法都可以归结为
+Gauss-Newton 的变种。这些算法都借助了 Gauss-Newton
+法的思想并且通过自己的改进修正 Gauss-Newton 法的缺点。例如一些线搜索方法
+(line search method)，这类改进就是加入了一个标量 <span
+class="math inline">\(\alpha\)</span>，在确定了 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> 进一步找到 <span
+class="math inline">\(\alpha\)</span> 使得 <span
+class="math inline">\(\|f(\boldsymbol{x}+\alpha \Delta
+\boldsymbol{x})\|_{2}^{2}\)</span> 达到最小，而不是像 Gauss-Newton
+法那样简单地令 <span class="math inline">\(α = 1\)</span>。</p>
+<p>Levenberg-Marquadt
+方法在一定程度上修正了这些问题，被称之为阻尼牛顿法(Damped Newton
+Method)，一般认为它比高斯牛顿更为鲁棒。尽管它的收敛速度可能会比高斯牛顿更慢，但是在
+SLAM 里面却被大量应用。</p>
 <h2 id="levenberg-marquadt">4. Levenberg-Marquadt</h2>
+<p>前文提到当 <span class="math inline">\(\Delta \boldsymbol{x}\)</span>
+太大时，Gauss-Newton 方法中采用的近似二阶泰勒展开 <span
+class="math inline">\(\eqref{局部近似}\)</span>
+存在不够准确的问题，很自然的想到对 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 增加一个信赖区域 (Trust Region)，不能让 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span>
+因太大而使得近似不够准却。这种添加信赖区域的方法在非线性优化中被称为
+<strong>信赖区域方法 (Trust Region Method)</strong>
+。只有在规定的信赖区域中的 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 才认为近似是有效的。<br />
+那么如何确定这个信赖区域的范围呢？一个比较好的方法是根据我们的近似模型跟实际函数之间的差异来确定这个范围：如果差异小，我们就让范围尽可能大；如果差异大，我们就缩小这个近似范围。因此，考虑使用下式来判断泰勒近似是否够好。
+<span class="math display">\[
+\rho=\frac{f(\boldsymbol{x+\Delta
+\boldsymbol{x}})-f(\boldsymbol{x})}{\boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}}=\frac{实际函数下降值}{近似模型下降值}
+\]</span> 显然，当 <span class="math inline">\(\rho \rightarrow
+1\)</span> 时，近似效果最好；<br />
+当 <span class="math inline">\(\rho \ll 1\)</span>
+时，说明实际下降值远小于近似下降值，我们需要缩小近似范围，即减小 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> ；<br />
+当 <span class="math inline">\(\rho \gg 1\)</span>
+时，说明实际下降值远大于近似下降值，我们需要增大近似范围，即增大 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> 。</p>
+<p>依此，我们可以改进 Gauss-Newton 非线性优化的框架：</p>
+<ol type="1">
+<li>给定初始值 <span
+class="math inline">\(\boldsymbol{x}_0\)</span>，以及初始优化半径 <span
+class="math inline">\(\mu\)</span>；</li>
+<li>对于第 <span class="math inline">\(k\)</span> 次迭代，求解：<span
+class="math display">\[\label{L-M} \underset{\Delta
+\boldsymbol{x}_k}{min}
+\frac{1}{2}\|f(\boldsymbol{x}_k)+\boldsymbol{J}(\boldsymbol{x}_k)\Delta
+\boldsymbol{x}_k\|_{2}^{2},\ s.t.\|\boldsymbol{D}\Delta
+\boldsymbol{x}_k\|^{2}\le \mu\]</span> 这里 <span
+class="math inline">\(\mu\)</span> 是信赖区域的半径，<span
+class="math inline">\(\boldsymbol{D}\)</span> 是一个调整矩阵</li>
+<li>计算 <span class="math inline">\(\rho\)</span>；</li>
+<li>如果 <span class="math inline">\(\rho \gt \frac{3}{4}\)</span>，则
+<span class="math inline">\(\mu = 2\mu\)</span>；如果 <span
+class="math inline">\(\rho \lt \frac{1}{4}\)</span>，则 <span
+class="math inline">\(\mu = 0.5\mu\)</span>；否则，<span
+class="math inline">\(\mu\)</span>
+保持不变。这里的阈值和扩大倍数都是经验值，可视情况调整；</li>
+<li>如果 <span class="math inline">\(\rho\)</span>
+大于某阈值，认为近似可行。令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
+\boldsymbol{x}_k\)</span>；</li>
+<li>判断算法是否收敛。如果不收敛则返回2，否则结束。</li>
+</ol>
+<p>关于 <span class="math inline">\(\eqref{L-M}\)</span> 中 <span
+class="math inline">\(\boldsymbol{D}\)</span> 的说明：<br />
+当 <span class="math inline">\(\boldsymbol{D}=\boldsymbol{I}\)</span>
+时，这里的约束条件可看作是将 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 约束在一个半径为 <span
+class="math inline">\(\mu\)</span> 的球内；当 <span
+class="math inline">\(\boldsymbol{D} \ne \boldsymbol{I}\)</span>
+时，可以认为这是一个椭球。 在 L-M 算法中，取 <span
+class="math inline">\(\boldsymbol{D}\)</span> 为非负对角矩阵（由 <span
+class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+的对角元素平方根构成），使得在梯度小的维度上约束范围更大一些。</p>
+<p>根据<span class="math inline">\(\eqref{L-M}\)</span> 求解增量，
+拉格朗日法： <span class="math display">\[
+\nonumber
+L=\frac{1}{2}\|f(\boldsymbol{x}_k)+\boldsymbol{J}(\boldsymbol{x}_k)\Delta
+\boldsymbol{x}_k\|_{2}^{2}+\frac{\lambda}{2}\|\boldsymbol{D}\Delta\boldsymbol{x}_k\|_{2}^{2},\lambda
+\gt 0
+\]</span> 令偏导为0，可得增量方程： <span class="math display">\[
+\frac{\partial L}{\partial \Delta\boldsymbol{x}_k}=\boldsymbol{0}
+\Longrightarrow (\boldsymbol{H}+\lambda
+\boldsymbol{D}^{T}\boldsymbol{D})\Delta \boldsymbol{x}_k=\boldsymbol{g}
+\]</span></p>
+<p>从结果来看，当 <span class="math inline">\(\lambda\)</span>
+较小时，<span class="math inline">\(\boldsymbol{H}\)</span>
+占主导地位，说明二次近似模型效果在该范围内是比较好的，此时 L-M 法接近于
+G-N 法；当 <span class="math inline">\(\lambda\)</span> 较大时，考虑
+<span class="math inline">\(\boldsymbol{D}=\boldsymbol{I}\)</span>
+的简化形式，此时 <span class="math inline">\(\lambda \boldsymbol{D}^T
+\boldsymbol{D}=\lambda \boldsymbol{I}\)</span>
+占主导地位，说明二次近似的不够好，此时 L-M 法更接近于
+一阶梯度下降法（最速下降法）。</p>
+<p>L-M
+的求解方式，可在一定程度上避免线性方程组的系数矩阵的非奇异和病态问题，提供更稳定更准确的增量
+<span class="math inline">\(\Delta \boldsymbol{x}\)</span>。</p>
+<p>总而言之，非线性优化问题的框架，分为 Line Search 和 Trust Region
+两类。<br />
+Line Search 先固定搜索方向，然后在该方向寻找步长，以最速下降法和
+Gauss-Newton 法为代表。而 TrustRegion
+则先固定搜索区域，再考虑找该区域内的最优点。此类方法以 L-M
+为代表。实际问题中，我们通常选择 G-N 或 L-M 之一作为梯度下降策略。</p>
 <h2 id="参考资料">5. 参考资料</h2>
 <p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
 
@@ -592,13 +708,13 @@ class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">6k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -691,6 +807,26 @@ setInterval("createtime()",250);
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app","el":"#twikoo-comments"}</script>
 
 
@@ -721,26 +857,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: 'unset',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 <div class="moon-menu">
   <div class="moon-menu-items">
     

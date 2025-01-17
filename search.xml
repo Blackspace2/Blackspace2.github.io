@@ -1,231 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">分母布局</a></li><li class="tab"><a href="#first-unique-name-2">分子布局</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><span class="math display">\[\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}^T \\
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}\\
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}\boldsymbol{x}^{T}  \\
-\frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
-\end{aligned}
-\end{equation*}
-\]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
-\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}  \\
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}^T  \\
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}^{T}\boldsymbol{x} \\
-\frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{x}^T\boldsymbol{A}^T+\boldsymbol{x}^T\boldsymbol{A}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{x}^T \boldsymbol{A}
-\\
-\end{aligned}
-\end{equation*}
-\]</span></p></div></div></div>
-]]></content>
-      <categories>
-        <category>数学</category>
-        <category>矩阵计算</category>
-      </categories>
-      <tags>
-        <tag>矩阵计算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>非线性最小二乘</title>
-    <url>/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="前言">1. 前言</h2>
-<p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
-\underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
-\]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
-\mathbb{R}^n\)</span> ， <span class="math inline">\(f\)</span>
-是任意一个非线性函数，假设他有 <span class="math inline">\(m\)</span>
-维： <span class="math inline">\(f(\boldsymbol{x}) \in
-\mathbb{R}^m\)</span> 。</p>
-<p>考虑 <span class="math inline">\(f\)</span>
-的形式基本有两种解决方法：解析法和迭代法。</p>
-<h3 id="解析法">1.1 解析法</h3>
-<p>当 <span class="math inline">\(f\)</span>
-的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
-0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
-的最优值： <span class="math display">\[
-\frac{\partial f}{\partial \boldsymbol{x}}=0 \nonumber
-\]</span> 解上述方程即可得到目标函数导数为 0
-的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
-显然这种方法较为局限。</p>
-<h3 id="迭代法">1.2 迭代法</h3>
-<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：</p>
-<ol type="1">
-<li>给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
-；<br />
-</li>
-<li>对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
-<span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
-class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
-\boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
-</li>
-<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
-足够小，则停止；<br />
-</li>
-<li>否则，令 <span
-class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
-\boldsymbol{x}_k\)</span>，返回2。</li>
-</ol>
-<p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
-\boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
-<h2 id="一阶和二阶梯度法最速下降法和牛顿法">2.
-一阶和二阶梯度法（最速下降法和牛顿法）</h2>
-<p>求解增量最直观的方法就是将 <strong>目标函数</strong> <span
-id="梯度法"></span> 在 <span
-class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
-class="math display">\[
-\|f(\boldsymbol{x}+\Delta\boldsymbol{x})
-\|_{2}^{2}=\|f(\boldsymbol{x})\|_{2}^{2}+\boldsymbol{J}(\boldsymbol{x})\Delta
-\boldsymbol{x}+\frac{1}{2}\Delta \boldsymbol{x }^T \boldsymbol{H} \Delta
-\boldsymbol{x}.
-\]</span></p>
-<p>这里 <span class="math inline">\(\boldsymbol{J}\)</span> 是 <span
-class="math inline">\(\|f(\boldsymbol{x}) \|_{2}^{2}\)</span> 关于 <span
-class="math inline">\(x\)</span> 的导数（雅可比矩阵），<span
-class="math inline">\(\boldsymbol{H}\)</span>
-则是二阶导数（黑塞矩阵）。我们可以选择保留泰勒展开的一阶或二阶项，对应的求解方法则为一阶梯度或二阶梯度法。</p>
-<p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
-\Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
-\]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
-它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该方向上取一个步长
-λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
-<p>如果保留二阶梯度，那么增量的解为： <span
-class="math display">\[\label{二阶梯度法}
-\boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
-\]</span> 该方法称又为<strong>牛顿法</strong>。</p>
-<h3 id="小结">2.1 小结</h3>
-<p>我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。</p>
-<p>不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
-<span class="math inline">\(\boldsymbol{H}\)</span>
-矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
-class="math inline">\(\boldsymbol{H}\)</span>
-的计算。所以，接下来我们详细地介绍两类更加实用的方法：高斯牛顿法和列文伯格——马夸尔特方法。</p>
-<h2 id="gauss-newton">3. Gauss-Newton</h2>
-<p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
-class="math inline">\(f(\boldsymbol{x})\)</span>
-进行一阶的泰勒展开：<br />
-<span class="math display">\[
-f(\boldsymbol{x}+\Delta \boldsymbol{x}) \approx
-f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}
-\]</span><br />
-这里 <span class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span>
-是 <span class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
-class="math inline">\(\boldsymbol{x}\)</span> 的导数，实际上是一个 <span
-class="math inline">\(m\times m\)</span>
-的矩阵，也是一个雅可比矩阵。</p>
-<div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
-<span class="math inline">\(\boldsymbol{x}\)</span>
-处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
-href="#梯度法">梯度法</a> 中进行区分对比！</p>
-</div>
-<p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
-class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
-class="math inline">\(\|f(\boldsymbol{x}+\Delta\boldsymbol{x})\|_{2}^{2}\)</span>
-达到最小。即<br />
-<span class="math display">\[
-\Delta \boldsymbol{x}^{*}=arg\  \underset{\Delta \boldsymbol{x}}{min}
-\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}
-\]</span> 将目标函数展开化简得： <span class="math display">\[
-\begin{equation*}
-\begin{aligned}
-\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}&amp;=\frac{1}{2}(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})^T(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})
-\\
-&amp;=\frac{1}{2}(\|f(\boldsymbol{x})\|_{2}^{2} +
-2f(\boldsymbol{x})^T\boldsymbol{J}(\boldsymbol{x}+\Delta\boldsymbol{x}^T
-\boldsymbol{J}(\boldsymbol{x})^T\boldsymbol{J}(x)^T\Delta
-\boldsymbol{x}))
-\end{aligned}
-\end{equation*}
-\]</span></p>
-<p>求上述目标函数对 <span class="math inline">\(\Delta
-\boldsymbol{x}\)</span> 的导数，并令其为 0： <span
-class="math display">\[\nonumber
-2\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
-\boldsymbol{x}+2\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})=0
-\]</span></p>
-<p>可以得到： <span class="math display">\[
-\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
-\boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
-\]</span></p>
-<p>注意，我们要求解的变量是 <span class="math inline">\(\Delta
-\boldsymbol{x}\)</span>，因此这是一个线性方程组，我们称它为<strong>增量方程</strong>，也可以称为<strong>高斯牛顿方程</strong>
-(Gauss Newton equations) 或者<strong>正规方程</strong> (Normal
-equations)。我们把左边的系数定义为 <span
-class="math inline">\(\boldsymbol{H}\)</span>，右边定义为 <span
-class="math inline">\(\boldsymbol{g}\)</span>，那么上式变为：<br />
-<span class="math display">\[
-\boldsymbol{H}\Delta \boldsymbol{x} = \boldsymbol{g}
-\]</span></p>
-<p>高斯牛顿法的步骤可以写为：</p>
-<ol type="1">
-<li>给定初值 <span
-class="math inline">\(\boldsymbol{x}_0\)</span>；<br />
-</li>
-<li>对于第 <span class="math inline">\(k\)</span>
-次迭代，求出当前的雅可比矩阵 <span
-class="math inline">\(\boldsymbol{J}(\boldsymbol{x}_k)\)</span>
-和误差<span class="math inline">\(f(\boldsymbol{x}_k)\)</span>；<br />
-</li>
-<li>求解增量方程： <span class="math inline">\(\boldsymbol{H}\Delta
-\boldsymbol{x}_k = \boldsymbol{g}\)</span> ；<br />
-</li>
-<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
-足够小，则停止；否则，令 <span
-class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
-\boldsymbol{x}_k\)</span> ，返回 2。</li>
-</ol>
-<p><strong>求解增量方程是整个优化问题的核心所在</strong>。</p>
-<h3 id="小结-1">3.1 小结</h3>
-<p>和 二阶梯度法（牛顿法）<span
-class="math inline">\(\eqref{二阶梯度法}\)</span>
-的增量解进行对比，可以发现高斯牛顿法中用 <span
-class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
-作为牛顿法中二阶 Hessian 矩阵的近似，从而省略了计算 <span
-class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
-<p>todo</p>
-<h2 id="levenberg-marquadt">4. Levenberg-Marquadt</h2>
-<h2 id="参考资料">5. 参考资料</h2>
-<p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
-]]></content>
-      <categories>
-        <category>最优化</category>
-        <category>非线性最小二乘</category>
-      </categories>
-      <tags>
-        <tag>非线性最小二乘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -404,5 +179,361 @@ href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
 href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
 公式编号说明</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">分母布局</a></li><li class="tab"><a href="#first-unique-name-2">分子布局</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><span class="math display">\[\begin{equation*}
+\begin{aligned}
+\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\boldsymbol{A}^T \\
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}=\boldsymbol{\alpha}\\
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+\boldsymbol{A}} &amp;= \boldsymbol{y}\boldsymbol{x}^{T}  \\
+\frac{\partial
+\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
+\xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
+\end{aligned}
+\end{equation*}
+\]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\boldsymbol{A}  \\
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}=\boldsymbol{\alpha}^T  \\
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+\boldsymbol{A}} &amp;= \boldsymbol{y}^{T}\boldsymbol{x} \\
+\frac{\partial
+\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{x}^T\boldsymbol{A}^T+\boldsymbol{x}^T\boldsymbol{A}\
+\xlongequal{\text{if A is symmetric}} 2\boldsymbol{x}^T \boldsymbol{A}
+\\
+\end{aligned}
+\end{equation*}
+\]</span></p></div></div></div>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>矩阵计算</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>非线性最小二乘</title>
+    <url>/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="前言">1. 前言</h2>
+<p>先考虑一个最简单的最小二乘问题： <span class="math display">\[
+\underset{x}{min} \frac{1}{2} \|f(\boldsymbol{x}) \|_{2}^{2}
+\]</span> 这里自变量 <span class="math inline">\(\boldsymbol{x} \in
+\mathbb{R}^n\)</span> ， <span class="math inline">\(f\)</span>
+是任意一个非线性函数，假设他有 <span class="math inline">\(m\)</span>
+维： <span class="math inline">\(f(\boldsymbol{x}) \in
+\mathbb{R}^m\)</span> 。</p>
+<p>考虑 <span class="math inline">\(f\)</span>
+的形式基本有两种解决方法：解析法和迭代法。</p>
+<h3 id="解析法">1.1 解析法</h3>
+<p>当 <span class="math inline">\(f\)</span>
+的数学形式比较简单的时候，或许问题可以直接用解析形式来求解。也就是让目标函数的导数为
+0 ，然后求解 <span class="math inline">\(\boldsymbol{x}\)</span>
+的最优值： <span class="math display">\[
+\frac{\partial f}{\partial \boldsymbol{x}}=0 \nonumber
+\]</span> 解上述方程即可得到目标函数导数为 0
+的极值，它可能是极大值、极小值或者鞍点处的值，依次比较即可得到最小值。<br />
+显然这种方法较为局限。</p>
+<h3 id="迭代法">1.2 迭代法</h3>
+<p>对于不易直接求导的目标函数，我们可以用迭代的方法来求极小值。根据给定的初值，不断地更新当前的优化变量，使得目标函数朝着下降的方向变化。具体步骤列写如下：</p>
+<ol type="1">
+<li>给定初值 <span class="math inline">\(\boldsymbol{x}_0\)</span>
+；<br />
+</li>
+<li>对于第 <span class="math inline">\(k\)</span> 次迭代，寻找一个增量
+<span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>，使得 <span
+class="math inline">\(\|f(\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k)\|_{2}^{2}\)</span> 达到极小值；<br />
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；<br />
+</li>
+<li>否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k + \Delta
+\boldsymbol{x}_k\)</span>，返回2。</li>
+</ol>
+<p>这样问题就转化为如何确定增量 <span class="math inline">\(\Delta
+\boldsymbol{x}_k\)</span>，使上述过程收敛，通常有下面的几种方法。</p>
+<h2 id="一阶和二阶梯度法最速下降法和牛顿法">2.
+一阶和二阶梯度法（最速下降法和牛顿法）</h2>
+<p>求解增量最直观的方法就是将 <strong>目标函数</strong> <span
+id="梯度法"></span> 在 <span
+class="math inline">\(\boldsymbol{x}\)</span> 进行泰勒展开： <span
+class="math display">\[
+\|f(\boldsymbol{x}+\Delta\boldsymbol{x})
+\|_{2}^{2}=\|f(\boldsymbol{x})\|_{2}^{2}+\boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+\frac{1}{2}\Delta \boldsymbol{x }^T \boldsymbol{H} \Delta
+\boldsymbol{x}.
+\]</span></p>
+<p>这里 <span class="math inline">\(\boldsymbol{J}\)</span> 是 <span
+class="math inline">\(\|f(\boldsymbol{x}) \|_{2}^{2}\)</span> 关于 <span
+class="math inline">\(x\)</span> 的导数（雅可比矩阵），<span
+class="math inline">\(\boldsymbol{H}\)</span>
+则是二阶导数（黑塞矩阵）。我们可以选择保留泰勒展开的一阶或二阶项，对应的求解方法则为一阶梯度或二阶梯度法。</p>
+<p>如果保留一阶梯度，那么增量的方向为： <span class="math display">\[
+\Delta \boldsymbol{x}^{*}=-\boldsymbol{J}^T(\boldsymbol{x})
+\]</span> 这里的转置是为了满足矩阵乘法的维度匹配。<br />
+它的直观意义非常简单，只要我们沿着反向梯度方向前进即可。当然，我们还需要该方向上取一个步长
+λ，求得最快的下降方式。这种方法被称为<strong>最速下降法</strong>。</p>
+<p>如果保留二阶梯度，那么增量的解为： <span
+class="math display">\[\label{二阶梯度法}
+\boldsymbol{H} \Delta \boldsymbol{x}^{*}= - \boldsymbol{J}^T
+\]</span> 该方法称又为<strong>牛顿法</strong>。</p>
+<h3 id="小结">2.1 小结</h3>
+<p>我们看到，一阶和二阶梯度法都十分直观，只要把函数在迭代点附近进行泰勒展开，并针对更新量作最小化即可。由于泰勒展开之后函数变成了多项式，所以求解增量时只需解线性方程即可，避免了直接求导函数为零这样的非线性方程的困难。</p>
+<p>不过，这两种方法也存在它们自身的问题。最速下降法过于贪心，容易走出锯齿路线，反而增加了迭代次数。而牛顿法则需要计算目标函数的
+<span class="math inline">\(\boldsymbol{H}\)</span>
+矩阵，这在问题规模较大时非常困难，我们通常倾向于避免 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+的计算。所以，接下来我们详细地介绍两类更加实用的方法： Gauss-Newton 和
+Levenberg-Marquadt 。</p>
+<h2 id="gauss-newton">3. Gauss-Newton</h2>
+<p>Gauss Newton 是最优化算法里面最简单的方法之一。它的思想是将 <span
+class="math inline">\(f(\boldsymbol{x})\)</span>
+进行一阶的泰勒展开：<br />
+<span class="math display">\[\label{局部近似}
+f(\boldsymbol{x}+\Delta \boldsymbol{x}) \approx
+f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}
+\]</span> 这里 <span
+class="math inline">\(\boldsymbol{J}(\boldsymbol{x})\)</span> 是 <span
+class="math inline">\(f(\boldsymbol{x})\)</span> 关于 <span
+class="math inline">\(\boldsymbol{x}\)</span> 的导数，实际上是一个 <span
+class="math inline">\(m\times m\)</span>
+的矩阵，也是一个雅可比矩阵。</p>
+<div class="note danger"><p>这里是对 <span class="math inline">\(f(\boldsymbol{x})\)</span> 在
+<span class="math inline">\(\boldsymbol{x}\)</span>
+处进行泰勒展开，而不是对目标函数进行泰勒展开，需要和 <a
+href="#梯度法">梯度法</a> 中进行区分对比！</p>
+</div>
+<p>根据前面的思想，我们当前的目标是为了寻找下降矢量 <span
+class="math inline">\(\Delta\boldsymbol{x}\)</span>，使 <span
+class="math inline">\(\|f(\boldsymbol{x}+\Delta\boldsymbol{x})\|_{2}^{2}\)</span>
+达到最小。即<br />
+<span class="math display">\[
+\Delta \boldsymbol{x}^{*}=arg\  \underset{\Delta \boldsymbol{x}}{min}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}
+\]</span> 将目标函数展开化简得： <span class="math display">\[
+\begin{equation*}
+\begin{aligned}
+\frac{1}{2}\|f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x}\|_{2}^{2}&amp;=\frac{1}{2}(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})^T(f(\boldsymbol{x})+\boldsymbol{J}(\boldsymbol{x})\Delta\boldsymbol{x})
+\\
+&amp;=\frac{1}{2}(\|f(\boldsymbol{x})\|_{2}^{2} +
+2f(\boldsymbol{x})^T\boldsymbol{J}(\boldsymbol{x}+\Delta\boldsymbol{x}^T
+\boldsymbol{J}(\boldsymbol{x})^T\boldsymbol{J}(x)^T\Delta
+\boldsymbol{x}))
+\end{aligned}
+\end{equation*}
+\]</span></p>
+<p>求上述目标函数对 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 的导数，并令其为 0： <span
+class="math display">\[\nonumber
+2\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}+2\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})=0
+\]</span></p>
+<p>可以得到： <span class="math display">\[
+\boldsymbol{J}(\boldsymbol{x})^T \boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}=-\boldsymbol{J}(\boldsymbol{x})^T f(\boldsymbol{x})
+\]</span></p>
+<p>注意，我们要求解的变量是 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span>，因此这是一个线性方程组，我们称它为<strong>增量方程</strong>，也可以称为<strong>高斯牛顿方程</strong>
+(Gauss Newton equations) 或者<strong>正规方程</strong> (Normal
+equations)。我们把左边的系数定义为 <span
+class="math inline">\(\boldsymbol{H}\)</span>，右边定义为 <span
+class="math inline">\(\boldsymbol{g}\)</span>，那么上式变为：<br />
+<span class="math display">\[
+\boldsymbol{H}\Delta \boldsymbol{x} = \boldsymbol{g}
+\]</span></p>
+<p>Gauss-Newton 的步骤可以写为：</p>
+<ol type="1">
+<li>给定初值 <span
+class="math inline">\(\boldsymbol{x}_0\)</span>；<br />
+</li>
+<li>对于第 <span class="math inline">\(k\)</span>
+次迭代，求出当前的雅可比矩阵 <span
+class="math inline">\(\boldsymbol{J}(\boldsymbol{x}_k)\)</span>
+和误差<span class="math inline">\(f(\boldsymbol{x}_k)\)</span>；<br />
+</li>
+<li>求解增量方程： <span class="math inline">\(\boldsymbol{H}\Delta
+\boldsymbol{x}_k = \boldsymbol{g}\)</span> ；<br />
+</li>
+<li>如果 <span class="math inline">\(\Delta \boldsymbol{x}_k\)</span>
+足够小，则停止；否则，令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
+\boldsymbol{x}_k\)</span> ，返回 2。</li>
+</ol>
+<p><strong>求解增量方程是整个优化问题的核心所在</strong>。</p>
+<h3 id="小结-1">3.1 小结</h3>
+<p>和 二阶梯度法（牛顿法）<span
+class="math inline">\(\eqref{二阶梯度法}\)</span>
+的增量解进行对比，可以发现 Gauss-Newton 中用 <span
+class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+作为牛顿法中二阶 Hessian 矩阵的近似，从而省略了计算 <span
+class="math inline">\(\boldsymbol{H}\)</span> 的过程。</p>
+<p>Gauss-Newton 的核心在于求解增量方程，但它要求 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+是可逆且正定的，但实际中计算的 <span
+class="math inline">\(\boldsymbol{H}=\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+通常只是半正定的。因此，在使用 Gauss-Newton 的时候可能会出现 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+是奇异或者病态的情况，导致算法不收敛。更严重的是，就算我们假设 <span
+class="math inline">\(\boldsymbol{H}\)</span>
+非奇异也非病态，如果我们求出来的步长 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 太大，也会导致我们采用的局部近似 <span
+class="math inline">\(\eqref{局部近似}\)</span>
+不够准确，这样一来我们甚至都无法保证它的迭代收敛，哪怕是让目标函数变得更大都是有可能的。</p>
+<p>尽管 Gauss-Newton
+有这些缺点，但是它依然值得我们去学习，因为在非线性优化里，相当多的算法都可以归结为
+Gauss-Newton 的变种。这些算法都借助了 Gauss-Newton
+法的思想并且通过自己的改进修正 Gauss-Newton 法的缺点。例如一些线搜索方法
+(line search method)，这类改进就是加入了一个标量 <span
+class="math inline">\(\alpha\)</span>，在确定了 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> 进一步找到 <span
+class="math inline">\(\alpha\)</span> 使得 <span
+class="math inline">\(\|f(\boldsymbol{x}+\alpha \Delta
+\boldsymbol{x})\|_{2}^{2}\)</span> 达到最小，而不是像 Gauss-Newton
+法那样简单地令 <span class="math inline">\(α = 1\)</span>。</p>
+<p>Levenberg-Marquadt
+方法在一定程度上修正了这些问题，被称之为阻尼牛顿法(Damped Newton
+Method)，一般认为它比高斯牛顿更为鲁棒。尽管它的收敛速度可能会比高斯牛顿更慢，但是在
+SLAM 里面却被大量应用。</p>
+<h2 id="levenberg-marquadt">4. Levenberg-Marquadt</h2>
+<p>前文提到当 <span class="math inline">\(\Delta \boldsymbol{x}\)</span>
+太大时，Gauss-Newton 方法中采用的近似二阶泰勒展开 <span
+class="math inline">\(\eqref{局部近似}\)</span>
+存在不够准确的问题，很自然的想到对 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 增加一个信赖区域 (Trust Region)，不能让 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span>
+因太大而使得近似不够准却。这种添加信赖区域的方法在非线性优化中被称为
+<strong>信赖区域方法 (Trust Region Method)</strong>
+。只有在规定的信赖区域中的 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 才认为近似是有效的。<br />
+那么如何确定这个信赖区域的范围呢？一个比较好的方法是根据我们的近似模型跟实际函数之间的差异来确定这个范围：如果差异小，我们就让范围尽可能大；如果差异大，我们就缩小这个近似范围。因此，考虑使用下式来判断泰勒近似是否够好。
+<span class="math display">\[
+\rho=\frac{f(\boldsymbol{x+\Delta
+\boldsymbol{x}})-f(\boldsymbol{x})}{\boldsymbol{J}(\boldsymbol{x})\Delta
+\boldsymbol{x}}=\frac{实际函数下降值}{近似模型下降值}
+\]</span> 显然，当 <span class="math inline">\(\rho \rightarrow
+1\)</span> 时，近似效果最好；<br />
+当 <span class="math inline">\(\rho \ll 1\)</span>
+时，说明实际下降值远小于近似下降值，我们需要缩小近似范围，即减小 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> ；<br />
+当 <span class="math inline">\(\rho \gg 1\)</span>
+时，说明实际下降值远大于近似下降值，我们需要增大近似范围，即增大 <span
+class="math inline">\(\Delta \boldsymbol{x}\)</span> 。</p>
+<p>依此，我们可以改进 Gauss-Newton 非线性优化的框架：</p>
+<ol type="1">
+<li>给定初始值 <span
+class="math inline">\(\boldsymbol{x}_0\)</span>，以及初始优化半径 <span
+class="math inline">\(\mu\)</span>；</li>
+<li>对于第 <span class="math inline">\(k\)</span> 次迭代，求解：<span
+class="math display">\[\label{L-M} \underset{\Delta
+\boldsymbol{x}_k}{min}
+\frac{1}{2}\|f(\boldsymbol{x}_k)+\boldsymbol{J}(\boldsymbol{x}_k)\Delta
+\boldsymbol{x}_k\|_{2}^{2},\ s.t.\|\boldsymbol{D}\Delta
+\boldsymbol{x}_k\|^{2}\le \mu\]</span> 这里 <span
+class="math inline">\(\mu\)</span> 是信赖区域的半径，<span
+class="math inline">\(\boldsymbol{D}\)</span> 是一个调整矩阵</li>
+<li>计算 <span class="math inline">\(\rho\)</span>；</li>
+<li>如果 <span class="math inline">\(\rho \gt \frac{3}{4}\)</span>，则
+<span class="math inline">\(\mu = 2\mu\)</span>；如果 <span
+class="math inline">\(\rho \lt \frac{1}{4}\)</span>，则 <span
+class="math inline">\(\mu = 0.5\mu\)</span>；否则，<span
+class="math inline">\(\mu\)</span>
+保持不变。这里的阈值和扩大倍数都是经验值，可视情况调整；</li>
+<li>如果 <span class="math inline">\(\rho\)</span>
+大于某阈值，认为近似可行。令 <span
+class="math inline">\(\boldsymbol{x}_{k+1}=\boldsymbol{x}_k+\Delta
+\boldsymbol{x}_k\)</span>；</li>
+<li>判断算法是否收敛。如果不收敛则返回2，否则结束。</li>
+</ol>
+<p>关于 <span class="math inline">\(\eqref{L-M}\)</span> 中 <span
+class="math inline">\(\boldsymbol{D}\)</span> 的说明：<br />
+当 <span class="math inline">\(\boldsymbol{D}=\boldsymbol{I}\)</span>
+时，这里的约束条件可看作是将 <span class="math inline">\(\Delta
+\boldsymbol{x}\)</span> 约束在一个半径为 <span
+class="math inline">\(\mu\)</span> 的球内；当 <span
+class="math inline">\(\boldsymbol{D} \ne \boldsymbol{I}\)</span>
+时，可以认为这是一个椭球。 在 L-M 算法中，取 <span
+class="math inline">\(\boldsymbol{D}\)</span> 为非负对角矩阵（由 <span
+class="math inline">\(\boldsymbol{J}^{T}\boldsymbol{J}\)</span>
+的对角元素平方根构成），使得在梯度小的维度上约束范围更大一些。</p>
+<p>根据<span class="math inline">\(\eqref{L-M}\)</span> 求解增量，
+拉格朗日法： <span class="math display">\[
+\nonumber
+L=\frac{1}{2}\|f(\boldsymbol{x}_k)+\boldsymbol{J}(\boldsymbol{x}_k)\Delta
+\boldsymbol{x}_k\|_{2}^{2}+\frac{\lambda}{2}\|\boldsymbol{D}\Delta\boldsymbol{x}_k\|_{2}^{2},\lambda
+\gt 0
+\]</span> 令偏导为0，可得增量方程： <span class="math display">\[
+\frac{\partial L}{\partial \Delta\boldsymbol{x}_k}=\boldsymbol{0}
+\Longrightarrow (\boldsymbol{H}+\lambda
+\boldsymbol{D}^{T}\boldsymbol{D})\Delta \boldsymbol{x}_k=\boldsymbol{g}
+\]</span></p>
+<p>从结果来看，当 <span class="math inline">\(\lambda\)</span>
+较小时，<span class="math inline">\(\boldsymbol{H}\)</span>
+占主导地位，说明二次近似模型效果在该范围内是比较好的，此时 L-M 法接近于
+G-N 法；当 <span class="math inline">\(\lambda\)</span> 较大时，考虑
+<span class="math inline">\(\boldsymbol{D}=\boldsymbol{I}\)</span>
+的简化形式，此时 <span class="math inline">\(\lambda \boldsymbol{D}^T
+\boldsymbol{D}=\lambda \boldsymbol{I}\)</span>
+占主导地位，说明二次近似的不够好，此时 L-M 法更接近于
+一阶梯度下降法（最速下降法）。</p>
+<p>L-M
+的求解方式，可在一定程度上避免线性方程组的系数矩阵的非奇异和病态问题，提供更稳定更准确的增量
+<span class="math inline">\(\Delta \boldsymbol{x}\)</span>。</p>
+<p>总而言之，非线性优化问题的框架，分为 Line Search 和 Trust Region
+两类。<br />
+Line Search 先固定搜索方向，然后在该方向寻找步长，以最速下降法和
+Gauss-Newton 法为代表。而 TrustRegion
+则先固定搜索区域，再考虑找该区域内的最优点。此类方法以 L-M
+为代表。实际问题中，我们通常选择 G-N 或 L-M 之一作为梯度下降策略。</p>
+<h2 id="参考资料">5. 参考资料</h2>
+<p><strong>[1]</strong> 视觉 SLAM 十四讲 —— 高翔</p>
+]]></content>
+      <categories>
+        <category>最优化</category>
+        <category>非线性最小二乘</category>
+      </categories>
+      <tags>
+        <tag>非线性最小二乘</tag>
+      </tags>
   </entry>
 </search>
