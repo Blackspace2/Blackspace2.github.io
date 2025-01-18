@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-17T08:55:41.168Z</updated>
+  <updated>2025-01-18T16:14:50.192Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -17,46 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>支持向量机-SVM</title>
-    <link href="https://blackspace2.github.io/2025/01/17/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/"/>
-    <id>https://blackspace2.github.io/2025/01/17/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/</id>
-    <published>2025-01-17T08:54:35.000Z</published>
-    <updated>2025-01-17T08:55:41.168Z</updated>
+    <title>python 装饰器</title>
+    <link href="https://blackspace2.github.io/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
+    <id>https://blackspace2.github.io/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</id>
+    <published>2025-01-17T13:26:06.000Z</published>
+    <updated>2025-01-18T16:14:50.192Z</updated>
     
     
-    <summary type="html">支持向量机-SVM</summary>
+    <summary type="html">学习并记录常用的 python 装饰器</summary>
     
     
     
-    <category term="机器学习" scheme="https://blackspace2.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <category term="python" scheme="https://blackspace2.github.io/categories/python/"/>
     
     
-    <category term="支持向量机器" scheme="https://blackspace2.github.io/tags/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%99%A8/"/>
+    <category term="python" scheme="https://blackspace2.github.io/tags/python/"/>
     
-    <category term="SVM" scheme="https://blackspace2.github.io/tags/SVM/"/>
+    <category term="装饰器" scheme="https://blackspace2.github.io/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/"/>
     
   </entry>
   
   <entry>
-    <title>主成分分析-PCA</title>
-    <link href="https://blackspace2.github.io/2025/01/17/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-PCA/"/>
-    <id>https://blackspace2.github.io/2025/01/17/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-PCA/</id>
-    <published>2025-01-17T08:54:13.000Z</published>
-    <updated>2025-01-17T08:55:55.335Z</updated>
+    <title>python 常用语法糖</title>
+    <link href="https://blackspace2.github.io/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/"/>
+    <id>https://blackspace2.github.io/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</id>
+    <published>2025-01-17T13:06:01.000Z</published>
+    <updated>2025-01-18T16:14:54.662Z</updated>
     
     
-    <summary type="html">主成分分析-PCA</summary>
+    <summary type="html">记录 python 常用的语法糖</summary>
     
     
     
-    <category term="机器学习" scheme="https://blackspace2.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="PCA" scheme="https://blackspace2.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/"/>
+    <category term="python" scheme="https://blackspace2.github.io/categories/python/"/>
     
     
-    <category term="主成分分析" scheme="https://blackspace2.github.io/tags/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/"/>
+    <category term="python" scheme="https://blackspace2.github.io/tags/python/"/>
     
-    <category term="PCA" scheme="https://blackspace2.github.io/tags/PCA/"/>
+    <category term="语法糖" scheme="https://blackspace2.github.io/tags/%E8%AF%AD%E6%B3%95%E7%B3%96/"/>
     
   </entry>
   
@@ -82,7 +80,7 @@
     <link href="https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
     <id>https://blackspace2.github.io/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</id>
     <published>2025-01-15T13:25:56.000Z</published>
-    <updated>2025-01-16T15:54:16.742Z</updated>
+    <updated>2025-01-18T16:09:29.665Z</updated>
     
     
     <summary type="html">常用矩阵计算</summary>
@@ -103,7 +101,7 @@
     <link href="https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
     <id>https://blackspace2.github.io/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</id>
     <published>2025-01-15T08:32:17.000Z</published>
-    <updated>2025-01-17T08:53:01.923Z</updated>
+    <updated>2025-01-18T16:20:26.724Z</updated>
     
     
     <summary type="html">非线性最小二乘</summary>
@@ -115,7 +113,7 @@
     <category term="非线性最小二乘" scheme="https://blackspace2.github.io/categories/%E6%9C%80%E4%BC%98%E5%8C%96/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
     
     
-    <category term="非线性最小二乘" scheme="https://blackspace2.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/"/>
+    <category term="Levenberg-Marquadt" scheme="https://blackspace2.github.io/tags/Levenberg-Marquadt/"/>
     
   </entry>
   
@@ -147,13 +145,15 @@
     <link href="https://blackspace2.github.io/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/"/>
     <id>https://blackspace2.github.io/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</id>
     <published>2025-01-06T23:20:55.000Z</published>
-    <updated>2025-01-17T08:52:04.130Z</updated>
+    <updated>2025-01-18T16:15:09.213Z</updated>
     
     
     <summary type="html">记录 Hexo 中的 markdown 语法</summary>
     
     
     
+    
+    <category term="markdown" scheme="https://blackspace2.github.io/tags/markdown/"/>
     
   </entry>
   
