@@ -526,7 +526,7 @@ code.hljs {
   position: absolute;
 }
 .highlight-fold {
-  max-height: 500px;
+  max-height: 800px;
   overflow-y: hidden !important;
 }
 .highlight-fold .expand-btn,
@@ -1296,7 +1296,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #362d6a;
+    background: #95aa59;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3016,4 +3016,22 @@ body {
   bottom: 120px !important;
   width: 3.5em !important;
   height: 3.5em !important;
+}
+.table-container {
+  max-width: 100%; /* 最大宽度为父容器的宽度 */
+  max-height: 600px; /* 自定义最大高度 */
+  overflow: auto; /* 超出部分显示滚动条 */
+}
+table {
+  width: 100%; /* 表格宽度占满容器 */
+  border-collapse: collapse; /* 合并表格边框 */
+  border-spacing: 0; /* 单元格间距为 0 */
+  font-size: 0.875em; /* 表格字体大小 */
+  margin: 0 0 20px; /* 表格外边距 */
+}
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* 表头背景色 */
+  z-index: 1; /* 确保表头在最上层 */
 }

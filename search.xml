@@ -4,7 +4,7 @@
     <title>单像空间后方交会</title>
     <url>/2025/01/18/%E5%8D%95%E5%83%8F%E7%A9%BA%E9%97%B4%E5%90%8E%E6%96%B9%E4%BA%A4%E4%BC%9A/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="思想">1. 思想</h2>
+<h2 id="概要">1. 概要</h2>
 <p>单像后方交会的基本思想是<strong>至少</strong>利用三个已知地面控制点的坐标
 <span class="math inline">\(A(X_A,Y_A,Z_A)\)</span>，<span
 class="math inline">\(B(X_B,Y_B,Z_B)\)</span>，<span
@@ -566,7 +566,7 @@ m_{0}=\pm\sqrt{\frac{\|V^TV\|_{2}^{2}}{2n - 6}}
 <p>以 <a href="#reference1">[1]</a> 的课后题为例</p>
 <p>目录结构：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├─mian.py</span><br><span class="line">├─data.txt</span><br><span class="line">├─result.txt</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>main.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> cos, sin</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        raw_data = f.read()</span><br><span class="line">        <span class="comment"># print(raw_data)</span></span><br><span class="line">    raw_data = raw_data.split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(raw_data)):</span><br><span class="line">        tmp = [np.float64(it) <span class="keyword">for</span> it <span class="keyword">in</span> raw_data[i].split()]</span><br><span class="line">        data.extend([tmp])</span><br><span class="line">    <span class="keyword">return</span> np.array(data)[:, <span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data_path = <span class="string">&quot;data.txt&quot;</span></span><br><span class="line">save_path = <span class="string">&quot;result.txt&quot;</span></span><br><span class="line"></span><br><span class="line">m = <span class="number">4_0000</span>  <span class="comment"># 比例尺 1/m</span></span><br><span class="line">f = <span class="number">0.15324</span>  <span class="comment"># 主距</span></span><br><span class="line">x0, y0 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">phi, omega, kappa = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>  <span class="comment"># 俯仰角、横摇角和偏航角</span></span><br><span class="line"></span><br><span class="line">data = get_data(data_path)  <span class="comment"># 像坐标和地面坐标数据</span></span><br><span class="line">n_points = data.shape[<span class="number">0</span>]  <span class="comment"># 控制点的个数</span></span><br><span class="line">img_coord = data[:, :<span class="number">2</span>] / <span class="number">1000</span>  <span class="comment"># 像点坐标，除以 1000 将单位换算为 m</span></span><br><span class="line">ground_coord = data[:, <span class="number">2</span>:]  <span class="comment"># 地面坐标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Xs = np.mean(ground_coord[:, <span class="number">0</span>])</span><br><span class="line">Ys = np.mean(ground_coord[:, <span class="number">1</span>])</span><br><span class="line">Zs = m * f</span><br><span class="line"><span class="comment"># print(f&quot;外方位元素初始值：&#123;Xs,Ys,Zs,phi,omega,kappa&#125;&quot;)</span></span><br><span class="line"></span><br><span class="line">R = np.zeros((<span class="number">3</span>, <span class="number">3</span>))  <span class="comment"># 旋转矩阵</span></span><br><span class="line">x = y = np.zeros((n_points, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># V = AX - L</span></span><br><span class="line">V = L = np.zeros((<span class="number">2</span> * n_points, <span class="number">1</span>))</span><br><span class="line">A = np.zeros((<span class="number">2</span> * n_points, <span class="number">6</span>))</span><br><span class="line">X = np.zeros((<span class="number">6</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">n_iter, MAX_ITER = <span class="number">0</span>, <span class="number">150</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    a1 = R[<span class="number">0</span>, <span class="number">0</span>] = cos(phi) * cos(kappa) - sin(phi) * sin(omega) * sin(kappa)</span><br><span class="line">    a2 = R[<span class="number">0</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * cos(phi) * sin(kappa) - sin(phi) * sin(omega) * cos(kappa)</span><br><span class="line">    a3 = R[<span class="number">0</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(phi) * cos(omega)</span><br><span class="line">    b1 = R[<span class="number">1</span>, <span class="number">0</span>] = cos(omega) * sin(kappa)</span><br><span class="line">    b2 = R[<span class="number">1</span>, <span class="number">1</span>] = cos(omega) * cos(kappa)</span><br><span class="line">    b3 = R[<span class="number">1</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(omega)</span><br><span class="line">    c1 = R[<span class="number">2</span>, <span class="number">0</span>] = sin(phi) * cos(kappa) + cos(phi) * sin(omega) * sin(kappa)</span><br><span class="line">    c2 = R[<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * sin(phi) * sin(kappa) + cos(phi) * sin(omega) * cos(kappa)</span><br><span class="line">    c3 = R[<span class="number">2</span>, <span class="number">2</span>] = cos(phi) * cos(omega)</span><br><span class="line"></span><br><span class="line">    X_bar = a1 * (ground_coord[:, <span class="number">0</span>] - Xs) + b1 * (ground_coord[:, <span class="number">1</span>] - Ys) + c1 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line">    Y_bar = a2 * (ground_coord[:, <span class="number">0</span>] - Xs) + b2 * (ground_coord[:, <span class="number">1</span>] - Ys) + c2 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line">    Z_bar = a3 * (ground_coord[:, <span class="number">0</span>] - Xs) + b3 * (ground_coord[:, <span class="number">1</span>] - Ys) + c3 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line"></span><br><span class="line">    x = (-<span class="number">1.0</span>) * f * X_bar / Z_bar</span><br><span class="line">    y = (-<span class="number">1.0</span>) * f * Y_bar / Z_bar</span><br><span class="line"></span><br><span class="line">    L = (img_coord - np.array((x, y)).T).flatten()</span><br><span class="line">    H = Zs - ground_coord[:, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">0</span>] = (-<span class="number">1.0</span>) * f / H</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * x / H</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">3</span>] = (-<span class="number">1.0</span>) * f * (<span class="number">1</span> + x**<span class="number">2</span> / f**<span class="number">2</span>)</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">4</span>] = (-<span class="number">1.0</span>) * x * y / f</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">5</span>] = y</span><br><span class="line"></span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * f / H</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * y / H</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">3</span>] = (-<span class="number">1.0</span>) * x * y / f</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">4</span>] = (-<span class="number">1.0</span>) * f * (<span class="number">1</span> + y**<span class="number">2</span> / f**<span class="number">2</span>)</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">5</span>] = (-<span class="number">1.0</span>) * x</span><br><span class="line"></span><br><span class="line">    ATA_inv = np.linalg.inv(A.T @ A)</span><br><span class="line">    X = ATA_inv @ A.T @ L</span><br><span class="line"></span><br><span class="line">    Xs += X[<span class="number">0</span>]</span><br><span class="line">    Ys += X[<span class="number">1</span>]</span><br><span class="line">    Zs += X[<span class="number">2</span>]</span><br><span class="line">    phi += X[<span class="number">3</span>]</span><br><span class="line">    omega += X[<span class="number">4</span>]</span><br><span class="line">    kappa += X[<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">    n_iter += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (X[<span class="number">3</span>] &lt; <span class="number">1e-6</span> <span class="keyword">and</span> X[<span class="number">4</span>] &lt; <span class="number">1e-6</span> <span class="keyword">and</span> X[<span class="number">5</span>] &lt; <span class="number">1e-6</span>) <span class="keyword">or</span> (n_iter &gt; MAX_ITER):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(&quot;迭代次数:%0.f\n&quot; % n_iter)</span></span><br><span class="line"></span><br><span class="line">R[<span class="number">0</span>, <span class="number">0</span>] = cos(phi) * cos(kappa) - sin(phi) * sin(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">0</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * cos(phi) * sin(kappa) - sin(phi) * sin(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">0</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(phi) * cos(omega)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">0</span>] = cos(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">1</span>] = cos(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(omega)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">0</span>] = sin(phi) * cos(kappa) + cos(phi) * sin(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * sin(phi) * sin(kappa) + cos(phi) * sin(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">2</span>] = cos(phi) * cos(omega)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精度计算</span></span><br><span class="line">V = A @ X - L</span><br><span class="line">VV = np.<span class="built_in">sum</span>(np.linalg.norm(V, <span class="built_in">ord</span>=<span class="number">2</span>) ** <span class="number">2</span>)</span><br><span class="line">m0 = np.sqrt(VV / (<span class="number">2</span> * n_points - <span class="number">6</span>))</span><br><span class="line">Qx = ATA_inv.diagonal()</span><br><span class="line">m = m0 * np.sqrt(Qx)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(save_path, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.writelines(<span class="string">&quot;外方位元素及其精度： \n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Xs:<span class="subst">&#123;Xs:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">0</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Ys:<span class="subst">&#123;Ys:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">1</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Zs:<span class="subst">&#123;Zs:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">2</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;phi:<span class="subst">&#123;phi:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">3</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;omega:<span class="subst">&#123;omega:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">4</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;kappa:<span class="subst">&#123;kappa:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">5</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">&quot;\n旋转矩阵：\n&quot;</span>)</span><br><span class="line">    f.write(<span class="string">f&quot;<span class="subst">&#123;R&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>main.py</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> cos, sin</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        raw_data = f.read()</span><br><span class="line">        <span class="comment"># print(raw_data)</span></span><br><span class="line">    raw_data = raw_data.split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(raw_data)):</span><br><span class="line">        tmp = [np.float64(it) <span class="keyword">for</span> it <span class="keyword">in</span> raw_data[i].split()]</span><br><span class="line">        data.extend([tmp])</span><br><span class="line">    <span class="keyword">return</span> np.array(data)[:, <span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data_path = <span class="string">&quot;data.txt&quot;</span></span><br><span class="line">save_path = <span class="string">&quot;result.txt&quot;</span></span><br><span class="line"></span><br><span class="line">m = <span class="number">4_0000</span>  <span class="comment"># 比例尺 1/m</span></span><br><span class="line">f = <span class="number">0.15324</span>  <span class="comment"># 主距</span></span><br><span class="line">x0, y0 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">phi, omega, kappa = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>  <span class="comment"># 俯仰角、横摇角和偏航角</span></span><br><span class="line"></span><br><span class="line">data = get_data(data_path)  <span class="comment"># 像坐标和地面坐标数据</span></span><br><span class="line">n_points = data.shape[<span class="number">0</span>]  <span class="comment"># 控制点的个数</span></span><br><span class="line">img_coord = data[:, :<span class="number">2</span>] / <span class="number">1000</span>  <span class="comment"># 像点坐标，除以 1000 将单位换算为 m</span></span><br><span class="line">ground_coord = data[:, <span class="number">2</span>:]  <span class="comment"># 地面坐标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Xs = np.mean(ground_coord[:, <span class="number">0</span>])</span><br><span class="line">Ys = np.mean(ground_coord[:, <span class="number">1</span>])</span><br><span class="line">Zs = m * f</span><br><span class="line"><span class="comment"># print(f&quot;外方位元素初始值：&#123;Xs,Ys,Zs,phi,omega,kappa&#125;&quot;)</span></span><br><span class="line"></span><br><span class="line">R = np.zeros((<span class="number">3</span>, <span class="number">3</span>))  <span class="comment"># 旋转矩阵</span></span><br><span class="line">x = y = np.zeros((n_points, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># V = AX - L</span></span><br><span class="line">V = L = np.zeros((<span class="number">2</span> * n_points, <span class="number">1</span>))</span><br><span class="line">A = np.zeros((<span class="number">2</span> * n_points, <span class="number">6</span>))</span><br><span class="line">X = np.zeros((<span class="number">6</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">n_iter, MAX_ITER = <span class="number">0</span>, <span class="number">150</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    a1 = R[<span class="number">0</span>, <span class="number">0</span>] = cos(phi) * cos(kappa) - sin(phi) * sin(omega) * sin(kappa)</span><br><span class="line">    a2 = R[<span class="number">0</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * cos(phi) * sin(kappa) - sin(phi) * sin(omega) * cos(kappa)</span><br><span class="line">    a3 = R[<span class="number">0</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(phi) * cos(omega)</span><br><span class="line">    b1 = R[<span class="number">1</span>, <span class="number">0</span>] = cos(omega) * sin(kappa)</span><br><span class="line">    b2 = R[<span class="number">1</span>, <span class="number">1</span>] = cos(omega) * cos(kappa)</span><br><span class="line">    b3 = R[<span class="number">1</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(omega)</span><br><span class="line">    c1 = R[<span class="number">2</span>, <span class="number">0</span>] = sin(phi) * cos(kappa) + cos(phi) * sin(omega) * sin(kappa)</span><br><span class="line">    c2 = R[<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * sin(phi) * sin(kappa) + cos(phi) * sin(omega) * cos(kappa)</span><br><span class="line">    c3 = R[<span class="number">2</span>, <span class="number">2</span>] = cos(phi) * cos(omega)</span><br><span class="line"></span><br><span class="line">    X_bar = a1 * (ground_coord[:, <span class="number">0</span>] - Xs) + b1 * (ground_coord[:, <span class="number">1</span>] - Ys) + c1 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line">    Y_bar = a2 * (ground_coord[:, <span class="number">0</span>] - Xs) + b2 * (ground_coord[:, <span class="number">1</span>] - Ys) + c2 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line">    Z_bar = a3 * (ground_coord[:, <span class="number">0</span>] - Xs) + b3 * (ground_coord[:, <span class="number">1</span>] - Ys) + c3 * (ground_coord[:, <span class="number">2</span>] - Zs)</span><br><span class="line"></span><br><span class="line">    x = (-<span class="number">1.0</span>) * f * X_bar / Z_bar</span><br><span class="line">    y = (-<span class="number">1.0</span>) * f * Y_bar / Z_bar</span><br><span class="line"></span><br><span class="line">    L = (img_coord - np.array((x, y)).T).flatten()</span><br><span class="line">    H = Zs - ground_coord[:, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">0</span>] = (-<span class="number">1.0</span>) * f / H</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * x / H</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">3</span>] = (-<span class="number">1.0</span>) * f * (<span class="number">1</span> + x**<span class="number">2</span> / f**<span class="number">2</span>)</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">4</span>] = (-<span class="number">1.0</span>) * x * y / f</span><br><span class="line">    A[::<span class="number">2</span>, <span class="number">5</span>] = y</span><br><span class="line"></span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * f / H</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * y / H</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">3</span>] = (-<span class="number">1.0</span>) * x * y / f</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">4</span>] = (-<span class="number">1.0</span>) * f * (<span class="number">1</span> + y**<span class="number">2</span> / f**<span class="number">2</span>)</span><br><span class="line">    A[<span class="number">1</span>::<span class="number">2</span>, <span class="number">5</span>] = (-<span class="number">1.0</span>) * x</span><br><span class="line"></span><br><span class="line">    ATA_inv = np.linalg.inv(A.T @ A)</span><br><span class="line">    X = ATA_inv @ A.T @ L</span><br><span class="line"></span><br><span class="line">    Xs += X[<span class="number">0</span>]</span><br><span class="line">    Ys += X[<span class="number">1</span>]</span><br><span class="line">    Zs += X[<span class="number">2</span>]</span><br><span class="line">    phi += X[<span class="number">3</span>]</span><br><span class="line">    omega += X[<span class="number">4</span>]</span><br><span class="line">    kappa += X[<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">    n_iter += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (X[<span class="number">3</span>] &lt; <span class="number">1e-6</span> <span class="keyword">and</span> X[<span class="number">4</span>] &lt; <span class="number">1e-6</span> <span class="keyword">and</span> X[<span class="number">5</span>] &lt; <span class="number">1e-6</span>) <span class="keyword">or</span> (n_iter &gt; MAX_ITER):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(&quot;迭代次数:%0.f\n&quot; % n_iter)</span></span><br><span class="line"></span><br><span class="line">R[<span class="number">0</span>, <span class="number">0</span>] = cos(phi) * cos(kappa) - sin(phi) * sin(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">0</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * cos(phi) * sin(kappa) - sin(phi) * sin(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">0</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(phi) * cos(omega)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">0</span>] = cos(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">1</span>] = cos(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">1</span>, <span class="number">2</span>] = (-<span class="number">1.0</span>) * sin(omega)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">0</span>] = sin(phi) * cos(kappa) + cos(phi) * sin(omega) * sin(kappa)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">1</span>] = (-<span class="number">1.0</span>) * sin(phi) * sin(kappa) + cos(phi) * sin(omega) * cos(kappa)</span><br><span class="line">R[<span class="number">2</span>, <span class="number">2</span>] = cos(phi) * cos(omega)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精度计算</span></span><br><span class="line">V = A @ X - L</span><br><span class="line">VV = np.<span class="built_in">sum</span>(np.linalg.norm(V, <span class="built_in">ord</span>=<span class="number">2</span>) ** <span class="number">2</span>)</span><br><span class="line">m0 = np.sqrt(VV / (<span class="number">2</span> * n_points - <span class="number">6</span>))</span><br><span class="line">Qx = ATA_inv.diagonal()</span><br><span class="line">m = m0 * np.sqrt(Qx)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(save_path, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.writelines(<span class="string">&quot;外方位元素及其精度： \n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Xs:<span class="subst">&#123;Xs:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">0</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Ys:<span class="subst">&#123;Ys:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">1</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;Zs:<span class="subst">&#123;Zs:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">2</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;phi:<span class="subst">&#123;phi:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">3</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;omega:<span class="subst">&#123;omega:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">4</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">f&quot;kappa:<span class="subst">&#123;kappa:<span class="number">.6</span>f&#125;</span>  m:±<span class="subst">&#123;m[<span class="number">5</span>]:<span class="number">.6</span>f&#125;</span>\n&quot;</span>)</span><br><span class="line">    f.writelines(<span class="string">&quot;\n旋转矩阵：\n&quot;</span>)</span><br><span class="line">    f.write(<span class="string">f&quot;<span class="subst">&#123;R&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><figcaption><span>data.txt</span></figcaption><table><tr><td class="code"><pre><span class="line">NO.            x(mm)          y(mm)          X(m)           Y(m)           Z(m)</span><br><span class="line">1              -86.15         -68.99         36589.41       25273.32       2195.17</span><br><span class="line">2              -53.40         82.21          37631.08       31324.51       728.69         </span><br><span class="line">3              -14.78         -76.63         39100.97       24934.98       2386.50</span><br><span class="line">4              10.46          64.43          40426.54       30319.81       757.31</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><figcaption><span>result.txt</span></figcaption><table><tr><td class="code"><pre><span class="line">外方位元素及其精度： </span><br><span class="line">Xs:39795.443401  m:±1.125402</span><br><span class="line">Ys:27476.464840  m:±1.243674</span><br><span class="line">Zs:7572.688331  m:±0.483771</span><br><span class="line">phi:-0.003986  m:±0.000182</span><br><span class="line">omega:0.002114  m:±0.000160</span><br><span class="line">kappa:-0.067578  m:±0.000072</span><br><span class="line"></span><br><span class="line">旋转矩阵：</span><br><span class="line">[[ 0.99770901  0.06753409  0.00398554]</span><br><span class="line"> [-0.06752607  0.99771527 -0.00211367]</span><br><span class="line"> [-0.00411918  0.0018397   0.99998982]]</span><br></pre></td></tr></table></figure>
 <p>如果你觉得这篇博客对你有所帮助，不妨在 GitHub 上给它点个
@@ -586,6 +586,178 @@ id="reference1"></span></p>
         <tag>python</tag>
         <tag>后方交会</tag>
         <tag>摄影测量</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主成分分析-PCA</title>
+    <url>/2025/01/18/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-PCA/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="概要">1. 概要</h2>
+<p>主成分分析 (principal component analysis,PCA)</p>
+<ul>
+<li>无监督学习方法</li>
+<li><strong>线性</strong>降维</li>
+</ul>
+<h2 id="推导">2. 推导</h2>
+<h3 id="符号说明">2.1. 符号说明</h3>
+<ul>
+<li>数据 <span class="math inline">\(X\in \mathbb{R}^{n\times
+p}\)</span>，<span class="math inline">\(n\)</span> 是样本个数，<span
+class="math inline">\(p\)</span> 是特征个数
+<ul>
+<li>数据需要<strong>预处理</strong>：<strong>去中心化</strong>，每个样本减去均值即可</li>
+</ul></li>
+<li>投影矩阵 <span class="math inline">\(W \in \mathbb{R}^{p\times
+k}\)</span>，<span class="math inline">\(p\)</span> 同上，<span
+class="math inline">\(k\)</span> 是降维后特征个数</li>
+<li>矩阵 <span class="math inline">\(A\)</span> 的 <span
+class="math inline">\(F\)</span> 范数 <span
+class="math display">\[\|A\|_{F} =
+\sqrt{\sum_{i}\sum_j|a_{ij}|^2}=\sqrt{\mathrm{Tr}(A^TA)}\nonumber\]</span></li>
+</ul>
+<h3 id="最小重构误差">2.2. 最小重构误差</h3>
+<p>重投影的数据和原始数据之间的误差最小，从而丢失的信息少。 数学描述：
+<span class="math display">\[
+\begin{array}{c}
+\underset{W}{min}\ \|X-XWW^T\|_{F}^{2}\\
+\text{s.t.}\quad W^TW=I_k
+\end{array}
+\]</span></p>
+<h3 id="最大可分性">2.3. 最大可分性</h3>
+<p>数据经过投影矩阵变换到超平面上之后的数据尽可能分开，即投影后数据的方差尽可能的大，从而保留的信息多。
+数学描述： <span class="math display">\[
+\begin{array}{c}
+\underset{W}{max}\ \|XW\|_{F}^{2}\\
+\text{s.t.}\quad W^TW=I_k
+\end{array}
+\]</span></p>
+<h3 id="最小重构和最大可分等价">2.4. 最小重构和最大可分等价</h3>
+<p><span class="math display">\[\label{优化}
+\begin{aligned}
+\underset{W}{min}\|X-XWW^T\|_{F}^{2}
+&amp;=\underset{W}{min} \
+\mathrm{Tr}\left(\left(X-XWW^T\right)^T\left(X-XWW^T\right)\right)\\
+&amp;={\small \underset{W}{min} \
+\mathrm{Tr}\left(X^TX-X^TXWW^T-WW^TX^TX+WW^TX^TXWW^T \right)}\\
+&amp;=\underset{W}{min} \ \mathrm{Tr}\left(-2W^TX^TXW
++W^TX^TXWW^TW\right)\\
+&amp;=\underset{W}{min} \ \mathrm{Tr}\left(-W^TX^TXW\right)\\
+&amp;=\underset{W}{max} \ \mathrm{Tr}\left(W^TX^TXW\right)\\
+&amp;=\underset{W}{max} \ \mathrm{Tr}\left(\left(XW\right)^TXW\right)\\
+&amp;=\underset{W}{max} \|XW\|_{F}^{2}
+\end{aligned}
+\]</span></p>
+<h2 id="求解">3. 求解</h2>
+<p>由 <span class="math inline">\(\eqref{优化}\)</span> 可知，目标函数为
+<span class="math display">\[\label{目标函数}
+\begin{array}{c}
+\underset{W}{min}\ -\mathrm{Tr}\left(W^TX^TXW\right)=\underset{W}{max} \
+\mathrm{Tr}\left(W^TX^TXW\right) \\
+\text{s.t.}\quad W^TW=I_k
+\end{array}
+\]</span></p>
+<p>可以用<strong>拉格朗日乘子法</strong>求解带约束的优化问题。</p>
+<p>拉格朗日函数 <span class="math display">\[
+\mathcal{L}\left(W,\Lambda\right)=-\mathrm{Tr}\left(W^TX^TXW\right)+\mathrm{Tr}\left(\Lambda^T
+\left(W^TW-I_k\right)\right)
+\]</span> 其中 <span class="math inline">\(\Lambda =
+diag(\lambda_1,\lambda_2,\dots,\lambda_{k})\in \mathbb{R}^{k\times
+k}\)</span></p>
+<p>求解 <span class="math display">\[
+\begin{aligned}
+    \frac{\partial \mathcal{L}}{\partial W}&amp;= -2X^TXW +
+2W\Lambda=0\\
+    \frac{\partial \mathcal{L}}{\partial \Lambda}&amp;=W^TW-I_k=0 \\
+\end{aligned}
+\]</span></p>
+<p>则有 <span class="math display">\[\label{显式解}
+X^TXW=W\Lambda
+\]</span></p>
+<p>将 <span class="math inline">\(W,\Lambda\)</span> 展开 <span
+class="math display">\[
+\begin{aligned}\nonumber
+W &amp;=
+[\boldsymbol{w}_1,\boldsymbol{w}_2,\dots,\boldsymbol{w}_k]\in\mathbb{R}^{p\times
+k} ,\quad \boldsymbol{w}_i\in\mathbb{R}^{p\times 1}\\
+\Lambda &amp;= diag(\lambda_1,\lambda_2,\dots,\lambda_{k})\in
+\mathbb{R}^{k\times k},\quad \lambda_i \in \mathbb{R}
+\end{aligned}
+\]</span> 注意到 <span class="math display">\[\label{约束}
+\boldsymbol{w}_i^T\boldsymbol{w}_i=1 ,\quad
+\boldsymbol{w}_i^T\boldsymbol{w}_j=0\ \left(i\neq j\right)
+\]</span> 则有 <span class="math display">\[\label{特征解}
+X^T X \boldsymbol{w}_i = \lambda_i \boldsymbol{w}_i \ ,\quad
+i=1,2,\dots,k
+\]</span> 显然，此式为矩阵特征值和特征向量的定义式，其中 <span
+class="math inline">\(\lambda_i,w_i\)</span> 分别表示矩阵 <span
+class="math inline">\(X^TX\)</span> 的特征值和单位特征向量。</p>
+<p>因为 <span class="math inline">\(X^TX\)</span>
+为实对称阵，而实对称阵不同特征值对应的特征向量之间是相互正交的，同一特征值的不同特征向量可以通过施密特正交化使其正交，所以通过
+<span class="math inline">\(\eqref{特征解}\)</span> 求的 <span
+class="math inline">\(\boldsymbol{w}_i\)</span> 满足约束 <span
+class="math inline">\(\eqref{约束}\)</span>。<br />
+根据拉格朗日乘子法的原理可知，此时求得的结果仅是最优解的必要条件，而且
+<span class="math inline">\(X^TX\)</span> 有 <span
+class="math inline">\(p\)</span>
+个相互正交的单位特征向量，所以还需要从这 <span
+class="math inline">\(p\)</span> 个特征向量里找出 <span
+class="math inline">\(k\)</span>
+个能使得目标函数达到最优值的特征向量作为最优解。</p>
+<p>将 <span class="math inline">\(\eqref{显式解}\)</span> 带入目标函数
+<span class="math inline">\(\eqref{目标函数}\)</span> <span
+class="math display">\[
+\begin{aligned}
+\underset{W}{max}\ \mathrm{Tr}\left(W^TX^TXW\right)
+&amp;=\underset{W}{max}\ \mathrm{Tr}\left(W^T W\Lambda\right)\\
+&amp;=\underset{W}{max}\ \mathrm{Tr}\left(\Lambda\right)\\
+&amp;=\underset{W}{max}\ \sum_{i=1}^{k}\lambda_i
+\end{aligned}
+\]</span> 显然此时只需要令 <span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span> 和
+<span
+class="math inline">\(\boldsymbol{w}_1,\boldsymbol{w}_2,\dots,\boldsymbol{w}_k\)</span>
+分别为矩阵 <span class="math inline">\(X^TX\)</span> 的前 <span
+class="math inline">\(k\)</span>
+大特征值及其对应的特征向量即可使目标函数达到最大值。</p>
+<h2 id="算法流程">4. 算法流程</h2>
+<p><span class="math display">\[
+\begin{array}{r l}
+\textbf{PCA 算法}\\
+\hline
+\textbf{输入：}
+&amp;\text{1. 样本数据 } X\in\mathbb{R}^{n\times p},n \text{
+是样本个数},p \text{ 是样本特征个数；}\\
+&amp;\text{2. 降维维度 }k \\
+\textbf{过程：}
+&amp;\text{1. 数据预处理，所有样本去中心化；}\\
+&amp;\text{2. 计算 }X^T X \text{，并对其特征分解；}\\
+&amp;\text{3. 取前 } k \text{ 大个特征值所对应的特征向量 }
+w_1,w_2,\dots,w_k \text{ ；}\\
+\textbf{输出：}
+&amp;\text{投影矩阵 } W=[w_1,w_2,\dots,w_k]\\
+\hline
+\end{array}
+\]</span></p>
+<p>过程 2、3 也可以使用 SVD 分解，取前 <span
+class="math inline">\(k\)</span> 个右奇异向量即可。</p>
+<h2 id="方差贡献率">5. 方差贡献率</h2>
+<p>第 <span class="math inline">\(i\)</span> 个主成分的方差贡献率 <span
+class="math display">\[
+\eta_i = \frac{\lambda_i}{\sum_{j=1}^{p}\lambda_j}
+\]</span></p>
+<p>前 <span class="math inline">\(k\)</span> 个主成分的方差贡献率 <span
+class="math display">\[
+\eta = \frac{\sum_{i=1}^{k}\lambda_i}{\sum_{j=1}^{p}\lambda_j}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+        <category>PCA</category>
+      </categories>
+      <tags>
+        <tag>PCA</tag>
+        <tag>机器学习</tag>
+        <tag>降维</tag>
       </tags>
   </entry>
   <entry>
@@ -701,39 +873,97 @@ href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%
 是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
 区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
 可以注意到分子布局和分母布局的结果互为转置。</p>
-<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">分母布局</a></li><li class="tab"><a href="#first-unique-name-2">分子布局</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><span class="math display">\[\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}^T \\
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}} = \frac{\partial
 \boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}\\
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}\boldsymbol{x}^{T}  \\
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
-\end{aligned}
-\end{equation*}
-\]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
-\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}  \\
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}^T  \\
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}^{T}\boldsymbol{x} \\
-\frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{x}^T\boldsymbol{A}^T+\boldsymbol{x}^T\boldsymbol{A}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{x}^T \boldsymbol{A}
-\\
-\end{aligned}
-\end{equation*}
-\]</span></p></div></div></div>
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
 <h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
 <h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
 ]]></content>

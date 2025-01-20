@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":800},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="常用矩阵计算">
 <meta property="og:type" content="article">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="常用矩阵计算">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-15T13:25:56.000Z">
-<meta property="article:modified_time" content="2025-01-18T16:09:29.665Z">
+<meta property="article:modified_time" content="2025-01-20T10:15:00.553Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="矩阵计算">
 <meta name="twitter:card" content="summary">
@@ -158,18 +158,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-19 00:09:29" itemprop="dateModified" datetime="2025-01-19T00:09:29+08:00">2025-01-19</time>
+      <time title="修改时间：2025-01-20 18:15:00" itemprop="dateModified" datetime="2025-01-20T18:15:00+08:00">2025-01-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,7 +285,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>400</span>
+      <span>407</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -315,39 +315,97 @@
 是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
 区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
 可以注意到分子布局和分母布局的结果互为转置。</p>
-<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">分母布局</a></li><li class="tab"><a href="#first-unique-name-2">分子布局</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><span class="math display">\[\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}^T \\
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
+\boldsymbol{x}} = \frac{\partial
 \boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}\\
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}\boldsymbol{x}^{T}  \\
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
 \frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{Ax}+\boldsymbol{A}^T\boldsymbol{x}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{Ax}  \\
-\end{aligned}
-\end{equation*}
-\]</span></p></div><div class="tab-pane" id="first-unique-name-2"><p><span class="math display">\[
-\begin{equation*}
-\begin{aligned}
-\frac{\partial \boldsymbol{A}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\boldsymbol{A}  \\
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}}&amp; =\frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}=\boldsymbol{\alpha}^T  \\
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-\boldsymbol{A}} &amp;= \boldsymbol{y}^{T}\boldsymbol{x} \\
-\frac{\partial
-\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}}{\partial\boldsymbol{x}}&amp;=\boldsymbol{x}^T\boldsymbol{A}^T+\boldsymbol{x}^T\boldsymbol{A}\
-\xlongequal{\text{if A is symmetric}} 2\boldsymbol{x}^T \boldsymbol{A}
-\\
-\end{aligned}
-\end{equation*}
-\]</span></p></div></div></div>
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
 <h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
 <h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
 
@@ -478,13 +536,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -577,6 +635,26 @@ setInterval("createtime()",250);
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app","el":"#twikoo-comments"}</script>
 
 
@@ -607,26 +685,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: 'unset',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 <div class="moon-menu">
   <div class="moon-menu-items">
     
