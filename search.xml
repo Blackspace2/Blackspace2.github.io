@@ -8,7 +8,7 @@
 <p>跳转到地方后面加上
 <code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
 需要跳转的地方 <code>[跳转到](#jump)</code><br />
-注：<code>jump</code> 字段貌似不能是中文</p>
+注：<code>jump</code> 字段不能有中文、空格</p>
 <h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
 <p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
@@ -16,7 +16,7 @@
 文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
 此时图片引用语法： <code>![文本](图片名字)</code></p>
 <h2 id="html-插入图片">3. html 插入图片</h2>
-<p><code>&lt;img src="图片路径" width="像素或者缩放百分比" height="像素或者缩放百分比"/&gt;</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
 <p>渲染引擎：MathJax<br />
 插件：hexo-renderer-pandoc<br />
@@ -43,6 +43,21 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
 ]]></content>
       <tags>
         <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -185,21 +200,6 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       </tags>
   </entry>
   <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python 常用语法糖</title>
     <url>/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -293,6 +293,7 @@ data-cites="property">@property</span></h3>
 <ul>
 <li>无监督学习方法</li>
 <li><strong>线性</strong>降维</li>
+<li>数据压缩</li>
 </ul>
 <h2 id="推导">2. 推导</h2>
 <h3 id="符号说明">2.1. 符号说明</h3>
@@ -315,7 +316,7 @@ class="math display">\[\|A\|_{F} =
 <p>重投影的数据和原始数据之间的误差最小，从而丢失的信息少。<br />
 数学描述： <span class="math display">\[
 \begin{array}{c}
-\underset{W}{min}\ \|X-XWW^T\|_{F}^{2}\\
+\underset{W}{\min }\ \|X-XWW^T\|_{F}^{2}\\
 \text{s.t.}\quad W^TW=I_k
 \end{array}
 \]</span></p>
@@ -323,32 +324,33 @@ class="math display">\[\|A\|_{F} =
 <p>数据经过投影矩阵变换到超平面上之后的数据尽可能分开，即投影后数据的方差尽可能的大，从而保留的信息多。<br />
 数学描述： <span class="math display">\[
 \begin{array}{c}
-\underset{W}{max}\ \|XW\|_{F}^{2}\\
+\underset{W}{\max }\ \|XW\|_{F}^{2}\\
 \text{s.t.}\quad W^TW=I_k
 \end{array}
 \]</span></p>
 <h3 id="最小重构和最大可分等价">2.4. 最小重构和最大可分等价</h3>
 <p><span class="math display">\[\label{优化}
 \begin{aligned}
-\underset{W}{min}\|X-XWW^T\|_{F}^{2}
-&amp;=\underset{W}{min} \
+\underset{W}{\min }\|X-XWW^T\|_{F}^{2}
+&amp;=\underset{W}{\min } \
 \mathrm{Tr}\left(\left(X-XWW^T\right)^T\left(X-XWW^T\right)\right)\\
-&amp;={\small \underset{W}{min} \
+&amp;={\small \underset{W}{\min } \
 \mathrm{Tr}\left(X^TX-X^TXWW^T-WW^TX^TX+WW^TX^TXWW^T \right)}\\
-&amp;=\underset{W}{min} \ \mathrm{Tr}\left(-2W^TX^TXW
+&amp;=\underset{W}{\min } \ \mathrm{Tr}\left(-2W^TX^TXW
 +W^TX^TXWW^TW\right)\\
-&amp;=\underset{W}{min} \ \mathrm{Tr}\left(-W^TX^TXW\right)\\
-&amp;=\underset{W}{max} \ \mathrm{Tr}\left(W^TX^TXW\right)\\
-&amp;=\underset{W}{max} \ \mathrm{Tr}\left(\left(XW\right)^TXW\right)\\
-&amp;=\underset{W}{max} \|XW\|_{F}^{2}
+&amp;=\underset{W}{\min } \ \mathrm{Tr}\left(-W^TX^TXW\right)\\
+&amp;=\underset{W}{\max } \ \mathrm{Tr}\left(W^TX^TXW\right)\\
+&amp;=\underset{W}{\max } \
+\mathrm{Tr}\left(\left(XW\right)^TXW\right)\\
+&amp;=\underset{W}{\max } \|XW\|_{F}^{2}
 \end{aligned}
 \]</span></p>
 <h2 id="求解">3. 求解</h2>
 <p>由 <span class="math inline">\(\eqref{优化}\)</span> 可知，目标函数为
 <span class="math display">\[\label{目标函数}
 \begin{array}{c}
-\underset{W}{min}\ -\mathrm{Tr}\left(W^TX^TXW\right)=\underset{W}{max} \
-\mathrm{Tr}\left(W^TX^TXW\right) \\
+\underset{W}{\min }\ -\mathrm{Tr}\left(W^TX^TXW\right)=\underset{W}{\max
+} \ \mathrm{Tr}\left(W^TX^TXW\right) \\
 \text{s.t.}\quad W^TW=I_k
 \end{array}
 \]</span></p>
@@ -403,10 +405,10 @@ class="math inline">\(k\)</span>
 <span class="math inline">\(\eqref{目标函数}\)</span> <span
 class="math display">\[
 \begin{aligned}
-\underset{W}{max}\ \mathrm{Tr}\left(W^TX^TXW\right)
-&amp;=\underset{W}{max}\ \mathrm{Tr}\left(W^T W\Lambda\right)\\
-&amp;=\underset{W}{max}\ \mathrm{Tr}\left(\Lambda\right)\\
-&amp;=\underset{W}{max}\ \sum_{i=1}^{k}\lambda_i
+\underset{W}{\max }\ \mathrm{Tr}\left(W^TX^TXW\right)
+&amp;=\underset{W}{\max }\ \mathrm{Tr}\left(W^T W\Lambda\right)\\
+&amp;=\underset{W}{\max }\ \mathrm{Tr}\left(\Lambda\right)\\
+&amp;=\underset{W}{\max }\ \sum_{i=1}^{k}\lambda_i
 \end{aligned}
 \]</span> 显然此时只需要令 <span
 class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span> 和
@@ -1157,6 +1159,587 @@ A^T\]</span></td>
       </categories>
       <tags>
         <tag>矩阵计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>支持向量机-SVM</title>
+    <url>/2025/01/18/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="概要">1. 概要</h2>
+<p>支持向量机 (support vector machine, SVM)</p>
+<ul>
+<li>有监督学习</li>
+<li><strong>线性</strong>分类器</li>
+<li>利用<strong>核技巧</strong>解决<strong>非线性</strong>分类问题</li>
+</ul>
+<p><strong>为方便可视化，以二维二分类问题为例子对 SVM
+进行说明。</strong></p>
+<strong>目标</strong>：<span
+id="SVM_purpose"></span>支持向量机想要求解的是离正负样本都尽可能远且刚好位于“正中间”的划分超平面，因为这样的超平面理论上泛化性能更好。<br />
+<span id="fig1"></span>
+<figure>
+<img src="SVM示意图.svg" alt="SVM示意图" width="50%" height="50%" loading="lazy"/>
+<figcaption>
+图1. SVM示意图，蓝色为负例，红色为正例，<span
+class="math inline">\(H_0\)</span> 为所求
+</figcaption>
+</figure>
+<h2 id="符号说明与一些定义">2. 符号说明与一些定义</h2>
+<h3 id="符号说明">2.1. 符号说明</h3>
+<ul>
+<li>数据集 <span
+class="math inline">\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\}\)</span>
+<ul>
+<li><span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}^d,\quad
+y_i \in \{+1,-1\},\quad i=1,2,\dots,n\)</span></li>
+<li><span class="math inline">\(y_i=1\)</span> 时 <span
+class="math inline">\(\boldsymbol{x}_i\)</span> 为正例，<span
+class="math inline">\(y_i=-1\)</span> 时 <span
+class="math inline">\(\boldsymbol{x}_i\)</span> 为负例</li>
+<li><strong>假设数据是线性可分的</strong>，即存在一个超平面能够将不同类的样本完全分开。</li>
+</ul></li>
+<li>超平面 <span
+class="math inline">\(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}+b=0\)</span>，简记为<span
+class="math inline">\((\boldsymbol{w},b)\)</span>
+<ul>
+<li><strong>缩放不变性</strong>：<span
+class="math inline">\(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}+b=0\)</span>
+与 <span
+class="math inline">\((k\boldsymbol{w})^\mathrm{T}\boldsymbol{x}+kb=0\
+(k\gt 0)\)</span> 表示的是同一个超平面</li>
+</ul></li>
+</ul>
+<details class="note info"><summary><p>关于<strong>缩放不变性</strong></p>
+</summary>
+<p>虽然 <span class="math inline">\(k&lt;0\)</span>
+在数学上也满足缩放不变性，但在 SVM 的推导和实现中，通常限制 <span
+class="math inline">\(k&gt;0\)</span>
+以避免分类方向的反转和优化问题的复杂性。下面是一个简单的例子：</p>
+<p>假设原始超平面参数为 <span class="math inline">\(\boldsymbol{w} = (1,
+0)\)</span>，<span class="math inline">\(b =
+0\)</span>，分类规则为：<br />
+如果 <span class="math inline">\(x_1 &gt; 0\)</span>，则预测为 <span
+class="math inline">\(y = +1\)</span>；<br />
+如果 <span class="math inline">\(x_1 &lt; 0\)</span>，则预测为 <span
+class="math inline">\(y = -1\)</span>。</p>
+<p><strong>情况 1：<span class="math inline">\(k &gt; 0\)</span>（例如
+<span class="math inline">\(k = 2\)</span>）</strong><br />
+缩放后的超平面参数为 <span class="math inline">\(\boldsymbol{w}&#39; =
+(2, 0)\)</span>，<span class="math inline">\(b&#39; =
+0\)</span>，分类规则不变：<br />
+如果 <span class="math inline">\(2x_1 &gt; 0 \quad \Rightarrow \quad x_1
+&gt; 0\)</span>，则预测为 <span class="math inline">\(y =
++1\)</span>;<br />
+如果 <span class="math inline">\(2x_1 &lt; 0 \quad \Rightarrow \quad x_1
+&lt; 0\)</span>，则预测为 <span class="math inline">\(y =
+-1\)</span>。</p>
+<p><strong>情况 2：<span class="math inline">\(k &lt; 0\)</span>（例如
+<span class="math inline">\(k = -1\)</span>）</strong><br />
+缩放后的超平面参数为 <span class="math inline">\(\boldsymbol{w}&#39; =
+(-1, 0)\)</span>，<span class="math inline">\(b&#39; =
+0\)</span>，分类规则反转：<br />
+如果 <span class="math inline">\(-x_1 &gt; 0 \quad \Rightarrow \quad x_1
+&lt; 0\)</span>，则预测为 <span class="math inline">\(y =
++1\)</span>；<br />
+如果 <span class="math inline">\(-x_1 &lt; 0 \quad \Rightarrow \quad x_1
+&gt; 0\)</span>，则预测为 <span class="math inline">\(y =
+-1\)</span>。</p>
+
+</details>
+<h3 id="定义">2.2. 定义</h3>
+<h4 id="支持向量">2.2.1. 支持向量</h4>
+<p><a href="#fig1">图1</a> 中，<span
+class="math inline">\(H_1,H_{-1}\)</span>
+经过的向量（一个蓝色，两个红色）即为支持向量。<br />
+支持向量 <span class="math inline">\(\boldsymbol{x}_*\)</span>满足 <span
+class="math display">\[\label{SV}
+y_* \left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_*+b\right) = 1
+\]</span></p>
+<hr />
+<p>根据 <a href="#SVM_purpose">SVM 的目标</a>，记超平面 <span
+class="math inline">\(H_1\)</span> 与 <span
+class="math inline">\(H_{-1}\)</span> 之间的距离为 <span
+class="math inline">\(d\)</span>，我们很容易想到需要找到合适的 <span
+class="math inline">\(H_1\)</span> 与 <span
+class="math inline">\(H_{-1}\)</span> 使得 <span
+class="math inline">\(d\)</span> 最大，此时超平面 <span
+class="math inline">\(H_1\)</span> 与 <span
+class="math inline">\(H_{-1}\)</span> 正中间的超平面 <span
+class="math inline">\(H_0\)</span> 即为我们所求。<br />
+为此我们需要定义关于距离 <span class="math inline">\(d\)</span>
+的描述，也就是<strong>间隔 (margin)</strong>。</p>
+<p><span id="I_think"></span>下面所说的超平面 <span
+class="math inline">\((\boldsymbol{w},b)\)</span>
+应该认为是已经能够将所有样本正确划分的了。<small><em>存疑</em></small></p>
+<h4 id="函数间隔">2.2.2. 函数间隔</h4>
+<p>对于给定的训练数据集 <span class="math inline">\(T\)</span> 和超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span> ，定义超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span> 关于样本点 <span
+class="math inline">\((\boldsymbol{x}_i,y_i)\)</span> 的函数间隔为 <span
+class="math display">\[\hat{\gamma}_i = y_i
+\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right)\]</span></p>
+<p>定义超平面 <span class="math inline">\((\boldsymbol{w},b)\)</span>
+关于训练数据集 <span class="math inline">\(T\)</span> 的函数间隔为超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span> 关于 <span
+class="math inline">\(T\)</span> 中所有样本点 <span
+class="math inline">\((\boldsymbol{x}_i,y_i)\)</span>
+的函数间隔之最小值，即 <span class="math display">\[\hat{\gamma} =
+\min_{i = 1,2,\dots,n}
+\hat{\gamma}_i=y_*\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_*+b\right)\]</span>
+其中 <span class="math inline">\(\boldsymbol{x}_*\)</span>
+为支持向量。</p>
+<p>函数间隔可以表示分类的正确性以及确信度。<br />
+注意到函数间隔存在一些问题：当 <span
+class="math inline">\(\boldsymbol{w},b\)</span>
+成比例的改变时，虽然超平面没有改变，但函数间隔也会以同样的比例变化，因此不适合用于优化。</p>
+<h4 id="几何间隔">2.2.3. 几何间隔</h4>
+<p>对于给定的训练数据集 <span class="math inline">\(T\)</span> 和超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span>，定义超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span> 关于样本点 <span
+class="math inline">\((\boldsymbol{x}_i,y_i)\)</span> 的几何间隔为 <span
+class="math display">\[\gamma_i =
+\frac{y_i\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i +
+b\right)}{\|\boldsymbol{w}\|}\]</span></p>
+<p>定义超平面 <span class="math inline">\((\boldsymbol{w},b)\)</span>
+关于训练数据集 <span class="math inline">\(T\)</span> 的几何间隔为超平面
+<span class="math inline">\((\boldsymbol{w},b)\)</span> 关于 <span
+class="math inline">\(T\)</span> 中所有样本点 <span
+class="math inline">\((\boldsymbol{x}_i,y_i)\)</span>
+的几何间隔之最小值，即 <span class="math display">\[\gamma = \min_{i =
+1,2,\dots,n}
+\gamma_i=\frac{y_*\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_* +
+b\right)}{\|\boldsymbol{w}\|}\]</span> 其中 <span
+class="math inline">\(\boldsymbol{x}_*\)</span> 为支持向量。</p>
+<p>超平面关于样本点的几何间隔指的就是点到超平面带符号的距离，当样本点被超平面分类正确的时候就是实际的距离了。</p>
+<p>另外，几何间隔弥补了函数间隔存在的缺陷，即便 <span
+class="math inline">\(\boldsymbol{w},b\)</span> 成比例的改变，但因为有了
+<span class="math inline">\(\|\boldsymbol{w}\|\)</span>
+这个分母项，使得几何间隔不变。<br />
+也就是说几何间隔只与超平面的位置有关，比函数间隔更适合作为一个变量进行最优化。</p>
+<p>根据函数间隔和几何间隔的定义，我们可以知道二者存在如下关系 <span
+class="math display">\[
+\begin{align}
+\label{间隔关系1} \gamma_i = \frac{\hat{\gamma}_i}{\|\boldsymbol{w}\|}
+\\
+\label{间隔关系2} \gamma = \frac{\hat{\gamma}}{\|\boldsymbol{w}\|}
+\end{align}
+\]</span> 当 <span class="math inline">\(\|\boldsymbol{w}\|=1\)</span>
+时，函数间隔和几何间隔二者相等。</p>
+<h2 id="推导">3. 推导</h2>
+<h3 id="目标函数">3.1. 目标函数</h3>
+<p>由前文可知，我们需要最大化几何间隔，又称为硬间隔最大化。</p>
+<p>间隔最大化的直观解释是：对训练数据集找到几何间隔最大的超平面意味着以充分大的确信度对训练数据进行分类。也就是说，不仅将正负实例点分开，而且对最难分的实例点（离超平面最近的点）也有足够大的确信度将它们分开。这样的超平面应该对未知的新实例有很好的分类预测能力。</p>
+<p>因此我们考虑如何求得一个几何间隔最大的分离超平面，即最大间隔分离超平面。用数学语言可以表示为如下的优化问题
+<span class="math display">\[
+\begin{equation}\label{opt}
+\begin{aligned}
+\max_{\boldsymbol{w},b} \quad&amp;\gamma = \max_{\boldsymbol{w},b} \min
+\gamma_i \ ,\ i=1,2,\dots,n\\
+\text{s.t.} \quad&amp; y_i
+\frac{\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b}{\|\boldsymbol{w}\|}
+\ge \gamma,\quad i=1,2,\dots,n
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>即最大化最小几何间隔，我们希望最大化超平面 <span
+class="math inline">\((\boldsymbol{w},b)\)</span>
+关于训练数据集的几何间隔 <span
+class="math inline">\(\gamma\)</span>；约束条件表明，超平面 <span
+class="math inline">\((\boldsymbol{w},b)\)</span>
+关于每个训练样本的点的几何间隔至少为 <span
+class="math inline">\(\gamma\)</span>。</p>
+<p>考虑函数间隔和几何间隔的关系 <span
+class="math inline">\(\eqref{间隔关系2}\)</span>，代入 <span
+class="math inline">\(\eqref{opt}\)</span> 有 <span
+class="math display">\[
+\begin{align}
+\max_{\boldsymbol{w},b} \quad&amp;
+\frac{\hat{\gamma}}{\|\boldsymbol{w}\|}\\
+\text{s.t.} \quad&amp; y_i
+\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right) \ge
+\hat{\gamma},\quad i=1,2,\dots,n
+\end{align}
+\]</span> 注意到，函数间隔 <span
+class="math inline">\(\hat{\gamma}\)</span>
+的取值并不影响最优化问题的解。例如 <span
+class="math inline">\(\boldsymbol{w},b\)</span> 变为 <span
+class="math inline">\(\lambda\boldsymbol{w},\lambda b\ (\lambda \gt
+0)\)</span>，则有 <span class="math display">\[
+\begin{equation}
+\begin{aligned}
+&amp;\frac{\hat{\gamma}}{\|\boldsymbol{w}\|}\rightarrow\frac{\lambda
+\hat{\gamma}}{\lambda \|\boldsymbol{w}\|}\\
+&amp;y_i \left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right) \ge
+\hat{\gamma} \rightarrow y_i
+\left(\left(\lambda\boldsymbol{w}\right)^\mathrm{T}\boldsymbol{x}_i +
+\lambda b\right)=y_i \left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i +
+b\right) \ge \lambda\hat{\gamma}
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>根据<strong>缩放不变性</strong>以及数据的线性可分性可知，取 <span
+class="math inline">\(\lambda \hat{\gamma}=1\)</span>。</p>
+<details class="note info"><summary><p>说明</p>
+</summary>
+<p>我还是认为从 B 站这个<a
+href="https://b23.tv/UuJtZE5">讲解</a>的角度比较好理解<br />
+从距离公式入手，结合缩放不变性 <span class="math display">\[\nonumber
+d=\frac{|\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_0+b|}{\|\boldsymbol{w}\|}\quad
+\xrightarrow{\text{经过缩放}} \frac{1}{\|\boldsymbol{w}\|}
+\]</span> 这里其实比较纠结的是 <span
+class="math inline">\(\hat{\gamma}\)</span> 的正负，导致对于 <span
+class="math inline">\(\lambda\)</span> 正负的判断不清楚，因为实际上这里
+<span class="math inline">\(\lambda\)</span> 只能取正的。<br />
+所以我在前文<a
+href="#I_think">引入间隔定义前</a>加了一句说明，认为这里的超平面已经能够将所有样本正确划分，才能够打消符号的疑虑。<br />
+不过据说这本书 <a href="#ref3">[3]</a>
+将的很明白，但是介于篇幅有点长，并且是英文的，暂时不想看。。。。</p>
+
+</details>
+<p>最终优化问题可以写为 <span class="math display">\[
+\begin{equation}\label{final_opt}
+\begin{aligned}
+\min_{\boldsymbol{w},b} \quad&amp;\frac{1}{2}\|\boldsymbol{w}\|^2\\
+\text{s.t.} \quad&amp; y_i
+\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right) \ge 1,\quad
+i=1,2,\dots,n
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>约束条件表明，每个样本都被正确分类。</p>
+<h3 id="求解">3.2. 求解</h3>
+<p>拉格朗日函数 <span class="math display">\[
+\begin{equation}
+\begin{aligned}
+\mathcal{L}(\boldsymbol{w},b,\boldsymbol{\alpha})&amp;=\frac{1}{2}\|\boldsymbol{w}\|^2
++ \sum_{i = 1}^{n} \alpha_i(1 - y_i(\boldsymbol{w}^T\boldsymbol{x}_i +
+b)),\quad \alpha_i \ge 0\\
+&amp;=\frac{1}{2}\|\boldsymbol{w}\|^2 + \sum_{i = 1}^{n} (\alpha_i -
+\alpha_iy_i\boldsymbol{w}^T\boldsymbol{x}_i - \alpha_iy_ib)\\
+&amp;=\frac{1}{2}\boldsymbol{w}^T\boldsymbol{w}+\sum_{i = 1}^{n}
+\alpha_i - \sum_{i = 1}^{n} \alpha_iy_i\boldsymbol{w}^T\boldsymbol{x}_i
+- \sum_{i = 1}^{n} \alpha_iy_ib
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>对 <span class="math inline">\(\boldsymbol{w}\)</span> 和 <span
+class="math inline">\(b\)</span> 分别求偏导数并令其为零</p>
+<p><span class="math display">\[
+\begin{align}
+\label{diff_w}&amp;\frac{\partial L}{\partial\boldsymbol{w}}=\frac{1}{2}
+\times 2\boldsymbol{w}+0 - \sum_{i = 1}^{n} \alpha_iy_i\boldsymbol{x}_i
+- 0 = 0 \Longrightarrow \boldsymbol{w}=\sum_{i = 1}^{n}
+\alpha_iy_i\boldsymbol{x}_i\\
+\label{diff_b}&amp;\frac{\partial L}{\partial b}=0 + 0 - 0 - \sum_{i =
+1}^{n} \alpha_iy_i = 0 \Longrightarrow \sum_{i = 1}^{n} \alpha_iy_i = 0
+\end{align}
+\]</span></p>
+<p>将结果代回拉格朗日函数中消去 <span
+class="math inline">\(\boldsymbol{w},b\)</span>，再考虑 <span
+class="math inline">\(\eqref{diff_b}\)</span> 的约束条件，即可得到 <span
+class="math inline">\(\eqref{final_opt}\)</span> 的对偶问题 <span
+class="math display">\[
+\begin{equation}\label{dual_problem}
+\begin{aligned}
+\max_{\boldsymbol{\alpha}}
+\quad&amp;\sum_{i=1}^{n}\alpha_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n\alpha_i
+\alpha_j y_i y_j \boldsymbol{x}_i^\mathrm{T}\boldsymbol{x}_j\\
+\text{s.t.} \quad&amp; \sum_{i=1}^n \alpha_i y_i=0,\quad \alpha_i \ge 0
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>解出 <span class="math inline">\(\alpha\)</span> 即可通过 <span
+class="math inline">\(\eqref{diff_w}\)</span> 解出 <span
+class="math inline">\(\boldsymbol{w}\)</span>，根据支持向量，代入 <span
+class="math inline">\(\eqref{SV}\)</span> 中可得 <span
+class="math display">\[
+y_* \left(\sum_{i = 1}^{n}
+\alpha_iy_i\boldsymbol{x}_i^\mathrm{T}\boldsymbol{x}_*+b\right) =
+1\Longrightarrow b=y_* - \sum_{i = 1}^{n}
+\alpha_iy_i\boldsymbol{x}_i^\mathrm{T}\boldsymbol{x}_*
+\]</span></p>
+<p>为了提高数值稳定性，考虑对全部支持向量的计算 <span
+class="math inline">\(b\)</span> 并取平均值 <span
+class="math display">\[
+b=\frac{1}{N}\sum_{k=1}^{N}\left(y_k - \sum_{i = 1}^{n}
+\alpha_iy_i\boldsymbol{x}_i^\mathrm{T}\boldsymbol{x}_k\right)
+\]</span> 其中， <span class="math inline">\(N\)</span>
+是支持向量的总数</p>
+<details class="note info"><summary><p>补充 求解 <span
+class="math inline">\(\eqref{dual_problem}\)</span></p>
+</summary>
+<p><strong>线性约束二次规划问题</strong> Linearly Constraint Quadratic
+Programming<br />
+<span class="math inline">\(\eqref{dual_problem}\)</span>
+属于线性约束二次规划问题。<br />
+该类型问题有两个特点：</p>
+<ul>
+<li>目标函数为二次项</li>
+<li>约束条件为一次项</li>
+</ul>
+<p>该问题要么无解，要么只有一个极值。</p>
+<p>求解 <span class="math inline">\(\eqref{dual_problem}\)</span>
+可以用高效的 SMO 算法</p>
+<p>todo</p>
+
+</details>
+<h3 id="核函数">3.3. 核函数</h3>
+在前文中，我们始终是在数据集是线性可分的条件下讨论的，如 <a
+href="#fig1">图1</a>，即存在一个超平面能够将不同类的样本完全分开。但是现实任务中在<strong>原始样本空间</strong>中或许并不存在一个能正确划分两类样本的超平面。例如如下这种“甜甜圈”形状的数据
+<span id="fig2"></span>
+<figure>
+<img src="2d.svg" alt="2d" width="40%" height="40%" loading="lazy"/>
+<figcaption>
+图2. 非线性数据
+</figcaption>
+</figure>
+对于这样的问题，我们可以将样本数据从原始空间映射到更高纬的线性空间，使得样本在这个特征空间内线性可分。例如将
+<a href="#fig2">图2</a>
+中的数据从原始的二维空间映射到一个合适的三维空间（如下图），那么就能找到一个合适的划分超平面。
+<span id="fig3"></span>
+<figure>
+<img src="2d_kernel_3d.svg" alt="3d" width="80%" height="80%" loading="lazy"/>
+<figcaption>
+图3. 非线性映射
+</figcaption>
+</figure>
+<p>幸运的是，根据 <a
+href="https://en.wikipedia.org/wiki/Cover%27s_theorem">Cover 定理</a>
+可知，<strong>如果原始空间是有限维，即属性数有限，那么一定存在一个高维特征空间使样本可分</strong>
+（这里的"一定"指的是概率上趋近于 1）。</p>
+<p><a href="#fig3">图3</a> 中 <span
+class="math inline">\(\phi(\boldsymbol{x})\)</span> 表示将 <span
+class="math inline">\(\boldsymbol{x}\)</span>
+映射后的结果，则在该特征空间中对应的优化问题为 <span
+class="math display">\[
+\begin{equation}\label{kernel_opt}
+\begin{aligned}
+\min_{\boldsymbol{w},b} \quad&amp;\frac{1}{2}\|\boldsymbol{w}\|^2\\
+\text{s.t.} \quad&amp; y_i
+\left(\boldsymbol{w}^\mathrm{T}\phi\left(\boldsymbol{x}_i\right) +
+b\right) - 1\ge 0,\quad i=1,2,\dots,n
+\end{aligned}
+\end{equation}
+\]</span> 其对偶问题为 <span class="math display">\[
+\begin{equation}\label{phi_dual}
+\begin{aligned}
+\max_{\boldsymbol{\alpha}}
+\quad&amp;\sum_{i=1}^{n}\alpha_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n\alpha_i
+\alpha_j y_i
+y_j\  \phi\left(\boldsymbol{x}_i\right)^\mathrm{T}\phi\left(\boldsymbol{x}_j\right)\\
+\text{s.t.} \quad&amp; \sum_{i=1}^n \alpha_i y_i=0,\quad \alpha_i \ge 0
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>映射后的特征空间维度可能很高，为了避免显式计算映射 <span
+class="math inline">\(\phi(\boldsymbol{x})\)</span>，引入核函数 <span
+class="math inline">\(\kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_j\right)\)</span>
+直接计算高维空间的内积 <span
+class="math inline">\(\phi\left(\boldsymbol{x}_i\right)^\mathrm{T}\phi\left(\boldsymbol{x}_j\right)\)</span>，即
+<span class="math display">\[
+\kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_j\right)=\phi\left(\boldsymbol{x}_i\right)^\mathrm{T}\phi\left(\boldsymbol{x}_j\right)
+\]</span></p>
+<p>核函数通过直接利用原始数据 <span
+class="math inline">\(\boldsymbol{x}_i,\boldsymbol{x}_j\)</span>
+来计算映射到高维空间后的内积，从而避免因维度爆炸产生的高复杂度的计算以及存储问题。</p>
+<p>因此 <span class="math inline">\(\eqref{phi_dual}\)</span> 可重写为
+<span class="math display">\[
+\begin{equation}\label{kernel_dual}
+\begin{aligned}
+\max_{\boldsymbol{\alpha}}
+\quad&amp;\sum_{i=1}^{n}\alpha_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n\alpha_i
+\alpha_j y_i y_j
+\  \kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_j\right)\\
+\text{s.t.} \quad&amp; \sum_{i=1}^n \alpha_i y_i=0,\quad \alpha_i \ge 0
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>只要一个对称函数所对应的核矩阵 <span class="math inline">\(K\)</span>
+是半正定的，那它就能作为核函数，即 <span class="math display">\[
+K=\begin{bmatrix}
+\kappa\left(\boldsymbol{x}_1,\boldsymbol{x}_1\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_1,\boldsymbol{x}_j\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_1,\boldsymbol{x}_n\right)\\
+\vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_1\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_j\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_i,\boldsymbol{x}_n\right)\\
+\vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\kappa\left(\boldsymbol{x}_n,\boldsymbol{x}_1\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_n,\boldsymbol{x}_j\right) &amp; \dots &amp;
+\kappa\left(\boldsymbol{x}_n,\boldsymbol{x}_n\right)\\
+\end{bmatrix}
+\succeq 0
+\]</span></p>
+<p>下表列出了几个常用的核函数</p>
+<table>
+<caption>
+表1. 常见核函数
+</caption>
+<tr>
+<th>
+名称
+</th>
+<th>
+表达式
+</th>
+<th>
+参数
+</th>
+</tr>
+<tr>
+<td>
+线性核
+</td>
+<td>
+<span class="math inline">\(\kappa(x_i, x_j) = x_i^T x_j\)</span>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+多项式核
+</td>
+<td>
+<span class="math inline">\(\kappa(x_i, x_j) = (x_i^T x_j)^d\)</span>
+</td>
+<td>
+<span class="math inline">\(d \geq 1\)</span> 为多项式的次数
+</td>
+</tr>
+<tr>
+<td>
+高斯核，RBF 核
+</td>
+<td>
+<span class="math inline">\(\kappa(x_i, x_j) = \exp \left( -\frac{\|x_i
+- x_j\|^2}{2\sigma^2} \right)\)</span>
+</td>
+<td>
+<span class="math inline">\(\sigma &gt; 0\)</span> 为高斯核的带宽
+</td>
+</tr>
+<tr>
+<td>
+拉普拉斯核
+</td>
+<td>
+<span class="math inline">\(\kappa(x_i, x_j) = \exp \left( -\frac{\|x_i
+- x_j\|}{\sigma} \right)\)</span>
+</td>
+<td>
+<span class="math inline">\(\sigma &gt; 0\)</span>
+</td>
+</tr>
+<tr>
+<td>
+Sigmoid核
+</td>
+<td>
+<span class="math inline">\(\kappa(x_i, x_j) = \tanh (\beta x_i^T x_j +
+\theta)\)</span>
+</td>
+<td>
+<span class="math inline">\(\tanh\)</span> 为双曲正切函数，<span
+class="math inline">\(\beta &gt; 0, \theta &lt; 0\)</span>
+</td>
+</tr>
+</table>
+<h3 id="软间隔">3.4. 软间隔</h3>
+<p>前文讨论都是建立在数据在原始样本空间或特征空间中是线性可分的，即硬间隔，但是实际任务中，往往很难确定一个超平面将不同类的样本完全分开，即使恰好找到了某个核函数使得样本在特征空间中线性可分，也很难判定不是由过拟合造成的。</p>
+解决该问题的一个办法是允许支持向量机在一些样本上出错，因此引入软间隔的概念
+<span id="fig4"></span>
+<figure>
+<img src="soft_svm.svg" alt="soft_svm" width="60%" height="60%" loading="lazy"/>
+<figcaption>
+图4. 软间隔
+</figcaption>
+</figure>
+<p>明显的可以看到训练数据中存在一些<strong>离群点
+(outliers)</strong>，也就是米黄色背景的样本，除去这些离群点后剩下的大部分样本点组成的集合是线性可分的。对于这些离群点，它们显然不满足
+<span class="math inline">\(\eqref{final_opt}\)</span> 中的约束条件
+<span class="math inline">\(y_i
+\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right)  \ge
+1\)</span>。为了解决这个问题，对每个样本点引入一个<strong>松弛变量</strong>
+<span class="math inline">\(\xi_i \ge
+0\)</span>，使函数间隔加上松弛变量大于等于1。这样约束变为 <span
+class="math display">\[
+y_i\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i+1\right) \ge 1-\xi_i
+\]</span></p>
+<p>同时对每个松弛变量支付一个代价。目标函数则变为 <span
+class="math display">\[
+\frac{1}{2}\|\boldsymbol{w}\|^2+C\sum_{i=1}^{n}\xi_i,\quad C \gt 0
+\]</span> <span class="math inline">\(C\)</span> 为惩罚参数，<span
+class="math inline">\(C\)</span>
+越大，说明对误分类的惩罚越大；反之，对误分类的惩罚越小。</p>
+<p>此时，支持向量机在软间隔下的优化问题可以描述为 <span
+class="math display">\[
+\begin{equation}\label{soft_opt}
+\begin{aligned}
+\min_{\boldsymbol{w},b,\xi}\quad &amp;
+\frac{1}{2}\|\boldsymbol{w}\|^2+C\sum_{i=1}^{n}\xi_i\\
+\text{s.t.}\quad &amp; y_i
+\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i + b\right) \ge
+1-\xi_i,\quad i=1,2,\dots,n\\
+&amp; \xi_i \gt 0,\quad i=1,2,\dots,n
+\end{aligned}
+\end{equation}
+\]</span> 最小化目标函数包含两层含义：使 <span
+class="math inline">\(\frac{1}{2}\|\boldsymbol{w}\|^2\)</span>
+尽可能小，即几何间隔尽可能大；同时使误分类的样本尽可能少。<span
+class="math inline">\(C\)</span> 其实也相当于二者的调和系数。</p>
+<p><span class="math inline">\(\eqref{spft_opt}\)</span> 的拉格朗日函数
+<span class="math display">\[
+\mathcal{L}\left(\boldsymbol{w},b,\boldsymbol{\xi},\boldsymbol{\alpha},\boldsymbol{\mu}\right)=\frac{1}{2}\|\boldsymbol{w}\|^2
++ C\sum_{i=1}^{n}\xi_i +
+\sum_{i=1}^{n}\alpha_i\left(1-\xi_i-y_i\left(\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_i+b\right)\right)-\sum_{i=1}^{n}\mu_i\xi_i
+\]</span> 其中，<span class="math inline">\(\xi_i \ge 0,\mu_i \ge
+0\)</span>。</p>
+<p>对偶问题为 <span class="math display">\[
+\begin{aligned}
+\max_{\boldsymbol{\alpha}} \quad &amp;-\frac{1}{2} \sum_{i = 1}^{n}
+\sum_{j = 1}^{n} \alpha_i \alpha_j y_i y_j
+\boldsymbol{x_i}^\mathrm{T}\boldsymbol{x_j} + \sum_{i = 1}^{n} \alpha_i
+\\
+\text{s.t.} \quad &amp;\sum_{i = 1}^{n} \alpha_i y_i = 0 \\
+&amp; C - \alpha_i - \mu_i = 0 \\
+&amp; \alpha_i \geq 0 \\
+&amp; \mu_i \geq 0, \quad i = 1,2,\cdots,n
+\end{aligned}
+\]</span> 根据第二个等式约束条件消去 <span
+class="math inline">\(\mu_i\)</span> 得 <span class="math display">\[
+\begin{aligned}
+\max_{\boldsymbol{\alpha}} \quad &amp;-\frac{1}{2} \sum_{i = 1}^{n}
+\sum_{j = 1}^{n} \alpha_i \alpha_j y_i y_j
+\boldsymbol{x_i}^\mathrm{T}\boldsymbol{x_j} + \sum_{i = 1}^{n} \alpha_i
+\\
+\text{s.t.} \quad &amp;\sum_{i = 1}^{n} \alpha_i y_i = 0 \\
+&amp; 0\le\alpha_i \le C,\quad i = 1,2,\cdots,n
+\end{aligned}
+\]</span></p>
+<details class="note info"><summary><p>SMO求解</p>
+</summary>
+<p>todo</p>
+
+</details>
+<h2 id="参考资料">4. 参考资料</h2>
+<p><strong>[1]</strong>
+李航著.机器学习方法[M].北京：清华大学出版社，2022.1<br />
+<strong>[2]</strong> <a
+href="https://blog.csdn.net/v_july_v/article/details/7624837">支持向量机通俗导论——理解SVM的三层境界</a><br />
+<strong>[3]</strong> <a
+href="https://timofey.pro/static/pdfdocs/AI_024_support_vector_machines_succinctly.pdf">Support
+Vector Machines Succinctly</a><span id="ref3"></span>
+<strong>[4]</strong> 周志华著.机器学习[M].北京：清华大学出版社，2016</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+        <category>SVM</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>SVM</tag>
       </tags>
   </entry>
   <entry>
