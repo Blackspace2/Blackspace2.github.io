@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-23T13:27:30.446Z</updated>
+  <updated>2025-01-27T14:18:11.714Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenCV入门学习（下）</title>
+    <link href="https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/</id>
+    <published>2025-01-27T09:36:56.000Z</published>
+    <updated>2025-01-27T14:18:11.714Z</updated>
+    
+    
+    <summary type="html">OpenCV入门学习（下）</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV入门学习（上）</title>
+    <link href="https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/</id>
+    <published>2025-01-26T07:06:53.000Z</published>
+    <updated>2025-01-27T14:22:44.150Z</updated>
+    
+    
+    <summary type="html">根据官方文档，介绍 Mat、图像查找表、掩膜操作、图像基础操作以及使用 addWeighted 实现图像线性混合。</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="OpenCV" scheme="https://blackspace2.github.io/tags/OpenCV/"/>
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
   
   <entry>
     <title>单像空间后方交会</title>

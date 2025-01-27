@@ -1,6 +1,524 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenCV入门学习（下）</title>
+    <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<a href="/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/" title="OpenCV入门学习（上）">OpenCV入门学习（上）</a>
+<h2 id="调整图像的对比度和亮度">调整图像的对比度和亮度</h2>
+<p>OpenCV是计算机视觉领域的重要工具，本节将介绍如何使用像素变换调整图像的亮度和对比度，并通过
+Gamma 校正优化图像质量。</p>
+<h3 id="理论基础">理论基础</h3>
+<p>图像处理中的<strong>像素变换</strong>指输出像素仅依赖输入像素值的操作。调整亮度与对比度的公式为：<br />
+<span class="math display">\[\nonumber g(i,j) = \alpha \cdot f(i,j) +
+\beta\]</span></p>
+<ul>
+<li><strong>α（增益）</strong>：控制对比度（建议范围：<span
+class="math inline">\(1.0-3.0\)</span>）。<br />
+</li>
+<li><strong>β（偏置）</strong>：控制亮度（建议范围：<span
+class="math inline">\(0-100\)</span>）。</li>
+</ul>
+<p>通过 <code>cv::saturate_cast&lt;uchar&gt;</code> 确保计算结果在 <span
+class="math inline">\(0-255\)</span> 范围内，避免数值溢出。</p>
+<h3 id="代码实现">代码实现</h3>
+<h4 id="核心代码示例">核心代码示例</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取图像</span></span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;lena.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Failed to load image!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化输出图像</span></span><br><span class="line">    cv::Mat new_image = cv::Mat::<span class="built_in">zeros</span>(image.<span class="built_in">size</span>(), image.<span class="built_in">type</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> alpha = <span class="number">1.0</span>; <span class="comment">// 对比度参数</span></span><br><span class="line">    <span class="type">int</span> beta = <span class="number">0</span>;       <span class="comment">// 亮度参数</span></span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter alpha [1.0-3.0]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; alpha;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter beta [0-100]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; beta;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历每个像素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; image.rows; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; image.cols; x++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> c = <span class="number">0</span>; c &lt; image.<span class="built_in">channels</span>(); c++) &#123;</span><br><span class="line">                new_image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(</span><br><span class="line">                    alpha * image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] + beta</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original&quot;</span>, image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Adjusted&quot;</span>, new_image);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="代码说明">代码说明</h4>
+<ol type="1">
+<li><p><strong>像素遍历</strong>：通过三重循环访问每个像素的BGR通道。<br />
+</p></li>
+<li><p><strong>数值饱和处理</strong>：<code>cv::saturate_cast&lt;uchar&gt;</code>确保结果在合理范围内。<br />
+</p></li>
+<li><p><strong>高效替代方案</strong>：可使用<code>cv::Mat::convertTo</code>替代循环：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">image.<span class="built_in">convertTo</span>(new_image, <span class="number">-1</span>, alpha, beta);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="实际应用示例">实际应用示例</h3>
+<p>调整 <code>α=2.2</code> 和 <code>β=50</code>
+可显著提升暗图像的亮度，但可能导致高光区域过曝（如云层细节丢失）。此时可结合
+<span class="math inline">\(\gamma\)</span> 校正优化。</p>
+<h3 id="gamma-校正">Gamma 校正</h3>
+<p>Gamma 校正通过非线性变换调整亮度：<br />
+<span class="math display">\[\nonumber O = \left( \frac{I}{255}
+\right)^\gamma \times 255\]</span></p>
+<ul>
+<li><strong>γ &lt; 1</strong>：提升暗部亮度。<br />
+</li>
+<li><strong>γ &gt; 1</strong>：增强亮部对比度。</li>
+</ul>
+<span id="fig1"></span>
+<figure>
+<img src="io_gamma.svg" alt="io_gamma" loading="lazy"/>
+<figcaption>
+图1.不同 <span class="math inline">\(\gamma\)</span> 值对应的图像
+</figcaption>
+</figure>
+<h4 id="实现代码">实现代码</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建查找表</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">lookupTable</span><span class="params">(<span class="number">1</span>, <span class="number">256</span>, CV_8U)</span></span>;</span><br><span class="line">uchar* p = lookupTable.<span class="built_in">ptr</span>();</span><br><span class="line"><span class="type">double</span> gamma = <span class="number">0.4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i) &#123;</span><br><span class="line">    <span class="comment">// 四舍五入，饱和时截断</span></span><br><span class="line">    p[i] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(<span class="built_in">pow</span>(i / <span class="number">255.0</span>, gamma) * <span class="number">255.0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用 Gamma 校正</span></span><br><span class="line">cv::Mat corrected;</span><br><span class="line">cv::<span class="built_in">LUT</span>(image, lookupTable, corrected);</span><br></pre></td></tr></table></figure>
+<h3 id="性能优化提示">性能优化提示</h3>
+<ul>
+<li><strong>避免逐像素操作</strong>：优先使用内置函数（如<code>cv::convertTo</code>和<code>cv::LUT</code>）。<br />
+</li>
+<li><strong>预计算查找表</strong>：减少重复计算，提升 Gamma
+校正效率。</li>
+</ul>
+<p>通过调整α、β和 <span class="math inline">\(\gamma\)</span>
+值，可灵活控制图像效果。这些方法虽基础，但能为复杂图像处理任务奠定基础。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习（上）</title>
+    <url>/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<p>环境：</p>
+<ul>
+<li>win11 x64</li>
+<li>OpenCV 4.9.0</li>
+<li>VS 2022 (v143)</li>
+<li>C++ (ISO C++ 14 标准)</li>
+</ul>
+<h2 id="mat-类">1. <code>Mat</code> 类</h2>
+<h3 id="数据结构与内存管理">1.1. 数据结构与内存管理</h3>
+<p><code>Mat</code>
+是OpenCV的核心图像容器类，采用<strong>自动内存管理</strong>机制，无需手动分配/释放内存。其结构分为两部分：</p>
+<ul>
+<li><strong>矩阵头(Header)</strong><br />
+固定大小（约数十字节），存储元信息：
+<ul>
+<li>矩阵维度（rows, cols, channels）</li>
+<li>数据类型（如 <code>CV_8UC3</code> ）</li>
+<li>存储布局（step：每行的字节数）</li>
+<li>引用计数器</li>
+<li>数据指针地址</li>
+</ul></li>
+<li><strong>数据块(Data)</strong><br />
+动态内存区域，存储实际像素值，采用<strong>引用计数机制</strong>管理：
+<ul>
+<li>浅拷贝时多个 <code>Mat</code> 对象共享数据块</li>
+<li>最后一个引用对象销毁时自动释放内存</li>
+</ul></li>
+</ul>
+<h3 id="深浅拷贝对比">1.2. 深浅拷贝对比</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat A = cv::<span class="built_in">imread</span>(<span class="string">&quot;dog.jpg&quot;</span>, cv::IMREAD_COLOR);</span><br><span class="line">cv::Mat B = A;         <span class="comment">// 浅拷贝（仅复制Header）</span></span><br><span class="line">cv::Mat C = A.<span class="built_in">clone</span>(); <span class="comment">// 深拷贝（完整数据副本）</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th>操作类型</th>
+<th>内存开销</th>
+<th>数据独立性</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>浅拷贝</td>
+<td>极小</td>
+<td>共享数据</td>
+<td>快速创建视图/ROI</td>
+</tr>
+<tr class="even">
+<td>深拷贝</td>
+<td>大</td>
+<td>完全独立</td>
+<td>需独立修改像素的场景</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 <strong>关键机制</strong></p>
+<ul>
+<li>修改浅拷贝对象的像素会直接影响原对象</li>
+<li>使用<code>clone()</code>或<code>copyTo()</code>进行<strong>显式深拷贝</strong></li>
+</ul>
+</blockquote>
+<h3 id="色彩空间与存储布局">1.3. 色彩空间与存储布局</h3>
+<ul>
+<li><strong>默认色彩空间</strong>：BGR（非RGB），与图像显示系统兼容</li>
+<li><strong>通道顺序</strong>：对于3通道矩阵，像素按 <code>B-G-R</code>
+顺序存储</li>
+<li><strong>内存布局</strong>：连续存储（可通过
+<code>isContinuous()</code> 判断），行优先存储</li>
+</ul>
+<h3 id="构造函数全解析">1.4. 构造函数全解析</h3>
+<h4 id="默认构造函数延迟初始化">1.4.1. 默认构造函数（延迟初始化）</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat matEmpty; <span class="comment">// 创建空矩阵（Header无数据指针）</span></span><br><span class="line">matEmpty = cv::<span class="built_in">imread</span>(<span class="string">&quot;image.jpg&quot;</span>); <span class="comment">// 延迟加载时分配内存</span></span><br></pre></td></tr></table></figure>
+<h4 id="指定尺寸与类型">1.4.2. 指定尺寸与类型</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建480x640的3通道图像（BGR格式）</span></span><br><span class="line"><span class="comment">// Mat(int rows, int cols, int type);</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">mat</span><span class="params">(<span class="number">480</span>, <span class="number">640</span>, CV_8UC3)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="初始化值构造函数">1.4.3. 初始化值构造函数</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建3x3蓝色矩阵（B=255, G=0, R=0）</span></span><br><span class="line"><span class="comment">// Mat(int rows, int cols, int type, const cv::Scalar&amp; s);</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">matInit</span><span class="params">(<span class="number">3</span>, <span class="number">3</span>, CV_8UC3, cv::Scalar(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>))</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="外部数据共享">1.4.4. 外部数据共享</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> externalData[<span class="number">6</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="function">cv::Mat <span class="title">matExt</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>, CV_32FC1, externalData)</span></span>; <span class="comment">// 共享内存</span></span><br></pre></td></tr></table></figure>
+<h4 id="roi构造函数">1.4.5. ROI构造函数</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Rect <span class="title">roiArea</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>)</span></span>; <span class="comment">// (x,y,width,height)</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">roi</span><span class="params">(img, roiArea)</span></span>; <span class="comment">// 浅拷贝原图的ROI区域</span></span><br></pre></td></tr></table></figure>
+<h4 id="特殊矩阵生成">1.4.6. 特殊矩阵生成</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat zeros = cv::Mat::<span class="built_in">zeros</span>(<span class="number">3</span>, <span class="number">3</span>, CV_32F); <span class="comment">// 3x3浮点零矩阵</span></span><br><span class="line">cv::Mat eye = cv::Mat::<span class="built_in">eye</span>(<span class="number">3</span>, <span class="number">3</span>, CV_8UC1);    <span class="comment">// 3x3单位矩阵</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据访问与输出">1.5. 数据访问与输出</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正确输出矩阵内容（需指定格式）</span></span><br><span class="line">cv::Mat intMatrix = (cv::<span class="built_in">Mat_</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>,<span class="number">2</span>) &lt;&lt; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;Matrix:\n&quot;</span> &lt;&lt; cv::format(intMatrix, cv::Formatter::FMT_C) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出结果：</span></span><br><span class="line"><span class="comment">// [1, 2;</span></span><br><span class="line"><span class="comment">//  3, 4]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <strong>注意事项</strong></p>
+<ul>
+<li>使用<code>at&lt;T&gt;(row,col)</code>访问元素时需确保类型匹配（如<code>CV_8UC3</code>对应<code>cv::Vec3b</code>）</li>
+<li>多通道矩阵的cv::Scalar初始化顺序为<code>(B,G,R)</code></li>
+<li>外部数据构造的cv::Mat对象不管理原数据内存，需手动维护生命周期</li>
+</ul>
+</blockquote>
+<h3 id="官方文档补充要点">1.6. 官方文档补充要点</h3>
+<ol type="1">
+<li><p><strong>多维矩阵支持</strong><br />
+<code>cv::Mat</code>可处理N维数据，通过<code>dims</code>参数指定维度：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Mat(int ndims, const int* sizes, int type, const cv::Scalar&amp; s);</span></span><br><span class="line"><span class="type">int</span> sizes[] = &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;; <span class="comment">// 3维：3x4x5</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">ndMat</span><span class="params">(<span class="number">3</span>, sizes, CV_8UC1, cv::Scalar::all(<span class="number">0</span>))</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>内存连续性优化</strong><br />
+使用<code>create()</code>方法重新分配连续内存：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">mat.<span class="built_in">create</span>(rows, cols, type); <span class="comment">// 重置矩阵尺寸/类型</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>表达式计算优化</strong><br />
+OpenCV重载了矩阵运算符（<code>+</code>,
+<code>*</code>等），自动避免中间变量拷贝：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat C = A.<span class="built_in">mul</span>(B) + <span class="number">0.5</span>; <span class="comment">// 对应元素相乘再加 0.5</span></span><br><span class="line"><span class="comment">// ps: 矩阵乘法时直接用 *</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr />
+<h2 id="图像扫描查找表与性能优化">2. 图像扫描、查找表与性能优化</h2>
+<p>通过一个实际的<strong>颜色空间缩减</strong>示例，快速掌握OpenCV中图像处理的三大核心技能：<strong>图像扫描方法</strong>、<strong>查找表（LUT）的应用</strong>以及<strong>算法性能测量</strong>。</p>
+<h3 id="图像矩阵的内存存储">2.1. 图像矩阵的内存存储</h3>
+<p>在OpenCV中，图像数据以<code>Mat</code>对象存储，其内存布局与颜色通道紧密相关：</p>
+<ol type="1">
+<li><strong>灰度图像</strong>：每个像素对应一个<code>uchar</code>值（0-255），按行连续存储。</li>
+<li><strong>彩色图像（BGR）</strong>：每个像素包含3个通道（蓝、绿、红），每个通道一个<code>uchar</code>值。<br />
+<strong>注意</strong>：OpenCV默认使用BGR顺序而非RGB！</li>
+</ol>
+<p>内存中的存储方式</p>
+<ul>
+<li><strong>按行连续存储</strong>：像素按行优先顺序排列，每行（row）称为一个
+“高度”维度。</li>
+<li><strong>多通道数据</strong>：每个像素的通道值连续存储。
+<ul>
+<li>例如，BGR 图像的像素存储顺序为
+<code>[B0, G0, R0, B1, G1, R1, ...]</code>。</li>
+</ul></li>
+<li>可能的填充字节 (Padding)
+<ul>
+<li>某些情况下，每行末尾可能有对齐填充（用 <code>step</code>
+属性表示实际每行的字节数）。</li>
+</ul></li>
+</ul>
+<p>通过 <code>Mat::isContinuous()</code>
+可判断矩阵是否连续存储。若连续，可将图像视为一维数组处理，提升遍历效率。</p>
+<h3 id="颜色空间缩减示例">2.2. 颜色空间缩减示例</h3>
+<p>假设我们需要将图像颜色值从256级缩减到更少的级别（例如每10个值合并为一个）。直接计算公式为：<br />
+<span class="math display">\[\nonumber
+I_{\text{new}} = \lfloor \frac{I_{\text{old}}}{10} \rfloor \times 10
+\]</span></p>
+<p>但频繁的除法和乘法会拖慢性能。此时，<strong>查找表（Lookup Table,
+LUT）</strong>可预先计算所有可能的输入值对应的输出值，后续直接替换，大幅提升效率。</p>
+<h4 id="查找表生成代码">2.2.1. 查找表生成代码</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> divideWith = <span class="number">10</span>;</span><br><span class="line">uchar table[<span class="number">256</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i)</span><br><span class="line">    table[i] = (uchar)(divideWith * (i/divideWith));    <span class="comment">// 自动向下取整</span></span><br></pre></td></tr></table></figure>
+<h3 id="图像扫描方法对比">2.3. 图像扫描方法对比</h3>
+<h4 id="高效方法指针访问">2.3.1. 高效方法：指针访问</h4>
+<p>通过指针直接操作内存，适合连续存储的图像。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithPointer</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);  <span class="comment">// 仅处理8位图像</span></span><br><span class="line">    <span class="type">int</span> channels = image.<span class="built_in">channels</span>();</span><br><span class="line">    <span class="type">int</span> rows = image.rows;</span><br><span class="line">    <span class="type">int</span> cols = image.cols * channels;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">isContinuous</span>()) &#123;</span><br><span class="line">        cols *= rows;</span><br><span class="line">        rows = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; ++i) &#123;</span><br><span class="line">        uchar* p = image.<span class="built_in">ptr</span>&lt;uchar&gt;(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; cols; ++j)</span><br><span class="line">            p[j] = table[p[j]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="安全方法迭代器">2.3.2. 安全方法：迭代器</h4>
+<p>使用OpenCV迭代器自动处理行间隙，代码更安全。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithIterator</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">        cv::MatIterator_&lt;uchar&gt; it = image.<span class="built_in">begin</span>&lt;uchar&gt;();</span><br><span class="line">        cv::MatIterator_&lt;uchar&gt; end = image.<span class="built_in">end</span>&lt;uchar&gt;();</span><br><span class="line">        <span class="keyword">for</span> (; it != end; ++it)</span><br><span class="line">            *it = table[*it];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">3</span>) &#123;</span><br><span class="line">        cv::MatIterator_&lt;cv::Vec3b&gt; it = image.<span class="built_in">begin</span>&lt;cv::Vec3b&gt;();</span><br><span class="line">        cv::MatIterator_&lt;cv::Vec3b&gt; end = image.<span class="built_in">end</span>&lt;cv::Vec3b&gt;();</span><br><span class="line">        <span class="keyword">for</span> (; it != end; ++it) &#123;</span><br><span class="line">            (*it)[<span class="number">0</span>] = table[(*it)[<span class="number">0</span>]];  <span class="comment">// B通道</span></span><br><span class="line">            (*it)[<span class="number">1</span>] = table[(*it)[<span class="number">1</span>]];  <span class="comment">// G通道</span></span><br><span class="line">            (*it)[<span class="number">2</span>] = table[(*it)[<span class="number">2</span>]];  <span class="comment">// R通道</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="动态地址计算at方法">2.3.3.
+动态地址计算：<code>at</code>方法</h4>
+<p>适用于随机访问，但全图扫描时性能较差。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithAt</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; image.rows; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; image.cols; ++j)</span><br><span class="line">                image.<span class="built_in">at</span>&lt;uchar&gt;(i, j) = table[image.<span class="built_in">at</span>&lt;uchar&gt;(i, j)];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">3</span>) &#123;</span><br><span class="line">        cv::Mat_&lt;cv::Vec3b&gt; _I = image;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; image.rows; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; image.cols; ++j) &#123;</span><br><span class="line">                _I(i, j)[<span class="number">0</span>] = table[_I(i, j)[<span class="number">0</span>]];  <span class="comment">// B通道</span></span><br><span class="line">                _I(i, j)[<span class="number">1</span>] = table[_I(i, j)[<span class="number">1</span>]];  <span class="comment">// G通道</span></span><br><span class="line">                _I(i, j)[<span class="number">2</span>] = table[_I(i, j)[<span class="number">2</span>]];  <span class="comment">// R通道</span></span><br><span class="line">            &#125;</span><br><span class="line">        image = _I;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="终极优化opencv内置lut函数">2.4. 终极优化：OpenCV内置LUT函数</h3>
+<p>使用<code>cv::LUT()</code>函数，底层优化更高效，支持多线程。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat <span class="title">ApplyLUT</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="function">cv::Mat <span class="title">lookupTable</span><span class="params">(<span class="number">1</span>, <span class="number">256</span>, CV_8U)</span></span>;</span><br><span class="line">    uchar* p = lookupTable.<span class="built_in">ptr</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i) p[i] = table[i];</span><br><span class="line">    </span><br><span class="line">    cv::Mat result;</span><br><span class="line">    cv::<span class="built_in">LUT</span>(image, lookupTable, result);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性能对比">2.5. 性能对比</h3>
+<p>通过<code>cv::getTickCount()</code>和<code>cv::getTickFrequency()</code>测量时间：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">double</span> t = (<span class="type">double</span>)cv::<span class="built_in">getTickCount</span>();</span><br><span class="line"><span class="comment">// 执行扫描操作</span></span><br><span class="line">t = ((<span class="type">double</span>)cv::<span class="built_in">getTickCount</span>() - t) / cv::<span class="built_in">getTickFrequency</span>();</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;耗时（秒）: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">平均耗时（毫秒）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">指针访问</td>
+<td style="text-align: left;">79.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">迭代器</td>
+<td style="text-align: left;">83.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">动态地址计算（at）</td>
+<td style="text-align: left;">93.78</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LUT函数</td>
+<td style="text-align: left;"><strong>32.58</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>：</p>
+<ol type="1">
+<li><strong>优先使用OpenCV内置函数</strong>（如
+<code>LUT()</code>），性能最佳。</li>
+<li>需要自定义遍历时，<strong>指针访问</strong>最快，<strong>迭代器</strong>更安全。</li>
+<li>避免在循环中使用 <code>at</code> 方法进行全图扫描。</li>
+</ol>
+<h3 id="实战建议">2.6. 实战建议</h3>
+<ul>
+<li><strong>连续存储优化</strong>：若图像连续（<code>isContinuous() == true</code>），可将其视为一维数组处理。</li>
+<li><strong>多通道处理</strong>：注意BGR顺序，遍历时需分别操作每个通道。</li>
+<li><strong>调试技巧</strong>：在Debug模式下，<code>at</code>方法会检查越界访问，适合快速定位错误。</li>
+</ul>
+<h2 id="图像处理中的掩膜操作">3. 图像处理中的掩膜操作</h2>
+<p>图像处理是计算机视觉的核心技术之一，而OpenCV作为最流行的开源库，为开发者提供了丰富的工具。本节将介绍
+OpenCV 中的<strong>掩膜操作</strong>（Mask
+Operations），以图像对比度增强为例，理解其原理与实现。</p>
+<h3 id="什么是掩膜操作">3.1. 什么是掩膜操作？</h3>
+<p>掩膜操作通过一个称为 <strong>内核（Kernel）</strong> 或
+<strong>掩膜（Mask）</strong>
+的小矩阵，对图像中的每个像素进行加权计算，从而调整其值。这种操作本质上是将当前像素及其邻域像素的值按权重相加，常用于图像滤波、边缘检测、锐化等任务。</p>
+<p>例如，对比度增强的公式为：<br />
+<span class="math display">\[ \nonumber I(i,j) = 5 \cdot I(i,j) -
+[I(i-1,j) + I(i+1,j) + I(i,j-1) + I(i,j+1)] \]</span></p>
+<p>对应的内核矩阵为：<br />
+<span class="math display">\[ \nonumber
+M = \begin{bmatrix}
+0 &amp; -1 &amp; 0 \\
+-1 &amp; 5 &amp; -1 \\
+0 &amp; -1 &amp; 0
+\end{bmatrix}
+\]</span><br />
+中心像素权重为5，上下左右像素权重为-1，其余为0。通过该内核，可以突出中心像素，增强图像细节。</p>
+<h3 id="手动实现掩膜操作">3.2. 手动实现掩膜操作</h3>
+<h4 id="关键步骤">3.2.1. 关键步骤</h4>
+<ol type="1">
+<li><strong>边界处理</strong>：图像边缘的像素缺少邻域，通常直接设为0。</li>
+<li><strong>遍历像素</strong>：使用指针逐行访问像素，避免直接修改原图。</li>
+<li><strong>加权计算</strong>：根据内核公式重新计算每个像素的值。</li>
+</ol>
+<h4 id="代码示例简化版">3.2.2. 代码示例（简化版）</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Sharpen</span><span class="params">(<span class="type">const</span> cv::Mat&amp; input, cv::Mat&amp; output)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CV_Assert</span>(input.<span class="built_in">depth</span>() == CV_8U);  <span class="comment">// 确保输入图像为8位图像</span></span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> channels = input.<span class="built_in">channels</span>();</span><br><span class="line">    output.<span class="built_in">create</span>(input.<span class="built_in">size</span>(), input.<span class="built_in">type</span>());  <span class="comment">// 创建与输入图像大小和类型相同的输出图像</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> row = <span class="number">1</span>; row &lt; input.rows - <span class="number">1</span>; row++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">const</span> uchar* prev = input.<span class="built_in">ptr</span>&lt;uchar&gt;(row - <span class="number">1</span>);  <span class="comment">// 获取上一行的指针</span></span><br><span class="line">        <span class="type">const</span> uchar* curr = input.<span class="built_in">ptr</span>&lt;uchar&gt;(row);  <span class="comment">// 获取当前行的指针</span></span><br><span class="line">        <span class="type">const</span> uchar* next = input.<span class="built_in">ptr</span>&lt;uchar&gt;(row + <span class="number">1</span>);  <span class="comment">// 获取下一行的指针</span></span><br><span class="line">        uchar* out = output.<span class="built_in">ptr</span>&lt;uchar&gt;(row);    <span class="comment">// 获取输出图像当前行的指针</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> col = channels; col &lt; channels * (input.cols - <span class="number">1</span>); col++) &#123;</span><br><span class="line">            <span class="comment">// 应用公式：5*当前像素 - 上下左右像素</span></span><br><span class="line">            out[col] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(</span><br><span class="line">                <span class="number">5</span> * curr[col] - (curr[col - channels] + curr[col + channels] + prev[col] + next[col])</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 边界置0</span></span><br><span class="line">    output.<span class="built_in">row</span>(<span class="number">0</span>).<span class="built_in">setTo</span>(cv::<span class="built_in">Scalar</span>(<span class="number">0</span>));</span><br><span class="line">    output.<span class="built_in">row</span>(output.rows - <span class="number">1</span>).<span class="built_in">setTo</span>(cv::<span class="built_in">Scalar</span>(<span class="number">0</span>));</span><br><span class="line">    output.<span class="built_in">col</span>(<span class="number">0</span>).<span class="built_in">setTo</span>(cv::<span class="built_in">Scalar</span>(<span class="number">0</span>));</span><br><span class="line">    output.<span class="built_in">col</span>(output.cols - <span class="number">1</span>).<span class="built_in">setTo</span>(cv::<span class="built_in">Scalar</span>(<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<details class="note info"><summary><p><code>cv::saturate_cast</code></p>
+</summary>
+<p>在图像处理方面，无论是加是减，乘除，都可能会超出一个像素灰度值的范围（0～255），<code>saturate_cast</code>
+函数的作用即是：当运算完之后，结果为负，则转为0，结果超出255，则为255。</p>
+
+</details>
+<h3 id="使用opencv内置函数-filter2d">3.3. 使用OpenCV内置函数
+<code>filter2D</code></h3>
+<p>手动实现掩膜操作虽然直观，但代码冗长且效率较低。OpenCV提供了<code>filter2D</code>函数，可直接应用内核矩阵，代码更简洁且性能更优。</p>
+<h4 id="代码示例">3.3.1. 代码示例</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat kernel = (cv::<span class="built_in">Mat_</span>&lt;<span class="type">char</span>&gt;(<span class="number">3</span>, <span class="number">3</span>) &lt;&lt; </span><br><span class="line">    <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">-1</span>, <span class="number">5</span>, <span class="number">-1</span>,</span><br><span class="line">    <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span></span><br><span class="line">);</span><br><span class="line">cv::Mat result;</span><br><span class="line"><span class="comment">// void filter2D( InputArray src, OutputArray dst, int ddepth,</span></span><br><span class="line"><span class="comment">//              InputArray kernel, Point anchor = Point(-1,-1), double delta = 0,</span></span><br><span class="line"><span class="comment">//              int borderType = BORDER_DEFAULT );</span></span><br><span class="line">cv::<span class="built_in">filter2D</span>(input, result, input.<span class="built_in">depth</span>(), kernel);</span><br></pre></td></tr></table></figure>
+<h4 id="优势">3.3.2. 优势</h4>
+<ul>
+<li><strong>高效性</strong>：内置函数经过优化，速度更快（测试中手动实现需31ms，<code>filter2D</code>仅需13ms）。</li>
+<li><strong>灵活性</strong>：支持自定义内核中心、边界处理模式（如填充、镜像等）。</li>
+</ul>
+<h3 id="性能对比与适用场景">3.4. 性能对比与适用场景</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">优点</th>
+<th style="text-align: center;">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">手动实现</td>
+<td style="text-align: center;">理解底层原理，灵活调试</td>
+<td style="text-align: center;">代码复杂，性能较低</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>filter2D</code></td>
+<td style="text-align: center;">简洁高效，支持高级功能</td>
+<td style="text-align: center;">需熟悉内核矩阵的构建</td>
+</tr>
+</tbody>
+</table>
+<p><strong>推荐场景</strong>：</p>
+<ul>
+<li>学习阶段：建议手动实现，深入理解像素操作原理。<br />
+</li>
+<li>实际项目：优先使用 <code>filter2D</code>
+，提升效率并减少代码量。</li>
+</ul>
+<h3 id="总结">3.5. 总结</h3>
+<p>掩膜操作是图像处理的基础技术，OpenCV提供了灵活的实现方式。通过对比手动实现与内置函数，开发者可以根据需求选择最佳方案。掌握这一技术后，可进一步探索高斯模糊、边缘检测（如Sobel算子）等进阶应用。</p>
+<p><strong>动手尝试</strong>：</p>
+<ol type="1">
+<li>修改内核矩阵，观察图像变化（例如锐化、模糊）。<br />
+</li>
+<li>对比不同边界处理模式的效果（如<code>BORDER_REFLECT</code>或<code>BORDER_CONSTANT</code>）。</li>
+</ol>
+<h2 id="图像基础操作">4. 图像基础操作</h2>
+<p>介绍图像处理的基础操作，涵盖图像加载、像素操作、内存管理及可视化等核心内容。</p>
+<h3 id="图像输入输出">4.1. 图像输入输出</h3>
+<h4 id="加载图像">4.1.1. 加载图像</h4>
+<p>使用 <code>cv::imread</code>
+加载图像时，默认读取为BGR三通道格式。若需灰度图，需显式指定参数：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat img = cv::<span class="built_in">imread</span>(<span class="string">&quot;image.jpg&quot;</span>); <span class="comment">// 三通道BGR图像</span></span><br><span class="line">cv::Mat gray_img = cv::<span class="built_in">imread</span>(<span class="string">&quot;image.jpg&quot;</span>, cv::IMREAD_GRAYSCALE); <span class="comment">// 单通道灰度图</span></span><br></pre></td></tr></table></figure>
+<h4 id="保存图像">4.1.2. 保存图像</h4>
+<p>图像保存格式由文件扩展名决定：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">imwrite</span>(<span class="string">&quot;output.png&quot;</span>, img); <span class="comment">// 保存为PNG格式</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：若需从内存读写图像，使用
+<code>cv::imdecode</code> 和 <code>cv::imencode</code>。</p>
+</blockquote>
+<h3 id="像素操作">4.2. 像素操作</h3>
+<h4 id="访问像素值">4.2.1. 访问像素值</h4>
+<ul>
+<li><p><strong>单通道灰度图</strong>（8UC1）：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">uchar intensity = img.<span class="built_in">at</span>&lt;uchar&gt;(y, x); <span class="comment">// 注意坐标顺序为(y, x)</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>三通道BGR图像</strong>（8UC3）：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Vec3b bgr_pixel = img.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x);</span><br><span class="line">uchar blue = bgr_pixel[<span class="number">0</span>];  <span class="comment">// B通道</span></span><br><span class="line">uchar green = bgr_pixel[<span class="number">1</span>]; <span class="comment">// G通道</span></span><br><span class="line">uchar red = bgr_pixel[<span class="number">2</span>];   <span class="comment">// R通道</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="修改像素值">4.2.2. 修改像素值</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">img.<span class="built_in">at</span>&lt;uchar&gt;(y, x) = <span class="number">128</span>; <span class="comment">// 将灰度图像素设为128</span></span><br><span class="line">img.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x) = cv::<span class="built_in">Vec3b</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 设为蓝色</span></span><br></pre></td></tr></table></figure>
+<h3 id="内存管理与引用计数">4.3. 内存管理与引用计数</h3>
+<h4 id="数据共享机制">4.3.1. 数据共享机制</h4>
+<p><code>cv::Mat</code>
+通过引用计数管理内存，多个实例可共享同一数据块：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">std::vector&lt;cv::Point3f&gt; points;</span><br><span class="line"><span class="comment">// ...填充数据</span></span><br><span class="line">cv::Mat points_mat = cv::<span class="built_in">Mat</span>(points).<span class="built_in">reshape</span>(<span class="number">1</span>); <span class="comment">// 共享数据，不复制</span></span><br></pre></td></tr></table></figure>
+<h4 id="显式复制数据">4.3.2. 显式复制数据</h4>
+<p>需独立操作数据时，使用 <code>clone()</code> 或
+<code>copyTo()</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat img_clone = img.<span class="built_in">clone</span>(); <span class="comment">// 深拷贝</span></span><br><span class="line">cv::Mat img_copy;</span><br><span class="line">img.<span class="built_in">copyTo</span>(img_copy); <span class="comment">// 深拷贝（目标为空矩阵时）</span></span><br></pre></td></tr></table></figure>
+<h3 id="基本图像操作">4.4. 基本图像操作</h3>
+<h4 id="图像置黑">4.4.1. 图像置黑</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">img = cv::<span class="built_in">Scalar</span>(<span class="number">0</span>); <span class="comment">// 所有像素设为0（黑色）</span></span><br></pre></td></tr></table></figure>
+<h4 id="选择感兴趣区域roi">4.4.2. 选择感兴趣区域（ROI）</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Rect <span class="title">roi</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>)</span></span>; <span class="comment">// (x, y, width, height)</span></span><br><span class="line">cv::Mat small_img = <span class="built_in">img</span>(roi);   <span class="comment">// 提取ROI</span></span><br></pre></td></tr></table></figure>
+<h4 id="颜色空间转换">4.4.3. 颜色空间转换</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat gray;</span><br><span class="line">cv::<span class="built_in">cvtColor</span>(img, gray, cv::COLOR_BGR2GRAY); <span class="comment">// BGR转灰度</span></span><br></pre></td></tr></table></figure>
+<h4 id="图像类型转换">4.4.4. 图像类型转换</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat src_32f;</span><br><span class="line">src.<span class="built_in">convertTo</span>(src_32f, CV_32F); <span class="comment">// 8UC1转32FC1</span></span><br></pre></td></tr></table></figure>
+<h3 id="图像可视化">4.5. 图像可视化</h3>
+<h4 id="显示8位图像">4.5.1. 显示8位图像</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;Display&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">cv::<span class="built_in">imshow</span>(<span class="string">&quot;Display&quot;</span>, img);</span><br><span class="line">cv::<span class="built_in">waitKey</span>(<span class="number">0</span>); <span class="comment">// 等待按键</span></span><br></pre></td></tr></table></figure>
+<h4 id="显示浮点图像">4.5.2. 显示浮点图像</h4>
+<p>需将32F类型归一化到0~255范围：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat sobelx;</span><br><span class="line">cv::<span class="built_in">Sobel</span>(gray, sobelx, CV_32F, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// 计算Sobel梯度</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> min_val, max_val;</span><br><span class="line">cv::<span class="built_in">minMaxLoc</span>(sobelx, &amp;min_val, &amp;max_val); <span class="comment">// 获取极值</span></span><br><span class="line"></span><br><span class="line">cv::Mat draw;</span><br><span class="line">sobelx.<span class="built_in">convertTo</span>(draw, CV_8U, <span class="number">255.0</span>/(max_val - min_val), -min_val*<span class="number">255.0</span>/(max_val - min_val));</span><br><span class="line">cv::<span class="built_in">imshow</span>(<span class="string">&quot;Sobel&quot;</span>, draw);</span><br><span class="line">cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">cv::<span class="built_in">destroyWindow</span>(<span class="string">&quot;Sobel&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="总结-1">4.6. 总结</h3>
+<p>介绍了OpenCV中图像处理的基础操作，包括加载/保存、像素访问、内存管理和可视化。可以进一步结合官方文档探索高级功能（如滤波、特征检测等）。</p>
+<h2 id="使用cvaddweighted实现图像线性混合">5.
+使用cv::addWeighted实现图像线性混合</h2>
+<p>在计算机视觉中，图像混合是一项基础且实用的技术。通过调整权重参数，可以实现两张图片的平滑过渡效果，例如幻灯片切换或视频转场。本节介绍如何使用
+<code>cv::addWeighted</code> 函数实现图像的线性混合。</p>
+<h3 id="理论背景">5.1. 理论背景</h3>
+<p>线性混合的数学表达式为：<br />
+<span class="math display">\[\nonumber
+g(x) = (1 - \alpha) \cdot f_0(x) + \alpha \cdot f_1(x)
+\]</span><br />
+其中，<span class="math inline">\(\alpha\)</span> 的取值范围为 <span
+class="math inline">\([0, 1]\)</span>。当 <span
+class="math inline">\(\alpha\)</span> 从 0 逐渐增加到 1 时，输出图像会从
+<span class="math inline">\(f_0\)</span> 平滑过渡到 <span
+class="math inline">\(f_1\)</span>。</p>
+<h3 id="代码实现">5.2. 代码实现</h3>
+<p>以下是使用C++和OpenCV实现图像混合的完整代码：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;opencv2/opencv.hpp&gt;</span><span class="pp">  </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span><span class="pp">  </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">;</span>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> beta<span class="op">,</span> user_input<span class="op">;</span>  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 读取两张图片  </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat src1 <span class="op">=</span> cv<span class="op">::</span>imread<span class="op">(</span>cv<span class="op">::</span>samples<span class="op">::</span>findFile<span class="op">(</span><span class="st">&quot;LinuxLogo.jpg&quot;</span><span class="op">));</span>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat src2 <span class="op">=</span> cv<span class="op">::</span>imread<span class="op">(</span>cv<span class="op">::</span>samples<span class="op">::</span>findFile<span class="op">(</span><span class="st">&quot;WindowsLogo.jpg&quot;</span><span class="op">));</span>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 检查图片是否加载成功  </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>src1<span class="op">.</span>empty<span class="op">())</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;错误：无法加载src1&quot;</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>  </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>src2<span class="op">.</span>empty<span class="op">())</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;错误：无法加载src2&quot;</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>  </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 获取用户输入的alpha值  </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;请输入alpha值（0.0-1.0）: &quot;</span><span class="op">;</span>  </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin <span class="op">&gt;&gt;</span> user_input<span class="op">;</span>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>user_input <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> user_input <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> user_input<span class="op">;</span>  </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> <span class="fl">1.0</span> <span class="op">-</span> alpha<span class="op">;</span>  </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat dst<span class="op">;</span>  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 执行线性混合</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// void addWeighted(InputArray src1, double alpha, InputArray src2,</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">//                  double beta, double gamma, OutputArray dst,</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">//                  int //dtype = -1);</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>addWeighted<span class="op">(</span>src1<span class="op">,</span> alpha<span class="op">,</span> src2<span class="op">,</span> beta<span class="op">,</span> <span class="fl">0.0</span><span class="op">,</span> dst<span class="op">);</span>  </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 显示结果  </span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>imshow<span class="op">(</span><span class="st">&quot;混合结果&quot;</span><span class="op">,</span> dst<span class="op">);</span>  </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>waitKey<span class="op">(</span><span class="dv">0</span><span class="op">);</span>  </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span>  </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span>  </span></code></pre></div>
+<h3 id="关键代码解析">5.3. 关键代码解析</h3>
+<ol type="1">
+<li><strong>加载图片</strong>
+<ul>
+<li>使用<code>cv::imread</code>读取图片，并通过<code>cv::samples::findFile</code>确保路径正确。<br />
+</li>
+</ul></li>
+<li><strong>输入验证</strong>
+<ul>
+<li>用户输入的α值通过<code>std::cin</code>获取，并限制在<code>[0, 1]</code>范围内。<br />
+</li>
+</ul></li>
+<li><strong>混合计算</strong>
+<ul>
+<li><code>cv::addWeighted</code>函数的参数依次为：
+<ul>
+<li><code>src1</code>：第一张输入图像。<br />
+</li>
+<li><code>alpha</code>：第一张图像的权重。<br />
+</li>
+<li><code>src2</code>：第二张输入图像。<br />
+</li>
+<li><code>beta</code>：第二张图像的权重（通常为<code>1 - alpha</code>）。<br />
+</li>
+<li><code>gamma</code>：标量偏移量（此处设为0）。<br />
+</li>
+<li><code>dst</code>：输出图像。</li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="注意事项">5.4. 注意事项</h3>
+<ol type="1">
+<li><strong>图片尺寸与类型</strong>
+<ul>
+<li>输入的两张图像必须具有相同的尺寸（宽度和高度）和数据类型，否则会导致运行时错误。<br />
+</li>
+</ul></li>
+<li><strong>扩展应用</strong>
+<ul>
+<li>此技术可用于创建动态效果，如视频淡入淡出、AR场景叠加等。</li>
+</ul></li>
+</ol>
+<h3 id="总结-2">5.5. 总结</h3>
+<p>通过<code>cv::addWeighted</code>函数，OpenCV为图像混合提供了一种简洁高效的实现方式。掌握这一技术后，可以进一步探索更复杂的图像处理任务，如图像融合、遮罩处理等。</p>
+<hr />
+<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习（下）">OpenCV入门学习（下）</a>
+<h2 id="参考资料">6. 参考资料</h2>
+<p><strong>[1]</strong> <a
+href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">OpenCV官方文档</a></p>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>OpenCV</tag>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>单像空间后方交会</title>
     <url>/2025/01/18/%E5%8D%95%E5%83%8F%E7%A9%BA%E9%97%B4%E5%90%8E%E6%96%B9%E4%BA%A4%E4%BC%9A/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
