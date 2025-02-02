@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-01-27T14:18:11.714Z</updated>
+  <updated>2025-02-02T14:24:14.594Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -17,26 +17,116 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>OpenCV入门学习（下）</title>
-    <link href="https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
-    <id>https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/</id>
-    <published>2025-01-27T09:36:56.000Z</published>
-    <updated>2025-01-27T14:18:11.714Z</updated>
+    <title>OpenCV入门学习-app工具（下）</title>
+    <link href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</id>
+    <published>2025-02-02T14:22:51.000Z</published>
+    <updated>2025-02-02T14:24:14.594Z</updated>
     
     
-    <summary type="html">OpenCV入门学习（下）</summary>
+    <summary type="html">OpenCV入门学习-app工具（下）</summary>
     
     
     
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
     
   </entry>
   
   <entry>
-    <title>OpenCV入门学习（上）</title>
-    <link href="https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
-    <id>https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/</id>
+    <title>OpenCV入门学习-app工具（上）</title>
+    <link href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</id>
+    <published>2025-02-02T14:22:43.000Z</published>
+    <updated>2025-02-02T14:23:38.535Z</updated>
+    
+    
+    <summary type="html">OpenCV入门学习-app工具（上）</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV入门学习-图像处理（下）</title>
+    <link href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</id>
+    <published>2025-02-02T14:21:10.000Z</published>
+    <updated>2025-02-02T14:23:58.571Z</updated>
+    
+    
+    <summary type="html">OpenCV入门学习-图像处理（下）</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV入门学习-图像处理（上）</title>
+    <link href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</id>
+    <published>2025-02-02T14:20:58.000Z</published>
+    <updated>2025-02-02T14:24:39.931Z</updated>
+    
+    
+    <summary type="html">OpenCV入门学习-图像处理（上）</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV入门学习-核心功能（下）</title>
+    <link href="https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</id>
+    <published>2025-01-27T09:36:56.000Z</published>
+    <updated>2025-02-02T14:31:30.591Z</updated>
+    
+    
+    <summary type="html">OpenCV入门学习-核心功能（下）</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCV入门学习-核心功能（上）</title>
+    <link href="https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/</id>
     <published>2025-01-26T07:06:53.000Z</published>
-    <updated>2025-01-27T14:22:44.150Z</updated>
+    <updated>2025-02-02T14:20:26.433Z</updated>
     
     
     <summary type="html">根据官方文档，介绍 Mat、图像查找表、掩膜操作、图像基础操作以及使用 addWeighted 实现图像线性混合。</summary>
@@ -46,11 +136,11 @@
     <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     
-    <category term="OpenCV" scheme="https://blackspace2.github.io/tags/OpenCV/"/>
-    
     <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+    <category term="OpenCV" scheme="https://blackspace2.github.io/tags/OpenCV/"/>
     
   </entry>
   

@@ -1,10 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>OpenCV入门学习（下）</title>
-    <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <title>OpenCV入门学习-app工具（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<a href="/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/" title="OpenCV入门学习（上）">OpenCV入门学习（上）</a>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习-app工具（上）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习-图像处理（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习-图像处理（上）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习-核心功能（下）</title>
+    <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<a href="/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/" title="OpenCV入门学习-核心功能（上）">OpenCV入门学习-核心功能（上）</a>
 <h2 id="调整图像的对比度和亮度">调整图像的对比度和亮度</h2>
 <p>OpenCV是计算机视觉领域的重要工具，本节将介绍如何使用像素变换调整图像的亮度和对比度，并通过
 Gamma 校正优化图像质量。</p>
@@ -64,11 +116,54 @@ class="math inline">\(0-255\)</span> 范围内，避免数值溢出。</p>
 </ul>
 <p>通过调整α、β和 <span class="math inline">\(\gamma\)</span>
 值，可灵活控制图像效果。这些方法虽基础，但能为复杂图像处理任务奠定基础。</p>
+<h2 id="离散傅里叶变换">离散傅里叶变换</h2>
+<h3 id="什么是离散傅里叶变换">什么是离散傅里叶变换？</h3>
+<p>离散傅里叶变换（DFT）是一种将图像从空间域转换到频率域的数学工具。通过分解图像的正弦和余弦分量，DFT可以帮助我们分析图像中的几何结构特征。其数学表达式为：<br />
+<span class="math display">\[
+F(k, l) = \sum_{i=0}^{N-1} \sum_{j=0}^{N-1}
+f(i,j)e^{-i2\pi\left(\frac{jk}{N}+\frac{ik}{N}\right)} \nonumber  
+\]</span> 其中，复数结果可表示为：<br />
+<span class="math display">\[  
+e^{ix} = \cos x + i\sin x \nonumber  
+\]</span></p>
+<h3 id="opencv实现dft的关键步骤">OpenCV实现DFT的关键步骤</h3>
+<h4 id="扩展图像至最佳尺寸">扩展图像至最佳尺寸</h4>
+<p>DFT的计算效率与图像尺寸相关，最佳尺寸通常是2、3、5的倍数。通过<code>cv::getOptimalDFTSize()</code>获取最优尺寸，并用<code>cv::copyMakeBorder()</code>填充图像边界：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat padded;  </span><br><span class="line"><span class="type">int</span> rows_pad = cv::<span class="built_in">getOptimalDFTSize</span>(I.rows);  </span><br><span class="line"><span class="type">int</span> cols_pad = cv::<span class="built_in">getOptimalDFTSize</span>(I.cols);  </span><br><span class="line">cv::<span class="built_in">copyMakeBorder</span>(I, padded, <span class="number">0</span>, rows_pad - I.rows, <span class="number">0</span>, cols_pad - I.cols,  </span><br><span class="line">                   cv::BORDER_CONSTANT, cv::Scalar::<span class="built_in">all</span>(<span class="number">0</span>));  </span><br></pre></td></tr></table></figure>
+<h4 id="创建复数矩阵">创建复数矩阵</h4>
+<p>DFT结果为复数，需将图像转换为浮点类型并合并实部与虚部：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat planes[] = &#123;  </span><br><span class="line">    cv::<span class="built_in">Mat_</span>&lt;<span class="type">float</span>&gt;(padded),  </span><br><span class="line">    cv::Mat::<span class="built_in">zeros</span>(padded.<span class="built_in">size</span>(), CV_32F)  </span><br><span class="line">&#125;;  </span><br><span class="line">cv::Mat complexI;  </span><br><span class="line">cv::<span class="built_in">merge</span>(planes, <span class="number">2</span>, complexI);  </span><br></pre></td></tr></table></figure>
+<h4 id="执行dft变换">执行DFT变换</h4>
+<p>使用<code>cv::dft()</code>进行傅里叶变换，支持原地计算：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">dft</span>(complexI, complexI);  </span><br></pre></td></tr></table></figure>
+<h4 id="计算幅度谱">计算幅度谱</h4>
+<p>将复数结果分解为实部和虚部，计算幅度并转为对数尺度：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">split</span>(complexI, planes);  </span><br><span class="line">cv::<span class="built_in">magnitude</span>(planes[<span class="number">0</span>], planes[<span class="number">1</span>], planes[<span class="number">0</span>]);  </span><br><span class="line">cv::Mat magI = planes[<span class="number">0</span>];  </span><br><span class="line">magI += cv::Scalar::<span class="built_in">all</span>(<span class="number">1</span>);  </span><br><span class="line">cv::<span class="built_in">log</span>(magI, magI);  </span><br></pre></td></tr></table></figure>
+<h4 id="频谱中心化与归一化">频谱中心化与归一化</h4>
+<p>交换频谱象限使低频分量居中，并进行归一化以便显示：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">magI = <span class="built_in">magI</span>(cv::<span class="built_in">Rect</span>(<span class="number">0</span>, <span class="number">0</span>, magI.cols &amp; <span class="number">-2</span>, magI.rows &amp; <span class="number">-2</span>));  </span><br><span class="line"><span class="type">int</span> cx = magI.cols / <span class="number">2</span>, cy = magI.rows / <span class="number">2</span>;  </span><br><span class="line"><span class="comment">// 交换四个象限  </span></span><br><span class="line"><span class="function">cv::Mat <span class="title">q0</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, <span class="number">0</span>, cx, cy))</span></span>;  </span><br><span class="line"><span class="function">cv::Mat <span class="title">q1</span><span class="params">(magI, cv::Rect(cx, <span class="number">0</span>, cx, cy))</span></span>;  </span><br><span class="line"><span class="function">cv::Mat <span class="title">q2</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, cy, cx, cy))</span></span>;  </span><br><span class="line"><span class="function">cv::Mat <span class="title">q3</span><span class="params">(magI, cv::Rect(cx, cy, cx, cy))</span></span>;  </span><br><span class="line">q<span class="number">0.</span><span class="built_in">copyTo</span>(tmp); q<span class="number">3.</span><span class="built_in">copyTo</span>(q0); tmp.<span class="built_in">copyTo</span>(q3);  </span><br><span class="line">q<span class="number">1.</span><span class="built_in">copyTo</span>(tmp); q<span class="number">2.</span><span class="built_in">copyTo</span>(q1); tmp.<span class="built_in">copyTo</span>(q2);  </span><br><span class="line"><span class="comment">// 归一化到[0,1]范围  </span></span><br><span class="line">cv::<span class="built_in">normalize</span>(magI, magI, <span class="number">0</span>, <span class="number">1</span>, cv::NORM_MINMAX);  </span><br></pre></td></tr></table></figure>
+<h3 id="应用场景示例">应用场景示例</h3>
+<p>通过分析频谱的亮度分布，可以检测图像中的几何方向特征。例如：</p>
+<ul>
+<li><strong>水平文本</strong>：频谱中会出现垂直方向的高亮线，对应文本的横向排列。<br />
+</li>
+<li><strong>旋转文本</strong>：高亮点会随文本旋转方向偏移，通过此偏移可计算校正角度。</li>
+</ul>
+<h3 id="完整代码示例">完整代码示例</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取灰度图像</span></span><br><span class="line">    cv::Mat I = cv::<span class="built_in">imread</span>(<span class="string">&quot;dog.jpg&quot;</span>, cv::IMREAD_GRAYSCALE);</span><br><span class="line">    <span class="keyword">if</span> (I.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Error: Could not load image&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤1：扩展图像至最佳DFT尺寸</span></span><br><span class="line">    cv::Mat padded;</span><br><span class="line">    <span class="type">int</span> rows_opt = cv::<span class="built_in">getOptimalDFTSize</span>(I.rows);</span><br><span class="line">    <span class="type">int</span> cols_opt = cv::<span class="built_in">getOptimalDFTSize</span>(I.cols);</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(I, padded,</span><br><span class="line">        <span class="number">0</span>, rows_opt - I.rows,</span><br><span class="line">        <span class="number">0</span>, cols_opt - I.cols,</span><br><span class="line">        cv::BORDER_CONSTANT, cv::Scalar::<span class="built_in">all</span>(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤2：创建复数矩阵（实部+虚部）</span></span><br><span class="line">    cv::Mat planes[] = &#123;</span><br><span class="line">        cv::<span class="built_in">Mat_</span>&lt;<span class="type">float</span>&gt;(padded),</span><br><span class="line">        cv::Mat::<span class="built_in">zeros</span>(padded.<span class="built_in">size</span>(), CV_32F)</span><br><span class="line">    &#125;;</span><br><span class="line">    cv::Mat complexI;</span><br><span class="line">    cv::<span class="built_in">merge</span>(planes, <span class="number">2</span>, complexI);  <span class="comment">// 合并为双通道矩阵</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤3：执行离散傅里叶变换</span></span><br><span class="line">    cv::<span class="built_in">dft</span>(complexI, complexI);  <span class="comment">// 原地计算</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤4：计算幅度谱</span></span><br><span class="line">    cv::<span class="built_in">split</span>(complexI, planes);  <span class="comment">// planes[0] = Re, planes[1] = Im</span></span><br><span class="line">    cv::<span class="built_in">magnitude</span>(planes[<span class="number">0</span>], planes[<span class="number">1</span>], planes[<span class="number">0</span>]);</span><br><span class="line">    cv::Mat magI = planes[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤5：对数尺度转换</span></span><br><span class="line">    magI += cv::Scalar::<span class="built_in">all</span>(<span class="number">1</span>);</span><br><span class="line">    cv::<span class="built_in">log</span>(magI, magI);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤6：裁剪为偶数尺寸</span></span><br><span class="line">    magI = <span class="built_in">magI</span>(cv::<span class="built_in">Rect</span>(<span class="number">0</span>, <span class="number">0</span>, magI.cols &amp; <span class="number">-2</span>, magI.rows &amp; <span class="number">-2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤7：频谱中心化（交换象限）</span></span><br><span class="line">    <span class="type">int</span> cx = magI.cols / <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> cy = magI.rows / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q0</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, <span class="number">0</span>, cx, cy))</span></span>;   <span class="comment">// 左上</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q1</span><span class="params">(magI, cv::Rect(cx, <span class="number">0</span>, cx, cy))</span></span>;  <span class="comment">// 右上</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q2</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, cy, cx, cy))</span></span>;  <span class="comment">// 左下</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q3</span><span class="params">(magI, cv::Rect(cx, cy, cx, cy))</span></span>; <span class="comment">// 右下</span></span><br><span class="line"></span><br><span class="line">    cv::Mat tmp;</span><br><span class="line">    <span class="comment">// 交换左上与右下</span></span><br><span class="line">    q<span class="number">0.</span><span class="built_in">copyTo</span>(tmp);</span><br><span class="line">    q<span class="number">3.</span><span class="built_in">copyTo</span>(q0);</span><br><span class="line">    tmp.<span class="built_in">copyTo</span>(q3);</span><br><span class="line">    <span class="comment">// 交换右上与左下</span></span><br><span class="line">    q<span class="number">1.</span><span class="built_in">copyTo</span>(tmp);</span><br><span class="line">    q<span class="number">2.</span><span class="built_in">copyTo</span>(q1);</span><br><span class="line">    tmp.<span class="built_in">copyTo</span>(q2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤8：归一化显示范围</span></span><br><span class="line">    cv::<span class="built_in">normalize</span>(magI, magI, <span class="number">0</span>, <span class="number">1</span>, cv::NORM_MINMAX);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Input Image&quot;</span>, I);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Spectrum Magnitude&quot;</span>, magI);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述步骤，OpenCV实现了从空间域到频率域的高效转换，为图像分析与增强提供了重要基础。</p>
 ]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习（上）</title>
-    <url>/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <title>OpenCV入门学习-核心功能（上）</title>
+    <url>/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 <p>环境：</p>
 <ul>
@@ -504,7 +599,7 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <h3 id="总结-2">5.5. 总结</h3>
 <p>通过<code>cv::addWeighted</code>函数，OpenCV为图像混合提供了一种简洁高效的实现方式。掌握这一技术后，可以进一步探索更复杂的图像处理任务，如图像融合、遮罩处理等。</p>
 <hr />
-<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习（下）">OpenCV入门学习（下）</a>
+<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习-核心功能（下）">OpenCV入门学习-核心功能（下）</a>
 <h2 id="参考资料">6. 参考资料</h2>
 <p><strong>[1]</strong> <a
 href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">OpenCV官方文档</a></p>
@@ -513,9 +608,9 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
         <category>计算机视觉</category>
       </categories>
       <tags>
-        <tag>OpenCV</tag>
         <tag>计算机视觉</tag>
         <tag>C/C++</tag>
+        <tag>OpenCV</tag>
       </tags>
   </entry>
   <entry>
