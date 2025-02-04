@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenCV入门学习-app工具（上）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 中的 markdown 语法</title>
+    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="页内跳转">1. 页内跳转</h2>
+<p>跳转到地方后面加上
+<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
+需要跳转的地方 <code>[跳转到](#jump)</code><br />
+注：<code>jump</code> 字段不能有中文、空格</p>
+<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
+此时图片引用语法： <code>![文本](图片名字)</code></p>
+<h2 id="html-插入图片">3. html 插入图片</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
+<p>渲染引擎：MathJax<br />
+插件：hexo-renderer-pandoc<br />
+参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
+<p>写行间公式的时候，两个 <code>$$</code>
+一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
+<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
+<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
+<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
+自定义编号，那么 hexo
+依然会跳过这个公式并且对后面的公式进行自动编号。<br />
+当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
+<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
+<code>equation</code> 环境来取消对公式的编号。</p>
+<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
+和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
+<p>参考：<br />
+[1] <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
+官方文档</a><br />
+[2] <a
+href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
+公式编号说明</a></p>
+<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
+<p>这里的英文句号会被渲染为中文的圆圈句号,改用
+<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -139,19 +201,6 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-app工具（上）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>计算机视觉</tag>
-        <tag>C/C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV入门学习-app工具（下）</title>
     <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -165,52 +214,16 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       </tags>
   </entry>
   <entry>
-    <title>Hexo 中的 markdown 语法</title>
-    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
+    <title>OpenCV入门学习-图像处理（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="页内跳转">1. 页内跳转</h2>
-<p>跳转到地方后面加上
-<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
-需要跳转的地方 <code>[跳转到](#jump)</code><br />
-注：<code>jump</code> 字段不能有中文、空格</p>
-<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
-此时图片引用语法： <code>![文本](图片名字)</code></p>
-<h2 id="html-插入图片">3. html 插入图片</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
-<p>渲染引擎：MathJax<br />
-插件：hexo-renderer-pandoc<br />
-参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
-<p>写行间公式的时候，两个 <code>$$</code>
-一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
-<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
-<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
-<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
-自定义编号，那么 hexo
-依然会跳过这个公式并且对后面的公式进行自动编号。<br />
-当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
-<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
-<code>equation</code> 环境来取消对公式的编号。</p>
-<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
-和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
-<p>参考：<br />
-[1] <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
-官方文档</a><br />
-[2] <a
-href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
-公式编号说明</a></p>
-<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
-<p>这里的英文句号会被渲染为中文的圆圈句号,改用
-<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
 ]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -224,6 +237,24 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
       <tags>
         <tag>计算机视觉</tag>
         <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -288,12 +319,14 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
 <p>📌 <strong>关键机制</strong></p>
 <ul>
 <li>修改浅拷贝对象的像素会直接影响原对象</li>
-<li>使用<code>clone()</code>或<code>copyTo()</code>进行<strong>显式深拷贝</strong></li>
+<li>使用 <code>clone()</code> 或 <code>copyTo()</code>
+进行<strong>显式深拷贝</strong></li>
 </ul>
 </blockquote>
 <h3 id="色彩空间与存储布局">1.3. 色彩空间与存储布局</h3>
 <ul>
-<li><strong>默认色彩空间</strong>：BGR（非RGB），与图像显示系统兼容</li>
+<li><strong>默认色彩空间</strong>：BGR（非 RGB
+），与图像显示系统兼容</li>
 <li><strong>通道顺序</strong>：对于3通道矩阵，像素按 <code>B-G-R</code>
 顺序存储</li>
 <li><strong>内存布局</strong>：连续存储（可通过
@@ -317,33 +350,40 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
 <blockquote>
 <p>⚠️ <strong>注意事项</strong></p>
 <ul>
-<li>使用<code>at&lt;T&gt;(row,col)</code>访问元素时需确保类型匹配（如<code>CV_8UC3</code>对应<code>cv::Vec3b</code>）</li>
-<li>多通道矩阵的cv::Scalar初始化顺序为<code>(B,G,R)</code></li>
-<li>外部数据构造的cv::Mat对象不管理原数据内存，需手动维护生命周期</li>
+<li>使用 <code>at&lt;T&gt;(row,col)</code> 访问元素时需确保类型匹配（如
+<code>CV_8UC3</code> 对应 <code>cv::Vec3b</code> ）</li>
+<li>多通道矩阵的 cv::Scalar 初始化顺序为 <code>(B,G,R)</code></li>
+<li>外部数据构造的 cv::Mat 对象不管理原数据内存，需手动维护生命周期</li>
 </ul>
 </blockquote>
 <h3 id="官方文档补充要点">1.6. 官方文档补充要点</h3>
 <ol type="1">
 <li><p><strong>多维矩阵支持</strong><br />
-<code>cv::Mat</code>可处理N维数据，通过<code>dims</code>参数指定维度：</p>
+<code>cv::Mat</code> 可处理N维数据，通过 <code>dims</code>
+参数指定维度：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Mat(int ndims, const int* sizes, int type, const cv::Scalar&amp; s);</span></span><br><span class="line"><span class="type">int</span> sizes[] = &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;; <span class="comment">// 3维：3x4x5</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">ndMat</span><span class="params">(<span class="number">3</span>, sizes, CV_8UC1, cv::Scalar::all(<span class="number">0</span>))</span></span>;</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>内存连续性优化</strong><br />
-使用<code>create()</code>方法重新分配连续内存：</p>
+使用 <code>create()</code> 方法重新分配连续内存：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">mat.<span class="built_in">create</span>(rows, cols, type); <span class="comment">// 重置矩阵尺寸/类型</span></span><br></pre></td></tr></table></figure></li>
 <li><p><strong>表达式计算优化</strong><br />
-OpenCV重载了矩阵运算符（<code>+</code>,
-<code>*</code>等），自动避免中间变量拷贝：</p>
+OpenCV重载了矩阵运算符（ <code>+</code> , <code>*</code>
+等），自动避免中间变量拷贝：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat C = A.<span class="built_in">mul</span>(B) + <span class="number">0.5</span>; <span class="comment">// 对应元素相乘再加 0.5</span></span><br><span class="line"><span class="comment">// ps: 矩阵乘法时直接用 *</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <hr />
-<h2 id="图像扫描查找表与性能优化">2. 图像扫描、查找表与性能优化</h2>
-<p>通过一个实际的<strong>颜色空间缩减</strong>示例，快速掌握OpenCV中图像处理的三大核心技能：<strong>图像扫描方法</strong>、<strong>查找表（LUT）的应用</strong>以及<strong>算法性能测量</strong>。</p>
+<h2 id="图像扫描查找表与性能优化">2. 图像扫描、查找表与性能优化 <span
+id="ch2"></span></h2>
+<p>通过一个实际的<strong>颜色空间缩减</strong>示例，快速掌握 OpenCV
+中图像处理的三大核心技能：<strong>图像扫描方法</strong>、<strong>查找表（LUT）的应用</strong>以及<strong>算法性能测量</strong>。</p>
 <h3 id="图像矩阵的内存存储">2.1. 图像矩阵的内存存储</h3>
-<p>在OpenCV中，图像数据以<code>Mat</code>对象存储，其内存布局与颜色通道紧密相关：</p>
+<p>在 OpenCV 中，图像数据以 <code>Mat</code>
+对象存储，其内存布局与颜色通道紧密相关：</p>
 <ol type="1">
-<li><strong>灰度图像</strong>：每个像素对应一个<code>uchar</code>值（0-255），按行连续存储。</li>
-<li><strong>彩色图像（BGR）</strong>：每个像素包含3个通道（蓝、绿、红），每个通道一个<code>uchar</code>值。<br />
-<strong>注意</strong>：OpenCV默认使用BGR顺序而非RGB！</li>
+<li><strong>灰度图像</strong>：每个像素对应一个 <code>uchar</code>
+值（0-255），按行连续存储。</li>
+<li><strong>彩色图像（BGR）</strong>：每个像素包含3个通道（蓝、绿、红），每个通道一个
+<code>uchar</code> 值。<br />
+<strong>注意</strong>：OpenCV 默认使用 BGR 顺序而非 RGB ！</li>
 </ol>
 <p>内存中的存储方式</p>
 <ul>
@@ -352,7 +392,7 @@ OpenCV重载了矩阵运算符（<code>+</code>,
 <li><strong>多通道数据</strong>：每个像素的通道值连续存储。
 <ul>
 <li>例如，BGR 图像的像素存储顺序为
-<code>[B0, G0, R0, B1, G1, R1, ...]</code>。</li>
+<code>[B0, G0, R0, B1, G1, R1, ...]</code> 。</li>
 </ul></li>
 <li>可能的填充字节 (Padding)
 <ul>
@@ -363,7 +403,8 @@ OpenCV重载了矩阵运算符（<code>+</code>,
 <p>通过 <code>Mat::isContinuous()</code>
 可判断矩阵是否连续存储。若连续，可将图像视为一维数组处理，提升遍历效率。</p>
 <h3 id="颜色空间缩减示例">2.2. 颜色空间缩减示例</h3>
-<p>假设我们需要将图像颜色值从256级缩减到更少的级别（例如每10个值合并为一个）。直接计算公式为：<br />
+<p>假设我们需要将图像颜色值从 256 级缩减到更少的级别（例如每 10
+个值合并为一个）。直接计算公式为：<br />
 <span class="math display">\[\nonumber
 I_{\text{new}} = \lfloor \frac{I_{\text{old}}}{10} \rfloor \times 10
 \]</span></p>
@@ -376,17 +417,20 @@ LUT）</strong>可预先计算所有可能的输入值对应的输出值，后�
 <p>通过指针直接操作内存，适合连续存储的图像。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithPointer</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);  <span class="comment">// 仅处理8位图像</span></span><br><span class="line">    <span class="type">int</span> channels = image.<span class="built_in">channels</span>();</span><br><span class="line">    <span class="type">int</span> rows = image.rows;</span><br><span class="line">    <span class="type">int</span> cols = image.cols * channels;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">isContinuous</span>()) &#123;</span><br><span class="line">        cols *= rows;</span><br><span class="line">        rows = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; ++i) &#123;</span><br><span class="line">        uchar* p = image.<span class="built_in">ptr</span>&lt;uchar&gt;(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; cols; ++j)</span><br><span class="line">            p[j] = table[p[j]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="安全方法迭代器">2.3.2. 安全方法：迭代器</h4>
-<p>使用OpenCV迭代器自动处理行间隙，代码更安全。</p>
+<p>使用 OpenCV 迭代器自动处理行间隙，代码更安全。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithIterator</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">        cv::MatIterator_&lt;uchar&gt; it = image.<span class="built_in">begin</span>&lt;uchar&gt;();</span><br><span class="line">        cv::MatIterator_&lt;uchar&gt; end = image.<span class="built_in">end</span>&lt;uchar&gt;();</span><br><span class="line">        <span class="keyword">for</span> (; it != end; ++it)</span><br><span class="line">            *it = table[*it];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">3</span>) &#123;</span><br><span class="line">        cv::MatIterator_&lt;cv::Vec3b&gt; it = image.<span class="built_in">begin</span>&lt;cv::Vec3b&gt;();</span><br><span class="line">        cv::MatIterator_&lt;cv::Vec3b&gt; end = image.<span class="built_in">end</span>&lt;cv::Vec3b&gt;();</span><br><span class="line">        <span class="keyword">for</span> (; it != end; ++it) &#123;</span><br><span class="line">            (*it)[<span class="number">0</span>] = table[(*it)[<span class="number">0</span>]];  <span class="comment">// B通道</span></span><br><span class="line">            (*it)[<span class="number">1</span>] = table[(*it)[<span class="number">1</span>]];  <span class="comment">// G通道</span></span><br><span class="line">            (*it)[<span class="number">2</span>] = table[(*it)[<span class="number">2</span>]];  <span class="comment">// R通道</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="动态地址计算at方法">2.3.3.
-动态地址计算：<code>at</code>方法</h4>
+<h4 id="动态地址计算at-方法">2.3.3. 动态地址计算：<code>at</code>
+方法</h4>
 <p>适用于随机访问，但全图扫描时性能较差。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat&amp; <span class="title">ScanImageWithAt</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">CV_Assert</span>(image.<span class="built_in">depth</span>() == CV_8U);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; image.rows; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; image.cols; ++j)</span><br><span class="line">                image.<span class="built_in">at</span>&lt;uchar&gt;(i, j) = table[image.<span class="built_in">at</span>&lt;uchar&gt;(i, j)];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (image.<span class="built_in">channels</span>() == <span class="number">3</span>) &#123;</span><br><span class="line">        cv::Mat_&lt;cv::Vec3b&gt; _I = image;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; image.rows; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; image.cols; ++j) &#123;</span><br><span class="line">                _I(i, j)[<span class="number">0</span>] = table[_I(i, j)[<span class="number">0</span>]];  <span class="comment">// B通道</span></span><br><span class="line">                _I(i, j)[<span class="number">1</span>] = table[_I(i, j)[<span class="number">1</span>]];  <span class="comment">// G通道</span></span><br><span class="line">                _I(i, j)[<span class="number">2</span>] = table[_I(i, j)[<span class="number">2</span>]];  <span class="comment">// R通道</span></span><br><span class="line">            &#125;</span><br><span class="line">        image = _I;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="终极优化opencv内置lut函数">2.4. 终极优化：OpenCV内置LUT函数</h3>
-<p>使用<code>cv::LUT()</code>函数，底层优化更高效，支持多线程。</p>
+<h3 id="终极优化opencv-内置-lut-函数">2.4. 终极优化：OpenCV 内置 LUT
+函数</h3>
+<p>使用 <code>cv::LUT()</code> 函数，底层优化更高效，支持多线程。</p>
+<p><code>void cv::LUT (InputArray src, InputArray lut, OutputArray  dst)</code></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::Mat <span class="title">ApplyLUT</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> uchar* table)</span> </span>&#123;</span><br><span class="line">    <span class="function">cv::Mat <span class="title">lookupTable</span><span class="params">(<span class="number">1</span>, <span class="number">256</span>, CV_8U)</span></span>;</span><br><span class="line">    uchar* p = lookupTable.<span class="built_in">ptr</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i) p[i] = table[i];</span><br><span class="line">    </span><br><span class="line">    cv::Mat result;</span><br><span class="line">    cv::<span class="built_in">LUT</span>(image, lookupTable, result);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="性能对比">2.5. 性能对比</h3>
-<p>通过<code>cv::getTickCount()</code>和<code>cv::getTickFrequency()</code>测量时间：</p>
+<p>通过 <code>cv::getTickCount()</code> 和
+<code>cv::getTickFrequency()</code> 测量时间：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">double</span> t = (<span class="type">double</span>)cv::<span class="built_in">getTickCount</span>();</span><br><span class="line"><span class="comment">// 执行扫描操作</span></span><br><span class="line">t = ((<span class="type">double</span>)cv::<span class="built_in">getTickCount</span>() - t) / cv::<span class="built_in">getTickFrequency</span>();</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;耗时（秒）: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -416,7 +460,7 @@ LUT）</strong>可预先计算所有可能的输入值对应的输出值，后�
 </table>
 <p><strong>结论</strong>：</p>
 <ol type="1">
-<li><strong>优先使用OpenCV内置函数</strong>（如
+<li><strong>优先使用 OpenCV 内置函数</strong>（如
 <code>LUT()</code>），性能最佳。</li>
 <li>需要自定义遍历时，<strong>指针访问</strong>最快，<strong>迭代器</strong>更安全。</li>
 <li>避免在循环中使用 <code>at</code> 方法进行全图扫描。</li>
@@ -424,12 +468,15 @@ LUT）</strong>可预先计算所有可能的输入值对应的输出值，后�
 <h3 id="实战建议">2.6. 实战建议</h3>
 <ul>
 <li><strong>连续存储优化</strong>：若图像连续（<code>isContinuous() == true</code>），可将其视为一维数组处理。</li>
-<li><strong>多通道处理</strong>：注意BGR顺序，遍历时需分别操作每个通道。</li>
-<li><strong>调试技巧</strong>：在Debug模式下，<code>at</code>方法会检查越界访问，适合快速定位错误。</li>
+<li><strong>多通道处理</strong>：注意 BGR
+顺序，遍历时需分别操作每个通道。</li>
+<li><strong>调试技巧</strong>：在 Debug模 式下，<code>at</code>
+方法会检查越界访问，适合快速定位错误。</li>
 </ul>
 <h2 id="图像处理中的掩膜操作">3. 图像处理中的掩膜操作</h2>
-<p>图像处理是计算机视觉的核心技术之一，而OpenCV作为最流行的开源库，为开发者提供了丰富的工具。本节将介绍
-OpenCV 中的<strong>掩膜操作</strong>（Mask
+<p>图像处理是计算机视觉的核心技术之一，而 OpenCV
+作为最流行的开源库，为开发者提供了丰富的工具。本节将介绍 OpenCV
+中的<strong>掩膜操作</strong>（Mask
 Operations），以图像对比度增强为例，理解其原理与实现。</p>
 <h3 id="什么是掩膜操作">3.1. 什么是掩膜操作？</h3>
 <p>掩膜操作通过一个称为 <strong>内核（Kernel）</strong> 或
@@ -446,7 +493,8 @@ M = \begin{bmatrix}
 0 &amp; -1 &amp; 0
 \end{bmatrix}
 \]</span><br />
-中心像素权重为5，上下左右像素权重为-1，其余为0。通过该内核，可以突出中心像素，增强图像细节。</p>
+中心像素权重为 5，上下左右像素权重为 -1，其余为 0
+。通过该内核，可以突出中心像素，增强图像细节。</p>
 <h3 id="手动实现掩膜操作">3.2. 手动实现掩膜操作</h3>
 <h4 id="关键步骤">3.2.1. 关键步骤</h4>
 <ol type="1">
@@ -459,17 +507,21 @@ M = \begin{bmatrix}
 <details class="note info"><summary><p><code>cv::saturate_cast</code></p>
 </summary>
 <p>在图像处理方面，无论是加是减，乘除，都可能会超出一个像素灰度值的范围（0～255），<code>saturate_cast</code>
-函数的作用即是：当运算完之后，结果为负，则转为0，结果超出255，则为255。</p>
+函数的作用即是：当运算完之后，结果为负，则转为 0，结果超出 255，则为
+255。</p>
 
 </details>
 <h3 id="使用opencv内置函数-filter2d">3.3. 使用OpenCV内置函数
 <code>filter2D</code></h3>
-<p>手动实现掩膜操作虽然直观，但代码冗长且效率较低。OpenCV提供了<code>filter2D</code>函数，可直接应用内核矩阵，代码更简洁且性能更优。</p>
+<p>手动实现掩膜操作虽然直观，但代码冗长且效率较低。OpenCV 提供了
+<code>filter2D</code>
+函数，可直接应用内核矩阵，代码更简洁且性能更优。</p>
 <h4 id="代码示例">3.3.1. 代码示例</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat kernel = (cv::<span class="built_in">Mat_</span>&lt;<span class="type">char</span>&gt;(<span class="number">3</span>, <span class="number">3</span>) &lt;&lt; </span><br><span class="line">    <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">-1</span>, <span class="number">5</span>, <span class="number">-1</span>,</span><br><span class="line">    <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span></span><br><span class="line">);</span><br><span class="line">cv::Mat result;</span><br><span class="line"><span class="comment">// void filter2D( InputArray src, OutputArray dst, int ddepth,</span></span><br><span class="line"><span class="comment">//              InputArray kernel, Point anchor = Point(-1,-1), double delta = 0,</span></span><br><span class="line"><span class="comment">//              int borderType = BORDER_DEFAULT );</span></span><br><span class="line">cv::<span class="built_in">filter2D</span>(input, result, input.<span class="built_in">depth</span>(), kernel);</span><br></pre></td></tr></table></figure>
 <h4 id="优势">3.3.2. 优势</h4>
 <ul>
-<li><strong>高效性</strong>：内置函数经过优化，速度更快（测试中手动实现需31ms，<code>filter2D</code>仅需13ms）。</li>
+<li><strong>高效性</strong>：内置函数经过优化，速度更快（测试中手动实现需
+31ms，<code>filter2D</code> 仅需 13ms）。</li>
 <li><strong>灵活性</strong>：支持自定义内核中心、边界处理模式（如填充、镜像等）。</li>
 </ul>
 <h3 id="性能对比与适用场景">3.4. 性能对比与适用场景</h3>
@@ -502,19 +554,22 @@ M = \begin{bmatrix}
 ，提升效率并减少代码量。</li>
 </ul>
 <h3 id="总结">3.5. 总结</h3>
-<p>掩膜操作是图像处理的基础技术，OpenCV提供了灵活的实现方式。通过对比手动实现与内置函数，开发者可以根据需求选择最佳方案。掌握这一技术后，可进一步探索高斯模糊、边缘检测（如Sobel算子）等进阶应用。</p>
+<p>掩膜操作是图像处理的基础技术，OpenCV
+提供了灵活的实现方式。通过对比手动实现与内置函数，开发者可以根据需求选择最佳方案。掌握这一技术后，可进一步探索高斯模糊、边缘检测（如
+Sobel 算子）等进阶应用。</p>
 <p><strong>动手尝试</strong>：</p>
 <ol type="1">
 <li>修改内核矩阵，观察图像变化（例如锐化、模糊）。<br />
 </li>
-<li>对比不同边界处理模式的效果（如<code>BORDER_REFLECT</code>或<code>BORDER_CONSTANT</code>）。</li>
+<li>对比不同边界处理模式的效果（如 <code>BORDER_REFLECT</code> 或
+<code>BORDER_CONSTANT</code> ）。</li>
 </ol>
 <h2 id="图像基础操作">4. 图像基础操作</h2>
 <p>介绍图像处理的基础操作，涵盖图像加载、像素操作、内存管理及可视化等核心内容。</p>
 <h3 id="图像输入输出">4.1. 图像输入输出</h3>
 <h4 id="加载图像">4.1.1. 加载图像</h4>
-<p>使用 <code>cv::imread</code>
-加载图像时，默认读取为BGR三通道格式。若需灰度图，需显式指定参数：</p>
+<p>使用 <code>cv::imread</code> 加载图像时，默认读取为 BGR
+三通道格式。若需灰度图，需显式指定参数：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat img = cv::<span class="built_in">imread</span>(<span class="string">&quot;image.jpg&quot;</span>); <span class="comment">// 三通道BGR图像</span></span><br><span class="line">cv::Mat gray_img = cv::<span class="built_in">imread</span>(<span class="string">&quot;image.jpg&quot;</span>, cv::IMREAD_GRAYSCALE); <span class="comment">// 单通道灰度图</span></span><br></pre></td></tr></table></figure>
 <h4 id="保存图像">4.1.2. 保存图像</h4>
 <p>图像保存格式由文件扩展名决定：</p>
@@ -528,7 +583,7 @@ M = \begin{bmatrix}
 <ul>
 <li><p><strong>单通道灰度图</strong>（8UC1）：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">uchar intensity = img.<span class="built_in">at</span>&lt;uchar&gt;(y, x); <span class="comment">// 注意坐标顺序为(y, x)</span></span><br></pre></td></tr></table></figure></li>
-<li><p><strong>三通道BGR图像</strong>（8UC3）：</p>
+<li><p><strong>三通道 BGR 图像</strong>（8UC3）：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Vec3b bgr_pixel = img.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x);</span><br><span class="line">uchar blue = bgr_pixel[<span class="number">0</span>];  <span class="comment">// B通道</span></span><br><span class="line">uchar green = bgr_pixel[<span class="number">1</span>]; <span class="comment">// G通道</span></span><br><span class="line">uchar red = bgr_pixel[<span class="number">2</span>];   <span class="comment">// R通道</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="修改像素值">4.2.2. 修改像素值</h4>
@@ -552,13 +607,14 @@ M = \begin{bmatrix}
 <h4 id="图像类型转换">4.4.4. 图像类型转换</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat src_32f;</span><br><span class="line">src.<span class="built_in">convertTo</span>(src_32f, CV_32F); <span class="comment">// 8UC1转32FC1</span></span><br></pre></td></tr></table></figure>
 <h3 id="图像可视化">4.5. 图像可视化</h3>
-<h4 id="显示8位图像">4.5.1. 显示8位图像</h4>
+<h4 id="显示-8-位图像">4.5.1. 显示 8 位图像</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;Display&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">cv::<span class="built_in">imshow</span>(<span class="string">&quot;Display&quot;</span>, img);</span><br><span class="line">cv::<span class="built_in">waitKey</span>(<span class="number">0</span>); <span class="comment">// 等待按键</span></span><br></pre></td></tr></table></figure>
 <h4 id="显示浮点图像">4.5.2. 显示浮点图像</h4>
-<p>需将32F类型归一化到0~255范围：</p>
+<p>需将 32F 类型归一化到 0~255 范围：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat sobelx;</span><br><span class="line">cv::<span class="built_in">Sobel</span>(gray, sobelx, CV_32F, <span class="number">1</span>, <span class="number">0</span>); <span class="comment">// 计算Sobel梯度</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> min_val, max_val;</span><br><span class="line">cv::<span class="built_in">minMaxLoc</span>(sobelx, &amp;min_val, &amp;max_val); <span class="comment">// 获取极值</span></span><br><span class="line"></span><br><span class="line">cv::Mat draw;</span><br><span class="line">sobelx.<span class="built_in">convertTo</span>(draw, CV_8U, <span class="number">255.0</span>/(max_val - min_val), -min_val*<span class="number">255.0</span>/(max_val - min_val));</span><br><span class="line">cv::<span class="built_in">imshow</span>(<span class="string">&quot;Sobel&quot;</span>, draw);</span><br><span class="line">cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">cv::<span class="built_in">destroyWindow</span>(<span class="string">&quot;Sobel&quot;</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="总结-1">4.6. 总结</h3>
-<p>介绍了OpenCV中图像处理的基础操作，包括加载/保存、像素访问、内存管理和可视化。可以进一步结合官方文档探索高级功能（如滤波、特征检测等）。</p>
+<p>介绍了 OpenCV
+中图像处理的基础操作，包括加载/保存、像素访问、内存管理和可视化。可以进一步结合官方文档探索高级功能（如滤波、特征检测等）。</p>
 <h2 id="使用cvaddweighted实现图像线性混合">5.
 使用cv::addWeighted实现图像线性混合</h2>
 <p>在计算机视觉中，图像混合是一项基础且实用的技术。通过调整权重参数，可以实现两张图片的平滑过渡效果，例如幻灯片切换或视频转场。本节介绍如何使用
@@ -574,7 +630,7 @@ class="math inline">\(\alpha\)</span> 从 0 逐渐增加到 1 时，输出图像
 <span class="math inline">\(f_0\)</span> 平滑过渡到 <span
 class="math inline">\(f_1\)</span>。</p>
 <h3 id="代码实现">5.2. 代码实现</h3>
-<p>以下是使用C++和OpenCV实现图像混合的完整代码：</p>
+<p>以下是使用 C++ 和 OpenCV 实现图像混合的完整代码：</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;opencv2/opencv.hpp&gt;</span><span class="pp">  </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span><span class="pp">  </span></span>
@@ -623,17 +679,19 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <ol type="1">
 <li><strong>加载图片</strong>
 <ul>
-<li>使用<code>cv::imread</code>读取图片，并通过<code>cv::samples::findFile</code>确保路径正确。<br />
+<li>使用 <code>cv::imread</code> 读取图片，并通过
+<code>cv::samples::findFile</code> 确保路径正确。<br />
 </li>
 </ul></li>
 <li><strong>输入验证</strong>
 <ul>
-<li>用户输入的α值通过<code>std::cin</code>获取，并限制在<code>[0, 1]</code>范围内。<br />
+<li>用户输入的 <span class="math inline">\(\alpha\)</span> 值通过
+<code>std::cin</code> 获取，并限制在 <code>[0, 1]</code> 范围内。<br />
 </li>
 </ul></li>
 <li><strong>混合计算</strong>
 <ul>
-<li><code>cv::addWeighted</code>函数的参数依次为：
+<li><code>cv::addWeighted</code> 函数的参数依次为：
 <ul>
 <li><code>src1</code>：第一张输入图像。<br />
 </li>
@@ -641,7 +699,8 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 </li>
 <li><code>src2</code>：第二张输入图像。<br />
 </li>
-<li><code>beta</code>：第二张图像的权重（通常为<code>1 - alpha</code>）。<br />
+<li><code>beta</code>：第二张图像的权重（通常为 <code>1 - alpha</code>
+）。<br />
 </li>
 <li><code>gamma</code>：标量偏移量（此处设为0）。<br />
 </li>
@@ -658,11 +717,12 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 </ul></li>
 <li><strong>扩展应用</strong>
 <ul>
-<li>此技术可用于创建动态效果，如视频淡入淡出、AR场景叠加等。</li>
+<li>此技术可用于创建动态效果，如视频淡入淡出、AR 场景叠加等。</li>
 </ul></li>
 </ol>
 <h3 id="总结-2">5.5. 总结</h3>
-<p>通过<code>cv::addWeighted</code>函数，OpenCV为图像混合提供了一种简洁高效的实现方式。掌握这一技术后，可以进一步探索更复杂的图像处理任务，如图像融合、遮罩处理等。</p>
+<p>通过 <code>cv::addWeighted</code> 函数，OpenCV
+为图像混合提供了一种简洁高效的实现方式。掌握这一技术后，可以进一步探索更复杂的图像处理任务，如图像融合、遮罩处理等。</p>
 <hr />
 <a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习-核心功能（下）">OpenCV入门学习-核心功能（下）</a>
 <h2 id="参考资料">6. 参考资料</h2>
@@ -679,43 +739,13 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-图像处理（下）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>计算机视觉</tag>
-        <tag>C/C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <categories>
-        <category>git 管理工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV入门学习-核心功能（下）</title>
     <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 <a href="/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/" title="OpenCV入门学习-核心功能（上）">OpenCV入门学习-核心功能（上）</a>
 <h2 id="调整图像的对比度和亮度">1. 调整图像的对比度和亮度</h2>
-<p>OpenCV是计算机视觉领域的重要工具，本节将介绍如何使用像素变换调整图像的亮度和对比度，并通过
+<p>OpenCV
+是计算机视觉领域的重要工具，本节将介绍如何使用像素变换调整图像的亮度和对比度，并通过
 Gamma 校正优化图像质量。</p>
 <h3 id="理论基础">1.1. 理论基础</h3>
 <p>图像处理中的<strong>像素变换</strong>指输出像素仅依赖输入像素值的操作。调整亮度与对比度的公式为：<br />
@@ -732,20 +762,23 @@ class="math inline">\(0-100\)</span>）。</li>
 class="math inline">\(0-255\)</span> 范围内，避免数值溢出。</p>
 <h3 id="代码实现">1.2. 代码实现</h3>
 <h4 id="核心代码示例">1.2.1. 核心代码示例</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取图像</span></span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;lena.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Failed to load image!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化输出图像</span></span><br><span class="line">    cv::Mat new_image = cv::Mat::<span class="built_in">zeros</span>(image.<span class="built_in">size</span>(), image.<span class="built_in">type</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> alpha = <span class="number">1.0</span>; <span class="comment">// 对比度参数</span></span><br><span class="line">    <span class="type">int</span> beta = <span class="number">0</span>;       <span class="comment">// 亮度参数</span></span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter alpha [1.0-3.0]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; alpha;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter beta [0-100]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; beta;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历每个像素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; image.rows; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; image.cols; x++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> c = <span class="number">0</span>; c &lt; image.<span class="built_in">channels</span>(); c++) &#123;</span><br><span class="line">                new_image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(</span><br><span class="line">                    alpha * image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] + beta</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original&quot;</span>, image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Adjusted&quot;</span>, new_image);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取图像</span></span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;lena.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Failed to load image!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化输出图像</span></span><br><span class="line">    cv::Mat new_image = cv::Mat::<span class="built_in">zeros</span>(image.<span class="built_in">size</span>(), image.<span class="built_in">type</span>());</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> alpha = <span class="number">1.0</span>; <span class="comment">// 对比度参数</span></span><br><span class="line">    <span class="type">int</span> beta = <span class="number">0</span>;       <span class="comment">// 亮度参数</span></span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter double alpha [1.0-3.0]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; alpha;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Enter int beta [0-100]: &quot;</span>;</span><br><span class="line">    std::cin &gt;&gt; beta;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历每个像素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; image.rows; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; image.cols; x++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> c = <span class="number">0</span>; c &lt; image.<span class="built_in">channels</span>(); c++) &#123;</span><br><span class="line">                new_image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(</span><br><span class="line">                    alpha * image.<span class="built_in">at</span>&lt;cv::Vec3b&gt;(y, x)[c] + beta</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original&quot;</span>, image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Adjusted&quot;</span>, new_image);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="代码说明">1.2.2. 代码说明</h4>
 <ol type="1">
-<li><p><strong>像素遍历</strong>：通过三重循环访问每个像素的BGR通道。<br />
+<li><p><strong>像素遍历</strong>：通过三重循环访问每个像素的 BGR
+通道。<br />
 </p></li>
-<li><p><strong>数值饱和处理</strong>：<code>cv::saturate_cast&lt;uchar&gt;</code>确保结果在合理范围内。<br />
+<li><p><strong>数值饱和处理</strong>：<code>cv::saturate_cast&lt;uchar&gt;</code>
+确保结果在合理范围内。<br />
 </p></li>
-<li><p><strong>高效替代方案</strong>：可使用<code>cv::Mat::convertTo</code>替代循环：</p>
+<li><p><strong>高效替代方案</strong>：可使用
+<code>cv::Mat::convertTo</code> 替代循环：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">image.<span class="built_in">convertTo</span>(new_image, <span class="number">-1</span>, alpha, beta);</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="实际应用示例">1.3. 实际应用示例</h3>
 <p>调整 <code>α=2.2</code> 和 <code>β=50</code>
 可显著提升暗图像的亮度，但可能导致高光区域过曝（如云层细节丢失）。此时可结合
-<span class="math inline">\(\gamma\)</span> 校正优化。</p>
+Gamma 校正优化。</p>
 <h3 id="gamma-校正">1.4. Gamma 校正</h3>
 <p>Gamma 校正通过非线性变换调整亮度：<br />
 <span class="math display">\[\nonumber O = \left( \frac{I}{255}
@@ -764,18 +797,23 @@ class="math inline">\(0-255\)</span> 范围内，避免数值溢出。</p>
 </figure>
 <h4 id="实现代码">1.4.1. 实现代码</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建查找表</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">lookupTable</span><span class="params">(<span class="number">1</span>, <span class="number">256</span>, CV_8U)</span></span>;</span><br><span class="line">uchar* p = lookupTable.<span class="built_in">ptr</span>();</span><br><span class="line"><span class="type">double</span> gamma = <span class="number">0.4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i) &#123;</span><br><span class="line">    <span class="comment">// 四舍五入，饱和时截断</span></span><br><span class="line">    p[i] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(<span class="built_in">pow</span>(i / <span class="number">255.0</span>, gamma) * <span class="number">255.0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用 Gamma 校正</span></span><br><span class="line">cv::Mat corrected;</span><br><span class="line">cv::<span class="built_in">LUT</span>(image, lookupTable, corrected);</span><br></pre></td></tr></table></figure>
+<p><a href="/2025/01/26/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/#ch2">查找表 LUT</a></p>
 <h3 id="性能优化提示">1.5. 性能优化提示</h3>
 <ul>
-<li><strong>避免逐像素操作</strong>：优先使用内置函数（如<code>cv::convertTo</code>和<code>cv::LUT</code>）。<br />
+<li><strong>避免逐像素操作</strong>：优先使用内置函数（如
+<code>cv::convertTo</code> 和 <code>cv::LUT</code> ）。<br />
 </li>
 <li><strong>预计算查找表</strong>：减少重复计算，提升 Gamma
 校正效率。</li>
 </ul>
-<p>通过调整α、β和 <span class="math inline">\(\gamma\)</span>
+<p>通过调整 <span class="math inline">\(\alpha\)</span>、<span
+class="math inline">\(\beta\)</span> 和 <span
+class="math inline">\(\gamma\)</span>
 值，可灵活控制图像效果。这些方法虽基础，但能为复杂图像处理任务奠定基础。</p>
 <h2 id="离散傅里叶变换">2. 离散傅里叶变换</h2>
 <h3 id="什么是离散傅里叶变换">2.1. 什么是离散傅里叶变换？</h3>
-<p>离散傅里叶变换（DFT）是一种将图像从空间域转换到频率域的数学工具。通过分解图像的正弦和余弦分量，DFT可以帮助我们分析图像中的几何结构特征。其数学表达式为：<br />
+<p>离散傅里叶变换（DFT）是一种将图像从空间域转换到频率域的数学工具。通过分解图像的正弦和余弦分量，DFT
+可以帮助我们分析图像中的几何结构特征。其数学表达式为：<br />
 <span class="math display">\[
 F(k, l) = \sum_{i=0}^{N-1} \sum_{j=0}^{N-1}
 f(i,j)e^{-i2\pi\left(\frac{jk}{N}+\frac{ik}{N}\right)} \nonumber  
@@ -783,14 +821,16 @@ f(i,j)e^{-i2\pi\left(\frac{jk}{N}+\frac{ik}{N}\right)} \nonumber
 <span class="math display">\[  
 e^{ix} = \cos x + i\sin x \nonumber  
 \]</span></p>
-<h3 id="opencv实现dft的关键步骤">2.2. OpenCV实现DFT的关键步骤</h3>
+<h3 id="opencv-实现-dft-的关键步骤">2.2. OpenCV 实现 DFT 的关键步骤</h3>
 <h4 id="扩展图像至最佳尺寸">2.2.1. 扩展图像至最佳尺寸</h4>
-<p>DFT的计算效率与图像尺寸相关，最佳尺寸通常是2、3、5的倍数。通过<code>cv::getOptimalDFTSize()</code>获取最优尺寸，并用<code>cv::copyMakeBorder()</code>填充图像边界：</p>
+<p>DFT 的计算效率与图像尺寸相关，最佳尺寸通常是 2、3、5 的倍数。通过
+<code>cv::getOptimalDFTSize()</code> 获取最优尺寸，并用
+<code>cv::copyMakeBorder()</code> 填充图像边界：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat padded;  </span><br><span class="line"><span class="type">int</span> rows_pad = cv::<span class="built_in">getOptimalDFTSize</span>(I.rows);  </span><br><span class="line"><span class="type">int</span> cols_pad = cv::<span class="built_in">getOptimalDFTSize</span>(I.cols);  </span><br><span class="line">cv::<span class="built_in">copyMakeBorder</span>(I, padded, <span class="number">0</span>, rows_pad - I.rows, <span class="number">0</span>, cols_pad - I.cols,  </span><br><span class="line">                   cv::BORDER_CONSTANT, cv::Scalar::<span class="built_in">all</span>(<span class="number">0</span>));  </span><br></pre></td></tr></table></figure>
 <h4 id="创建复数矩阵">2.2.2. 创建复数矩阵</h4>
-<p>DFT结果为复数，需将图像转换为浮点类型并合并实部与虚部：</p>
+<p>DFT 结果为复数，需将图像转换为浮点类型并合并实部与虚部：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::Mat planes[] = &#123;  </span><br><span class="line">    cv::<span class="built_in">Mat_</span>&lt;<span class="type">float</span>&gt;(padded),  </span><br><span class="line">    cv::Mat::<span class="built_in">zeros</span>(padded.<span class="built_in">size</span>(), CV_32F)  </span><br><span class="line">&#125;;  </span><br><span class="line">cv::Mat complexI;  </span><br><span class="line">cv::<span class="built_in">merge</span>(planes, <span class="number">2</span>, complexI);  </span><br></pre></td></tr></table></figure>
-<h4 id="执行dft变换">2.2.3. 执行DFT变换</h4>
+<h4 id="执行-dft-变换">2.2.3. 执行 DFT 变换</h4>
 <p>使用<code>cv::dft()</code>进行傅里叶变换，支持原地计算：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">dft</span>(complexI, complexI);  </span><br></pre></td></tr></table></figure>
 <h4 id="计算幅度谱">2.2.4. 计算幅度谱</h4>
@@ -808,15 +848,23 @@ e^{ix} = \cos x + i\sin x \nonumber
 </ul>
 <h3 id="完整代码示例">2.4. 完整代码示例</h3>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取灰度图像</span></span><br><span class="line">    cv::Mat I = cv::<span class="built_in">imread</span>(<span class="string">&quot;dog.jpg&quot;</span>, cv::IMREAD_GRAYSCALE);</span><br><span class="line">    <span class="keyword">if</span> (I.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Error: Could not load image&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤1：扩展图像至最佳DFT尺寸</span></span><br><span class="line">    cv::Mat padded;</span><br><span class="line">    <span class="type">int</span> rows_opt = cv::<span class="built_in">getOptimalDFTSize</span>(I.rows);</span><br><span class="line">    <span class="type">int</span> cols_opt = cv::<span class="built_in">getOptimalDFTSize</span>(I.cols);</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(I, padded,</span><br><span class="line">        <span class="number">0</span>, rows_opt - I.rows,</span><br><span class="line">        <span class="number">0</span>, cols_opt - I.cols,</span><br><span class="line">        cv::BORDER_CONSTANT, cv::Scalar::<span class="built_in">all</span>(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤2：创建复数矩阵（实部+虚部）</span></span><br><span class="line">    cv::Mat planes[] = &#123;</span><br><span class="line">        cv::<span class="built_in">Mat_</span>&lt;<span class="type">float</span>&gt;(padded),</span><br><span class="line">        cv::Mat::<span class="built_in">zeros</span>(padded.<span class="built_in">size</span>(), CV_32F)</span><br><span class="line">    &#125;;</span><br><span class="line">    cv::Mat complexI;</span><br><span class="line">    cv::<span class="built_in">merge</span>(planes, <span class="number">2</span>, complexI);  <span class="comment">// 合并为双通道矩阵</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤3：执行离散傅里叶变换</span></span><br><span class="line">    cv::<span class="built_in">dft</span>(complexI, complexI);  <span class="comment">// 原地计算</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤4：计算幅度谱</span></span><br><span class="line">    cv::<span class="built_in">split</span>(complexI, planes);  <span class="comment">// planes[0] = Re, planes[1] = Im</span></span><br><span class="line">    cv::<span class="built_in">magnitude</span>(planes[<span class="number">0</span>], planes[<span class="number">1</span>], planes[<span class="number">0</span>]);</span><br><span class="line">    cv::Mat magI = planes[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤5：对数尺度转换</span></span><br><span class="line">    magI += cv::Scalar::<span class="built_in">all</span>(<span class="number">1</span>);</span><br><span class="line">    cv::<span class="built_in">log</span>(magI, magI);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤6：裁剪为偶数尺寸</span></span><br><span class="line">    magI = <span class="built_in">magI</span>(cv::<span class="built_in">Rect</span>(<span class="number">0</span>, <span class="number">0</span>, magI.cols &amp; <span class="number">-2</span>, magI.rows &amp; <span class="number">-2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤7：频谱中心化（交换象限）</span></span><br><span class="line">    <span class="type">int</span> cx = magI.cols / <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> cy = magI.rows / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q0</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, <span class="number">0</span>, cx, cy))</span></span>;   <span class="comment">// 左上</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q1</span><span class="params">(magI, cv::Rect(cx, <span class="number">0</span>, cx, cy))</span></span>;  <span class="comment">// 右上</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q2</span><span class="params">(magI, cv::Rect(<span class="number">0</span>, cy, cx, cy))</span></span>;  <span class="comment">// 左下</span></span><br><span class="line">    <span class="function">cv::Mat <span class="title">q3</span><span class="params">(magI, cv::Rect(cx, cy, cx, cy))</span></span>; <span class="comment">// 右下</span></span><br><span class="line"></span><br><span class="line">    cv::Mat tmp;</span><br><span class="line">    <span class="comment">// 交换左上与右下</span></span><br><span class="line">    q<span class="number">0.</span><span class="built_in">copyTo</span>(tmp);</span><br><span class="line">    q<span class="number">3.</span><span class="built_in">copyTo</span>(q0);</span><br><span class="line">    tmp.<span class="built_in">copyTo</span>(q3);</span><br><span class="line">    <span class="comment">// 交换右上与左下</span></span><br><span class="line">    q<span class="number">1.</span><span class="built_in">copyTo</span>(tmp);</span><br><span class="line">    q<span class="number">2.</span><span class="built_in">copyTo</span>(q1);</span><br><span class="line">    tmp.<span class="built_in">copyTo</span>(q2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 步骤8：归一化显示范围</span></span><br><span class="line">    cv::<span class="built_in">normalize</span>(magI, magI, <span class="number">0</span>, <span class="number">1</span>, cv::NORM_MINMAX);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Input Image&quot;</span>, I);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Spectrum Magnitude&quot;</span>, magI);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过上述步骤，OpenCV实现了从空间域到频率域的高效转换，为图像分析与增强提供了重要基础。</p>
-<h2 id="opencv文件输入输出">3. OpenCV文件输入输出</h2>
-<p>在OpenCV中，文件输入输出（IO）是实现数据持久化的重要功能。通过XML、YAML和JSON格式，开发者可以方便地存储和读取配置参数、矩阵数据甚至自定义数据结构。本文将详细介绍如何利用OpenCV的<code>cv::FileStorage</code>类实现这些操作。</p>
+<p>通过上述步骤，OpenCV
+实现了从空间域到频率域的高效转换，为图像分析与增强提供了重要基础。</p>
+<h2 id="opencv-文件输入输出">3. OpenCV 文件输入输出</h2>
+<p>在 OpenCV 中，文件输入输出（IO）是实现数据持久化的重要功能。通过
+XML、YAML 和 JSON
+格式，开发者可以方便地存储和读取配置参数、矩阵数据甚至自定义数据结构。本文将详细介绍如何利用
+OpenCV 的 <code>cv::FileStorage</code> 类实现这些操作。</p>
 <h3 id="文件操作基础">3.1. 文件操作基础</h3>
-<p>使用OpenCV进行文件IO需借助<code>cv::FileStorage</code>类。其核心步骤包括<strong>打开文件</strong>、<strong>读写数据</strong>和<strong>关闭文件</strong>。以下示例展示了文件的基本操作：</p>
+<p>使用 OpenCV 进行文件 IO 需借助 <code>cv::FileStorage</code>
+类。其核心步骤包括<strong>打开文件</strong>、<strong>读写数据</strong>和<strong>关闭文件</strong>。以下示例展示了文件的基本操作：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::FileStorage <span class="title">fs</span><span class="params">(<span class="string">&quot;output.yml&quot;</span>, cv::FileStorage::WRITE)</span></span>; <span class="comment">// 打开文件（写模式）</span></span><br><span class="line"><span class="comment">// 操作代码...</span></span><br><span class="line">fs.<span class="built_in">release</span>(); <span class="comment">// 显式关闭文件</span></span><br></pre></td></tr></table></figure>
-<p>文件扩展名决定输出格式（如<code>.xml</code>、<code>.yml</code>、<code>.json</code>），还支持压缩（如<code>.xml.gz</code>）。读写模式包括<code>WRITE</code>、<code>READ</code>和<code>APPEND</code>。</p>
-<h3 id="基本数据类型与opencv结构的读写">3.2.
-基本数据类型与OpenCV结构的读写</h3>
+<p>文件扩展名决定输出格式（如 <code>.xml</code> 、 <code>.yml</code> 、
+<code>.json</code>），还支持压缩（如 <code>.xml.gz</code>
+）。读写模式包括 <code>WRITE</code> 、<code>READ</code> 和
+<code>APPEND</code>。</p>
+<h3 id="基本数据类型与-opencv-结构的读写">3.2. 基本数据类型与 OpenCV
+结构的读写</h3>
 <h4 id="文本与数字">3.2.1. 文本与数字</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 写入</span></span><br><span class="line">fs &lt;&lt; <span class="string">&quot;iterationNr&quot;</span> &lt;&lt; <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line"><span class="type">int</span> itNr;</span><br><span class="line">fs[<span class="string">&quot;iterationNr&quot;</span>] &gt;&gt; itNr;</span><br></pre></td></tr></table></figure>
 <h4 id="opencv矩阵cvmat">3.2.2. OpenCV矩阵（<code>cv::Mat</code>）</h4>
@@ -826,40 +874,44 @@ e^{ix} = \cos x + i\sin x \nonumber
 <p>序列用<code>[ ]</code>包裹：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 写入字符串序列</span></span><br><span class="line">fs &lt;&lt; <span class="string">&quot;strings&quot;</span> &lt;&lt; <span class="string">&quot;[&quot;</span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;image1.jpg&quot;</span> &lt;&lt; <span class="string">&quot;Awesomeness&quot;</span> &lt;&lt; <span class="string">&quot;../data/baboon.jpg&quot;</span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;]&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line">cv::FileNode node = fs[<span class="string">&quot;strings&quot;</span>];</span><br><span class="line"><span class="keyword">if</span> (node.<span class="built_in">type</span>() == cv::FileNode::SEQ) &#123;</span><br><span class="line">    <span class="keyword">for</span> (cv::FileNodeIterator it = node.<span class="built_in">begin</span>(); it != node.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">        std::string value = (std::string)*it;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="映射字典">3.3.2. 映射（字典）</h4>
-<p>映射用<code>&#123; &#125;</code>包裹：</p>
+<p>映射用 <code>&#123; &#125;</code> 包裹：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 写入键值对</span></span><br><span class="line">fs &lt;&lt; <span class="string">&quot;Mapping&quot;</span> &lt;&lt; <span class="string">&quot;&#123;&quot;</span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;One&quot;</span> &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="string">&quot;Two&quot;</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line">cv::FileNode mapping = fs[<span class="string">&quot;Mapping&quot;</span>];</span><br><span class="line"><span class="type">int</span> one = (<span class="type">int</span>)mapping[<span class="string">&quot;One&quot;</span>];</span><br><span class="line"><span class="type">int</span> two = (<span class="type">int</span>)mapping[<span class="string">&quot;Two&quot;</span>];</span><br></pre></td></tr></table></figure>
 <h3 id="自定义数据结构的序列化">3.4. 自定义数据结构的序列化</h3>
-<p>要为自定义类实现序列化，需定义<code>write</code>和<code>read</code>方法：</p>
+<p>要为自定义类实现序列化，需定义 <code>write</code> 和
+<code>read</code> 方法：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyData</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> A;</span><br><span class="line">    <span class="type">double</span> X;</span><br><span class="line">    std::string id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">write</span><span class="params">(cv::FileStorage&amp; fs)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;&#123;&quot;</span></span><br><span class="line">           &lt;&lt; <span class="string">&quot;A&quot;</span> &lt;&lt; A</span><br><span class="line">           &lt;&lt; <span class="string">&quot;X&quot;</span> &lt;&lt; X</span><br><span class="line">           &lt;&lt; <span class="string">&quot;id&quot;</span> &lt;&lt; id</span><br><span class="line">           &lt;&lt; <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">const</span> cv::FileNode&amp; node)</span> </span>&#123;</span><br><span class="line">        A = (<span class="type">int</span>)node[<span class="string">&quot;A&quot;</span>];</span><br><span class="line">        X = (<span class="type">double</span>)node[<span class="string">&quot;X&quot;</span>];</span><br><span class="line">        id = (std::string)node[<span class="string">&quot;id&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局函数（必须添加）</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">write</span><span class="params">(cv::FileStorage&amp; fs, <span class="type">const</span> std::string&amp;, <span class="type">const</span> MyData&amp; x)</span> </span>&#123;</span><br><span class="line">    x.<span class="built_in">write</span>(fs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">const</span> cv::FileNode&amp; node, MyData&amp; x, <span class="type">const</span> MyData&amp; default_value = MyData())</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node.<span class="built_in">empty</span>()) x = default_value;</span><br><span class="line">    <span class="keyword">else</span> x.<span class="built_in">read</span>(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用示例：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MyData data;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;MyData&quot;</span> &lt;&lt; data;  <span class="comment">// 写入</span></span><br><span class="line">fs[<span class="string">&quot;MyData&quot;</span>] &gt;&gt; data;    <span class="comment">// 读取</span></span><br></pre></td></tr></table></figure>
 <h3 id="示例代码与输出结果">3.5. 示例代码与输出结果</h3>
-<h4 id="完整写入示例">3.5.1. 完整写入示例</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">cv::FileStorage <span class="title">fs</span><span class="params">(<span class="string">&quot;output.yml&quot;</span>, cv::FileStorage::WRITE)</span></span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;iterationNr&quot;</span> &lt;&lt; <span class="number">100</span>;</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;R&quot;</span> &lt;&lt; cv::Mat::<span class="built_in">eye</span>(<span class="number">3</span>, <span class="number">3</span>, CV_8U);</span><br><span class="line">fs &lt;&lt; <span class="string">&quot;MyData&quot;</span> &lt;&lt; <span class="built_in">MyData</span>(<span class="number">97</span>, CV_PI, <span class="string">&quot;mydata1234&quot;</span>);</span><br><span class="line">fs.<span class="built_in">release</span>();</span><br></pre></td></tr></table></figure>
-<h4 id="文件输出示例yaml">3.5.2. 文件输出示例（YAML）</h4>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">iterationNr:</span> <span class="number">100</span></span><br><span class="line"><span class="attr">R:</span> <span class="type">!!opencv</span><span class="string">-matrix</span></span><br><span class="line">  <span class="attr">rows:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">cols:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">dt:</span> <span class="string">u</span></span><br><span class="line">  <span class="attr">data:</span> [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="attr">MyData:</span></span><br><span class="line">  <span class="attr">A:</span> <span class="number">97</span></span><br><span class="line">  <span class="attr">X:</span> <span class="number">3.14159</span></span><br><span class="line">  <span class="attr">id:</span> <span class="string">mydata1234</span></span><br></pre></td></tr></table></figure>
+<h4 id="示例代码">3.5.1. 示例代码</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义数据结构</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyData</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyData</span>() : <span class="built_in">A</span>(<span class="number">0</span>), <span class="built_in">X</span>(<span class="number">0.0</span>), <span class="built_in">id</span>(<span class="string">&quot;default&quot;</span>) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">MyData</span><span class="params">(<span class="type">int</span> val)</span> : A(val), X(<span class="number">3.14159</span>), id(<span class="string">&quot;mydata_&quot;</span> + std::to_string(val)) &#123;</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 序列化写入函数</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">write</span><span class="params">(cv::FileStorage&amp; fs)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;&#123;&quot;</span></span><br><span class="line">            &lt;&lt; <span class="string">&quot;A&quot;</span> &lt;&lt; A</span><br><span class="line">            &lt;&lt; <span class="string">&quot;X&quot;</span> &lt;&lt; X</span><br><span class="line">            &lt;&lt; <span class="string">&quot;id&quot;</span> &lt;&lt; id</span><br><span class="line">            &lt;&lt; <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 反序列化读取函数</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">const</span> cv::FileNode&amp; node)</span> </span>&#123;</span><br><span class="line">        A = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(node[<span class="string">&quot;A&quot;</span>]);</span><br><span class="line">        X = <span class="built_in">static_cast</span>&lt;<span class="type">double</span>&gt;(node[<span class="string">&quot;X&quot;</span>]);</span><br><span class="line">        id = <span class="built_in">static_cast</span>&lt;std::string&gt;(node[<span class="string">&quot;id&quot;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> A;</span><br><span class="line">    <span class="type">double</span> X;</span><br><span class="line">    std::string id;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局读写函数（必须定义）</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">write</span><span class="params">(cv::FileStorage&amp; fs, <span class="type">const</span> std::string&amp;, <span class="type">const</span> MyData&amp; x)</span> </span>&#123;</span><br><span class="line">    x.<span class="built_in">write</span>(fs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">const</span> cv::FileNode&amp; node, MyData&amp; x, <span class="type">const</span> MyData&amp; default_val = MyData())</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node.<span class="built_in">empty</span>()) x = default_val;</span><br><span class="line">    <span class="keyword">else</span> x.<span class="built_in">read</span>(node);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> std::string filename = <span class="string">&quot;data.yml&quot;</span>;  <span class="comment">// 支持.xml, .json等扩展名</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 写入数据 ---</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">cv::FileStorage <span class="title">fs</span><span class="params">(filename, cv::FileStorage::WRITE)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 基本类型</span></span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;iteration&quot;</span> &lt;&lt; <span class="number">100</span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;timestamp&quot;</span> &lt;&lt; <span class="string">&quot;2025-02-04&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// OpenCV矩阵</span></span><br><span class="line">        cv::Mat R = cv::Mat_&lt;uchar&gt;::<span class="built_in">eye</span>(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">        cv::Mat T = cv::Mat_&lt;<span class="type">double</span>&gt;::<span class="built_in">zeros</span>(<span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;RotationMatrix&quot;</span> &lt;&lt; R;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;TranslationVector&quot;</span> &lt;&lt; T;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 序列（数组）</span></span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;images&quot;</span> &lt;&lt; <span class="string">&quot;[&quot;</span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;img1.jpg&quot;</span> &lt;&lt; <span class="string">&quot;img2.png&quot;</span> &lt;&lt; <span class="string">&quot;img3.bmp&quot;</span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;]&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 映射（字典）</span></span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;parameters&quot;</span> &lt;&lt; <span class="string">&quot;&#123;&quot;</span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;threshold&quot;</span> &lt;&lt; <span class="number">0.75</span> &lt;&lt; <span class="string">&quot;max_iter&quot;</span> &lt;&lt; <span class="number">500</span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 自定义对象</span></span><br><span class="line">        <span class="function">MyData <span class="title">data</span><span class="params">(<span class="number">42</span>)</span></span>;</span><br><span class="line">        fs &lt;&lt; <span class="string">&quot;custom_data&quot;</span> &lt;&lt; data;</span><br><span class="line"></span><br><span class="line">        fs.<span class="built_in">release</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;数据写入完成: &quot;</span> &lt;&lt; filename &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 读取数据 ---</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">cv::FileStorage <span class="title">fs</span><span class="params">(filename, cv::FileStorage::READ)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (!fs.<span class="built_in">isOpened</span>()) &#123;</span><br><span class="line">            std::cerr &lt;&lt; <span class="string">&quot;文件打开失败!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取基本类型</span></span><br><span class="line">        <span class="type">int</span> iteration;</span><br><span class="line">        std::string timestamp;</span><br><span class="line">        fs[<span class="string">&quot;iteration&quot;</span>] &gt;&gt; iteration;</span><br><span class="line">        fs[<span class="string">&quot;timestamp&quot;</span>] &gt;&gt; timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取矩阵</span></span><br><span class="line">        cv::Mat R, T;</span><br><span class="line">        fs[<span class="string">&quot;RotationMatrix&quot;</span>] &gt;&gt; R;</span><br><span class="line">        fs[<span class="string">&quot;TranslationVector&quot;</span>] &gt;&gt; T;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取序列</span></span><br><span class="line">        cv::FileNode images = fs[<span class="string">&quot;images&quot;</span>];</span><br><span class="line">        <span class="keyword">if</span> (images.<span class="built_in">type</span>() == cv::FileNode::SEQ) &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;\n图像列表: &quot;</span>;</span><br><span class="line">            <span class="keyword">for</span> (cv::FileNodeIterator it = images.<span class="built_in">begin</span>(); it != images.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">                std::cout &lt;&lt; <span class="built_in">static_cast</span>&lt;std::string&gt;(*it) &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取映射</span></span><br><span class="line">        cv::FileNode params = fs[<span class="string">&quot;parameters&quot;</span>];</span><br><span class="line">        <span class="type">double</span> threshold = <span class="built_in">static_cast</span>&lt;<span class="type">double</span>&gt;(params[<span class="string">&quot;threshold&quot;</span>]);</span><br><span class="line">        <span class="type">int</span> max_iter = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(params[<span class="string">&quot;max_iter&quot;</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取自定义对象</span></span><br><span class="line">        MyData loaded_data;</span><br><span class="line">        fs[<span class="string">&quot;custom_data&quot;</span>] &gt;&gt; loaded_data;</span><br><span class="line"></span><br><span class="line">        fs.<span class="built_in">release</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出验证</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;\n\n读取结果:&quot;</span></span><br><span class="line">        &lt;&lt; <span class="string">&quot;\n迭代次数: &quot;</span> &lt;&lt; iteration</span><br><span class="line">        &lt;&lt; <span class="string">&quot;\n时间戳: &quot;</span> &lt;&lt; timestamp</span><br><span class="line">        &lt;&lt; <span class="string">&quot;\n阈值: &quot;</span> &lt;&lt; threshold</span><br><span class="line">        &lt;&lt; <span class="string">&quot;\n最大迭代: &quot;</span> &lt;&lt; max_iter</span><br><span class="line">        &lt;&lt; <span class="string">&quot;\n自定义数据: A=&quot;</span> &lt;&lt; loaded_data.A</span><br><span class="line">        &lt;&lt; <span class="string">&quot;, X=&quot;</span> &lt;&lt; loaded_data.X</span><br><span class="line">        &lt;&lt; <span class="string">&quot;, id=&quot;</span> &lt;&lt; loaded_data.id</span><br><span class="line">        &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="文件输出yml">3.5.2. 文件输出（YML）</h4>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">%YAML:1.0</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">iteration:</span> <span class="number">100</span></span><br><span class="line"><span class="attr">timestamp:</span> <span class="string">&quot;2025-02-04&quot;</span></span><br><span class="line"><span class="attr">RotationMatrix:</span> <span class="type">!!opencv</span><span class="string">-matrix</span></span><br><span class="line">   <span class="attr">rows:</span> <span class="number">3</span></span><br><span class="line">   <span class="attr">cols:</span> <span class="number">3</span></span><br><span class="line">   <span class="attr">dt:</span> <span class="string">u</span></span><br><span class="line">   <span class="attr">data:</span> [ <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> ]</span><br><span class="line"><span class="attr">TranslationVector:</span> <span class="type">!!opencv</span><span class="string">-matrix</span></span><br><span class="line">   <span class="attr">rows:</span> <span class="number">3</span></span><br><span class="line">   <span class="attr">cols:</span> <span class="number">1</span></span><br><span class="line">   <span class="attr">dt:</span> <span class="string">d</span></span><br><span class="line">   <span class="attr">data:</span> [ <span class="number">0</span><span class="string">.</span>, <span class="number">0</span><span class="string">.</span>, <span class="number">0</span><span class="string">.</span> ]</span><br><span class="line"><span class="attr">images:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">&quot;img1.jpg&quot;</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">&quot;img2.png&quot;</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">&quot;img3.bmp&quot;</span></span><br><span class="line"><span class="attr">parameters:</span></span><br><span class="line">   <span class="attr">threshold:</span> <span class="number">7.5000000000000000e-01</span></span><br><span class="line">   <span class="attr">max_iter:</span> <span class="number">500</span></span><br><span class="line"><span class="attr">custom_data:</span></span><br><span class="line">   <span class="attr">A:</span> <span class="number">42</span></span><br><span class="line">   <span class="attr">X:</span> <span class="number">3.1415899999999999e+00</span></span><br><span class="line">   <span class="attr">id:</span> <span class="string">mydata_42</span></span><br></pre></td></tr></table></figure>
+<h4 id="控制台输出">3.5.3. 控制台输出</h4>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">数据写入完成: data.yml</span><br><span class="line"></span><br><span class="line">图像列表: img1.jpg img2.png img3.bmp</span><br><span class="line"></span><br><span class="line">读取结果:</span><br><span class="line">迭代次数: 100</span><br><span class="line">时间戳: 2025-02-04</span><br><span class="line">阈值: 0.75</span><br><span class="line">最大迭代: 500</span><br><span class="line">自定义数据: A=42, X=3.14159, id=mydata_42</span><br></pre></td></tr></table></figure>
 <h3 id="注意事项">3.6. 注意事项</h3>
 <ol type="1">
 <li><p><strong>节点不存在时的处理</strong>：读取时若节点不存在，可返回默认值：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">MyData defaultData;</span><br><span class="line">fs[<span class="string">&quot;NonExisting&quot;</span>] &gt;&gt; defaultData;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>文件格式兼容性</strong>：JSON文件需OpenCV
-3.0及以上版本支持。</p></li>
+<li><p><strong>文件格式兼容性</strong>：JSON 文件需 OpenCV 3.0
+及以上版本支持。</p></li>
 <li><p><strong>压缩文件</strong>：使用<code>.gz</code>扩展名可自动压缩文件，如<code>output.xml.gz</code>。</p></li>
 </ol>
-<p>通过灵活运用OpenCV的序列化功能，开发者可以高效管理复杂数据结构，为计算机视觉项目提供可靠的数据存储方案。</p>
+<p>通过灵活运用 OpenCV
+的序列化功能，开发者可以高效管理复杂数据结构，为计算机视觉项目提供可靠的数据存储方案。</p>
 <h2 id="并行化卷积运算">4. 并行化卷积运算</h2>
 <h3 id="目标">4.1. 目标</h3>
-<p>演示如何利用OpenCV的<code>cv::parallel_for_</code>框架轻松实现代码并行化。以图像卷积运算为例，对比分析顺序执行与并行执行的性能差异。</p>
+<p>演示如何利用 OpenCV 的 <code>cv::parallel_for_</code>
+框架轻松实现代码并行化。以图像卷积运算为例，对比分析顺序执行与并行执行的性能差异。</p>
 <h3 id="前提条件">4.2. 前提条件</h3>
 <ol type="1">
-<li><strong>并行框架支持</strong>
-OpenCV需在编译时启用并行框架支持。OpenCV
-4.5支持的并行框架按优先级排序如下：
+<li><strong>并行框架支持</strong> OpenCV
+需在编译时启用并行框架支持。OpenCV 4.5 支持的并行框架按优先级排序如下：
 <ul>
 <li>Intel TBB（需显式启用）</li>
 <li>OpenMP（需显式启用）</li>
 <li>APPLE GCD（自动调用）</li>
-<li>Windows并发库（自动调用）</li>
+<li>Windows 并发库（自动调用）</li>
 <li>Pthreads</li>
 </ul></li>
 <li><strong>竞态条件管理</strong>
@@ -873,20 +925,22 @@ class="math display">\[
 \text{src}(i + k, j + l) \nonumber
 \]</span> 其中，内核尺寸需为奇数以确保中心锚点存在。</p>
 <h3 id="顺序卷积实现">4.4. 顺序卷积实现</h3>
+<p>same 方式</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">conv_seq</span><span class="params">(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> rows = src.rows, cols = src.cols;</span><br><span class="line">    dst = cv::<span class="built_in">Mat</span>(rows, cols, src.<span class="built_in">type</span>());</span><br><span class="line">  </span><br><span class="line">    <span class="type">int</span> sz = kernel.rows / <span class="number">2</span>;</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(src, src, sz, sz, sz, sz, cv::BORDER_REPLICATE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">        uchar *dptr = dst.<span class="built_in">ptr</span>&lt;uchar&gt;(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">            <span class="type">double</span> value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = -sz; k &lt;= sz; k++) &#123;</span><br><span class="line">                uchar *sptr = src.<span class="built_in">ptr</span>&lt;uchar&gt;(i + sz + k);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = -sz; l &lt;= sz; l++) &#123;</span><br><span class="line">                    value += kernel.<span class="built_in">at</span>&lt;<span class="type">double</span>&gt;(k + sz, l + sz) * sptr[j + sz + l];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            dptr[j] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="并行卷积实现">4.5. 并行卷积实现</h3>
 <h4 id="自定义并行循环体">4.5.1. 自定义并行循环体</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParallelConvolution</span> : <span class="keyword">public</span> cv::ParallelLoopBody &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    cv::Mat m_src, &amp;m_dst;</span><br><span class="line">    cv::Mat m_kernel;</span><br><span class="line">    <span class="type">int</span> sz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ParallelConvolution</span>(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span><br><span class="line">        : <span class="built_in">m_src</span>(src), <span class="built_in">m_dst</span>(dst), <span class="built_in">m_kernel</span>(kernel) &#123;</span><br><span class="line">        sz = kernel.rows / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> cv::Range &amp;range)</span> <span class="type">const</span> CV_OVERRIDE </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> r = range.start; r &lt; range.end; r++) &#123;</span><br><span class="line">            <span class="type">int</span> i = r / m_src.cols, j = r % m_src.cols;</span><br><span class="line">            <span class="type">double</span> value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = -sz; k &lt;= sz; k++) &#123;</span><br><span class="line">                uchar *sptr = m_src.<span class="built_in">ptr</span>&lt;uchar&gt;(i + sz + k);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = -sz; l &lt;= sz; l++) &#123;</span><br><span class="line">                    value += m_kernel.<span class="built_in">at</span>&lt;<span class="type">double</span>&gt;(k + sz, l + sz) * sptr[j + sz + l];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            m_dst.<span class="built_in">ptr</span>&lt;uchar&gt;(i)[j] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line"><span class="function">ParallelConvolution <span class="title">obj</span><span class="params">(src, dst, kernel)</span></span>;</span><br><span class="line">cv::<span class="built_in">parallel_for_</span>(cv::<span class="built_in">Range</span>(<span class="number">0</span>, rows * cols), obj);</span><br></pre></td></tr></table></figure>
-<h4 id="使用lambda表达式c11">4.5.2. 使用Lambda表达式（C++11）</h4>
+<h4 id="使用-lambda-表达式c11">4.5.2. 使用 Lambda 表达式（C++11）</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">parallel_for_</span>(cv::<span class="built_in">Range</span>(<span class="number">0</span>, rows * cols), [&amp;](<span class="type">const</span> cv::Range &amp;range) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> r = range.start; r &lt; range.end; r++) &#123;</span><br><span class="line">        <span class="type">int</span> i = r / cols, j = r % cols;</span><br><span class="line">        <span class="type">double</span> value = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = -sz; k &lt;= sz; k++) &#123;</span><br><span class="line">            uchar *sptr = src.<span class="built_in">ptr</span>&lt;uchar&gt;(i + sz + k);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> l = -sz; l &lt;= sz; l++) &#123;</span><br><span class="line">                value += kernel.<span class="built_in">at</span>&lt;<span class="type">double</span>&gt;(k + sz, l + sz) * sptr[j + sz + l];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dst.<span class="built_in">ptr</span>&lt;uchar&gt;(i)[j] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h3 id="性能对比">4.6. 性能对比</h3>
-<p>对512×512图像使用不同内核尺寸测试得到以下结果：</p>
+<p>对 <span class="math inline">\(512 \times 512\)</span>
+图像使用不同内核尺寸测试得到以下结果：</p>
 <table>
 <thead>
 <tr class="header">
 <th style="text-align: center;">实现方式</th>
-<th style="text-align: center;">5×5内核时间 (s)</th>
-<th style="text-align: center;">3×3内核时间 (s)</th>
+<th style="text-align: center;">5×5 内核时间 (s)</th>
+<th style="text-align: center;">3×3 内核时间 (s)</th>
 </tr>
 </thead>
 <tbody>
@@ -907,19 +961,24 @@ class="math display">\[
 </tr>
 </tbody>
 </table>
-<p>并行实现通常可获得<strong>4-7倍加速比</strong>，实际性能取决于CPU核心数与任务调度策略。</p>
+<p>并行实现通常可获得<strong>4-7倍加速比</strong>，实际性能取决于 CPU
+核心数与任务调度策略。</p>
 <h3 id="总结">4.7. 总结</h3>
 <ol type="1">
 <li>OpenCV <code>cv::parallel_for_</code>
 自动划分计算任务，极大简化并行代码开发。</li>
-<li>通过继承<code>cv::ParallelLoopBody</code>或使用Lambda表达式，均可实现高效并行。</li>
-<li>线程数可通过<code>cv::setNumThreads()</code>调整，任务划分粒度由<code>nstripes</code>参数控制。</li>
+<li>通过继承 <code>cv::ParallelLoopBody</code> 或使用 Lambda
+表达式，均可实现高效并行。</li>
+<li>线程数可通过 <code>cv::setNumThreads()</code> 调整，任务划分粒度由
+<code>nstripes</code> 参数控制。</li>
 </ol>
 <p>通过合理使用并行框架，可显著提升图像处理算法的运行时效率。</p>
 <h2 id="代码向量化">5. 代码向量化</h2>
 <h3 id="目标-1">5.1. 目标</h3>
-<p>本教程介绍如何利用OpenCV的<strong>Universal
-Intrinsics</strong>特性对C++代码进行向量化优化，利用现代处理器的SIMD指令实现运行时加速。内容涵盖SIMD基础概念、寄存器操作及实际卷积算法向量化实现。</p>
+<p>本教程介绍如何利用 OpenCV 的<strong>Universal
+Intrinsics</strong>特性对 C++ 代码进行向量化优化，利用现代处理器的 SIMD
+指令实现运行时加速。内容涵盖 SIMD
+基础概念、寄存器操作及实际卷积算法向量化实现。</p>
 <h3 id="simd与universal-intrinsics基础">5.2. SIMD与Universal
 Intrinsics基础</h3>
 <h4 id="simd技术原理">5.2.1. SIMD技术原理</h4>
@@ -929,7 +988,8 @@ Intrinsics基础</h3>
 <li>256位寄存器可处理8个32位整数</li>
 </ul>
 <h4 id="通用内联函数特性">5.2.2. 通用内联函数特性</h4>
-<p>OpenCV Universal Intrinsics提供跨平台SIMD抽象层，支持多种指令集：</p>
+<p>OpenCV Universal Intrinsics 提供跨平台 SIMD
+抽象层，支持多种指令集：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 支持SSE/AVX/NEON等指令集</span></span><br><span class="line">cv::v_uint8  <span class="comment">// 8位无符号整数寄存器</span></span><br><span class="line">cv::v_float32 <span class="comment">// 32位浮点数寄存器</span></span><br></pre></td></tr></table></figure>
 <h4 id="寄存器类型">5.2.3. 寄存器类型</h4>
 <ol type="1">
@@ -951,14 +1011,14 @@ Intrinsics基础</h3>
 <h4 id="simd向量化改造">5.4.2. SIMD向量化改造</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vectorized_conv1d</span><span class="params">(cv::Mat src, cv::Mat kernel, <span class="type">float</span>* ans)</span> </span>&#123;</span><br><span class="line">    cv::Mat src_32;</span><br><span class="line">    src.<span class="built_in">convertTo</span>(src_32, CV_32F);</span><br><span class="line">  </span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> step = cv::v_float32x4::nlanes;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>; k&lt;kernel.cols; ++k)&#123;</span><br><span class="line">        cv::v_float32x4 kernel_wide = cv::<span class="built_in">v_setall_f32</span>(kernel.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(k));</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 主向量处理循环</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; i+step &lt; src.cols; i+=step)&#123;</span><br><span class="line">            cv::v_float32x4 window = cv::<span class="built_in">v_load</span>(&amp;src_<span class="number">32.</span><span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i+k));</span><br><span class="line">            cv::v_float32x4 sum = cv::<span class="built_in">v_load</span>(ans+i) + window * kernel_wide;</span><br><span class="line">            cv::<span class="built_in">v_store</span>(ans+i, sum);</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 尾部数据处理</span></span><br><span class="line">        <span class="keyword">for</span>(; i&lt;src.cols; ++i)&#123;</span><br><span class="line">            ans[i] += src_<span class="number">32.</span><span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i+k) * kernel.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="二维卷积扩展">5.5. 二维卷积扩展</h3>
-<p>通过水平+垂直方向的一维卷积组合实现：</p>
+<p>通过水平 + 垂直方向的一维卷积组合实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">convolute_2d</span><span class="params">(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ksize = kernel.rows/<span class="number">2</span>;</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(src, src, ksize, ksize, <span class="number">0</span>, <span class="number">0</span>, cv::BORDER_REPLICATE);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i &lt; src.rows; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>; k&lt;kernel.rows; ++k)&#123;</span><br><span class="line">            <span class="type">float</span> tmp[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">            <span class="built_in">vectorized_conv1d</span>(src.<span class="built_in">row</span>(i+k), kernel.<span class="built_in">row</span>(k), tmp);</span><br><span class="line">          </span><br><span class="line">            <span class="comment">// 累加多行结果</span></span><br><span class="line">            <span class="type">int</span> j=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(; j<span class="number">+4</span>&lt;src.cols; j+=<span class="number">4</span>)&#123;</span><br><span class="line">                cv::v_float32x4 sum = cv::<span class="built_in">v_load</span>(&amp;dst.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i,j)) </span><br><span class="line">                                    + cv::<span class="built_in">v_load</span>(&amp;tmp[j]);</span><br><span class="line">                cv::<span class="built_in">v_store</span>(&amp;dst.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i,j), sum);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(; j&lt;src.cols; ++j)&#123;</span><br><span class="line">                dst.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i,j) += tmp[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="性能对比与建议">5.6. 性能对比与建议</h3>
 <ul>
 <li>测试显示向量化版本相比标量实现可获得2-5倍加速</li>
 <li>实际性能取决于：
 <ul>
-<li>CPU支持的SIMD指令集（SSE4/AVX2/AVX512）</li>
+<li>CPU 支持的 SIMD 指令集（SSE4/AVX2/AVX512）</li>
 <li>数据对齐情况</li>
 <li>算法内存访问模式</li>
 </ul></li>
@@ -966,11 +1026,11 @@ Intrinsics基础</h3>
 <p><strong>优化建议</strong>：</p>
 <ol type="1">
 <li>优先处理连续内存块</li>
-<li>尽量使用<code>vx_load_aligned</code>访问对齐数据</li>
-<li>利用<code>v_reduce</code>系列函数代替标量累计</li>
-<li>通过<code>v_select</code>实现条件分支消除</li>
+<li>尽量使用 <code>vx_load_aligned</code> 访问对齐数据</li>
+<li>利用 <code>v_reduce</code> 系列函数代替标量累计</li>
+<li>通过 <code>v_select</code> 实现条件分支消除</li>
 </ol>
-<p>通过合理使用Universal
+<p>通过合理使用 Universal
 Intrinsics，开发者可以在不损失代码可移植性的前提下，充分利用现代处理器的并行计算能力。建议结合性能分析工具，针对热点代码进行定向优化。</p>
 <h2 id="参考资料">6. 参考资料</h2>
 <p><strong>[1]</strong> <a
@@ -1011,6 +1071,62 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       <tags>
         <tag>python</tag>
         <tag>语法糖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python 装饰器</title>
+    <url>/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="装饰器简介">1. 装饰器简介</h2>
+<h3 id="函数装饰函数">1.1 函数装饰函数</h3>
+<p>python 中的装饰器也是<strong>语法糖</strong>的一种。<br />
+通常可以把装饰器理解为输入和输出都是函数的函数。
+函数调用函数返回一个函数 (或者说 callab)。</p>
+<p>装饰器的一大特性是，能把被装饰的函数替换成其他函数；第二个特性是，装饰器在加载模块时立即执行，函数装饰器在导入模块时立即执行，而被装饰的函数只在明确调用时运行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是一个计时的装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="comment"># 使用 *args, **kwargs 允许函数接受变长的参数</span></span><br><span class="line">    <span class="comment"># 就是说你这个函数来了什么参数 我都能接受</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = f(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunc</span>(<span class="params">x</span>):</span><br><span class="line">    time.sleep(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于下面这种写法</span></span><br><span class="line"><span class="comment"># def myfunc(x):</span></span><br><span class="line"><span class="comment">#     time.sleep(x)</span></span><br><span class="line"><span class="comment"># myfunc = timeit(myfunc)</span></span><br></pre></td></tr></table></figure>
+<p>带参数的装饰器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">iteration</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">f</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(iteration):</span><br><span class="line">                ret = f(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit(<span class="params"><span class="number">10</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">double</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面等价于：</span></span><br><span class="line"><span class="comment"># def double(x):</span></span><br><span class="line"><span class="comment">#     return x * 2</span></span><br><span class="line"><span class="comment"># double = timeit(10)(double)</span></span><br></pre></td></tr></table></figure>
+<p>这里 <code>timeit(10)</code>
+的返回值也是一个函数，并且这个函数的输入和输出都是函数</p>
+<h3 id="类装饰函数">1.2 类装饰函数</h3>
+<p>类调用一个函数返回一个 object，依然是 callable</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line">        <span class="variable language_">self</span>.func = func</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Time: <span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p>带参数的类作为装饰器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, prefix</span>):</span><br><span class="line">        <span class="variable language_">self</span>.prefix = prefix</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, prefix</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.prefix&#125;</span><span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer(<span class="params">prefix=<span class="string">&quot;cost_time:&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(prefix=&quot;cost_time&quot;)(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="函数装饰类">1.3 函数装饰类</h3>
+<p>装饰器去装饰类</p>
+<p>当打印一个自定义类的时候，不会输出任何有价值的内容，只会告诉你这是一个人什么类，除非重载他的
+<code>__str__</code> 方法来改变他的 <code>print</code>
+结果，但是每次都重载很麻烦，所以可以写一个装饰器来装饰类用于重载其
+<code>__str__</code> 方法。下面就是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add_str</span>(<span class="params">cls</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="variable language_">self</span>.__dict__)</span><br><span class="line">    cls.__str__ = __str__</span><br><span class="line">    <span class="keyword">return</span> cls</span><br><span class="line"></span><br><span class="line"><span class="meta">@add_str</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObject</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.b = b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于：</span></span><br><span class="line"><span class="comment"># class MyObject:</span></span><br><span class="line"><span class="comment">#     def __init__(self, a, b):</span></span><br><span class="line"><span class="comment">#         self.a = a</span></span><br><span class="line"><span class="comment">#         self.b = b</span></span><br><span class="line"><span class="comment"># add_str(MyObject)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    obj = MyObject(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
+<h3 id="类装饰类">1.4 类装饰类？</h3>
+<p>emmm，本质上其实还是函数，是一个输入和输出都是类的函数</p>
+<h3 id="小结">1.5 小结</h3>
+<p>其实只要转化为等价形式就知道装饰器在干什么了，因为装饰器的本质毕竟还是语法糖。</p>
+<h2 id="一些常见的装饰器">2. 一些常见的装饰器</h2>
+<h3 id="staticmethod">2.1 <span class="citation"
+data-cites="staticmethod">@staticmethod</span></h3>
+<p>用于定义静态方法，意味着被它装饰的函数不需要创建类的实例（不需要传递
+<code>self</code> 参数）就可以直接调用，即变为静态函数。</p>
+<h3 id="classmethod">2.2 <span class="citation"
+data-cites="classmethod">@classmethod</span></h3>
+<p>用于定义类的方法，被它装饰的函数第一个参数应该为类 <code>cls</code>
+，变为类的方法，但不能访问实例的属性，因为传入的是类本身
+<code>cls</code> ，而不是实例 <code>self</code> 。</p>
+<p>类方法可以访问类的属性和其他类方法，但不能访问实例的属性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">static_method</span>(<span class="params">x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">class_method</span>(<span class="params">cls, x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(MyClass.static_method(<span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 5</span></span><br><span class="line"><span class="built_in">print</span>(MyClass.class_method(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="property">2.3 <span class="citation"
+data-cites="property">@property</span></h3>
+<p>用于将一个方法转化为属性，可以让你在访问属性时调用一个函数，从而封装对属性的访问。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, radius</span>):</span><br><span class="line">        <span class="variable language_">self</span>._radius = radius   <span class="comment"># 私有属性</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>._radius  <span class="comment"># 只读属性     </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @&lt;property_name&gt;.setter 是一个装饰器，</span></span><br><span class="line">    <span class="comment"># 用于为 @property 装饰的属性提供设置器即定义属性的写操作。</span></span><br><span class="line">    <span class="comment"># 通过这个装饰器，你可以指定如何修改某个属性的值，从而让这个属性变为可写的。</span></span><br><span class="line"><span class="meta">    @radius.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Radius cannot be negative&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>._radius = value</span><br><span class="line"></span><br><span class="line">c = Circle(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 5</span></span><br><span class="line">c.radius = <span class="number">10</span>    <span class="comment"># 设置 radius</span></span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 10</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>装饰器</tag>
       </tags>
   </entry>
   <entry>
@@ -1184,120 +1300,6 @@ class="math display">\[
         <tag>PCA</tag>
         <tag>机器学习</tag>
         <tag>降维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 36%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">分母布局</th>
-<th style="text-align: center;">分子布局</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}} = \frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-A}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial
-\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
-A\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
-X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A+A^T)X\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X^T(A+A^T)\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X(A^T+A)\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A^T+A)X^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(XA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-</tr>
-</tbody>
-</table>
-<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
-<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>
@@ -1889,59 +1891,117 @@ href="https://github.com/Blackspace2/space-resection-of-single-image.git">Github
       </tags>
   </entry>
   <entry>
-    <title>python 装饰器</title>
-    <url>/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="装饰器简介">1. 装饰器简介</h2>
-<h3 id="函数装饰函数">1.1 函数装饰函数</h3>
-<p>python 中的装饰器也是<strong>语法糖</strong>的一种。<br />
-通常可以把装饰器理解为输入和输出都是函数的函数。
-函数调用函数返回一个函数 (或者说 callab)。</p>
-<p>装饰器的一大特性是，能把被装饰的函数替换成其他函数；第二个特性是，装饰器在加载模块时立即执行，函数装饰器在导入模块时立即执行，而被装饰的函数只在明确调用时运行。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是一个计时的装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="comment"># 使用 *args, **kwargs 允许函数接受变长的参数</span></span><br><span class="line">    <span class="comment"># 就是说你这个函数来了什么参数 我都能接受</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = f(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunc</span>(<span class="params">x</span>):</span><br><span class="line">    time.sleep(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于下面这种写法</span></span><br><span class="line"><span class="comment"># def myfunc(x):</span></span><br><span class="line"><span class="comment">#     time.sleep(x)</span></span><br><span class="line"><span class="comment"># myfunc = timeit(myfunc)</span></span><br></pre></td></tr></table></figure>
-<p>带参数的装饰器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">iteration</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">f</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(iteration):</span><br><span class="line">                ret = f(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit(<span class="params"><span class="number">10</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">double</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面等价于：</span></span><br><span class="line"><span class="comment"># def double(x):</span></span><br><span class="line"><span class="comment">#     return x * 2</span></span><br><span class="line"><span class="comment"># double = timeit(10)(double)</span></span><br></pre></td></tr></table></figure>
-<p>这里 <code>timeit(10)</code>
-的返回值也是一个函数，并且这个函数的输入和输出都是函数</p>
-<h3 id="类装饰函数">1.2 类装饰函数</h3>
-<p>类调用一个函数返回一个 object，依然是 callable</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line">        <span class="variable language_">self</span>.func = func</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Time: <span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<p>带参数的类作为装饰器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, prefix</span>):</span><br><span class="line">        <span class="variable language_">self</span>.prefix = prefix</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, prefix</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.prefix&#125;</span><span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer(<span class="params">prefix=<span class="string">&quot;cost_time:&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(prefix=&quot;cost_time&quot;)(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="函数装饰类">1.3 函数装饰类</h3>
-<p>装饰器去装饰类</p>
-<p>当打印一个自定义类的时候，不会输出任何有价值的内容，只会告诉你这是一个人什么类，除非重载他的
-<code>__str__</code> 方法来改变他的 <code>print</code>
-结果，但是每次都重载很麻烦，所以可以写一个装饰器来装饰类用于重载其
-<code>__str__</code> 方法。下面就是一个例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add_str</span>(<span class="params">cls</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="variable language_">self</span>.__dict__)</span><br><span class="line">    cls.__str__ = __str__</span><br><span class="line">    <span class="keyword">return</span> cls</span><br><span class="line"></span><br><span class="line"><span class="meta">@add_str</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObject</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.b = b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于：</span></span><br><span class="line"><span class="comment"># class MyObject:</span></span><br><span class="line"><span class="comment">#     def __init__(self, a, b):</span></span><br><span class="line"><span class="comment">#         self.a = a</span></span><br><span class="line"><span class="comment">#         self.b = b</span></span><br><span class="line"><span class="comment"># add_str(MyObject)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    obj = MyObject(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
-<h3 id="类装饰类">1.4 类装饰类？</h3>
-<p>emmm，本质上其实还是函数，是一个输入和输出都是类的函数</p>
-<h3 id="小结">1.5 小结</h3>
-<p>其实只要转化为等价形式就知道装饰器在干什么了，因为装饰器的本质毕竟还是语法糖。</p>
-<h2 id="一些常见的装饰器">2. 一些常见的装饰器</h2>
-<h3 id="staticmethod">2.1 <span class="citation"
-data-cites="staticmethod">@staticmethod</span></h3>
-<p>用于定义静态方法，意味着被它装饰的函数不需要创建类的实例（不需要传递
-<code>self</code> 参数）就可以直接调用，即变为静态函数。</p>
-<h3 id="classmethod">2.2 <span class="citation"
-data-cites="classmethod">@classmethod</span></h3>
-<p>用于定义类的方法，被它装饰的函数第一个参数应该为类 <code>cls</code>
-，变为类的方法，但不能访问实例的属性，因为传入的是类本身
-<code>cls</code> ，而不是实例 <code>self</code> 。</p>
-<p>类方法可以访问类的属性和其他类方法，但不能访问实例的属性。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">static_method</span>(<span class="params">x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">class_method</span>(<span class="params">cls, x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(MyClass.static_method(<span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 5</span></span><br><span class="line"><span class="built_in">print</span>(MyClass.class_method(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
-<h3 id="property">2.3 <span class="citation"
-data-cites="property">@property</span></h3>
-<p>用于将一个方法转化为属性，可以让你在访问属性时调用一个函数，从而封装对属性的访问。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, radius</span>):</span><br><span class="line">        <span class="variable language_">self</span>._radius = radius   <span class="comment"># 私有属性</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>._radius  <span class="comment"># 只读属性     </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @&lt;property_name&gt;.setter 是一个装饰器，</span></span><br><span class="line">    <span class="comment"># 用于为 @property 装饰的属性提供设置器即定义属性的写操作。</span></span><br><span class="line">    <span class="comment"># 通过这个装饰器，你可以指定如何修改某个属性的值，从而让这个属性变为可写的。</span></span><br><span class="line"><span class="meta">    @radius.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Radius cannot be negative&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>._radius = value</span><br><span class="line"></span><br><span class="line">c = Circle(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 5</span></span><br><span class="line">c.radius = <span class="number">10</span>    <span class="comment"># 设置 radius</span></span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 10</span></span><br></pre></td></tr></table></figure>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}} = \frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
+<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
 ]]></content>
       <categories>
-        <category>python</category>
+        <category>数学</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>装饰器</tag>
+        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>
