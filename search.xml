@@ -1,68 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>OpenCV入门学习-app工具（上）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>计算机视觉</tag>
-        <tag>C/C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 中的 markdown 语法</title>
-    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="页内跳转">1. 页内跳转</h2>
-<p>跳转到地方后面加上
-<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
-需要跳转的地方 <code>[跳转到](#jump)</code><br />
-注：<code>jump</code> 字段不能有中文、空格</p>
-<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
-此时图片引用语法： <code>![文本](图片名字)</code></p>
-<h2 id="html-插入图片">3. html 插入图片</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
-<p>渲染引擎：MathJax<br />
-插件：hexo-renderer-pandoc<br />
-参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
-<p>写行间公式的时候，两个 <code>$$</code>
-一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
-<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
-<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
-<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
-自定义编号，那么 hexo
-依然会跳过这个公式并且对后面的公式进行自动编号。<br />
-当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
-<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
-<code>equation</code> 环境来取消对公式的编号。</p>
-<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
-和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
-<p>参考：<br />
-[1] <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
-官方文档</a><br />
-[2] <a
-href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
-公式编号说明</a></p>
-<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
-<p>这里的英文句号会被渲染为中文的圆圈句号,改用
-<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
-]]></content>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -201,21 +139,57 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-app工具（下）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <title>Hexo 中的 markdown 语法</title>
+    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="页内跳转">1. 页内跳转</h2>
+<p>跳转到地方后面加上
+<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
+需要跳转的地方 <code>[跳转到](#jump)</code><br />
+注：<code>jump</code> 字段不能有中文、空格</p>
+<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
+此时图片引用语法： <code>![文本](图片名字)</code></p>
+<h2 id="html-插入图片">3. html 插入图片</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
+<p>渲染引擎：MathJax<br />
+插件：hexo-renderer-pandoc<br />
+参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
+<p>写行间公式的时候，两个 <code>$$</code>
+一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
+<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
+<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
+<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
+自定义编号，那么 hexo
+依然会跳过这个公式并且对后面的公式进行自动编号。<br />
+当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
+<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
+<code>equation</code> 环境来取消对公式的编号。</p>
+<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
+和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
+<p>参考：<br />
+[1] <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
+官方文档</a><br />
+[2] <a
+href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
+公式编号说明</a></p>
+<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
+<p>这里的英文句号会被渲染为中文的圆圈句号,改用
+<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
 ]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
       <tags>
-        <tag>计算机视觉</tag>
-        <tag>C/C++</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-图像处理（下）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <title>OpenCV入门学习-app工具（上）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 ]]></content>
       <categories>
@@ -240,21 +214,29 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       </tags>
   </entry>
   <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <title>OpenCV入门学习-app工具（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
 ]]></content>
       <categories>
-        <category>git 管理工具</category>
+        <category>计算机视觉</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV入门学习-图像处理（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -979,9 +961,9 @@ class="math display">\[
 Intrinsics</strong>特性对 C++ 代码进行向量化优化，利用现代处理器的 SIMD
 指令实现运行时加速。内容涵盖 SIMD
 基础概念、寄存器操作及实际卷积算法向量化实现。</p>
-<h3 id="simd与universal-intrinsics基础">5.2. SIMD与Universal
-Intrinsics基础</h3>
-<h4 id="simd技术原理">5.2.1. SIMD技术原理</h4>
+<h3 id="simd-与-universal-intrinsics-基础">5.2. SIMD 与 Universal
+Intrinsics 基础</h3>
+<h4 id="simd-技术原理">5.2.1. SIMD 技术原理</h4>
 <p>SIMD（单指令多数据）允许处理器使用宽寄存器同时对多个数据元素执行相同操作。例如：</p>
 <ul>
 <li>128位寄存器可同时处理4个32位浮点数</li>
@@ -1008,7 +990,7 @@ Intrinsics基础</h3>
 <h3 id="卷积算法向量化实战">5.4. 卷积算法向量化实战</h3>
 <h4 id="原始标量实现">5.4.1. 原始标量实现</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">scalar_conv1d</span><span class="params">(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> sz = kernel.cols/<span class="number">2</span>;</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(src, src, <span class="number">0</span>, <span class="number">0</span>, sz, sz, cv::BORDER_REPLICATE);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;src.cols; ++i)&#123;</span><br><span class="line">        <span class="type">float</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=-sz; k&lt;=sz; ++k)&#123;</span><br><span class="line">            sum += src.<span class="built_in">at</span>&lt;uchar&gt;(i+k+sz) * kernel.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(k+sz);</span><br><span class="line">        &#125;</span><br><span class="line">        dst.<span class="built_in">at</span>&lt;uchar&gt;(i) = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="simd向量化改造">5.4.2. SIMD向量化改造</h4>
+<h4 id="simd-向量化改造">5.4.2. SIMD 向量化改造</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vectorized_conv1d</span><span class="params">(cv::Mat src, cv::Mat kernel, <span class="type">float</span>* ans)</span> </span>&#123;</span><br><span class="line">    cv::Mat src_32;</span><br><span class="line">    src.<span class="built_in">convertTo</span>(src_32, CV_32F);</span><br><span class="line">  </span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> step = cv::v_float32x4::nlanes;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>; k&lt;kernel.cols; ++k)&#123;</span><br><span class="line">        cv::v_float32x4 kernel_wide = cv::<span class="built_in">v_setall_f32</span>(kernel.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(k));</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 主向量处理循环</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; i+step &lt; src.cols; i+=step)&#123;</span><br><span class="line">            cv::v_float32x4 window = cv::<span class="built_in">v_load</span>(&amp;src_<span class="number">32.</span><span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i+k));</span><br><span class="line">            cv::v_float32x4 sum = cv::<span class="built_in">v_load</span>(ans+i) + window * kernel_wide;</span><br><span class="line">            cv::<span class="built_in">v_store</span>(ans+i, sum);</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 尾部数据处理</span></span><br><span class="line">        <span class="keyword">for</span>(; i&lt;src.cols; ++i)&#123;</span><br><span class="line">            ans[i] += src_<span class="number">32.</span><span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(i+k) * kernel.<span class="built_in">at</span>&lt;<span class="type">float</span>&gt;(k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="二维卷积扩展">5.5. 二维卷积扩展</h3>
 <p>通过水平 + 垂直方向的一维卷积组合实现：</p>
@@ -1071,6 +1053,24 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       <tags>
         <tag>python</tag>
         <tag>语法糖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -1300,6 +1300,120 @@ class="math display">\[
         <tag>PCA</tag>
         <tag>机器学习</tag>
         <tag>降维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}} = \frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
+<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>
@@ -1888,120 +2002,6 @@ href="https://github.com/Blackspace2/space-resection-of-single-image.git">Github
         <tag>python</tag>
         <tag>后方交会</tag>
         <tag>摄影测量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 36%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">分母布局</th>
-<th style="text-align: center;">分子布局</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}} = \frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-A}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial
-\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
-A\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
-X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A+A^T)X\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X^T(A+A^T)\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X(A^T+A)\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A^T+A)X^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(XA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-</tr>
-</tbody>
-</table>
-<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
-<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>
