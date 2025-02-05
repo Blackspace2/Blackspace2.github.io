@@ -201,8 +201,8 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-图像处理（上）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <title>OpenCV入门学习-app工具（下）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 ]]></content>
       <categories>
@@ -214,8 +214,8 @@ href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-app工具（下）</title>
-    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <title>OpenCV入门学习-图像处理（上）</title>
+    <url>/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 ]]></content>
       <categories>
@@ -721,6 +721,24 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenCV入门学习-核心功能（下）</title>
     <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -906,9 +924,63 @@ class="math display">\[
 \sum_{l=-\frac{n}{2}}^{\frac{n}{2}} \text{kernel}(k, l) \cdot
 \text{src}(i + k, j + l) \nonumber
 \]</span> 其中，内核尺寸需为奇数以确保中心锚点存在。</p>
+<p>卷积层输出尺寸计算公式，参考 <code>PyTorch</code> <a
+href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html#torch.nn.Conv2d">官方文档</a></p>
+<p><span class="math display">\[
+\begin{align*}
+H_{\text{out}} = \left\lfloor \frac{H_{\text{in}} + 2\times
+\text{padding}[0] - \text{dilation}[0]\times\bigl(\text{kernel_
+size}[0]-1\bigr)-1}{\text{stride}[0]} + 1 \right\rfloor \\ \\
+W_{\text{out}} = \left\lfloor \frac{H_{\text{in}} + 2\times
+\text{padding}[1] - \text{dilation}[1]\times\bigl(\text{kernel_
+size}[1]-1\bigr)-1}{\text{stride}[1]} + 1 \right\rfloor
+\end{align*}
+\]</span></p>
+<p>卷积计算的两种模式：</p>
+<ul>
+<li><strong>Same
+模式</strong>：通过在输入周围填充零（或其他元素），使得输出尺寸与输入尺寸相同（步幅为
+1 时），即保持尺寸不变。</li>
+<li><strong>Valid
+模式</strong>：不进行任何填充，只有完全覆盖的区域才进行卷积计算，因此输出尺寸会比输入尺寸小。</li>
+</ul>
+<p>下文均使用 Same 模式。</p>
 <h3 id="顺序卷积实现">4.4. 顺序卷积实现</h3>
-<p>same 方式</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">conv_seq</span><span class="params">(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> rows = src.rows, cols = src.cols;</span><br><span class="line">    dst = cv::<span class="built_in">Mat</span>(rows, cols, src.<span class="built_in">type</span>());</span><br><span class="line">  </span><br><span class="line">    <span class="type">int</span> sz = kernel.rows / <span class="number">2</span>;</span><br><span class="line">    cv::<span class="built_in">copyMakeBorder</span>(src, src, sz, sz, sz, sz, cv::BORDER_REPLICATE);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">        uchar *dptr = dst.<span class="built_in">ptr</span>&lt;uchar&gt;(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">            <span class="type">double</span> value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = -sz; k &lt;= sz; k++) &#123;</span><br><span class="line">                uchar *sptr = src.<span class="built_in">ptr</span>&lt;uchar&gt;(i + sz + k);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = -sz; l &lt;= sz; l++) &#123;</span><br><span class="line">                    value += kernel.<span class="built_in">at</span>&lt;<span class="type">double</span>&gt;(k + sz, l + sz) * sptr[j + sz + l];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            dptr[j] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<details class="note info"><summary><p><code>cv::copyMakeBorder</code></p>
+</summary>
+<p><code>cv::copyMakeBorder</code> 是 OpenCV
+提供的一个函数，用于扩展图像的边界，也可以称为“边缘填充”或“镜像填充”。它常用于在图像处理和计算机视觉任务中，为图像增加额外的像素边界，以满足后续处理（例如卷积、滤波、图像拼接等）的尺寸要求或避免边缘效应。</p>
+<p><strong>主要功能</strong></p>
+<ul>
+<li><strong>边界扩展</strong>：在图像的四周添加指定数量的像素行和列。</li>
+<li><strong>多种填充模式</strong>：支持常数填充、复制边缘像素、镜像反射等不同的边界填充方式。</li>
+</ul>
+<p><strong>函数原型</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">cv::copyMakeBorder</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    InputArray src,       <span class="comment">// 输入图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">    OutputArray dst,      <span class="comment">// 输出图像</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> top,              <span class="comment">// 顶部扩展像素数</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> bottom,           <span class="comment">// 底部扩展像素数</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> left,             <span class="comment">// 左侧扩展像素数</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> right,            <span class="comment">// 右侧扩展像素数</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> borderType,       <span class="comment">// 边界扩展的模式</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> Scalar&amp; value = Scalar() <span class="comment">// 当使用常数填充时使用的数值（默认为0）</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明</strong></p>
+<ul>
+<li><strong>src</strong>：输入图像，可以是灰度图像、彩色图像或多通道图像。</li>
+<li><strong>dst</strong>：输出图像，即添加了边界扩展后的结果图像。</li>
+<li><strong>top、bottom、left、right</strong>：分别表示在输入图像的上、下、左、右方向扩展的像素数量。比如，如果
+<code>top = 10</code>，则会在图像上方添加 10 行像素。</li>
+<li><strong>borderType</strong>：定义边界扩展的模式。常用的模式包括：
+<ul>
+<li><code>BORDER_CONSTANT</code>：使用常数填充扩展区域（常常与参数
+<code>value</code> 一起使用）。</li>
+<li><code>BORDER_REPLICATE</code>：复制边缘像素，例如左侧填充就是复制图像最左侧的像素。</li>
+<li><code>BORDER_REFLECT</code>：镜像填充，填充部分是输入图像的镜像（不包括边缘的重复）。</li>
+<li><code>BORDER_REFLECT_101</code> 或 <code>BORDER_DEFAULT</code>：与
+<code>BORDER_REFLECT</code> 类似，不过镜像时边缘像素不会重复。</li>
+<li><code>BORDER_WRAP</code>：将图像看作周期性的，将另一侧的像素填充到边缘。</li>
+</ul></li>
+<li><strong>value</strong>：当 <code>borderType</code> 设为
+<code>BORDER_CONSTANT</code>
+时，用来指定填充区域的像素值（对于多通道图像，可以传入
+<code>Scalar(b, g, r)</code>）。</li>
+</ul>
+
+</details>
 <h3 id="并行卷积实现">4.5. 并行卷积实现</h3>
 <h4 id="自定义并行循环体">4.5.1. 自定义并行循环体</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParallelConvolution</span> : <span class="keyword">public</span> cv::ParallelLoopBody &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    cv::Mat m_src, &amp;m_dst;</span><br><span class="line">    cv::Mat m_kernel;</span><br><span class="line">    <span class="type">int</span> sz;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ParallelConvolution</span>(cv::Mat src, cv::Mat &amp;dst, cv::Mat kernel)</span><br><span class="line">        : <span class="built_in">m_src</span>(src), <span class="built_in">m_dst</span>(dst), <span class="built_in">m_kernel</span>(kernel) &#123;</span><br><span class="line">        sz = kernel.rows / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> cv::Range &amp;range)</span> <span class="type">const</span> CV_OVERRIDE </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> r = range.start; r &lt; range.end; r++) &#123;</span><br><span class="line">            <span class="type">int</span> i = r / m_src.cols, j = r % m_src.cols;</span><br><span class="line">            <span class="type">double</span> value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = -sz; k &lt;= sz; k++) &#123;</span><br><span class="line">                uchar *sptr = m_src.<span class="built_in">ptr</span>&lt;uchar&gt;(i + sz + k);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> l = -sz; l &lt;= sz; l++) &#123;</span><br><span class="line">                    value += m_kernel.<span class="built_in">at</span>&lt;<span class="type">double</span>&gt;(k + sz, l + sz) * sptr[j + sz + l];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            m_dst.<span class="built_in">ptr</span>&lt;uchar&gt;(i)[j] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line"><span class="function">ParallelConvolution <span class="title">obj</span><span class="params">(src, dst, kernel)</span></span>;</span><br><span class="line">cv::<span class="built_in">parallel_for_</span>(cv::<span class="built_in">Range</span>(<span class="number">0</span>, rows * cols), obj);</span><br></pre></td></tr></table></figure>
@@ -1053,24 +1125,6 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       <tags>
         <tag>python</tag>
         <tag>语法糖</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/17/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <categories>
-        <category>git 管理工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
