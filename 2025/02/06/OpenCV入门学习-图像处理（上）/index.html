@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://docs.opencv.org/4.x/Drawing_1_Tutorial_Result_0.png">
 <meta property="article:published_time" content="2025-02-05T23:30:37.123Z">
-<meta property="article:modified_time" content="2025-02-06T14:23:16.083Z">
+<meta property="article:modified_time" content="2025-02-09T12:58:19.469Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -146,7 +146,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#opencv-%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80"><span class="nav-text">OpenCV 绘图基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">核心数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cvpoint"><span class="nav-text">cv::Point</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvscalar"><span class="nav-text">cv::Scalar</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-text">基础绘图函数实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83"><span class="nav-text">创建画布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9B%B4%E7%BA%BF"><span class="nav-text">绘制直线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E6%A4%AD%E5%9C%86"><span class="nav-text">绘制椭圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%AE%9E%E5%BF%83%E5%9C%86"><span class="nav-text">绘制实心圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">绘制多边形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2"><span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC"><span class="nav-text">添加文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><span class="nav-text">仿射变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E4%B8%8E%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">随机数生成与文本绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-text">随机数生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E9%9A%8F%E6%9C%BA%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="nav-text">绘制随机几何图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">动态文本绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B8%90%E5%8F%98%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C"><span class="nav-text">动态渐变文字效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-1"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80"><span class="nav-text">绘图基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">核心数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cvpoint"><span class="nav-text">cv::Point</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvscalar"><span class="nav-text">cv::Scalar</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-text">基础绘图函数实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83"><span class="nav-text">创建画布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9B%B4%E7%BA%BF"><span class="nav-text">绘制直线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E6%A4%AD%E5%9C%86"><span class="nav-text">绘制椭圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%AE%9E%E5%BF%83%E5%9C%86"><span class="nav-text">绘制实心圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">绘制多边形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2"><span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC"><span class="nav-text">添加文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><span class="nav-text">仿射变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E4%B8%8E%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">随机数生成与文本绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-text">随机数生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E9%9A%8F%E6%9C%BA%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="nav-text">绘制随机几何图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">动态文本绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B8%90%E5%8F%98%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C"><span class="nav-text">动态渐变文字效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-1"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91"><span class="nav-text">图像平滑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2normalized-box-filter"><span class="nav-text">均值滤波（Normalized Box
+Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2gaussian-filter"><span class="nav-text">高斯滤波（Gaussian Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2median-filter"><span class="nav-text">中值滤波（Median Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2bilateral-filter"><span class="nav-text">双边滤波（Bilateral Filter）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">高斯滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">中值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">双边滤波示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">完整代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -250,9 +251,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-02-06 07:30:37 / 修改时间：22:23:16" itemprop="dateCreated datePublished" datetime="2025-02-06T07:30:37+08:00">2025-02-06</time>
+      <time title="创建时间：2025-02-06 07:30:37" itemprop="dateCreated datePublished" datetime="2025-02-06T07:30:37+08:00">2025-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-09 20:58:19" itemprop="dateModified" datetime="2025-02-09T20:58:19+08:00">2025-02-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -278,14 +285,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>4.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
+      <span>15 分钟</span>
     </span>
   
 </div>
@@ -299,7 +306,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="opencv-绘图基础">OpenCV 绘图基础</h2>
+<h2 id="绘图基础">绘图基础</h2>
 <p>本文介绍如何使用OpenCV进行基础图形绘制，包括直线、椭圆、矩形、圆形和填充多边形的实现方法。所有代码均使用C++语法，并明确标注命名空间。</p>
 <h3 id="核心数据结构">核心数据结构</h3>
 <h4 id="cvpoint">cv::Point</h4>
@@ -388,6 +395,186 @@ class="math inline">\([a, b)\)</span> 内的 <strong>均匀分布</strong>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Displaying_Big_End</span><span class="params">(cv::Mat image, <span class="type">const</span> std::string&amp; window_name)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// cv::Size cv::getTextSize(const std::string&amp; text,  // 要测量的文本串</span></span><br><span class="line">    <span class="comment">//                          int fontFace,             // 字体类型</span></span><br><span class="line">    <span class="comment">//                          double fontScale,         // 字体的缩放因子</span></span><br><span class="line">    <span class="comment">//                          int thickness,            // 文本的线条宽度</span></span><br><span class="line">    <span class="comment">//                          int* baseline = 0);       // 计算文本的基线的位置</span></span><br><span class="line">    cv::Size textSize = cv::<span class="built_in">getTextSize</span>(<span class="string">&quot;OpenCV forever!&quot;</span>, cv::FONT_HERSHEY_COMPLEX, <span class="number">3</span>, <span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="function">cv::Point <span class="title">org</span><span class="params">((image.cols - textSize.width) / <span class="number">2</span>, (image.rows + textSize.height) / <span class="number">2</span>)</span></span>;</span><br><span class="line">    cv::Mat image2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">255</span>; i += <span class="number">2</span>) &#123;</span><br><span class="line">        image2 = image - cv::Scalar::<span class="built_in">all</span>(i);  <span class="comment">// 图像亮度递减</span></span><br><span class="line">        cv::<span class="built_in">putText</span>(image2, <span class="string">&quot;OpenCV forever!&quot;</span>, org, cv::FONT_HERSHEY_COMPLEX, <span class="number">3</span>, </span><br><span class="line">                   cv::<span class="built_in">Scalar</span>(i, i, <span class="number">255</span>), <span class="number">5</span>);  <span class="comment">// 文字颜色渐变</span></span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image2);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">30</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="示例代码-1">示例代码</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NUMBER = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 随机颜色生成函数</span></span><br><span class="line"><span class="function">cv::Scalar <span class="title">randomColor</span><span class="params">(cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cv::<span class="built_in">Scalar</span>(rng.<span class="built_in">uniform</span>(<span class="number">0</span>, <span class="number">256</span>), rng.<span class="built_in">uniform</span>(<span class="number">0</span>, <span class="number">256</span>), rng.<span class="built_in">uniform</span>(<span class="number">0</span>, <span class="number">256</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制随机线条</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Drawing_Random_Lines</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name, cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> lineType = cv::LINE_8;</span><br><span class="line">    cv::Point pt1, pt2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NUMBER; i++) &#123;</span><br><span class="line">        pt<span class="number">1.</span>x = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols);  <span class="comment">// x坐标随机</span></span><br><span class="line">        pt<span class="number">1.</span>y = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows);  <span class="comment">// y坐标随机</span></span><br><span class="line">        pt<span class="number">2.</span>x = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols);</span><br><span class="line">        pt<span class="number">2.</span>y = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows);</span><br><span class="line"></span><br><span class="line">        cv::<span class="built_in">line</span>(image, pt1, pt2, <span class="built_in">randomColor</span>(rng), rng.<span class="built_in">uniform</span>(<span class="number">1</span>, <span class="number">10</span>), lineType);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">10</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制随机矩形</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Drawing_Random_Rectangles</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name, cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> lineType = cv::LINE_8;</span><br><span class="line">    cv::Point pt1, pt2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NUMBER; i++) &#123;</span><br><span class="line">        pt<span class="number">1.</span>x = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols);</span><br><span class="line">        pt<span class="number">1.</span>y = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows);</span><br><span class="line">        pt<span class="number">2.</span>x = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols);</span><br><span class="line">        pt<span class="number">2.</span>y = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows);</span><br><span class="line"></span><br><span class="line">        cv::<span class="built_in">rectangle</span>(image, pt1, pt2, <span class="built_in">randomColor</span>(rng), rng.<span class="built_in">uniform</span>(<span class="number">-1</span>, <span class="number">10</span>), lineType);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">10</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制随机椭圆</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Drawing_Random_Ellipses</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name, cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> lineType = cv::LINE_8;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NUMBER; i++) &#123;</span><br><span class="line">        <span class="function">cv::Point <span class="title">center</span><span class="params">(rng.uniform(<span class="number">0</span>, image.cols), rng.uniform(<span class="number">0</span>, image.rows))</span></span>;</span><br><span class="line">        <span class="function">cv::Size <span class="title">axes</span><span class="params">(rng.uniform(<span class="number">0</span>, <span class="number">200</span>), rng.uniform(<span class="number">0</span>, <span class="number">200</span>))</span></span>;</span><br><span class="line">        <span class="type">double</span> angle = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, <span class="number">360</span>);</span><br><span class="line"></span><br><span class="line">        cv::<span class="built_in">ellipse</span>(image, center, axes, angle, <span class="number">0</span>, <span class="number">360</span>, <span class="built_in">randomColor</span>(rng), rng.<span class="built_in">uniform</span>(<span class="number">-1</span>, <span class="number">10</span>), lineType);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">10</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制随机多边形</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Drawing_Random_Polylines</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name, cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> lineType = cv::LINE_8;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NUMBER; i++) &#123;</span><br><span class="line">        cv::Point pts[<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        pts[<span class="number">0</span>][<span class="number">0</span>] = cv::<span class="built_in">Point</span>(rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols), rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows));</span><br><span class="line">        pts[<span class="number">0</span>][<span class="number">1</span>] = cv::<span class="built_in">Point</span>(rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols), rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows));</span><br><span class="line">        pts[<span class="number">0</span>][<span class="number">2</span>] = cv::<span class="built_in">Point</span>(rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols), rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.rows));</span><br><span class="line"></span><br><span class="line">        <span class="type">const</span> cv::Point* ppt[<span class="number">1</span>] = &#123;pts[<span class="number">0</span>]&#125;;</span><br><span class="line">        <span class="type">int</span> npt[] = &#123;<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line">        cv::<span class="built_in">polylines</span>(image, ppt, npt, <span class="number">1</span>, <span class="literal">true</span>, <span class="built_in">randomColor</span>(rng), rng.<span class="built_in">uniform</span>(<span class="number">1</span>, <span class="number">10</span>), lineType);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">10</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制随机文本</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Displaying_Random_Text</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name, cv::RNG&amp; rng)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> lineType = cv::LINE_8;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; NUMBER; i++) &#123;</span><br><span class="line">        cv::Point org;</span><br><span class="line">        org.x = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, image.cols - <span class="number">200</span>);  <span class="comment">// 避免文字越界</span></span><br><span class="line">        org.y = rng.<span class="built_in">uniform</span>(<span class="number">20</span>, image.rows);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> fontFace = rng.<span class="built_in">uniform</span>(<span class="number">0</span>, <span class="number">8</span>);      <span class="comment">// 随机字体</span></span><br><span class="line">        <span class="type">double</span> fontScale = rng.<span class="built_in">uniform</span>(<span class="number">1</span>, <span class="number">3</span>);  <span class="comment">// 随机字体大小</span></span><br><span class="line">        <span class="type">int</span> thickness = rng.<span class="built_in">uniform</span>(<span class="number">1</span>, <span class="number">5</span>);     <span class="comment">// 随机粗细</span></span><br><span class="line"></span><br><span class="line">        cv::<span class="built_in">putText</span>(image, <span class="string">&quot;OpenCV Tutorial&quot;</span>, org, fontFace, fontScale, <span class="built_in">randomColor</span>(rng), thickness, lineType);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">100</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态渐变文字效果</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Displaying_Big_End</span><span class="params">(cv::Mat&amp; image, <span class="type">const</span> std::string&amp; window_name)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    cv::Size textSize = cv::<span class="built_in">getTextSize</span>(<span class="string">&quot;OpenCV forever!&quot;</span>, cv::FONT_HERSHEY_COMPLEX, <span class="number">3</span>, <span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="function">cv::Point <span class="title">org</span><span class="params">((image.cols - textSize.width) / <span class="number">2</span>, (image.rows + textSize.height) / <span class="number">2</span>)</span></span>;</span><br><span class="line">    cv::Mat image2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">255</span>; i += <span class="number">2</span>) &#123;</span><br><span class="line">        image2 = image - cv::Scalar::<span class="built_in">all</span>(i);  <span class="comment">// 图像亮度递减</span></span><br><span class="line">        cv::<span class="built_in">putText</span>(image2, <span class="string">&quot;OpenCV forever!&quot;</span>, org, cv::FONT_HERSHEY_COMPLEX, <span class="number">3</span>,</span><br><span class="line">                    cv::<span class="built_in">Scalar</span>(i, i, <span class="number">255</span>), <span class="number">5</span>);  <span class="comment">// 文字颜色渐变</span></span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, image2);</span><br><span class="line">        <span class="keyword">if</span> (cv::<span class="built_in">waitKey</span>(<span class="number">30</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> window_width = <span class="number">800</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> window_height = <span class="number">600</span>;</span><br><span class="line">    <span class="type">const</span> std::string window_name = <span class="string">&quot;OpenCV Random Drawing&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化黑底画布</span></span><br><span class="line">    cv::Mat image = cv::Mat::<span class="built_in">zeros</span>(window_height, window_width, CV_8UC3);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(window_name, image);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化随机数生成器</span></span><br><span class="line">    <span class="function">cv::RNG <span class="title">rng</span><span class="params">(<span class="number">0xFFFFFFFF</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依次调用绘图函数</span></span><br><span class="line">    <span class="built_in">Drawing_Random_Lines</span>(image, window_name, rng);</span><br><span class="line">    <span class="built_in">Drawing_Random_Rectangles</span>(image, window_name, rng);</span><br><span class="line">    <span class="built_in">Drawing_Random_Ellipses</span>(image, window_name, rng);</span><br><span class="line">    <span class="built_in">Drawing_Random_Polylines</span>(image, window_name, rng);</span><br><span class="line">    <span class="built_in">Displaying_Random_Text</span>(image, window_name, rng);</span><br><span class="line">    <span class="built_in">Displaying_Big_End</span>(image, window_name);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="图像平滑">图像平滑</h2>
+<h3 id="目标">目标</h3>
+<p>使用 OpenCV
+实现图像平滑处理，涵盖四种常用线性滤波器：均值滤波、高斯滤波、中值滤波和双边滤波。掌握
+<code>cv::blur()</code> 、 <code>cv::GaussianBlur()</code> 、
+<code>cv::medianBlur()</code> 和 <code>cv::bilateralFilter()</code>
+等函数的使用方法。</p>
+<hr />
+<h3 id="理论基础">理论基础</h3>
+<h4 id="均值滤波normalized-box-filter">均值滤波（Normalized Box
+Filter）</h4>
+<p><strong>公式：</strong></p>
+<p><span class="math display">\[
+K = \frac{1}{K_{\text{width}} \cdot K_{\text{height}}}
+\begin{bmatrix}
+1 &amp; 1 &amp; \ldots &amp; 1 \\
+1 &amp; 1 &amp; \ldots &amp; 1 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; 1 &amp; \ldots &amp; 1
+\end{bmatrix}\nonumber
+\]</span></p>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><p><strong><span class="math inline">\(K_{\text{width}}\)</span> 和
+<span class="math inline">\(K_{\text{height}}\)</span> ：</strong><br />
+表示滤波核的宽度和高度。通常选取奇数（如 3×3、5×5
+等），以便确定一个明确的中心像素。</p></li>
+<li><p><strong>归一化因子 <span
+class="math inline">\(\frac{1}{K_{\text{width}} \cdot
+K_{\text{height}}}\)</span> ：</strong><br />
+保证滤波核内所有元素的权重之和为
+1，从而在平滑图像时不改变整体亮度。</p></li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>均值滤波通过计算邻域内所有像素值的平均值来减少图像噪声，具有简单高效的特点。<br />
+</li>
+<li>但由于对所有邻域像素赋予相同的权重，它在平滑的同时可能会使边缘和细节变得模糊。</li>
+</ul>
+<hr />
+<h4 id="高斯滤波gaussian-filter">高斯滤波（Gaussian Filter）</h4>
+<p><strong>公式：</strong></p>
+<p><span class="math display">\[
+G_0(x, y) = A \exp\left(-\frac{(x - \mu_x)^2}{2\sigma_x^2} - \frac{(y -
+\mu_y)^2}{2\sigma_y^2}\right)\nonumber
+\]</span></p>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><p><strong><span class="math inline">\(A\)</span> ：</strong><br />
+归一化常数，用于确保整个滤波核的所有权重之和为1。</p></li>
+<li><p><strong><span class="math inline">\(\mu_x\)</span> 和 <span
+class="math inline">\(\mu_y\)</span> ：</strong><br />
+分别为高斯函数在 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 方向的均值。通常选取核的中心点，即
+<span class="math inline">\(\mu_x=0,\ \mu_y=0\)</span>
+（若坐标以核中心为原点），或者直接设置为核的中心像素坐标。</p></li>
+<li><p><strong><span class="math inline">\(\sigma_x\)</span> 和 <span
+class="math inline">\(\sigma_y\)</span> ：</strong><br />
+分别为高斯函数在 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span>
+方向的标准差，决定了权重分布的宽度。</p>
+<ul>
+<li>较大的 <span class="math inline">\(\sigma\)</span>
+值使得核内权重分布更加平缓，平滑效果更强；<br />
+</li>
+<li>较小的 <span class="math inline">\(\sigma\)</span>
+值使得权重更多集中在中心像素附近，从而在平滑的同时更好地保留局部细节。<br />
+</li>
+<li>当要求各向同性平滑时，可以令 <span class="math inline">\(\sigma_x =
+\sigma_y = \sigma\)</span> 。</li>
+</ul></li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>高斯滤波器能较好地平滑图像，同时在一定程度上保留边缘信息，相比于简单的均值滤波，它更能适应图像的局部特性。</li>
+<li>由于权重随距离呈指数衰减，高斯滤波在邻域中心像素附近具有更高的权重，减少了远处像素对结果的影响。</li>
+</ul>
+<hr />
+<h4 id="中值滤波median-filter">中值滤波（Median Filter）</h4>
+<p><strong>公式：</strong></p>
+<p><span class="math display">\[
+g(i, j) = \text{median}\{f(i + k, j + l)\}\nonumber
+\]</span></p>
+<p>其中， <span class="math inline">\(k\)</span> 和 <span
+class="math inline">\(l\)</span> 遍历选定的邻域（例如 3×3 或 5×5
+窗口）。</p>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><strong>窗口大小：</strong><br />
+定义了计算中值时考虑的邻域范围。窗口越大，能够去除的噪声范围就越广，但也可能导致细节损失；窗口较小则保留更多细节，但可能对较大范围的噪声不够鲁棒。</li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>中值滤波特别适用于去除“椒盐噪声”，因为中值运算能有效抑制孤立的异常值（极大或极小的噪声像素），而不受这些异常值的极端影响。</li>
+<li>与均值滤波不同，中值滤波不会产生模糊边缘的现象，能够较好地保留边缘和细节信息。</li>
+</ul>
+<hr />
+<h4 id="双边滤波bilateral-filter">双边滤波（Bilateral Filter）</h4>
+<p><strong>公式：</strong></p>
+<p><span class="math display">\[
+g(i, j) = \frac{\sum_{k,l} f(i+k, j+l) \cdot w_{\text{space}}(k,l) \cdot
+w_{\text{color}}(f(i,j), f(i+k, j+l))}{\sum_{k,l} w_{\text{space}}(k,l)
+\cdot w_{\text{color}}(f(i,j), f(i+k, j+l))}\nonumber
+\]</span></p>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><strong><span class="math inline">\(w_{\text{space}}(k,l)\)</span>
+：</strong><br />
+空间权重，通常采用高斯函数定义，用于衡量当前像素与邻域像素之间的空间距离影响。
+<ul>
+<li>一般形式为：<br />
+<span class="math display">\[
+w_{\text{space}}(k,l) =
+\exp\left(-\frac{k^2+l^2}{2\sigma_s^2}\right)\nonumber
+\]</span><br />
+</li>
+<li>其中， <span class="math inline">\(\sigma_s\)</span>
+决定了空间距离的衰减速度，较大的 <span
+class="math inline">\(\sigma_s\)</span>
+意味着更广的空间范围内的像素会有较高的权重。</li>
+</ul></li>
+<li><strong><span class="math inline">\(w_{\text{color}}(f(i,j), f(i+k,
+j+l))\)</span> ：</strong><br />
+颜色（或灰度）权重，用于衡量中心像素与邻域像素在像素值（颜色或亮度）上的相似程度。
+<ul>
+<li>常用形式为：<br />
+<span class="math display">\[
+w_{\text{color}}(f(i,j), f(i+k, j+l)) =
+\exp\left(-\frac{(f(i,j)-f(i+k,j+l))^2}{2\sigma_r^2}\right)\nonumber
+\]</span><br />
+</li>
+<li>参数 <span class="math inline">\(\sigma_r\)</span> （也称为 <span
+class="math inline">\(\sigma_c\)</span>
+）控制了对像素值差异的敏感程度。较小的 <span
+class="math inline">\(\sigma_r\)</span>
+会使得仅有非常相近像素值的邻域才被赋予较大权重，从而有效保护边缘信息。</li>
+</ul></li>
+<li><strong>窗口大小：</strong><br />
+决定了在空间上参与滤波的邻域范围。通常与 <span
+class="math inline">\(\sigma_s\)</span>
+相匹配，确保窗口足够大以包含主要的贡献区域。</li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>双边滤波在平滑图像噪声的同时，通过结合空间和颜色信息，有效避免了跨边缘的像素混合，从而更好地保留图像的边缘和细节。</li>
+<li>适用于需要在降噪的同时保持清晰边缘的图像处理场景，如人像美化和细节增强。</li>
+</ul>
+<p>参数说明：</p>
+<ul>
+<li><code>src</code>：输入图像</li>
+<li><code>dst</code>：输出图像</li>
+<li><code>Size(w, h)</code>：核大小（需为奇数）</li>
+<li><code>Point(-1, -1)</code>：锚点位置（默认中心）</li>
+</ul>
+<h3 id="代码实现">代码实现</h3>
+<h4 id="高斯滤波示例">高斯滤波示例</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv::<span class="built_in">GaussianBlur</span>(src, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>参数 <code>0</code> 表示自动计算标准差。</p>
+<h4 id="中值滤波示例">中值滤波示例</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv::<span class="built_in">medianBlur</span>(src, dst, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>核大小必须为奇数。</p>
+<h4 id="双边滤波示例">双边滤波示例</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv::<span class="built_in">bilateralFilter</span>(src, dst, <span class="number">9</span>, <span class="number">75</span>, <span class="number">75</span>);</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><code>9</code>：邻域直径</li>
+<li><code>75</code>：颜色空间和坐标空间的标准差</li>
+</ul>
+<h3 id="完整代码示例">完整代码示例</h3>
+<p>通过循环逐步增大核尺寸，可观察不同滤波器的平滑效果：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgproc.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgcodecs.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/highgui.hpp&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="comment">// 读取图像</span></span><br><span class="line">     <span class="type">const</span> <span class="type">char</span>* filename = <span class="string">&quot;cat.jpg&quot;</span>;</span><br><span class="line">     cv::Mat src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(filename), cv::IMREAD_COLOR);</span><br><span class="line">     <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">          std::cout &lt;&lt; <span class="string">&quot;Error opening image!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">          std::cout &lt;&lt; <span class="string">&quot;Usage: &quot;</span> &lt;&lt; argv[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; [image_name -- default lena.jpg]&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">          <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 显示原始图像</span></span><br><span class="line">     cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;Original Image&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">     cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original Image&quot;</span>, src);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 定义输出图像</span></span><br><span class="line">     cv::Mat dst;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 均值滤波</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">31</span>; i = i + <span class="number">2</span>) &#123;</span><br><span class="line">          cv::<span class="built_in">blur</span>(src, dst, cv::<span class="built_in">Size</span>(i, i), cv::<span class="built_in">Point</span>(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">          cv::<span class="built_in">imshow</span>(<span class="string">&quot;Homogeneous Blur&quot;</span>, dst);</span><br><span class="line">          cv::<span class="built_in">waitKey</span>(<span class="number">500</span>); <span class="comment">// 每500ms更新一次</span></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 高斯滤波</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">31</span>; i = i + <span class="number">2</span>) &#123;</span><br><span class="line">          cv::<span class="built_in">GaussianBlur</span>(src, dst, cv::<span class="built_in">Size</span>(i, i), <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">          cv::<span class="built_in">imshow</span>(<span class="string">&quot;Gaussian Blur&quot;</span>, dst);</span><br><span class="line">          cv::<span class="built_in">waitKey</span>(<span class="number">500</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 中值滤波</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">31</span>; i = i + <span class="number">2</span>) &#123;</span><br><span class="line">          cv::<span class="built_in">medianBlur</span>(src, dst, i);</span><br><span class="line">          cv::<span class="built_in">imshow</span>(<span class="string">&quot;Median Blur&quot;</span>, dst);</span><br><span class="line">          cv::<span class="built_in">waitKey</span>(<span class="number">500</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 双边滤波</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">31</span>; i = i + <span class="number">2</span>) &#123;</span><br><span class="line">          cv::<span class="built_in">bilateralFilter</span>(src, dst, i, i * <span class="number">2</span>, i / <span class="number">2</span>);</span><br><span class="line">          cv::<span class="built_in">imshow</span>(<span class="string">&quot;Bilateral Blur&quot;</span>, dst);</span><br><span class="line">          cv::<span class="built_in">waitKey</span>(<span class="number">500</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 结束提示</span></span><br><span class="line">     std::cout &lt;&lt; <span class="string">&quot;Smoothing process completed!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">     cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="总结">总结</h3>
+<ul>
+<li><strong>均值滤波</strong>：简单易实现，但容易模糊边缘。适用于噪声较低且对边缘要求不高的场景。</li>
+<li><strong>高斯滤波</strong>：通过空间加权实现更自然的平滑效果，对细节保留较好。常用于预处理步骤中去除高频噪声。</li>
+<li><strong>中值滤波</strong>：特别适合去除椒盐噪声，因其中值运算对异常值不敏感，能较好地保护边缘信息。</li>
+<li><strong>双边滤波</strong>：结合空间和像素值信息，在降噪的同时能较好地保留边缘，适用于高质量图像处理。</li>
+</ul>
+<p>实际应用中需根据噪声类型和图像特点选择合适的滤波方法。通过调整核大小和参数，可灵活平衡平滑效果与细节保留。</p>
 <hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
@@ -519,13 +706,13 @@ target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/d7/da8/tutorial
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">32k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:40</span>
+    <span title="站点阅读时长">1:46</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -617,26 +804,6 @@ setInterval("createtime()",250);
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: 'unset',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app","el":"#twikoo-comments"}</script>
 
 
@@ -667,6 +834,26 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <div class="moon-menu">
   <div class="moon-menu-items">
     
