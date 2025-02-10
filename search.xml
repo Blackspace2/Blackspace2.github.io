@@ -436,6 +436,15 @@ class="math inline">\(\sigma_s\)</span>
 <li><code>Point(-1, -1)</code>：锚点位置（默认中心）</li>
 </ul>
 <h3 id="代码实现">代码实现</h3>
+<h4 id="均值滤波示例">均值滤波示例</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Mat src = <span class="built_in">imread</span>(<span class="string">&quot;lena.jpg&quot;</span>, cv::IMREAD_COLOR);</span><br><span class="line">Mat dst;</span><br><span class="line">cv::<span class="built_in">blur</span>(src, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), cv::<span class="built_in">Point</span>(<span class="number">-1</span>, <span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><code>src</code>：输入图像</li>
+<li><code>dst</code>：输出图像</li>
+<li><code>Size(w, h)</code>：核大小（需为奇数）</li>
+<li><code>Point(-1, -1)</code>：锚点位置（默认中心）</li>
+</ul>
 <h4 id="高斯滤波示例">高斯滤波示例</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cv::<span class="built_in">GaussianBlur</span>(src, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p>参数 <code>0</code> 表示自动计算标准差。</p>
@@ -460,6 +469,135 @@ class="math inline">\(\sigma_s\)</span>
 <li><strong>双边滤波</strong>：结合空间和像素值信息，在降噪的同时能较好地保留边缘，适用于高质量图像处理。</li>
 </ul>
 <p>实际应用中需根据噪声类型和图像特点选择合适的滤波方法。通过调整核大小和参数，可灵活平衡平滑效果与细节保留。</p>
+<hr />
+<h2 id="形态学操作之腐蚀与膨胀">形态学操作之腐蚀与膨胀</h2>
+<p>本文介绍OpenCV中两种基础的形态学操作——<strong>腐蚀（Erosion）</strong>与<strong>膨胀（Dilation）</strong>，并通过代码示例展示其应用方法。</p>
+<h3 id="形态学操作简介">形态学操作简介</h3>
+<p>形态学操作通过
+<strong>结构元素（Kernel）</strong>对图像进行形状处理，常用于去噪、分离或连接图像元素。核心操作包括：</p>
+<ol type="1">
+<li><strong>腐蚀</strong>：缩小图像中的亮区域，扩大暗区域。<br />
+</li>
+<li><strong>膨胀</strong>：扩大图像中的亮区域，缩小暗区域。</li>
+</ol>
+<p>数学表达式如下：</p>
+<ul>
+<li><strong>膨胀</strong>：</li>
+</ul>
+<p><span class="math display">\[
+\text{dst}(x, y) = \max_{(x&#39;,y&#39;)} \text{src}(x + x&#39;, y +
+y&#39;) \nonumber
+\]</span></p>
+<ul>
+<li><strong>腐蚀</strong>：</li>
+</ul>
+<p><span class="math display">\[
+\text{dst}(x, y) = \min_{(x&#39;,y&#39;)} \text{src}(x + x&#39;, y +
+y&#39;) \nonumber
+\]</span></p>
+<p>膨胀和腐蚀和神经网络中的池化操作在操作上有相似之处。</p>
+<h3 id="核心函数与代码实现">核心函数与代码实现</h3>
+<p>OpenCV提供<code>cv::erode</code>和<code>cv::dilate</code>函数实现腐蚀与膨胀。以下代码演示如何通过滑动条动态调整结构元素类型和大小：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line">cv::Mat src, erosion_dst, dilation_dst;</span><br><span class="line"><span class="type">int</span> erosion_elem = <span class="number">0</span>, dilation_elem = <span class="number">0</span>;       <span class="comment">// 结构元素类型 0: 矩形，1: 十字，2: 椭圆</span></span><br><span class="line"><span class="type">int</span> erosion_size = <span class="number">0</span>, dilation_size = <span class="number">0</span>;       <span class="comment">// 结构元素的大小</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_elem = <span class="number">2</span>, max_kernel_size = <span class="number">21</span>;  <span class="comment">// 最大结构元素类型和最大核尺寸</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Erosion</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dilation</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="function">cv::CommandLineParser <span class="title">parser</span><span class="params">(argc, argv, <span class="string">&quot;&#123;@input | cat.jpg | input image&#125;&quot;</span>)</span></span>;</span><br><span class="line">    src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(parser.<span class="built_in">get</span>&lt;cv::String&gt;(<span class="string">&quot;@input&quot;</span>)), cv::IMREAD_COLOR);</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;无法加载图像！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建窗口</span></span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;腐蚀示例&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;膨胀示例&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">    cv::<span class="built_in">moveWindow</span>(<span class="string">&quot;膨胀示例&quot;</span>, src.cols, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建滑动条</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;结构元素&quot;</span>, <span class="string">&quot;腐蚀示例&quot;</span>, &amp;erosion_elem, max_elem, Erosion);       <span class="comment">// 结构元素类型 0: 矩形，1: 十字，2: 椭圆</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;核大小&quot;</span>, <span class="string">&quot;腐蚀示例&quot;</span>, &amp;erosion_size, max_kernel_size, Erosion);  <span class="comment">// 核尺寸 2*n+1 确保为奇数</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;结构元素&quot;</span>, <span class="string">&quot;膨胀示例&quot;</span>, &amp;dilation_elem, max_elem, Dilation);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;核大小&quot;</span>, <span class="string">&quot;膨胀示例&quot;</span>, &amp;dilation_size, max_kernel_size, Dilation);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始调用（更新显示效果）</span></span><br><span class="line">    <span class="built_in">Erosion</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">Dilation</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Erosion</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 根据滑动条选择结构元素类型</span></span><br><span class="line">    <span class="type">int</span> erosion_type = cv::MORPH_RECT;  <span class="comment">// 默认矩形</span></span><br><span class="line">    <span class="keyword">if</span> (erosion_elem == <span class="number">1</span>)</span><br><span class="line">        erosion_type = cv::MORPH_CROSS;  <span class="comment">// 十字</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (erosion_elem == <span class="number">2</span>)</span><br><span class="line">        erosion_type = cv::MORPH_ELLIPSE;  <span class="comment">// 椭圆</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取结构元素（注意使用 cv::getStructuringElement）</span></span><br><span class="line">    cv::Mat element = cv::<span class="built_in">getStructuringElement</span>(erosion_type,</span><br><span class="line">                                                cv::<span class="built_in">Size</span>(<span class="number">2</span> * erosion_size + <span class="number">1</span>, <span class="number">2</span> * erosion_size + <span class="number">1</span>),</span><br><span class="line">                                                cv::<span class="built_in">Point</span>(erosion_size, erosion_size));</span><br><span class="line">    <span class="comment">// 执行腐蚀操作</span></span><br><span class="line">    cv::<span class="built_in">erode</span>(src, erosion_dst, element);</span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;腐蚀示例&quot;</span>, erosion_dst);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dilation</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> dilation_type = cv::MORPH_RECT;</span><br><span class="line">    <span class="keyword">if</span> (dilation_elem == <span class="number">1</span>)</span><br><span class="line">        dilation_type = cv::MORPH_CROSS;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (dilation_elem == <span class="number">2</span>)</span><br><span class="line">        dilation_type = cv::MORPH_ELLIPSE;</span><br><span class="line"></span><br><span class="line">    cv::Mat element = cv::<span class="built_in">getStructuringElement</span>(dilation_type,</span><br><span class="line">                                                cv::<span class="built_in">Size</span>(<span class="number">2</span> * dilation_size + <span class="number">1</span>, <span class="number">2</span> * dilation_size + <span class="number">1</span>),</span><br><span class="line">                                                cv::<span class="built_in">Point</span>(dilation_size, dilation_size));</span><br><span class="line">    <span class="comment">// 执行膨胀操作</span></span><br><span class="line">    cv::<span class="built_in">dilate</span>(src, dilation_dst, element);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;膨胀示例&quot;</span>, dilation_dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码解析">代码解析</h3>
+<ol type="1">
+<li><strong>图像加载与窗口创建</strong>
+<ul>
+<li>使用<code>cv::imread</code>加载图像，<code>cv::namedWindow</code>创建显示窗口。<br />
+</li>
+<li><code>cv::moveWindow</code>调整窗口位置，避免重叠。</li>
+</ul></li>
+<li><strong>滑动条控制</strong>
+<ul>
+<li><code>cv::createTrackbar</code>创建滑动条，动态调整结构元素类型（矩形、十字、椭圆）和核大小。<br />
+</li>
+<li>核大小的计算公式为<code>2n + 1</code>，确保核为奇数尺寸。</li>
+</ul></li>
+<li><strong>腐蚀与膨胀函数</strong>
+<ul>
+<li><code>cv::getStructuringElement</code>生成指定形状和大小的结构元素。<br />
+</li>
+<li><code>cv::erode</code>和<code>cv::dilate</code>分别执行腐蚀和膨胀操作。</li>
+</ul></li>
+</ol>
+<details class="note info"><summary><p>相关函数解释</p>
+</summary>
+<p><strong>1. <code>cv::getStructuringElement</code></strong></p>
+<p><strong>功能</strong>：生成指定形状和大小的结构元素（Kernel），用于形态学操作。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat cv<span class="op">::</span>getStructuringElement<span class="op">(</span><span class="dt">int</span> shape<span class="op">,</span> cv<span class="op">::</span>Size ksize<span class="op">,</span> cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">));</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>shape</code>：结构元素的形状，可选值：
+<ul>
+<li><code>cv::MORPH_RECT</code>：矩形<br />
+</li>
+<li><code>cv::MORPH_CROSS</code>：十字形<br />
+</li>
+<li><code>cv::MORPH_ELLIPSE</code>：椭圆形<br />
+</li>
+</ul></li>
+<li><code>ksize</code>：结构元素的大小，通常为奇数（如<code>Size(3, 3)</code>）。<br />
+</li>
+<li><code>anchor</code>：锚点位置，默认为中心点<code>(-1, -1)</code>。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat element <span class="op">=</span> cv<span class="op">::</span>getStructuringElement<span class="op">(</span>cv<span class="op">::</span>MORPH_RECT<span class="op">,</span> cv<span class="op">::</span>Size<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span><span class="op">));</span></span></code></pre></div>
+<p><strong>2. <code>cv::erode</code></strong></p>
+<p><strong>功能</strong>：对图像进行腐蚀操作，缩小亮区域，扩大暗区域。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cv<span class="op">::</span>erode<span class="op">(</span>cv<span class="op">::</span>InputArray src<span class="op">,</span> cv<span class="op">::</span>OutputArray dst<span class="op">,</span> cv<span class="op">::</span>InputArray kernel<span class="op">,</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">),</span> <span class="dt">int</span> iterations <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="dt">int</span> borderType <span class="op">=</span> cv<span class="op">::</span>BORDER_CONSTANT<span class="op">,</span> <span class="at">const</span> cv<span class="op">::</span>Scalar<span class="op">&amp;</span> borderValue <span class="op">=</span> cv<span class="op">::</span>morphologyDefaultBorderValue<span class="op">());</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>src</code>：输入图像。<br />
+</li>
+<li><code>dst</code>：输出图像。<br />
+</li>
+<li><code>kernel</code>：结构元素，可通过<code>cv::getStructuringElement</code>生成。<br />
+</li>
+<li><code>anchor</code>：锚点位置，默认为中心点。<br />
+</li>
+<li><code>iterations</code>：腐蚀操作的迭代次数。<br />
+</li>
+<li><code>borderType</code>：边界填充类型。<br />
+</li>
+<li><code>borderValue</code>：边界填充值。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat eroded<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>erode<span class="op">(</span>src<span class="op">,</span> eroded<span class="op">,</span> element<span class="op">);</span></span></code></pre></div>
+<p><strong>3. <code>cv::dilate</code></strong></p>
+<p><strong>功能</strong>：对图像进行膨胀操作，扩大亮区域，缩小暗区域。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cv<span class="op">::</span>dilate<span class="op">(</span>cv<span class="op">::</span>InputArray src<span class="op">,</span> cv<span class="op">::</span>OutputArray dst<span class="op">,</span> cv<span class="op">::</span>InputArray kernel<span class="op">,</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">),</span> <span class="dt">int</span> iterations <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span> borderType <span class="op">=</span> cv<span class="op">::</span>BORDER_CONSTANT<span class="op">,</span> <span class="at">const</span> cv<span class="op">::</span>Scalar<span class="op">&amp;</span> borderValue <span class="op">=</span> cv<span class="op">::</span>morphologyDefaultBorderValue<span class="op">());</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li>参数与<code>cv::erode</code>相同。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat dilated<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>dilate<span class="op">(</span>src<span class="op">,</span> dilated<span class="op">,</span> element<span class="op">);</span></span></code></pre></div>
+<p><strong>4. 总结</strong></p>
+<ul>
+<li><code>cv::getStructuringElement</code>：生成结构元素，决定腐蚀或膨胀的形状和大小。<br />
+</li>
+<li><code>cv::erode</code>：腐蚀操作，缩小亮区域。<br />
+</li>
+<li><code>cv::dilate</code>：膨胀操作，扩大亮区域。</li>
+</ul>
+<p>通过组合这些函数，可以实现图像去噪、边缘检测等形态学操作。</p>
+
+</details>
 <hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
@@ -1460,6 +1598,24 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python 装饰器</title>
     <url>/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -1513,53 +1669,6 @@ data-cites="property">@property</span></h3>
       <tags>
         <tag>python</tag>
         <tag>装饰器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <categories>
-        <category>git 管理工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python 常用语法糖</title>
-    <url>/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="数字分隔符">1. 数字分隔符</h2>
-<p>当数值较大时，可以用数字分隔符来进行划分</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1_000_000</span> <span class="comment"># 等同于 1000000</span></span><br></pre></td></tr></table></figure>
-<h2 id="交换变量值">2. 交换变量值</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
-<h2 id="连续比较式">3. 连续比较式</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">10</span> &lt; a &lt; <span class="number">20</span>:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串乘法">4. 字符串乘法</h2>
-<p>可用于快速构造字符串</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> * <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="列表拼接">5. 列表拼接</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">c = a + b  <span class="comment"># c = [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="comment"># a.extend(b) 后相当于 a = a + b = [1, 2, 3, 4, 5, 6], a 被改变了</span></span><br><span class="line"><span class="comment"># 不能用一个变量去接收，即 c = a.extend(b) 这样 c 的值是 None，并不会赋值给 c </span></span><br></pre></td></tr></table></figure>
-<h2 id="打包解包">6. 打包解包</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">x, y, z = a</span><br></pre></td></tr></table></figure>
-<h2 id="with-语句">7. with 语句</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;file_name&quot;</span>,<span class="string">&#x27;mode&#x27;</span>) <span class="keyword">as</span> new_name:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>语法糖</tag>
       </tags>
   </entry>
   <entry>
@@ -1736,117 +1845,32 @@ class="math display">\[
       </tags>
   </entry>
   <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <title>python 常用语法糖</title>
+    <url>/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 36%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">分母布局</th>
-<th style="text-align: center;">分子布局</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}} = \frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-A}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial
-\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
-A\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
-X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A+A^T)X\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X^T(A+A^T)\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X(A^T+A)\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A^T+A)X^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(XA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-</tr>
-</tbody>
-</table>
-<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
-<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
+<h2 id="数字分隔符">1. 数字分隔符</h2>
+<p>当数值较大时，可以用数字分隔符来进行划分</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1_000_000</span> <span class="comment"># 等同于 1000000</span></span><br></pre></td></tr></table></figure>
+<h2 id="交换变量值">2. 交换变量值</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
+<h2 id="连续比较式">3. 连续比较式</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">10</span> &lt; a &lt; <span class="number">20</span>:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串乘法">4. 字符串乘法</h2>
+<p>可用于快速构造字符串</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> * <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="列表拼接">5. 列表拼接</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">c = a + b  <span class="comment"># c = [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="comment"># a.extend(b) 后相当于 a = a + b = [1, 2, 3, 4, 5, 6], a 被改变了</span></span><br><span class="line"><span class="comment"># 不能用一个变量去接收，即 c = a.extend(b) 这样 c 的值是 None，并不会赋值给 c </span></span><br></pre></td></tr></table></figure>
+<h2 id="打包解包">6. 打包解包</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">x, y, z = a</span><br></pre></td></tr></table></figure>
+<h2 id="with-语句">7. with 语句</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;file_name&quot;</span>,<span class="string">&#x27;mode&#x27;</span>) <span class="keyword">as</span> new_name:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>数学</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>矩阵计算</tag>
+        <tag>python</tag>
+        <tag>语法糖</tag>
       </tags>
   </entry>
   <entry>
@@ -2435,6 +2459,120 @@ href="https://github.com/Blackspace2/space-resection-of-single-image.git">Github
         <tag>python</tag>
         <tag>后方交会</tag>
         <tag>摄影测量</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}} = \frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
+<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>

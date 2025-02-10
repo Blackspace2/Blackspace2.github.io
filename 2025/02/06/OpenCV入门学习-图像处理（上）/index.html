@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":800},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑">
+    <meta name="description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV入门学习-图像处理（上）">
 <meta property="og:url" content="https://blackspace2.github.io/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
 <meta property="og:site_name" content="Peace">
-<meta property="og:description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑">
+<meta property="og:description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://docs.opencv.org/4.x/Drawing_1_Tutorial_Result_0.png">
 <meta property="article:published_time" content="2025-02-05T23:30:37.123Z">
-<meta property="article:modified_time" content="2025-02-09T13:20:59.683Z">
+<meta property="article:modified_time" content="2025-02-10T07:52:40.259Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -147,7 +147,7 @@
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80"><span class="nav-text">绘图基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">核心数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cvpoint"><span class="nav-text">cv::Point</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvscalar"><span class="nav-text">cv::Scalar</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-text">基础绘图函数实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83"><span class="nav-text">创建画布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9B%B4%E7%BA%BF"><span class="nav-text">绘制直线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E6%A4%AD%E5%9C%86"><span class="nav-text">绘制椭圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%AE%9E%E5%BF%83%E5%9C%86"><span class="nav-text">绘制实心圆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">绘制多边形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2"><span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC"><span class="nav-text">添加文本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2"><span class="nav-text">仿射变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E4%B8%8E%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">随机数生成与文本绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-text">随机数生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E9%9A%8F%E6%9C%BA%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="nav-text">绘制随机几何图形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%96%87%E6%9C%AC%E7%BB%98%E5%88%B6"><span class="nav-text">动态文本绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%B8%90%E5%8F%98%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C"><span class="nav-text">动态渐变文字效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-1"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91"><span class="nav-text">图像平滑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2normalized-box-filter"><span class="nav-text">均值滤波（Normalized Box
-Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2gaussian-filter"><span class="nav-text">高斯滤波（Gaussian Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2median-filter"><span class="nav-text">中值滤波（Median Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2bilateral-filter"><span class="nav-text">双边滤波（Bilateral Filter）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">高斯滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">中值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">双边滤波示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">完整代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2gaussian-filter"><span class="nav-text">高斯滤波（Gaussian Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2median-filter"><span class="nav-text">中值滤波（Median Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2bilateral-filter"><span class="nav-text">双边滤波（Bilateral Filter）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">均值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">高斯滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">中值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">双边滤波示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">完整代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E4%B9%8B%E8%85%90%E8%9A%80%E4%B8%8E%E8%86%A8%E8%83%80"><span class="nav-text">形态学操作之腐蚀与膨胀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E7%AE%80%E4%BB%8B"><span class="nav-text">形态学操作简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">核心函数与代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-text">代码解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,7 +234,7 @@ Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" hr
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="OpenCV入门学习-图像处理（上） | Peace">
-      <meta itemprop="description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑">
+      <meta itemprop="description" content="绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作">
     </span>
 
       <header class="post-header">
@@ -259,7 +259,7 @@ Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" hr
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-09 21:20:59" itemprop="dateModified" datetime="2025-02-09T21:20:59+08:00">2025-02-09</time>
+      <time title="修改时间：2025-02-10 15:52:40" itemprop="dateModified" datetime="2025-02-10T15:52:40+08:00">2025-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,19 +285,19 @@ Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" hr
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.6k</span>
+      <span>5.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>15 分钟</span>
+      <span>20 分钟</span>
     </span>
   
 </div>
 
-            <div class="post-description">绘图基础 | 随机数生成与文本绘制 | 图像平滑</div>
+            <div class="post-description">绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作</div>
           
         </div>
       </header>
@@ -551,6 +551,15 @@ class="math inline">\(\sigma_s\)</span>
 <li><code>Point(-1, -1)</code>：锚点位置（默认中心）</li>
 </ul>
 <h3 id="代码实现">代码实现</h3>
+<h4 id="均值滤波示例">均值滤波示例</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mat src = <span class="built_in">imread</span>(<span class="string">&quot;lena.jpg&quot;</span>, cv::IMREAD_COLOR);</span><br><span class="line">Mat dst;</span><br><span class="line">cv::<span class="built_in">blur</span>(src, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), cv::<span class="built_in">Point</span>(<span class="number">-1</span>, <span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li><code>src</code>：输入图像</li>
+<li><code>dst</code>：输出图像</li>
+<li><code>Size(w, h)</code>：核大小（需为奇数）</li>
+<li><code>Point(-1, -1)</code>：锚点位置（默认中心）</li>
+</ul>
 <h4 id="高斯滤波示例">高斯滤波示例</h4>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv::<span class="built_in">GaussianBlur</span>(src, dst, <span class="built_in">Size</span>(<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 <p>参数 <code>0</code> 表示自动计算标准差。</p>
@@ -575,6 +584,135 @@ class="math inline">\(\sigma_s\)</span>
 <li><strong>双边滤波</strong>：结合空间和像素值信息，在降噪的同时能较好地保留边缘，适用于高质量图像处理。</li>
 </ul>
 <p>实际应用中需根据噪声类型和图像特点选择合适的滤波方法。通过调整核大小和参数，可灵活平衡平滑效果与细节保留。</p>
+<hr />
+<h2 id="形态学操作之腐蚀与膨胀">形态学操作之腐蚀与膨胀</h2>
+<p>本文介绍OpenCV中两种基础的形态学操作——<strong>腐蚀（Erosion）</strong>与<strong>膨胀（Dilation）</strong>，并通过代码示例展示其应用方法。</p>
+<h3 id="形态学操作简介">形态学操作简介</h3>
+<p>形态学操作通过
+<strong>结构元素（Kernel）</strong>对图像进行形状处理，常用于去噪、分离或连接图像元素。核心操作包括：</p>
+<ol type="1">
+<li><strong>腐蚀</strong>：缩小图像中的亮区域，扩大暗区域。<br />
+</li>
+<li><strong>膨胀</strong>：扩大图像中的亮区域，缩小暗区域。</li>
+</ol>
+<p>数学表达式如下：</p>
+<ul>
+<li><strong>膨胀</strong>：</li>
+</ul>
+<p><span class="math display">\[
+\text{dst}(x, y) = \max_{(x&#39;,y&#39;)} \text{src}(x + x&#39;, y +
+y&#39;) \nonumber
+\]</span></p>
+<ul>
+<li><strong>腐蚀</strong>：</li>
+</ul>
+<p><span class="math display">\[
+\text{dst}(x, y) = \min_{(x&#39;,y&#39;)} \text{src}(x + x&#39;, y +
+y&#39;) \nonumber
+\]</span></p>
+<p>膨胀和腐蚀和神经网络中的池化操作在操作上有相似之处。</p>
+<h3 id="核心函数与代码实现">核心函数与代码实现</h3>
+<p>OpenCV提供<code>cv::erode</code>和<code>cv::dilate</code>函数实现腐蚀与膨胀。以下代码演示如何通过滑动条动态调整结构元素类型和大小：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line">cv::Mat src, erosion_dst, dilation_dst;</span><br><span class="line"><span class="type">int</span> erosion_elem = <span class="number">0</span>, dilation_elem = <span class="number">0</span>;       <span class="comment">// 结构元素类型 0: 矩形，1: 十字，2: 椭圆</span></span><br><span class="line"><span class="type">int</span> erosion_size = <span class="number">0</span>, dilation_size = <span class="number">0</span>;       <span class="comment">// 结构元素的大小</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_elem = <span class="number">2</span>, max_kernel_size = <span class="number">21</span>;  <span class="comment">// 最大结构元素类型和最大核尺寸</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Erosion</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dilation</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="function">cv::CommandLineParser <span class="title">parser</span><span class="params">(argc, argv, <span class="string">&quot;&#123;@input | cat.jpg | input image&#125;&quot;</span>)</span></span>;</span><br><span class="line">    src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(parser.<span class="built_in">get</span>&lt;cv::String&gt;(<span class="string">&quot;@input&quot;</span>)), cv::IMREAD_COLOR);</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;无法加载图像！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建窗口</span></span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;腐蚀示例&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(<span class="string">&quot;膨胀示例&quot;</span>, cv::WINDOW_AUTOSIZE);</span><br><span class="line">    cv::<span class="built_in">moveWindow</span>(<span class="string">&quot;膨胀示例&quot;</span>, src.cols, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建滑动条</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;结构元素&quot;</span>, <span class="string">&quot;腐蚀示例&quot;</span>, &amp;erosion_elem, max_elem, Erosion);       <span class="comment">// 结构元素类型 0: 矩形，1: 十字，2: 椭圆</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;核大小&quot;</span>, <span class="string">&quot;腐蚀示例&quot;</span>, &amp;erosion_size, max_kernel_size, Erosion);  <span class="comment">// 核尺寸 2*n+1 确保为奇数</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;结构元素&quot;</span>, <span class="string">&quot;膨胀示例&quot;</span>, &amp;dilation_elem, max_elem, Dilation);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;核大小&quot;</span>, <span class="string">&quot;膨胀示例&quot;</span>, &amp;dilation_size, max_kernel_size, Dilation);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始调用（更新显示效果）</span></span><br><span class="line">    <span class="built_in">Erosion</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">Dilation</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Erosion</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 根据滑动条选择结构元素类型</span></span><br><span class="line">    <span class="type">int</span> erosion_type = cv::MORPH_RECT;  <span class="comment">// 默认矩形</span></span><br><span class="line">    <span class="keyword">if</span> (erosion_elem == <span class="number">1</span>)</span><br><span class="line">        erosion_type = cv::MORPH_CROSS;  <span class="comment">// 十字</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (erosion_elem == <span class="number">2</span>)</span><br><span class="line">        erosion_type = cv::MORPH_ELLIPSE;  <span class="comment">// 椭圆</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取结构元素（注意使用 cv::getStructuringElement）</span></span><br><span class="line">    cv::Mat element = cv::<span class="built_in">getStructuringElement</span>(erosion_type,</span><br><span class="line">                                                cv::<span class="built_in">Size</span>(<span class="number">2</span> * erosion_size + <span class="number">1</span>, <span class="number">2</span> * erosion_size + <span class="number">1</span>),</span><br><span class="line">                                                cv::<span class="built_in">Point</span>(erosion_size, erosion_size));</span><br><span class="line">    <span class="comment">// 执行腐蚀操作</span></span><br><span class="line">    cv::<span class="built_in">erode</span>(src, erosion_dst, element);</span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;腐蚀示例&quot;</span>, erosion_dst);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dilation</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> dilation_type = cv::MORPH_RECT;</span><br><span class="line">    <span class="keyword">if</span> (dilation_elem == <span class="number">1</span>)</span><br><span class="line">        dilation_type = cv::MORPH_CROSS;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (dilation_elem == <span class="number">2</span>)</span><br><span class="line">        dilation_type = cv::MORPH_ELLIPSE;</span><br><span class="line"></span><br><span class="line">    cv::Mat element = cv::<span class="built_in">getStructuringElement</span>(dilation_type,</span><br><span class="line">                                                cv::<span class="built_in">Size</span>(<span class="number">2</span> * dilation_size + <span class="number">1</span>, <span class="number">2</span> * dilation_size + <span class="number">1</span>),</span><br><span class="line">                                                cv::<span class="built_in">Point</span>(dilation_size, dilation_size));</span><br><span class="line">    <span class="comment">// 执行膨胀操作</span></span><br><span class="line">    cv::<span class="built_in">dilate</span>(src, dilation_dst, element);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;膨胀示例&quot;</span>, dilation_dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码解析">代码解析</h3>
+<ol type="1">
+<li><strong>图像加载与窗口创建</strong>
+<ul>
+<li>使用<code>cv::imread</code>加载图像，<code>cv::namedWindow</code>创建显示窗口。<br />
+</li>
+<li><code>cv::moveWindow</code>调整窗口位置，避免重叠。</li>
+</ul></li>
+<li><strong>滑动条控制</strong>
+<ul>
+<li><code>cv::createTrackbar</code>创建滑动条，动态调整结构元素类型（矩形、十字、椭圆）和核大小。<br />
+</li>
+<li>核大小的计算公式为<code>2n + 1</code>，确保核为奇数尺寸。</li>
+</ul></li>
+<li><strong>腐蚀与膨胀函数</strong>
+<ul>
+<li><code>cv::getStructuringElement</code>生成指定形状和大小的结构元素。<br />
+</li>
+<li><code>cv::erode</code>和<code>cv::dilate</code>分别执行腐蚀和膨胀操作。</li>
+</ul></li>
+</ol>
+<details class="note info"><summary><p>相关函数解释</p>
+</summary>
+<p><strong>1. <code>cv::getStructuringElement</code></strong></p>
+<p><strong>功能</strong>：生成指定形状和大小的结构元素（Kernel），用于形态学操作。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat cv<span class="op">::</span>getStructuringElement<span class="op">(</span><span class="dt">int</span> shape<span class="op">,</span> cv<span class="op">::</span>Size ksize<span class="op">,</span> cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">));</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>shape</code>：结构元素的形状，可选值：
+<ul>
+<li><code>cv::MORPH_RECT</code>：矩形<br />
+</li>
+<li><code>cv::MORPH_CROSS</code>：十字形<br />
+</li>
+<li><code>cv::MORPH_ELLIPSE</code>：椭圆形<br />
+</li>
+</ul></li>
+<li><code>ksize</code>：结构元素的大小，通常为奇数（如<code>Size(3, 3)</code>）。<br />
+</li>
+<li><code>anchor</code>：锚点位置，默认为中心点<code>(-1, -1)</code>。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat element <span class="op">=</span> cv<span class="op">::</span>getStructuringElement<span class="op">(</span>cv<span class="op">::</span>MORPH_RECT<span class="op">,</span> cv<span class="op">::</span>Size<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span><span class="op">));</span></span></code></pre></div>
+<p><strong>2. <code>cv::erode</code></strong></p>
+<p><strong>功能</strong>：对图像进行腐蚀操作，缩小亮区域，扩大暗区域。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cv<span class="op">::</span>erode<span class="op">(</span>cv<span class="op">::</span>InputArray src<span class="op">,</span> cv<span class="op">::</span>OutputArray dst<span class="op">,</span> cv<span class="op">::</span>InputArray kernel<span class="op">,</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">),</span> <span class="dt">int</span> iterations <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="dt">int</span> borderType <span class="op">=</span> cv<span class="op">::</span>BORDER_CONSTANT<span class="op">,</span> <span class="at">const</span> cv<span class="op">::</span>Scalar<span class="op">&amp;</span> borderValue <span class="op">=</span> cv<span class="op">::</span>morphologyDefaultBorderValue<span class="op">());</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>src</code>：输入图像。<br />
+</li>
+<li><code>dst</code>：输出图像。<br />
+</li>
+<li><code>kernel</code>：结构元素，可通过<code>cv::getStructuringElement</code>生成。<br />
+</li>
+<li><code>anchor</code>：锚点位置，默认为中心点。<br />
+</li>
+<li><code>iterations</code>：腐蚀操作的迭代次数。<br />
+</li>
+<li><code>borderType</code>：边界填充类型。<br />
+</li>
+<li><code>borderValue</code>：边界填充值。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat eroded<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>erode<span class="op">(</span>src<span class="op">,</span> eroded<span class="op">,</span> element<span class="op">);</span></span></code></pre></div>
+<p><strong>3. <code>cv::dilate</code></strong></p>
+<p><strong>功能</strong>：对图像进行膨胀操作，扩大亮区域，缩小暗区域。<br />
+<strong>函数原型</strong>：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cv<span class="op">::</span>dilate<span class="op">(</span>cv<span class="op">::</span>InputArray src<span class="op">,</span> cv<span class="op">::</span>OutputArray dst<span class="op">,</span> cv<span class="op">::</span>InputArray kernel<span class="op">,</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                cv<span class="op">::</span>Point anchor <span class="op">=</span> cv<span class="op">::</span>Point<span class="op">(-</span><span class="dv">1</span><span class="op">,-</span><span class="dv">1</span><span class="op">),</span> <span class="dt">int</span> iterations <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span> borderType <span class="op">=</span> cv<span class="op">::</span>BORDER_CONSTANT<span class="op">,</span> <span class="at">const</span> cv<span class="op">::</span>Scalar<span class="op">&amp;</span> borderValue <span class="op">=</span> cv<span class="op">::</span>morphologyDefaultBorderValue<span class="op">());</span></span></code></pre></div>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li>参数与<code>cv::erode</code>相同。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>Mat dilated<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cv<span class="op">::</span>dilate<span class="op">(</span>src<span class="op">,</span> dilated<span class="op">,</span> element<span class="op">);</span></span></code></pre></div>
+<p><strong>4. 总结</strong></p>
+<ul>
+<li><code>cv::getStructuringElement</code>：生成结构元素，决定腐蚀或膨胀的形状和大小。<br />
+</li>
+<li><code>cv::erode</code>：腐蚀操作，缩小亮区域。<br />
+</li>
+<li><code>cv::dilate</code>：膨胀操作，扩大亮区域。</li>
+</ul>
+<p>通过组合这些函数，可以实现图像去噪、边缘检测等形态学操作。</p>
+
+</details>
 <hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
@@ -706,13 +844,13 @@ target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/d7/da8/tutorial
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:46</span>
+    <span title="站点阅读时长">1:50</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -804,6 +942,26 @@ setInterval("createtime()",250);
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
 <script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":false,"envId":"https://twikoo-eta-smoky-88.vercel.app","el":"#twikoo-comments"}</script>
 
 
@@ -834,26 +992,6 @@ document.addEventListener('page:loaded', () => {
   display: inline-block;
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-
-<script>
-var options = {
-  bottom: '64px',
-  right: '32px',
-  left: 'unset',
-  time: '0.5s',
-  mixColor: 'transparent',
-  backgroundColor: 'transparent',
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-  saveInCookies: true,
-  label: '🌓',
-  autoMatchOsTheme: true
-}
-const darkmode = new Darkmode(options);
-window.darkmode = darkmode;
-darkmode.showWidget();
-</script>
 <div class="moon-menu">
   <div class="moon-menu-items">
     
