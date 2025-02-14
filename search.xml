@@ -841,21 +841,18 @@ class="math inline">\(G_{i} = \tilde{G}_i + L_i\)</span>.</li>
 </ol>
 <p>用一张图来说明图像金字塔 <img src="图像金字塔.svg"
 alt="图像金字塔" /></p>
+<p>图中拉普拉斯金字塔中的图像实际上对比度很低，所以这里通过
+<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/#Gamma">Gamma 校正</a>
+使得对比度提高了一些，看的时候方便一些。</p>
 <h4 id="示例代码-6">示例代码</h4>
-<p>以下代码展示了如何手动构建拉普拉斯金字塔：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;input.png&quot;</span>, cv::IMREAD_GRAYSCALE);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建高斯金字塔</span></span><br><span class="line">    cv::Mat gaussian_layer;</span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(image, gaussian_layer); <span class="comment">// 下采样</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建拉普拉斯金字塔</span></span><br><span class="line">    cv::Mat upsampled;</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(gaussian_layer, upsampled, image.<span class="built_in">size</span>()); <span class="comment">// 上采样</span></span><br><span class="line">    cv::Mat laplacian_layer = image - upsampled; <span class="comment">// 计算残差</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original&quot;</span>, image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Laplacian Layer&quot;</span>, laplacian_layer);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>代码解析</strong></p>
-<ol type="1">
-<li><strong>高斯下采样</strong>：使用 <code>cv::pyrDown</code>
+<p>以下代码展示了上图的产生过程：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">saveGammaImg</span><span class="params">(cv::String name, cv::Mat&amp; img)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cv::Mat src = cv::<span class="built_in">imread</span>(<span class="string">&quot;oiiai.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Error: Could not load image!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cv::Mat down1, down2, down3, down4, up1, up2, up3, up4;</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(src, down1, cv::<span class="built_in">Size</span>(src.cols / <span class="number">2</span>, src.rows / <span class="number">2</span>));</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(down1, up1, src.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(down1, down2, cv::<span class="built_in">Size</span>(down<span class="number">1.</span>cols / <span class="number">2</span>, down<span class="number">1.</span>rows / <span class="number">2</span>));</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(down2, up2, down<span class="number">1.</span><span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(down2, down3, cv::<span class="built_in">Size</span>(down<span class="number">2.</span>cols / <span class="number">2</span>, down<span class="number">2.</span>rows / <span class="number">2</span>));</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(down3, up3, down<span class="number">2.</span><span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(down3, down4, cv::<span class="built_in">Size</span>(down<span class="number">3.</span>cols / <span class="number">2</span>, down<span class="number">3.</span>rows / <span class="number">2</span>));</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(down4, up4, down<span class="number">3.</span><span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">    cv::Mat L1 = src - up1;</span><br><span class="line">    cv::Mat L2 = down1 - up2;</span><br><span class="line">    cv::Mat L3 = down2 - up3;</span><br><span class="line">    cv::Mat L4 = down3 - up4;</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/down1.jpg&quot;</span>, down1);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/up1.jpg&quot;</span>, up1);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/L1.jpg&quot;</span>, L1);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/down2.jpg&quot;</span>, down2);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/up2.jpg&quot;</span>, up2);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/L2.jpg&quot;</span>, L2);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/down3.jpg&quot;</span>, down3);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/up3.jpg&quot;</span>, up3);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/L3.jpg&quot;</span>, L3);</span><br><span class="line"></span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/down4.jpg&quot;</span>, down4);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/up4.jpg&quot;</span>, up4);</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(<span class="string">&quot;oiiai/L4.jpg&quot;</span>, L4);</span><br><span class="line"></span><br><span class="line">    std::vector&lt;cv::String&gt; stringSeed = &#123;<span class="string">&quot;oiiai/L1&quot;</span>, <span class="string">&quot;oiiai/L2&quot;</span>, <span class="string">&quot;oiiai/L3&quot;</span>, <span class="string">&quot;oiiai/L4&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; name : stringSeed) &#123;</span><br><span class="line">        cv::Mat img = cv::<span class="built_in">imread</span>(name + <span class="string">&quot;.jpg&quot;</span>, cv::IMREAD_GRAYSCALE);</span><br><span class="line">        <span class="keyword">if</span> (img.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            std::cerr &lt;&lt; <span class="string">&quot;Error: Could not load image &quot;</span> &lt;&lt; name &lt;&lt; <span class="string">&quot;.jpg&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">saveGammaImg</span>(name, img);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">saveGammaImg</span><span class="params">(cv::String name, cv::Mat&amp; img)</span> </span>&#123;</span><br><span class="line">    cv::Mat gamma_corrected;</span><br><span class="line">    img.<span class="built_in">convertTo</span>(gamma_corrected, CV_32F, <span class="number">1.0</span> / <span class="number">255.0</span>);</span><br><span class="line">    cv::<span class="built_in">pow</span>(gamma_corrected, <span class="number">0.5</span>, gamma_corrected);</span><br><span class="line">    gamma_corrected *= <span class="number">255</span>;</span><br><span class="line">    gamma_corrected.<span class="built_in">convertTo</span>(gamma_corrected, CV_8U);</span><br><span class="line"></span><br><span class="line">    name += <span class="string">&quot;_gamma.jpg&quot;</span>;</span><br><span class="line">    cv::<span class="built_in">imwrite</span>(name, gamma_corrected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>高斯下采样</strong>：使用 <code>cv::pyrDown</code>
 对原始图像下采样，得到低分辨率的高斯层。<br />
-</li>
-<li><strong>高斯上采样</strong>：对下采样后的高斯层使用
+<strong>高斯上采样</strong>：对下采样后的高斯层使用
 <code>cv::pyrUp</code> 上采样至原图尺寸。<br />
-</li>
-<li><strong>残差计算</strong>：将上采样后的图像与原图相减，得到拉普拉斯金字塔层。<br />
-</li>
-<li><strong>结果分析</strong>：拉普拉斯层中亮区域表示高频细节（如边缘、纹理），暗区域表示低频信息已被高斯金字塔保留。</li>
-</ol>
+<strong>残差计算</strong>：将上采样后的图像与原图相减，得到拉普拉斯金字塔层。<br />
+<strong>结果分析</strong>：拉普拉斯层中亮区域表示高频细节（如边缘、纹理），暗区域表示低频信息已被高斯金字塔保留。</p>
 <h4 id="应用场景">应用场景</h4>
 <ol type="1">
 <li><strong>图像融合</strong>
@@ -875,7 +872,6 @@ alt="图像金字塔" /></p>
 <li>通过增强拉普拉斯层的高频分量（如边缘锐化），再重建图像以提升清晰度。</li>
 </ul></li>
 </ol>
-<h3 id="section"></h3>
 <h3 id="总结-1">总结</h3>
 <p>拉普拉斯金字塔与高斯金字塔共同构成了多尺度图像分析的基础。前者通过残差捕捉细节，后者通过下采样简化结构。在
 OpenCV 中，虽然未直接提供拉普拉斯金字塔的函数，但通过组合
@@ -1502,24 +1498,6 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <categories>
-        <category>git 管理工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV入门学习-核心功能（下）</title>
     <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -1561,7 +1539,7 @@ class="math inline">\(0-255\)</span> 范围内，避免数值溢出。</p>
 <p>调整 <code>α=2.2</code> 和 <code>β=50</code>
 可显著提升暗图像的亮度，但可能导致高光区域过曝（如云层细节丢失）。此时可结合
 Gamma 校正优化。</p>
-<h3 id="gamma-校正">1.4. Gamma 校正</h3>
+<h3 id="gamma-校正">1.4. Gamma 校正 <span id="Gamma"></span></h3>
 <p>Gamma 校正通过非线性变换调整亮度：<br />
 <span class="math display">\[\nonumber O = \left( \frac{I}{255}
 \right)^\gamma \times 255\]</span></p>
@@ -1925,6 +1903,24 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       <tags>
         <tag>python</tag>
         <tag>语法糖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -2745,6 +2741,120 @@ href="https://github.com/Blackspace2/space-resection-of-single-image.git">Github
       </tags>
   </entry>
   <entry>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}} = \frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
+<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>支持向量机-SVM</title>
     <url>/2025/01/18/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -3323,120 +3433,6 @@ Vector Machines Succinctly</a><span id="ref3"></span><br />
       <tags>
         <tag>机器学习</tag>
         <tag>SVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 36%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">分母布局</th>
-<th style="text-align: center;">分子布局</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}} = \frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-A}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial
-\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
-A\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
-X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A+A^T)X\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X^T(A+A^T)\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X(A^T+A)\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A^T+A)X^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(XA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-</tr>
-</tbody>
-</table>
-<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
-<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>矩阵计算</tag>
       </tags>
   </entry>
   <entry>
