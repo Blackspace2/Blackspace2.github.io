@@ -29,8 +29,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://docs.opencv.org/4.x/Drawing_1_Tutorial_Result_0.png">
 <meta property="og:image" content="https://blackspace2.github.io/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/music.png">
+<meta property="og:image" content="https://blackspace2.github.io/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94.svg">
 <meta property="article:published_time" content="2025-02-05T23:30:37.123Z">
-<meta property="article:modified_time" content="2025-02-13T12:58:58.134Z">
+<meta property="article:modified_time" content="2025-02-14T16:16:28.789Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -151,7 +152,7 @@
 Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2gaussian-filter"><span class="nav-text">高斯滤波（Gaussian Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2median-filter"><span class="nav-text">中值滤波（Median Filter）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2bilateral-filter"><span class="nav-text">双边滤波（Bilateral Filter）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">均值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">高斯滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">中值滤波示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E8%BE%B9%E6%BB%A4%E6%B3%A2%E7%A4%BA%E4%BE%8B"><span class="nav-text">双边滤波示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-2"><span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C-morphological-operation"><span class="nav-text">形态学操作 (morphological
 operation)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%85%90%E8%9A%80%E4%B8%8E%E8%86%A8%E8%83%80-erosion-and-dilation"><span class="nav-text">腐蚀与膨胀 (erosion and
 dilation)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-3"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C"><span class="nav-text">高级形态学操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E8%BF%90%E7%AE%97-opening"><span class="nav-text">开运算 (Opening)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AD%E8%BF%90%E7%AE%97-closing"><span class="nav-text">闭运算 (Closing)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%A2%AF%E5%BA%A6-morphological-gradient"><span class="nav-text">形态学梯度 (Morphological
-Gradient)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E5%B8%BD-top-hat"><span class="nav-text">顶帽 (Top Hat)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E5%B8%BD-black-hat"><span class="nav-text">黑帽 (Black Hat)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BB%E4%B8%AD-%E4%B8%8D%E5%87%BB%E4%B8%AD-hit-or-miss"><span class="nav-text">击中-不击中 (Hit-or-Miss)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-text">形态学操作对比总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-4"><span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E8%BF%90%E7%AE%97%E9%97%AD%E8%BF%90%E7%AE%97%E6%A2%AF%E5%BA%A6%E9%A1%B6%E5%B8%BD%E9%BB%91%E5%B8%BD"><span class="nav-text">开运算、闭运算、梯度、顶帽、黑帽</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hit-miss"><span class="nav-text">hit-miss</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E6%8F%90%E5%8F%96%E6%B0%B4%E5%B9%B3%E4%B8%8E%E5%9E%82%E7%9B%B4%E7%BA%BF%E6%9D%A1"><span class="nav-text">形态学操作提取水平与垂直线条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%A1%A5%E5%85%85"><span class="nav-text">相关补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cvadaptivethreshold"><span class="nav-text">cv::adaptiveThreshold</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvmatcopyto"><span class="nav-text">cv::Mat::copyTo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+Gradient)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B6%E5%B8%BD-top-hat"><span class="nav-text">顶帽 (Top Hat)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E5%B8%BD-black-hat"><span class="nav-text">黑帽 (Black Hat)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BB%E4%B8%AD-%E4%B8%8D%E5%87%BB%E4%B8%AD-hit-or-miss"><span class="nav-text">击中-不击中 (Hit-or-Miss)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-text">形态学操作对比总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-4"><span class="nav-text">示例代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E8%BF%90%E7%AE%97%E9%97%AD%E8%BF%90%E7%AE%97%E6%A2%AF%E5%BA%A6%E9%A1%B6%E5%B8%BD%E9%BB%91%E5%B8%BD"><span class="nav-text">开运算、闭运算、梯度、顶帽、黑帽</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hit-miss"><span class="nav-text">hit-miss</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E6%8F%90%E5%8F%96%E6%B0%B4%E5%B9%B3%E4%B8%8E%E5%9E%82%E7%9B%B4%E7%BA%BF%E6%9D%A1"><span class="nav-text">形态学操作提取水平与垂直线条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%A1%A5%E5%85%85"><span class="nav-text">相关补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cvadaptivethreshold"><span class="nav-text">cv::adaptiveThreshold</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cvmatcopyto"><span class="nav-text">cv::Mat::copyTo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94"><span class="nav-text">图像金字塔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E9%87%91%E5%AD%97%E5%A1%94"><span class="nav-text">高斯金字塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-5"><span class="nav-text">示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E9%87%91%E5%AD%97%E5%A1%94"><span class="nav-text">拉普拉斯金字塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E%E9%AB%98%E6%96%AF%E9%87%91%E5%AD%97%E5%A1%94%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="nav-text">与高斯金字塔的对应关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-6"><span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -263,7 +264,7 @@ Gradient)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" hr
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-13 20:58:58" itemprop="dateModified" datetime="2025-02-13T20:58:58+08:00">2025-02-13</time>
+      <time title="修改时间：2025-02-15 00:16:28" itemprop="dateModified" datetime="2025-02-15T00:16:28+08:00">2025-02-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,14 +290,14 @@ Gradient)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" hr
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.1k</span>
+      <span>9.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>27 分钟</span>
+      <span>31 分钟</span>
     </span>
   
 </div>
@@ -893,6 +894,114 @@ dst</strong>：目标矩阵，用来存放复制后的结果。</li>
 </ul></li>
 </ul>
 <hr />
+<h2 id="图像金字塔">图像金字塔</h2>
+<p>图像金字塔是计算机视觉中用于多尺度分析的重要工具，其核心思想是通过
+<strong>下采样</strong> 与 <strong>上采样</strong>
+生成不同分辨率的图像序列。OpenCV提供了高斯金字塔（Gaussian
+Pyramid）和拉普拉斯金字塔（Laplacian Pyramid）两种实现方式。</p>
+<h3 id="高斯金字塔">高斯金字塔</h3>
+<p><strong>下采样（Downsampling）</strong><br />
+i. 对图像进行高斯卷积核滤波，核矩阵为：<br />
+<span class="math display">\[
+\frac{1}{256}\begin{bmatrix}
+1 &amp; 4 &amp; 6 &amp; 4 &amp; 1 \\
+4 &amp; 16 &amp; 24 &amp; 16 &amp; 4 \\
+6 &amp; 24 &amp; 36 &amp; 24 &amp; 6 \\
+4 &amp; 16 &amp; 24 &amp; 16 &amp; 4 \\
+1 &amp; 4 &amp; 6 &amp; 4 &amp; 1 \\
+\end{bmatrix} \nonumber
+\]</span><br />
+ii. 去除偶数行和偶数列，得到尺寸为原图1/4的新图像。<br />
+iii. 重复上述步骤生成金字塔各层。</p>
+<p><strong>上采样（Upsampling）</strong><br />
+i. 将图像尺寸扩大两倍，新增行列填充零。<br />
+ii. 使用相同的高斯核（乘以4）进行卷积，近似补全缺失像素值。</p>
+<h4 id="示例代码-5">示例代码</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgcodecs.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* window_name = <span class="string">&quot;Pyramids Demo&quot;</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* filename = argc &gt;=<span class="number">2</span> ? argv[<span class="number">1</span>] : <span class="string">&quot;chicky_512.png&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 加载图像</span></span><br><span class="line">    cv::Mat src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(filename));</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::<span class="built_in">printf</span>(<span class="string">&quot;Error opening image\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建窗口并循环处理用户输入</span></span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(window_name);</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, src);</span><br><span class="line">        <span class="type">char</span> c = (<span class="type">char</span>)cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (c == <span class="number">27</span>) &#123; <span class="comment">// ESC键退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;i&#x27;</span>) &#123; <span class="comment">// 上采样</span></span><br><span class="line">            <span class="comment">// 多次上采样会导致图像模糊，因插值过程无法恢复原始高频信息</span></span><br><span class="line">            cv::<span class="built_in">pyrUp</span>(src, src, cv::<span class="built_in">Size</span>(src.cols*<span class="number">2</span>, src.rows*<span class="number">2</span>));</span><br><span class="line">            std::<span class="built_in">printf</span>(<span class="string">&quot;** Zoom In: Image x2 \n&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;o&#x27;</span>) &#123; <span class="comment">// 下采样</span></span><br><span class="line">            cv::<span class="built_in">pyrDown</span>(src, src, cv::<span class="built_in">Size</span>(src.cols/<span class="number">2</span>, src.rows/<span class="number">2</span>));</span><br><span class="line">            std::<span class="built_in">printf</span>(<span class="string">&quot;** Zoom Out: Image /2 \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<ul>
+<li><strong>下采样示例</strong>：对 512×512 图像连续两次下采样，得到
+128×128 图像，细节信息逐步丢失。<br />
+</li>
+<li><strong>上采样示例</strong>：对下采样后的图像上采样，分辨率恢复但清晰度下降，体现金字塔重建的局限性。</li>
+</ul>
+<h3 id="拉普拉斯金字塔">拉普拉斯金字塔</h3>
+<p>拉普拉斯金字塔（Laplacian
+Pyramid）是高斯金字塔的补充，用于<strong>保存图像在不同尺度下的细节信息</strong>，从而实现高精度的图像重建。其核心思想是：通过高斯金字塔的下采样与上采样过程，计算相邻层之间的差异，从而捕捉高频细节。</p>
+<h4 id="与高斯金字塔的对应关系">与高斯金字塔的对应关系</h4>
+<ol type="1">
+<li><strong>生成方式</strong>
+<ul>
+<li><strong>高斯金字塔</strong>：通过逐层下采样生成低分辨率图像序列。<br />
+</li>
+<li><strong>拉普拉斯金字塔</strong>：通过以下步骤生成：
+<ul>
+<li>对高斯金字塔的某一层 <span class="math inline">\(G_{i+1}\)</span>
+进行上采样（使用 <code>cv::pyrUp</code>），得到近似的高分辨率图像 <span
+class="math inline">\(\tilde{G}_i\)</span>。<br />
+</li>
+<li>计算高斯金字塔原层 <span class="math inline">\(G_i\)</span>
+与上采样后的近似层 <span class="math inline">\(\tilde{G}_i\)</span>
+的差值：<span class="math inline">\(L_i = G_i -
+\tilde{G}_i\)</span></li>
+<li>$ L_i $
+即为拉普拉斯金字塔的当前层，保存了下采样过程中丢失的高频细节。</li>
+</ul></li>
+</ul></li>
+<li><strong>数学意义</strong>
+<ul>
+<li>拉普拉斯金字塔的每一层 <span class="math inline">\(L_i\)</span>
+记录了高斯金字塔相邻层之间的残差信息。<br />
+</li>
+<li>通过拉普拉斯金字塔，可以从最低分辨率的高斯层 <span
+class="math inline">\(G_n\)</span> 逐步向上恢复原始图像：<span
+class="math inline">\(G_{i} = \tilde{G}_i + L_i\)</span>.</li>
+<li>这一特性在图像融合、压缩和超分辨率重建中至关重要。</li>
+</ul></li>
+</ol>
+<p>用一张图来说明图像金字塔 <img src="图像金字塔.svg"
+alt="图像金字塔" /></p>
+<h4 id="示例代码-6">示例代码</h4>
+<p>以下代码展示了如何手动构建拉普拉斯金字塔：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;input.png&quot;</span>, cv::IMREAD_GRAYSCALE);</span><br><span class="line">    <span class="keyword">if</span> (image.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建高斯金字塔</span></span><br><span class="line">    cv::Mat gaussian_layer;</span><br><span class="line">    cv::<span class="built_in">pyrDown</span>(image, gaussian_layer); <span class="comment">// 下采样</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建拉普拉斯金字塔</span></span><br><span class="line">    cv::Mat upsampled;</span><br><span class="line">    cv::<span class="built_in">pyrUp</span>(gaussian_layer, upsampled, image.<span class="built_in">size</span>()); <span class="comment">// 上采样</span></span><br><span class="line">    cv::Mat laplacian_layer = image - upsampled; <span class="comment">// 计算残差</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 显示结果</span></span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Original&quot;</span>, image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;Laplacian Layer&quot;</span>, laplacian_layer);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>代码解析</strong></p>
+<ol type="1">
+<li><strong>高斯下采样</strong>：使用 <code>cv::pyrDown</code>
+对原始图像下采样，得到低分辨率的高斯层。<br />
+</li>
+<li><strong>高斯上采样</strong>：对下采样后的高斯层使用
+<code>cv::pyrUp</code> 上采样至原图尺寸。<br />
+</li>
+<li><strong>残差计算</strong>：将上采样后的图像与原图相减，得到拉普拉斯金字塔层。<br />
+</li>
+<li><strong>结果分析</strong>：拉普拉斯层中亮区域表示高频细节（如边缘、纹理），暗区域表示低频信息已被高斯金字塔保留。</li>
+</ol>
+<h4 id="应用场景">应用场景</h4>
+<ol type="1">
+<li><strong>图像融合</strong>
+<ul>
+<li>在融合不同曝光的图像时，拉普拉斯金字塔可分别保留各层细节，融合后重建出高质量图像。<br />
+</li>
+<li>例如：将两张图像的拉普拉斯金字塔逐层融合，再通过逆过程重建结果。</li>
+</ul></li>
+<li><strong>图像压缩</strong>
+<ul>
+<li>存储拉普拉斯金字塔的残差信息（稀疏矩阵）比直接存储原图更高效。<br />
+</li>
+<li>结合量化技术，可实现高压缩率且保留关键细节。</li>
+</ul></li>
+<li><strong>图像增强</strong>
+<ul>
+<li>通过增强拉普拉斯层的高频分量（如边缘锐化），再重建图像以提升清晰度。</li>
+</ul></li>
+</ol>
+<h3 id="section"></h3>
+<h3 id="总结-1">总结</h3>
+<p>拉普拉斯金字塔与高斯金字塔共同构成了多尺度图像分析的基础。前者通过残差捕捉细节，后者通过下采样简化结构。在
+OpenCV 中，虽然未直接提供拉普拉斯金字塔的函数，但通过组合
+<code>cv::pyrUp</code>、<code>cv::pyrDown</code>
+和矩阵运算即可实现其功能。理解二者的协同作用，将为图像处理任务（如超分辨率、图像融合）提供重要的技术支撑。</p>
+<hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
 target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/d7/da8/tutorial_table_of_content_imgproc.html">OpenCV
@@ -1023,13 +1132,13 @@ target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/d7/da8/tutorial
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">35k</span>
+    <span title="站点总字数">37k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:02</span>
   </span>
 </div>
 <div class="busuanzi-count">
