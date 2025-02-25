@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo 中的 markdown 语法</title>
+    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="页内跳转">1. 页内跳转</h2>
+<p>跳转到地方后面加上
+<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
+需要跳转的地方 <code>[跳转到](#jump)</code><br />
+注：<code>jump</code> 字段不能有中文、空格</p>
+<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
+此时图片引用语法： <code>![文本](图片名字)</code></p>
+<h2 id="html-插入图片">3. html 插入图片</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
+<p>渲染引擎：MathJax<br />
+插件：hexo-renderer-pandoc<br />
+参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
+<p>写行间公式的时候，两个 <code>$$</code>
+一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
+<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
+<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
+<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
+自定义编号，那么 hexo
+依然会跳过这个公式并且对后面的公式进行自动编号。<br />
+当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
+<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
+<code>equation</code> 环境来取消对公式的编号。</p>
+<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
+和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
+<p>参考：<br />
+[1] <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
+官方文档</a><br />
+[2] <a
+href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
+公式编号说明</a></p>
+<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
+<p>这里的英文句号会被渲染为中文的圆圈句号,改用
+<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>B样条曲线简介及其python实现</title>
     <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -136,55 +185,6 @@ href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
       <tags>
         <tag>B样条</tag>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 中的 markdown 语法</title>
-    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="页内跳转">1. 页内跳转</h2>
-<p>跳转到地方后面加上
-<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
-需要跳转的地方 <code>[跳转到](#jump)</code><br />
-注：<code>jump</code> 字段不能有中文、空格</p>
-<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
-此时图片引用语法： <code>![文本](图片名字)</code></p>
-<h2 id="html-插入图片">3. html 插入图片</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
-<p>渲染引擎：MathJax<br />
-插件：hexo-renderer-pandoc<br />
-参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
-<p>写行间公式的时候，两个 <code>$$</code>
-一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
-<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
-<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
-<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
-自定义编号，那么 hexo
-依然会跳过这个公式并且对后面的公式进行自动编号。<br />
-当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
-<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
-<code>equation</code> 环境来取消对公式的编号。</p>
-<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
-和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
-<p>参考：<br />
-[1] <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
-官方文档</a><br />
-[2] <a
-href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
-公式编号说明</a></p>
-<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
-<p>这里的英文句号会被渲染为中文的圆圈句号,改用
-<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
-]]></content>
-      <tags>
-        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
