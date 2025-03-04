@@ -20,28 +20,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":800},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="OpenCV入门学习-app工具（下）">
+    <meta name="description" content="模型评估与选择">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV入门学习-app工具（下）">
-<meta property="og:url" content="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/index.html">
+<meta property="og:title" content="模型评估与选择">
+<meta property="og:url" content="https://blackspace2.github.io/2025/03/03/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/index.html">
 <meta property="og:site_name" content="Peace">
-<meta property="og:description" content="OpenCV入门学习-app工具（下）">
+<meta property="og:description" content="模型评估与选择">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-02-02T14:22:51.527Z">
-<meta property="article:modified_time" content="2025-02-06T07:31:37.686Z">
+<meta property="article:published_time" content="2025-03-03T00:43:59.569Z">
+<meta property="article:modified_time" content="2025-03-03T03:20:06.064Z">
 <meta property="article:author" content="smile">
-<meta property="article:tag" content="计算机视觉">
-<meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/">
+<link rel="canonical" href="https://blackspace2.github.io/2025/03/03/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/","path":"2025/02/02/OpenCV入门学习-app工具（下）/","title":"OpenCV入门学习-app工具（下）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blackspace2.github.io/2025/03/03/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/","path":"2025/03/03/模型评估与选择/","title":"模型评估与选择"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>OpenCV入门学习-app工具（下） | Peace</title><meta name="robots" content="noindex">
+<title>模型评估与选择 | Peace</title><meta name="robots" content="noindex">
   
 
 
@@ -130,7 +128,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
@@ -144,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E8%AF%AF%E5%B7%AE%E4%B8%8E%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-text">经验误差与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95"><span class="nav-text">评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%99%E5%87%BA%E6%B3%95"><span class="nav-text">留出法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E6%B3%95"><span class="nav-text">交叉验证法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A9%E6%B3%95"><span class="nav-text">自助法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%8F%82%E4%BA%8E%E6%9C%80%E7%BB%88%E6%A8%A1%E5%9E%8B"><span class="nav-text">调参于最终模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%BA%A6%E9%87%8F"><span class="nav-text">性能度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%8E%87%E4%B8%8E%E7%B2%BE%E5%BA%A6"><span class="nav-text">错误率与精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E5%87%86%E7%8E%87%E6%9F%A5%E5%85%A8%E7%8E%87%E4%B8%8E-f1"><span class="nav-text">查准率、查全率与 F1</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://blackspace2.github.io/2025/03/03/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -229,13 +228,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="OpenCV入门学习-app工具（下） | Peace">
-      <meta itemprop="description" content="OpenCV入门学习-app工具（下）">
+      <meta itemprop="name" content="模型评估与选择 | Peace">
+      <meta itemprop="description" content="模型评估与选择">
     </span>
 
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          OpenCV入门学习-app工具（下）
+          模型评估与选择
         </h1>
 
         <div class="post-meta-container">
@@ -247,24 +246,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-02-02 22:22:51" itemprop="dateCreated datePublished" datetime="2025-02-02T22:22:51+08:00">2025-02-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-06 15:31:37" itemprop="dateModified" datetime="2025-02-06T15:31:37+08:00">2025-02-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a>
-        </span>
+      <time title="创建时间：2025-03-03 08:43:59 / 修改时间：11:20:06" itemprop="dateCreated datePublished" datetime="2025-03-03T08:43:59+08:00">2025-03-03</time>
     </span>
 
   
@@ -281,19 +265,19 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>8 分钟</span>
     </span>
   
 </div>
 
-            <div class="post-description">OpenCV入门学习-app工具（下）</div>
+            <div class="post-description">模型评估与选择</div>
           
         </div>
       </header>
@@ -302,6 +286,140 @@
     
     
     <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<p>机器学习中的模型评估与选择</p>
+<h2 id="经验误差与过拟合">经验误差与过拟合</h2>
+<p>错误率 = 分类错误样本数 / 样本总数<br />
+精度 = 1 - 错误率</p>
+<p>误差 = 实际预测输出 - 样本的真实输出<br />
+训练集上的误差：训练误差或经验误差<br />
+在新样本上的误差成为泛化误差</p>
+<p>我们希望得到泛化误差小的学习器，但我们事先不知道新样本，所以尽可能的使训练误差小。<br />
+当然，学习器也不能把训练样本学的太好了，不然就过拟合，反之即为欠拟合。<br />
+过拟合就是学习能力太强，把训练样本中的特性都学到了（换而言之是记住了），欠拟合是学习能力太差了，什么都学不到。</p>
+<p>过拟合无法避免，只能缓解或者说减小其风险。</p>
+<h2 id="评估方法">评估方法</h2>
+<p>用测试集来测试学习器对新样本的判别能力，以测试集上的“测试误差”作为泛化误差的近似。<br />
+假设测试样本是从样本真实分布中独立同分布采样而得。<br />
+测试集应该尽可能与训练集互斥，即测试样本尽量不在训练集中出现、未在训练过程中使用过。</p>
+<p>通过上述假设和结论，我们显然要对数据集进行划分， 以下是几种做法</p>
+<h3 id="留出法">留出法</h3>
+<p>留出法是将数据划分为两个互斥集合，一个集合作为训练集，另一个集合作为测试集，在训练集上训练出模型后，用测试集来评估其测试误差，作为对泛化误差的估计。<br />
+训练/测试集的划分要尽可能保持数据分布的一致性，避免因数据划分过程引入额外的偏差而对最终结果产生影响。从采样的角度来看数据集的划分过程，保留类别比例的采样方式成为“分层采样”。</p>
+<p>单次使用留出法得到的结果往往不够稳定可靠，一般要采用若干次随即划分，每次产生一个评估结果，取平均作为最后的结果。</p>
+<p>此外，我们希望评估的是用原始数据集训练出的模型的性能，但留出法需划分训练/测试集，这就会导致一个窘境：<br />
+若令训练集包含绝大多数样本，则训练出的模型可能更接近于用训练集训练出的模型，但由于测试集比较小，评估结果可能不够稳定准确；若令测试集多包含一些样本，则训练集与
+原始数据集差别更大了，被评估的模型与用原始训练姐训练出的模型相比可能有较大差别，从而降低了评估结果的保真性(fidelity)。这个问题没有完美的解决方案，常见做法是将大约
+$2/3 ~ 4/5 $的样本用于训练，剩余样本用于测试。</p>
+<h3 id="交叉验证法">交叉验证法</h3>
+<p>交叉验证法先把数据集划分为 <span class="math inline">\(k\)</span>
+个大小相似的互斥子集，每个子集都尽可能的保持数据分布的一致性，即从数据集中通过分层采样得到。<br />
+然后每次用 <span class="math inline">\(k - 1\)</span>
+个子集作为训练集，剩下的那个作为测试集。<br />
+这样就可以获得 <span class="math inline">\(k\)</span> 组
+训练/测试集，进行 <span class="math inline">\(k\)</span> 次训练，取
+<span class="math inline">\(k\)</span>
+次测试结果的平均作为最终的结果。<br />
+上述做法也成为 <span class="math inline">\(k\)</span> 折交叉验证，<span
+class="math inline">\(k\)</span> 常取 <span
+class="math inline">\(10\)</span>。</p>
+<p>与留出法相似，将数据集划分为 <span class="math inline">\(k\)</span>
+个子集同样存在多种划分方式。为减小因样本划分不同而引入的差别，<span
+class="math inline">\(k\)</span> 折交叉验证通常要随机使用不同的划分重复
+<span class="math inline">\(p\)</span> 次，最终的评估结果是这 <span
+class="math inline">\(p\)</span> 次 <span
+class="math inline">\(k\)</span> 折交叉验证结果的均值，例如常见的有“
+<span class="math inline">\(10\)</span> 次 <span
+class="math inline">\(10\)</span> 折交叉验证”（类似 <span
+class="math inline">\(100\)</span> 次留出法）。</p>
+<h3 id="自助法">自助法</h3>
+<p>含 <span class="math inline">\(m\)</span> 个样本的数据集 <span
+class="math inline">\(D\)</span>，进行 m
+次又放回抽样，抽取的样本构成数据集<span
+class="math inline">\(D&#39;\)</span> ，这就是自助采样。因为又放回，所以
+<span class="math inline">\(D\)</span> 中有一部分样本会多次出现在 <span
+class="math inline">\(D&#39;\)</span> 中，一部分样本不出线，简单估计
+<span class="math inline">\(m\)</span> 次采样始终不被采到的概率是 <span
+class="math inline">\((1 - \frac{1}{m})^m\)</span>，去极限得到 <span
+class="math display">\[ \nonumber
+\underset{n \to \infty }{lim} (1 - \frac{1}{m})^m = \frac{1}{e}  \approx
+0.3687
+\]</span></p>
+<p>也称外包估计。</p>
+<p>在数据集较小、难以有效划分训练/测试集时很有用；此外，自助法能从初始数据集中产生多个不同的训练集，这对集成学习等方法有很大的好处。然而，自助法产生的数据集改变了初始数据集的分布，这会引入估计偏差。此，在初始数据量足够时，留出法和交叉验证法更常用一些。</p>
+<h3 id="调参于最终模型">调参于最终模型</h3>
+<p>给定包含 <span class="math inline">\(m\)</span>
+个样本的数据集，在模型评估与选择过程中由于需要留出一部分数据进行评估测试，事实上我们只使用了一部分数据训练模型。因此，在模型选择完成后，学习算法和参数配置已选定，此时应该用数据集。重新训练模型。这个模型在训练过程中使用了所有
+<span class="math inline">\(m\)</span>
+个样本，这才是我们最终提交给用户的模型。<br />
+另外，需注意的是，我们通常把学得模型在实际使用中遇到的数据称为测试数据，为了加以区分，模型评估与选择中用于评估测试的数据集常称为“验证集
+"(validation
+set)。例如，在研究对比不同算法的泛化性能时，我们用测试集上的判别效果来估计模型在实际使用时的泛化能力，而把训练数据另外划分为训练集和验证集，基于验证集上的性能来进行模型选择和调参。</p>
+<p>在机器学习中，训练集、验证集和测试集的关系可以通过考试场景中的练习题、模拟考、高考来类比理解。以下结合具体例子说明三者的作用及关系：</p>
+<ol type="1">
+<li>​训练集：日常练习题与课本知识
+​定义：训练集是模型学习规律的基础数据，相当于学生日常使用的课本和练习题。<br />
+​作用：模型通过反复学习训练集中的数据，调整参数以拟合规律。例如，学生通过大量练习题掌握解题方法（如数学公式、物理定律）。<br />
+​例子：若训练集是历年高考数学真题中的 <span
+class="math inline">\(70%\)</span>
+，学生（模型）通过反复练习这些题目，学习如何解答函数、几何等题型。<br />
+</li>
+<li>​验证集：模拟考试
+​定义：验证集用于调整模型超参数（如学习率、网络层数），相当于模拟考。<br />
+​作用：监控模型是否过拟合或欠拟合，并选择最优模型结构。例如，学生通过模拟考试发现薄弱环节（如概率题错误率高），进而调整复习重点。<br />
+​例子：假设验证集是高考真题中的 <span class="math inline">\(15%\)</span>
+，学生通过模拟考试发现解析几何得分低，于是增加相关练习（类似调整模型正则化参数）。<br />
+</li>
+<li>​测试集：最终高考
+​定义：测试集是模型从未见过的数据，用于最终评估泛化能力，相当于真实高考题。<br />
+​作用：检验模型是否真正掌握规律，而非死记硬背训练数据。例如，高考题不会与模拟题重复，确保公平评估学生能力。<br />
+​例子：测试集是剩余 <span class="math inline">\(15%\)</span>
+的高考真题，学生（模型）在完全独立的环境中答题，最终成绩反映其真实水平。</li>
+</ol>
+<h2 id="性能度量">性能度量</h2>
+<p>对学习器的泛化性能进行评估，不仅需要有效可行的实验估计方法，还需要有衡量模型泛化能力的评价标准，这就是性能度量。</p>
+<p>度量性能反映任务需求，什么样的模型是好的，不仅取决于算法和数据，还决定与任务需求。</p>
+<p>回归任务最常用的性能度量是 “均方误差” <span class="math display">\[
+\nonumber
+\mathbf{E}(f;D)=\frac{1}{m}\sum_{i=1}^{m}(f(\boldsymbol{x}_i-y_i))^2
+\]</span></p>
+<p>更一般的，对于数据分布 <span
+class="math inline">\(\mathcal{D}\)</span> 和概率密度函数 <span
+class="math inline">\(p(\cdot)\)</span> ，均方误差可描述为 <span
+class="math display">\[ \nonumber
+\mathbf{E}(f;\mathcal{D})=\int_{\boldsymbol{x}\sim
+\mathcal{D}}{(f(\boldsymbol{x}) - y)^2p(\boldsymbol{x})} \text{
+d}\boldsymbol{x}
+\]</span></p>
+<p>下面介绍<strong>分类任务</strong>中常用的性能度量</p>
+<h3 id="错误率与精度">错误率与精度</h3>
+<p>对于样例集 <span class="math inline">\(D\)</span>，分类错误率定义为
+<span class="math display">\[\nonumber
+\mathbf{E}(f;D) = \frac{1}{m}\sum_{i=1}^{m}\
+\mathbb{I}(f(\boldsymbol{x}_i \neq y_i))
+\]</span></p>
+<p>精度定义为 <span class="math display">\[
+\begin{align*}
+acc(f;D)
+&amp;= \frac{1}{m}\sum_{i=1}{m}\  \mathbb{I}(f(\boldsymbol{x}_i = y_i))
+\\
+&amp;= 1 - \mathbf{E}(f;D)
+\end{align*}
+\]</span></p>
+<p>更一般的，对于数据分布 <span
+class="math inline">\(\mathcal{D}\)</span> 和概率密度函数 <span
+class="math inline">\(p(\cdot)\)</span>，错误率与精度可分别描述为 <span
+class="math display">\[
+\begin{align*}
+\mathbf{E}(f;D) &amp;= \int_{\boldsymbol{x}\sim
+\mathcal{D}}{\mathbb{I}(f(\boldsymbol{x}\neq y)p(\boldsymbol{x}))}
+\text{ d} \boldsymbol{x} \\\\
+acc(f;D) &amp;= \int_{\boldsymbol{x}\sim
+\mathcal{D}}{\mathbb{I}(f(\boldsymbol{x} = y)p(\boldsymbol{x}))} \text{
+d} \boldsymbol{x} \\
+&amp;=1 - \mathbf{E}(f;D)
+\end{align*}
+\]</span></p>
+<h3 id="查准率查全率与-f1">查准率、查全率与 F1</h3>
 <!-- flag of hidden posts -->
     </div>
 
@@ -348,7 +466,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://blackspace2.github.io/2025/02/02/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-app%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习-app工具（下）">https://blackspace2.github.io/2025/02/02/OpenCV入门学习-app工具（下）/</a>
+      <a href="https://blackspace2.github.io/2025/03/03/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9/" title="模型评估与选择">https://blackspace2.github.io/2025/03/03/模型评估与选择/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -383,10 +501,6 @@
   </div>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
-              <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
-          </div>
 
         
 

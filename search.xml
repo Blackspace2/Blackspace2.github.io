@@ -1,193 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo 中的 markdown 语法</title>
-    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="页内跳转">1. 页内跳转</h2>
-<p>跳转到地方后面加上
-<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
-需要跳转的地方 <code>[跳转到](#jump)</code><br />
-注：<code>jump</code> 字段不能有中文、空格</p>
-<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
-<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>此后当新建 <code>.md</code>
-文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
-此时图片引用语法： <code>![文本](图片名字)</code></p>
-<h2 id="html-插入图片">3. html 插入图片</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
-<p>渲染引擎：MathJax<br />
-插件：hexo-renderer-pandoc<br />
-参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
-<p>写行间公式的时候，两个 <code>$$</code>
-一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
-<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
-<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
-<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
-自定义编号，那么 hexo
-依然会跳过这个公式并且对后面的公式进行自动编号。<br />
-当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
-<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
-<code>equation</code> 环境来取消对公式的编号。</p>
-<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
-和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
-<p>参考：<br />
-[1] <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
-官方文档</a><br />
-[2] <a
-href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
-公式编号说明</a></p>
-<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
-<p>这里的英文句号会被渲染为中文的圆圈句号,改用
-<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
-]]></content>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>B样条曲线简介及其python实现</title>
-    <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h2>
-<p>B 样条曲线 <span class="math inline">\(P(u)\)</span>
-可以表示为控制点和基函数的加权和： <span class="math display">\[
-P(u)=\sum_{i=0}^{n} {p_i B_{i,k}(u)} \ ,u\in \left[ u_{k-1}, u_{k+1}
-\right]
-\tag{1}
-\]</span></p>
-<h2 id="符号解释">2. 符号解释</h2>
-<h3 id="pu">2.1 <span class="math inline">\(P(u)\)</span></h3>
-<p>B 样条曲线上的点，也是我们所要求的结果。</p>
-<h3 id="p_i">2.2 <span class="math inline">\(p_i\)</span></h3>
-<p>控制点， <span class="math inline">\(i=0,1,2,..,n\)</span>，一共有
-<span class="math inline">\(n+1\)</span> 个。</p>
-<h3 id="b_ik">2.3 <span class="math inline">\(B_{i,k}\)</span></h3>
-<p>基函数</p>
-<h3 id="u">2.4 <span class="math inline">\(u\)</span> <span
-id="2.4"></span></h3>
-<p>相当于自变量，有效区间为 <span class="math inline">\(\left[ u_{k-1},
-u_{k+1} \right]\)</span>。</p>
-<h3 id="k">2.5 <span class="math inline">\(k\)</span></h3>
-<p>B
-样条曲线的<strong>次数</strong>，这里要注意次数和阶数的区别和联系：次数
-= 阶数 - 1。</p>
-<p>对于 B 样条的次数 <span
-class="math inline">\(k\)</span>，必须满足：<span id="(2)"></span> <span
-class="math display">\[k = m - n - 1 \tag{2}\]</span> 其中 <span
-class="math inline">\(m\)</span><span id="m"></span> 是 <strong>节点
-(knots)</strong> 将 B 样条曲线划分的段数，<span
-class="math inline">\(n\)</span> 为控制点的个数减一。</p>
-<p>上面说的节点就是划分 B
-样条的比例，由节点组成的一组向量就成为节点矢量，例如
-<code>[0, 0.2, 0.4, 0.6, 0.8, 1]</code>。不同的节点矢量进而产生了不同的
-B 样条种类，例如均匀 B 样条、准均匀 B 样条、分段 B 样条以及非均匀 B
-样条等等。</p>
-<h2 id="基函数的计算">3. 基函数的计算</h2>
-<p>de Boor-Cox递归方法<br />
-<span class="math display">\[
-B_{i,k}(u)=\frac{u-u_i}{u_{i+1}-u_i}B_{i,k-1}(u)+\frac{u_{i+k}-u}{u_{i+k}-u_{i+1}}B_{i+1,k-1}(u)
-\tag{3}
-\]</span></p>
-<p>这里需要给出说明，不带下标的 <span class="math inline">\(u\)</span>
-指的是 <a href="#2.4">2.4</a> 中的 <span
-class="math inline">\(u\)</span>，而带下标则指的是节点矢量。</p>
-<p>在代码实现中，我们规定 <span
-class="math inline">\(\frac{0}{0}=0\)</span>。</p>
-<h2 id="节点矢量-knots-的计算">4. 节点矢量 (knots) 的计算</h2>
-<p>节点矢量的取值可以是在 0 到 1
-之间，也可以是其他范围，但是在代码是实现的时候一定要注意前后保持一致。<br />
-本文使用节点矢量取值为 0 到 1，这样也可以表示比例嘛。</p>
-<p>这里需要注意节矢量的长度，也就是 <span
-class="math inline">\(m\)</span>，通过式 <a href="#(2)">(2)</a>
-可知，<span class="math inline">\(m=k+n+1\)</span>。</p>
-<h3 id="均匀节点-uniform-node">4.1 均匀节点 (uniform node)</h3>
-<p>显然，节点的分布是均匀的，故从 0 到
-1按照节点矢量的长度均匀划分即可。<br />
-（因为要将曲线划分为 <a href="#m">m</a> 段，当然需要 m+1个点）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)  <span class="comment"># m = n + k + 1</span></span><br></pre></td></tr></table></figure>
-<p>均匀 B 样条曲线不一定过首尾控制点，并且在图像上是闭合的</p>
-<h3 id="准均匀节点-quasi-uniform-node">4.2 准均匀节点 (quasi uniform
-node)</h3>
-<p>准均匀节点可以目的在于对曲线的端点进行行为控制，通过设计节点矢量，使得生成的
-B 样条曲线经过首尾控制点。<br />
-<span class="math inline">\(k\)</span>
-次准均匀节点矢量中，两端节点具有重复度 <span
-class="math inline">\(k+1\)</span>，所有内节点呈现均匀分布。<br />
-在代码实现中，我们可以让节点矢量首尾分别为 <span
-class="math inline">\(k\)</span> 个 0 和 1，然后中间 <span
-class="math inline">\(n-k+2\)</span> 为 0 到 1 的均匀分布就行了，即
-<span class="math display">\[ \nonumber
-\left[ \begin{matrix}
-\underset{k}{\underbrace{0,0,...,0}},\
-\underset{n-k+2}{\underbrace{0,...,1}},\
-\underset{k}{\underbrace{1,1,...,1}}\\
-\end{matrix} \right]
-\]</span></p>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]  <span class="comment"># 拼接</span></span><br></pre></td></tr></table></figure>
-<h3 id="分段节点-piecewise-node">4.3 分段节点 (piecewise node)</h3>
-<p>基于该节点矢量的 B 样样条曲线又称为分段 Bezier
-曲线，是一组顺序首尾相接且同为 <span class="math inline">\(k\)</span>
-次的 Bezier 曲线。<br />
-<span class="math inline">\(k\)</span>
-次的分段节点矢量中，首末端节点重复度依旧为 <span
-class="math inline">\(k+1\)</span>，内节点重复度为 <span
-class="math inline">\(k\)</span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br></pre></td></tr></table></figure>
-<p>需要注意 <span class="math inline">\(n-k\)</span> 必须是 <span
-class="math inline">\(k\)</span> 的整数倍，否则不能生成曲线。</p>
-<h3 id="非均匀节点-non-uniform-node">4.4 非均匀节点 (non-uniform
-node)</h3>
-<p>Hartley-Judd 算法 首尾重合度为 <span
-class="math inline">\(k+1\)</span>，内节点定义为：</p>
-<p><span class="math display">\[
-\begin{cases}
-t_k=0\\
-t_i=\sum_{j=k+1}^i{\bigl( t_j-t_{j-1} \bigr)} \\
-t_{n+1}=1\\
-\end{cases}
-\tag{4}
-\]</span> <span class="math display">\[
-t_i-t_{i-1}=\frac{\sum_{j=i-k}^{i-1}{l_j}}{\sum_{i=k+1}^{n+1}{\sum_{j=i-k}^{i-1}{l_j}}}
-\tag{5}
-\]</span></p>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br></pre></td></tr></table></figure>
-<h2 id="python-实现">5. python 实现</h2>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hartley-Judd algorithem</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_B</span>(<span class="params">i, k, knots, u</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    de Boor-Cox recursion</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        i (int): ith point idx</span></span><br><span class="line"><span class="string">        k (int): degree of b-spline , equal to ord - 1</span></span><br><span class="line"><span class="string">        knots (ndarray): 1 dim</span></span><br><span class="line"><span class="string">        u : independent variable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        B: B_&#123;i,k&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">        B = <span class="number">1</span> <span class="keyword">if</span> knots[i] &lt;= u &lt;= knots[i + <span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span>  <span class="comment">##</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        coef1 = coef2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> knots[i + k - <span class="number">1</span>] - knots[i] != <span class="number">0</span>:</span><br><span class="line">            coef1 = (u - knots[i]) / (knots[i + k - <span class="number">1</span>] - knots[i])</span><br><span class="line">        <span class="keyword">if</span> knots[i + k] - knots[i + <span class="number">1</span>] != <span class="number">0</span>:</span><br><span class="line">            coef2 = (knots[i + k] - u) / (knots[i + k] - knots[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        B = coef1 * cal_B(i, k - <span class="number">1</span>, knots, u) + coef2 * cal_B(i + <span class="number">1</span>, k - <span class="number">1</span>, knots, u)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_curve</span>(<span class="params">control_points, knots, t</span>):</span><br><span class="line"></span><br><span class="line">    num, dims = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    k = <span class="built_in">len</span>(knots) - n - <span class="number">1</span>  <span class="comment"># degree of b-spline</span></span><br><span class="line"></span><br><span class="line">    N = <span class="built_in">len</span>(t)</span><br><span class="line">    P = np.zeros((N, dims))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        u = t[idx]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">            P[idx, :] += control_points[i, :] * cal_B(i, k, knots, u)</span><br><span class="line">    <span class="keyword">return</span> P</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 体验 https://superjerryshen.github.io/b-spline-demos/##/uniform-b-spline-of-order-3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">    control_points = np.array([[<span class="number">50</span>, <span class="number">50</span>], [<span class="number">100</span>, <span class="number">300</span>], [<span class="number">300</span>, <span class="number">100</span>], [<span class="number">380</span>, <span class="number">200</span>], [<span class="number">400</span>, <span class="number">600</span>], [<span class="number">500</span>, <span class="number">400</span>], [<span class="number">300</span>, <span class="number">600</span>]])</span><br><span class="line">    </span><br><span class="line">    N = <span class="number">500</span></span><br><span class="line">    t = np.linspace(<span class="number">0.0</span>, <span class="number">1.0</span>, N)</span><br><span class="line"></span><br><span class="line">    uniform_knots = uniform_node(control_points)</span><br><span class="line">    quasi_knots = quasi_uniform_node(control_points)</span><br><span class="line">    piecewise_knots = piecewise_node(control_points)</span><br><span class="line">    non_knots = non_uniform_node(control_points)</span><br><span class="line"></span><br><span class="line">    P_uniform = cal_curve(control_points, uniform_knots, t)</span><br><span class="line">    P_quasi = cal_curve(control_points, quasi_knots, t)</span><br><span class="line">    P_piecewise = cal_curve(control_points, piecewise_knots, t)</span><br><span class="line">    P_non = cal_curve(control_points, non_knots, t)</span><br><span class="line"></span><br><span class="line">    fig, axs = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 均匀 会闭合</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(P_uniform[:, <span class="number">0</span>], P_uniform[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 准均匀</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(P_quasi[:, <span class="number">0</span>], P_quasi[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;quasi&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 分段</span></span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(P_piecewise[:, <span class="number">0</span>], P_piecewise[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;piecewise&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].legend()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">## HJ 非均匀</span></span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(P_non[:, <span class="number">0</span>], P_non[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;non uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>效果：<br />
-<img src="BSpline.png" alt="BSpline" /></p>
-<p>todo：<br />
-很诡异的一点，在 <code>cal_curve</code> 函数中计算 <span
-class="math inline">\(k\)</span> 的时候，满足 <span
-class="math inline">\(k=m-n-1\)</span>
-的时候，后三种样条曲线都不经过首尾控制点，这是不符合预期的，但是用 <span
-class="math inline">\(k = (m+1) - n - 1\)</span>
-的时候，却和正常预期的结果一样，不知道是哪里出问题了。<br />
-有空了再来填补空缺</p>
-<h2 id="参考">6. 参考</h2>
-<p><strong>[1]</strong> <a
-href="https://b23.tv/e93CqZR">计算机图形学-中国农大-赵明-B站
-8.5.1~8.6.2</a><br />
-<strong>[2]</strong> <a
-href="https://blog.csdn.net/deepsprings/article/details/107828889?spm=1001.2014.3001.5506">详解样条曲线-CSDN</a><br />
-<strong>[3]</strong> <a
-href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
-图文并茂的理解节点和节点区间-知乎</a><br />
-<strong>[4]</strong>《计算几何算法与实现》—— 孔令德</p>
-]]></content>
-      <categories>
-        <category>计算机图形学</category>
-      </categories>
-      <tags>
-        <tag>B样条</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV入门学习-图像处理（上）</title>
     <url>/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -1877,53 +1690,6 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
-    <title>python 常用语法糖</title>
-    <url>/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="数字分隔符">1. 数字分隔符</h2>
-<p>当数值较大时，可以用数字分隔符来进行划分</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1_000_000</span> <span class="comment"># 等同于 1000000</span></span><br></pre></td></tr></table></figure>
-<h2 id="交换变量值">2. 交换变量值</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
-<h2 id="连续比较式">3. 连续比较式</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">10</span> &lt; a &lt; <span class="number">20</span>:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串乘法">4. 字符串乘法</h2>
-<p>可用于快速构造字符串</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> * <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="列表拼接">5. 列表拼接</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">c = a + b  <span class="comment"># c = [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="comment"># a.extend(b) 后相当于 a = a + b = [1, 2, 3, 4, 5, 6], a 被改变了</span></span><br><span class="line"><span class="comment"># 不能用一个变量去接收，即 c = a.extend(b) 这样 c 的值是 None，并不会赋值给 c </span></span><br></pre></td></tr></table></figure>
-<h2 id="打包解包">6. 打包解包</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">x, y, z = a</span><br></pre></td></tr></table></figure>
-<h2 id="with-语句">7. with 语句</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;file_name&quot;</span>,<span class="string">&#x27;mode&#x27;</span>) <span class="keyword">as</span> new_name:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>语法糖</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 命令思维导图</title>
-    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<figure>
-<img src="git.jpg" alt="git 命令思维导图" />
-<figcaption aria-hidden="true">git 命令思维导图</figcaption>
-</figure>
-<p>来源：<a
-href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
-]]></content>
-      <categories>
-        <category>git 管理工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>主成分分析-PCA</title>
     <url>/2025/01/20/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-PCA/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -2094,62 +1860,6 @@ class="math display">\[
         <tag>PCA</tag>
         <tag>机器学习</tag>
         <tag>降维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python 装饰器</title>
-    <url>/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="装饰器简介">1. 装饰器简介</h2>
-<h3 id="函数装饰函数">1.1 函数装饰函数</h3>
-<p>python 中的装饰器也是<strong>语法糖</strong>的一种。<br />
-通常可以把装饰器理解为输入和输出都是函数的函数。
-函数调用函数返回一个函数 (或者说 callab)。</p>
-<p>装饰器的一大特性是，能把被装饰的函数替换成其他函数；第二个特性是，装饰器在加载模块时立即执行，函数装饰器在导入模块时立即执行，而被装饰的函数只在明确调用时运行。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是一个计时的装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="comment"># 使用 *args, **kwargs 允许函数接受变长的参数</span></span><br><span class="line">    <span class="comment"># 就是说你这个函数来了什么参数 我都能接受</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = f(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunc</span>(<span class="params">x</span>):</span><br><span class="line">    time.sleep(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于下面这种写法</span></span><br><span class="line"><span class="comment"># def myfunc(x):</span></span><br><span class="line"><span class="comment">#     time.sleep(x)</span></span><br><span class="line"><span class="comment"># myfunc = timeit(myfunc)</span></span><br></pre></td></tr></table></figure>
-<p>带参数的装饰器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">iteration</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">f</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(iteration):</span><br><span class="line">                ret = f(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit(<span class="params"><span class="number">10</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">double</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面等价于：</span></span><br><span class="line"><span class="comment"># def double(x):</span></span><br><span class="line"><span class="comment">#     return x * 2</span></span><br><span class="line"><span class="comment"># double = timeit(10)(double)</span></span><br></pre></td></tr></table></figure>
-<p>这里 <code>timeit(10)</code>
-的返回值也是一个函数，并且这个函数的输入和输出都是函数</p>
-<h3 id="类装饰函数">1.2 类装饰函数</h3>
-<p>类调用一个函数返回一个 object，依然是 callable</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line">        <span class="variable language_">self</span>.func = func</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Time: <span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<p>带参数的类作为装饰器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, prefix</span>):</span><br><span class="line">        <span class="variable language_">self</span>.prefix = prefix</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, prefix</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.prefix&#125;</span><span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer(<span class="params">prefix=<span class="string">&quot;cost_time:&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(prefix=&quot;cost_time&quot;)(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="函数装饰类">1.3 函数装饰类</h3>
-<p>装饰器去装饰类</p>
-<p>当打印一个自定义类的时候，不会输出任何有价值的内容，只会告诉你这是一个人什么类，除非重载他的
-<code>__str__</code> 方法来改变他的 <code>print</code>
-结果，但是每次都重载很麻烦，所以可以写一个装饰器来装饰类用于重载其
-<code>__str__</code> 方法。下面就是一个例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add_str</span>(<span class="params">cls</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="variable language_">self</span>.__dict__)</span><br><span class="line">    cls.__str__ = __str__</span><br><span class="line">    <span class="keyword">return</span> cls</span><br><span class="line"></span><br><span class="line"><span class="meta">@add_str</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObject</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.b = b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于：</span></span><br><span class="line"><span class="comment"># class MyObject:</span></span><br><span class="line"><span class="comment">#     def __init__(self, a, b):</span></span><br><span class="line"><span class="comment">#         self.a = a</span></span><br><span class="line"><span class="comment">#         self.b = b</span></span><br><span class="line"><span class="comment"># add_str(MyObject)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    obj = MyObject(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
-<h3 id="类装饰类">1.4 类装饰类？</h3>
-<p>emmm，本质上其实还是函数，是一个输入和输出都是类的函数</p>
-<h3 id="小结">1.5 小结</h3>
-<p>其实只要转化为等价形式就知道装饰器在干什么了，因为装饰器的本质毕竟还是语法糖。</p>
-<h2 id="一些常见的装饰器">2. 一些常见的装饰器</h2>
-<h3 id="staticmethod">2.1 <span class="citation"
-data-cites="staticmethod">@staticmethod</span></h3>
-<p>用于定义静态方法，意味着被它装饰的函数不需要创建类的实例（不需要传递
-<code>self</code> 参数）就可以直接调用，即变为静态函数。</p>
-<h3 id="classmethod">2.2 <span class="citation"
-data-cites="classmethod">@classmethod</span></h3>
-<p>用于定义类的方法，被它装饰的函数第一个参数应该为类 <code>cls</code>
-，变为类的方法，但不能访问实例的属性，因为传入的是类本身
-<code>cls</code> ，而不是实例 <code>self</code> 。</p>
-<p>类方法可以访问类的属性和其他类方法，但不能访问实例的属性。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">static_method</span>(<span class="params">x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">class_method</span>(<span class="params">cls, x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(MyClass.static_method(<span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 5</span></span><br><span class="line"><span class="built_in">print</span>(MyClass.class_method(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
-<h3 id="property">2.3 <span class="citation"
-data-cites="property">@property</span></h3>
-<p>用于将一个方法转化为属性，可以让你在访问属性时调用一个函数，从而封装对属性的访问。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, radius</span>):</span><br><span class="line">        <span class="variable language_">self</span>._radius = radius   <span class="comment"># 私有属性</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>._radius  <span class="comment"># 只读属性     </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @&lt;property_name&gt;.setter 是一个装饰器，</span></span><br><span class="line">    <span class="comment"># 用于为 @property 装饰的属性提供设置器即定义属性的写操作。</span></span><br><span class="line">    <span class="comment"># 通过这个装饰器，你可以指定如何修改某个属性的值，从而让这个属性变为可写的。</span></span><br><span class="line"><span class="meta">    @radius.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Radius cannot be negative&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>._radius = value</span><br><span class="line"></span><br><span class="line">c = Circle(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 5</span></span><br><span class="line">c.radius = <span class="number">10</span>    <span class="comment"># 设置 radius</span></span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 10</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>装饰器</tag>
       </tags>
   </entry>
   <entry>
@@ -2741,120 +2451,6 @@ href="https://github.com/Blackspace2/space-resection-of-single-image.git">Github
       </tags>
   </entry>
   <entry>
-    <title>常用矩阵计算</title>
-    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h2 id="符号约定">1. 符号约定</h2>
-<p>正常小写字母表示标量；<br />
-加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
-大写字母表示矩阵；</p>
-<h2 id="求导">2. 求导</h2>
-<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
-是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
-区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
-可以注意到分子布局和分母布局的结果互为转置。</p>
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 36%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">分母布局</th>
-<th style="text-align: center;">分子布局</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
-\boldsymbol{x}} = \frac{\partial
-\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
-\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{\alpha}^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
-A}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial
-\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
-A\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
-X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A+A^T)X\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X^T(A+A^T)\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
-X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-X(A^T+A)\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-(A^T+A)X^T\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(XA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math display">\[\nonumber
-\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
-\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\nonumber
-A^T\]</span></td>
-</tr>
-</tbody>
-</table>
-<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
-<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>矩阵计算</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>支持向量机-SVM</title>
     <url>/2025/01/18/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -2961,9 +2557,6 @@ class="math inline">\(H_{-1}\)</span> 正中间的超平面 <span
 class="math inline">\(H_0\)</span> 即为我们所求。<br />
 为此我们需要定义关于距离 <span class="math inline">\(d\)</span>
 的描述，也就是<strong>间隔 (margin)</strong>。</p>
-<p><span id="I_think"></span>下面所说的超平面 <span
-class="math inline">\((\boldsymbol{w},b)\)</span>
-应该认为是已经能够将所有样本正确划分的了。<small><em>存疑</em></small></p>
 <h4 id="函数间隔">2.2.2. 函数间隔</h4>
 <p>对于给定的训练数据集 <span class="math inline">\(T\)</span> 和超平面
 <span class="math inline">\((\boldsymbol{w},b)\)</span> ，定义超平面
@@ -3079,14 +2672,7 @@ href="https://b23.tv/UuJtZE5">讲解</a>的角度比较好理解<br />
 从距离公式入手，结合缩放不变性 <span class="math display">\[\nonumber
 d=\frac{|\boldsymbol{w}^\mathrm{T}\boldsymbol{x}_0+b|}{\|\boldsymbol{w}\|}\quad
 \xrightarrow{\text{经过缩放}} \frac{1}{\|\boldsymbol{w}\|}
-\]</span> 这里其实比较纠结的是 <span
-class="math inline">\(\hat{\gamma}\)</span> 的正负，导致对于 <span
-class="math inline">\(\lambda\)</span> 正负的判断不清楚，因为实际上这里
-<span class="math inline">\(\lambda\)</span> 只能取正的。<br />
-所以我在前文<a
-href="#I_think">引入间隔定义前</a>加了一句说明，认为这里的超平面已经能够将所有样本正确划分，才能够打消符号的疑虑。<br />
-不过据说这本书 <a href="#ref3">[3]</a>
-将的很明白，但是介于篇幅有点长，并且是英文的，暂时不想看。。。。</p>
+\]</span></p>
 
 </details>
 <p>最终优化问题可以写为 <span class="math display">\[
@@ -3436,6 +3022,223 @@ Vector Machines Succinctly</a><span id="ref3"></span><br />
       </tags>
   </entry>
   <entry>
+    <title>python 装饰器</title>
+    <url>/2025/01/17/python-%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="装饰器简介">1. 装饰器简介</h2>
+<h3 id="函数装饰函数">1.1 函数装饰函数</h3>
+<p>python 中的装饰器也是<strong>语法糖</strong>的一种。<br />
+通常可以把装饰器理解为输入和输出都是函数的函数。
+函数调用函数返回一个函数 (或者说 callab)。</p>
+<p>装饰器的一大特性是，能把被装饰的函数替换成其他函数；第二个特性是，装饰器在加载模块时立即执行，函数装饰器在导入模块时立即执行，而被装饰的函数只在明确调用时运行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是一个计时的装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="comment"># 使用 *args, **kwargs 允许函数接受变长的参数</span></span><br><span class="line">    <span class="comment"># 就是说你这个函数来了什么参数 我都能接受</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = f(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunc</span>(<span class="params">x</span>):</span><br><span class="line">    time.sleep(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于下面这种写法</span></span><br><span class="line"><span class="comment"># def myfunc(x):</span></span><br><span class="line"><span class="comment">#     time.sleep(x)</span></span><br><span class="line"><span class="comment"># myfunc = timeit(myfunc)</span></span><br></pre></td></tr></table></figure>
+<p>带参数的装饰器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">timeit</span>(<span class="params">iteration</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">f</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(iteration):</span><br><span class="line">                ret = f(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(time.time() - start)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timeit(<span class="params"><span class="number">10</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">double</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面等价于：</span></span><br><span class="line"><span class="comment"># def double(x):</span></span><br><span class="line"><span class="comment">#     return x * 2</span></span><br><span class="line"><span class="comment"># double = timeit(10)(double)</span></span><br></pre></td></tr></table></figure>
+<p>这里 <code>timeit(10)</code>
+的返回值也是一个函数，并且这个函数的输入和输出都是函数</p>
+<h3 id="类装饰函数">1.2 类装饰函数</h3>
+<p>类调用一个函数返回一个 object，依然是 callable</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line">        <span class="variable language_">self</span>.func = func</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        start = time.time()</span><br><span class="line">        ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Time: <span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p>带参数的类作为装饰器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Timer</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, prefix</span>):</span><br><span class="line">        <span class="variable language_">self</span>.prefix = prefix</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 变为 callable 的</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, prefix</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">            start = time.time()</span><br><span class="line">            ret = <span class="variable language_">self</span>.func(*args, **kwargs)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.prefix&#125;</span><span class="subst">&#123;time.time() - start&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@Timer(<span class="params">prefix=<span class="string">&quot;cost_time:&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="comment"># def add(a, b):</span></span><br><span class="line"><span class="comment">#     return a + b</span></span><br><span class="line"><span class="comment"># add = Timer(prefix=&quot;cost_time&quot;)(add)</span></span><br><span class="line"><span class="comment"># 相当于把一个函数变为了一个类的对象</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(add(<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="函数装饰类">1.3 函数装饰类</h3>
+<p>装饰器去装饰类</p>
+<p>当打印一个自定义类的时候，不会输出任何有价值的内容，只会告诉你这是一个人什么类，除非重载他的
+<code>__str__</code> 方法来改变他的 <code>print</code>
+结果，但是每次都重载很麻烦，所以可以写一个装饰器来装饰类用于重载其
+<code>__str__</code> 方法。下面就是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add_str</span>(<span class="params">cls</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="variable language_">self</span>.__dict__)</span><br><span class="line">    cls.__str__ = __str__</span><br><span class="line">    <span class="keyword">return</span> cls</span><br><span class="line"></span><br><span class="line"><span class="meta">@add_str</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObject</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.b = b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等价于：</span></span><br><span class="line"><span class="comment"># class MyObject:</span></span><br><span class="line"><span class="comment">#     def __init__(self, a, b):</span></span><br><span class="line"><span class="comment">#         self.a = a</span></span><br><span class="line"><span class="comment">#         self.b = b</span></span><br><span class="line"><span class="comment"># add_str(MyObject)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    obj = MyObject(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(obj)</span><br></pre></td></tr></table></figure>
+<h3 id="类装饰类">1.4 类装饰类？</h3>
+<p>emmm，本质上其实还是函数，是一个输入和输出都是类的函数</p>
+<h3 id="小结">1.5 小结</h3>
+<p>其实只要转化为等价形式就知道装饰器在干什么了，因为装饰器的本质毕竟还是语法糖。</p>
+<h2 id="一些常见的装饰器">2. 一些常见的装饰器</h2>
+<h3 id="staticmethod">2.1 <span class="citation"
+data-cites="staticmethod">@staticmethod</span></h3>
+<p>用于定义静态方法，意味着被它装饰的函数不需要创建类的实例（不需要传递
+<code>self</code> 参数）就可以直接调用，即变为静态函数。</p>
+<h3 id="classmethod">2.2 <span class="citation"
+data-cites="classmethod">@classmethod</span></h3>
+<p>用于定义类的方法，被它装饰的函数第一个参数应该为类 <code>cls</code>
+，变为类的方法，但不能访问实例的属性，因为传入的是类本身
+<code>cls</code> ，而不是实例 <code>self</code> 。</p>
+<p>类方法可以访问类的属性和其他类方法，但不能访问实例的属性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">static_method</span>(<span class="params">x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">class_method</span>(<span class="params">cls, x, y</span>):</span><br><span class="line">        <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(MyClass.static_method(<span class="number">2</span>, <span class="number">3</span>))  <span class="comment"># 输出: 5</span></span><br><span class="line"><span class="built_in">print</span>(MyClass.class_method(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 输出: 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="property">2.3 <span class="citation"
+data-cites="property">@property</span></h3>
+<p>用于将一个方法转化为属性，可以让你在访问属性时调用一个函数，从而封装对属性的访问。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, radius</span>):</span><br><span class="line">        <span class="variable language_">self</span>._radius = radius   <span class="comment"># 私有属性</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>._radius  <span class="comment"># 只读属性     </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @&lt;property_name&gt;.setter 是一个装饰器，</span></span><br><span class="line">    <span class="comment"># 用于为 @property 装饰的属性提供设置器即定义属性的写操作。</span></span><br><span class="line">    <span class="comment"># 通过这个装饰器，你可以指定如何修改某个属性的值，从而让这个属性变为可写的。</span></span><br><span class="line"><span class="meta">    @radius.setter</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="keyword">if</span> value &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Radius cannot be negative&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>._radius = value</span><br><span class="line"></span><br><span class="line">c = Circle(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 5</span></span><br><span class="line">c.radius = <span class="number">10</span>    <span class="comment"># 设置 radius</span></span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出: 10</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>装饰器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python 常用语法糖</title>
+    <url>/2025/01/17/python-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="数字分隔符">1. 数字分隔符</h2>
+<p>当数值较大时，可以用数字分隔符来进行划分</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1_000_000</span> <span class="comment"># 等同于 1000000</span></span><br></pre></td></tr></table></figure>
+<h2 id="交换变量值">2. 交换变量值</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
+<h2 id="连续比较式">3. 连续比较式</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">10</span> &lt; a &lt; <span class="number">20</span>:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串乘法">4. 字符串乘法</h2>
+<p>可用于快速构造字符串</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> * <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="列表拼接">5. 列表拼接</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">c = a + b  <span class="comment"># c = [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="comment"># a.extend(b) 后相当于 a = a + b = [1, 2, 3, 4, 5, 6], a 被改变了</span></span><br><span class="line"><span class="comment"># 不能用一个变量去接收，即 c = a.extend(b) 这样 c 的值是 None，并不会赋值给 c </span></span><br></pre></td></tr></table></figure>
+<h2 id="打包解包">6. 打包解包</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">x, y, z = a</span><br></pre></td></tr></table></figure>
+<h2 id="with-语句">7. with 语句</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;file_name&quot;</span>,<span class="string">&#x27;mode&#x27;</span>) <span class="keyword">as</span> new_name:</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>语法糖</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令思维导图</title>
+    <url>/2025/01/16/git-%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<figure>
+<img src="git.jpg" alt="git 命令思维导图" />
+<figcaption aria-hidden="true">git 命令思维导图</figcaption>
+</figure>
+<p>来源：<a
+href="https://github.com/toypipi/graph_bed/blob/master/image/20200810/git%E5%91%BD%E4%BB%A4%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.jpg">github</a></p>
+]]></content>
+      <categories>
+        <category>git 管理工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用矩阵计算</title>
+    <url>/2025/01/15/%E5%B8%B8%E7%94%A8%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="符号约定">1. 符号约定</h2>
+<p>正常小写字母表示标量；<br />
+加粗小写字母表示向量，无特殊说明时通常为<strong>列向量</strong>；<br />
+大写字母表示矩阵；</p>
+<h2 id="求导">2. 求导</h2>
+<p>矩阵求导中的 <strong>分子布局</strong> 和 <strong>分母布局</strong>
+是两种不同的约定方式，它们的主要区别在于约定导数的结果的维度和排列方式，二者均正确，但需要保障在同一环境下只能使用一种布局方式。<br />
+区分是分子布局还是分母布局，可以看求导结果的第一个维度是等于分子的第一个维度还是分母的第一个维度。<br />
+可以注意到分子布局和分母布局的结果互为转置。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">分母布局</th>
+<th style="text-align: center;">分子布局</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial A\boldsymbol{x}}{\partial \boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \boldsymbol{\alpha}^{T}\boldsymbol{x}}{\partial
+\boldsymbol{x}} = \frac{\partial
+\boldsymbol{x}^{T}\boldsymbol{\alpha}}{\partial
+\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{\alpha}^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\boldsymbol{y}^{T}\boldsymbol{Ax}}{\partial
+A}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}\boldsymbol{x}^{T}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{y}^{T}\boldsymbol{x}\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial
+\boldsymbol{x}^TA\boldsymbol{x}}{\partial\boldsymbol{x}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{Ax}+A^T\boldsymbol{x}\,,\ 2\boldsymbol{Ax}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\boldsymbol{x}^TA^T+\boldsymbol{x}^TA\,,\ 2\boldsymbol{x}^T
+A\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(X^TAX\right)}{\partial
+X}=\frac{\partial\  \mathrm{Tr}\left(AXX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A+A^T)X\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X^T(A+A^T)\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial\  \mathrm{Tr}\left(XAX^T\right)}{\partial
+X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+X(A^T+A)\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+(A^T+A)X^T\]</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(XA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math display">\[\nonumber
+\frac{\partial \ \mathrm{Tr}(AX^T)}{\partial X} = \frac{\partial \
+\mathrm{Tr}(X^TA)}{\partial X}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\nonumber
+A^T\]</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="雅可比-jacobi-矩阵">3. 雅可比 (Jacobi) 矩阵</h2>
+<h2 id="黑塞-hessian-矩阵">4. 黑塞 (Hessian) 矩阵</h2>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>矩阵计算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>非线性最小二乘</title>
     <url>/2025/01/15/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
@@ -3717,6 +3520,193 @@ Gauss-Newton 法为代表。而 TrustRegion
       </categories>
       <tags>
         <tag>Levenberg-Marquadt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>B样条曲线简介及其python实现</title>
+    <url>/2025/01/08/B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="b样条曲线的计算公式">1. B样条曲线的计算公式</h2>
+<p>B 样条曲线 <span class="math inline">\(P(u)\)</span>
+可以表示为控制点和基函数的加权和： <span class="math display">\[
+P(u)=\sum_{i=0}^{n} {p_i B_{i,k}(u)} \ ,u\in \left[ u_{k-1}, u_{k+1}
+\right]
+\tag{1}
+\]</span></p>
+<h2 id="符号解释">2. 符号解释</h2>
+<h3 id="pu">2.1 <span class="math inline">\(P(u)\)</span></h3>
+<p>B 样条曲线上的点，也是我们所要求的结果。</p>
+<h3 id="p_i">2.2 <span class="math inline">\(p_i\)</span></h3>
+<p>控制点， <span class="math inline">\(i=0,1,2,..,n\)</span>，一共有
+<span class="math inline">\(n+1\)</span> 个。</p>
+<h3 id="b_ik">2.3 <span class="math inline">\(B_{i,k}\)</span></h3>
+<p>基函数</p>
+<h3 id="u">2.4 <span class="math inline">\(u\)</span> <span
+id="2.4"></span></h3>
+<p>相当于自变量，有效区间为 <span class="math inline">\(\left[ u_{k-1},
+u_{k+1} \right]\)</span>。</p>
+<h3 id="k">2.5 <span class="math inline">\(k\)</span></h3>
+<p>B
+样条曲线的<strong>次数</strong>，这里要注意次数和阶数的区别和联系：次数
+= 阶数 - 1。</p>
+<p>对于 B 样条的次数 <span
+class="math inline">\(k\)</span>，必须满足：<span id="(2)"></span> <span
+class="math display">\[k = m - n - 1 \tag{2}\]</span> 其中 <span
+class="math inline">\(m\)</span><span id="m"></span> 是 <strong>节点
+(knots)</strong> 将 B 样条曲线划分的段数，<span
+class="math inline">\(n\)</span> 为控制点的个数减一。</p>
+<p>上面说的节点就是划分 B
+样条的比例，由节点组成的一组向量就成为节点矢量，例如
+<code>[0, 0.2, 0.4, 0.6, 0.8, 1]</code>。不同的节点矢量进而产生了不同的
+B 样条种类，例如均匀 B 样条、准均匀 B 样条、分段 B 样条以及非均匀 B
+样条等等。</p>
+<h2 id="基函数的计算">3. 基函数的计算</h2>
+<p>de Boor-Cox递归方法<br />
+<span class="math display">\[
+B_{i,k}(u)=\frac{u-u_i}{u_{i+1}-u_i}B_{i,k-1}(u)+\frac{u_{i+k}-u}{u_{i+k}-u_{i+1}}B_{i+1,k-1}(u)
+\tag{3}
+\]</span></p>
+<p>这里需要给出说明，不带下标的 <span class="math inline">\(u\)</span>
+指的是 <a href="#2.4">2.4</a> 中的 <span
+class="math inline">\(u\)</span>，而带下标则指的是节点矢量。</p>
+<p>在代码实现中，我们规定 <span
+class="math inline">\(\frac{0}{0}=0\)</span>。</p>
+<h2 id="节点矢量-knots-的计算">4. 节点矢量 (knots) 的计算</h2>
+<p>节点矢量的取值可以是在 0 到 1
+之间，也可以是其他范围，但是在代码是实现的时候一定要注意前后保持一致。<br />
+本文使用节点矢量取值为 0 到 1，这样也可以表示比例嘛。</p>
+<p>这里需要注意节矢量的长度，也就是 <span
+class="math inline">\(m\)</span>，通过式 <a href="#(2)">(2)</a>
+可知，<span class="math inline">\(m=k+n+1\)</span>。</p>
+<h3 id="均匀节点-uniform-node">4.1 均匀节点 (uniform node)</h3>
+<p>显然，节点的分布是均匀的，故从 0 到
+1按照节点矢量的长度均匀划分即可。<br />
+（因为要将曲线划分为 <a href="#m">m</a> 段，当然需要 m+1个点）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)  <span class="comment"># m = n + k + 1</span></span><br></pre></td></tr></table></figure>
+<p>均匀 B 样条曲线不一定过首尾控制点，并且在图像上是闭合的</p>
+<h3 id="准均匀节点-quasi-uniform-node">4.2 准均匀节点 (quasi uniform
+node)</h3>
+<p>准均匀节点可以目的在于对曲线的端点进行行为控制，通过设计节点矢量，使得生成的
+B 样条曲线经过首尾控制点。<br />
+<span class="math inline">\(k\)</span>
+次准均匀节点矢量中，两端节点具有重复度 <span
+class="math inline">\(k+1\)</span>，所有内节点呈现均匀分布。<br />
+在代码实现中，我们可以让节点矢量首尾分别为 <span
+class="math inline">\(k\)</span> 个 0 和 1，然后中间 <span
+class="math inline">\(n-k+2\)</span> 为 0 到 1 的均匀分布就行了，即
+<span class="math display">\[ \nonumber
+\left[ \begin{matrix}
+\underset{k}{\underbrace{0,0,...,0}},\
+\underset{n-k+2}{\underbrace{0,...,1}},\
+\underset{k}{\underbrace{1,1,...,1}}\\
+\end{matrix} \right]
+\]</span></p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]  <span class="comment"># 拼接</span></span><br></pre></td></tr></table></figure>
+<h3 id="分段节点-piecewise-node">4.3 分段节点 (piecewise node)</h3>
+<p>基于该节点矢量的 B 样样条曲线又称为分段 Bezier
+曲线，是一组顺序首尾相接且同为 <span class="math inline">\(k\)</span>
+次的 Bezier 曲线。<br />
+<span class="math inline">\(k\)</span>
+次的分段节点矢量中，首末端节点重复度依旧为 <span
+class="math inline">\(k+1\)</span>，内节点重复度为 <span
+class="math inline">\(k\)</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br></pre></td></tr></table></figure>
+<p>需要注意 <span class="math inline">\(n-k\)</span> 必须是 <span
+class="math inline">\(k\)</span> 的整数倍，否则不能生成曲线。</p>
+<h3 id="非均匀节点-non-uniform-node">4.4 非均匀节点 (non-uniform
+node)</h3>
+<p>Hartley-Judd 算法 首尾重合度为 <span
+class="math inline">\(k+1\)</span>，内节点定义为：</p>
+<p><span class="math display">\[
+\begin{cases}
+t_k=0\\
+t_i=\sum_{j=k+1}^i{\bigl( t_j-t_{j-1} \bigr)} \\
+t_{n+1}=1\\
+\end{cases}
+\tag{4}
+\]</span> <span class="math display">\[
+t_i-t_{i-1}=\frac{\sum_{j=i-k}^{i-1}{l_j}}{\sum_{i=k+1}^{n+1}{\sum_{j=i-k}^{i-1}{l_j}}}
+\tag{5}
+\]</span></p>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br></pre></td></tr></table></figure>
+<h2 id="python-实现">5. python 实现</h2>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.linspace(<span class="number">0</span>, <span class="number">1</span>, n + k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quasi_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    mid = np.linspace(<span class="number">0</span>, <span class="number">1</span>, n - k + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">piecewise_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## restricted condition</span></span><br><span class="line">    <span class="keyword">assert</span> (n - k) % k == <span class="number">0</span>, <span class="string">&quot;input is valid.&quot;</span></span><br><span class="line"></span><br><span class="line">    tmp = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="built_in">int</span>((n - k) / k + <span class="number">2</span>))</span><br><span class="line">    mid = np.r_[tmp[<span class="number">0</span>], np.repeat(tmp[<span class="number">1</span>:-<span class="number">1</span>], k), tmp[-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.r_[np.zeros(k), mid, np.ones(k)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">non_uniform_node</span>(<span class="params">control_points, k=<span class="number">3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Hartley-Judd algorithem</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    num, _ = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    l = np.sqrt(np.<span class="built_in">sum</span>(np.diff(control_points, axis=<span class="number">0</span>) ** <span class="number">2</span>, axis=<span class="number">1</span>))</span><br><span class="line">    ll = l[<span class="number">0</span> : <span class="built_in">len</span>(l) - <span class="number">1</span>] + l[<span class="number">1</span>::]</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll)</span><br><span class="line"></span><br><span class="line">    mid_size = n - k</span><br><span class="line">    mid = np.zeros(mid_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mid_size):</span><br><span class="line">        mid[i] = np.<span class="built_in">sum</span>(ll[<span class="number">0</span> : i + <span class="number">1</span>]) / L</span><br><span class="line"></span><br><span class="line">    knots = np.r_[np.zeros(k + <span class="number">1</span>), mid, np.ones(k + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> knots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_B</span>(<span class="params">i, k, knots, u</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    de Boor-Cox recursion</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        i (int): ith point idx</span></span><br><span class="line"><span class="string">        k (int): degree of b-spline , equal to ord - 1</span></span><br><span class="line"><span class="string">        knots (ndarray): 1 dim</span></span><br><span class="line"><span class="string">        u : independent variable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        B: B_&#123;i,k&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">        B = <span class="number">1</span> <span class="keyword">if</span> knots[i] &lt;= u &lt;= knots[i + <span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span>  <span class="comment">##</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        coef1 = coef2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> knots[i + k - <span class="number">1</span>] - knots[i] != <span class="number">0</span>:</span><br><span class="line">            coef1 = (u - knots[i]) / (knots[i + k - <span class="number">1</span>] - knots[i])</span><br><span class="line">        <span class="keyword">if</span> knots[i + k] - knots[i + <span class="number">1</span>] != <span class="number">0</span>:</span><br><span class="line">            coef2 = (knots[i + k] - u) / (knots[i + k] - knots[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        B = coef1 * cal_B(i, k - <span class="number">1</span>, knots, u) + coef2 * cal_B(i + <span class="number">1</span>, k - <span class="number">1</span>, knots, u)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_curve</span>(<span class="params">control_points, knots, t</span>):</span><br><span class="line"></span><br><span class="line">    num, dims = control_points.shape</span><br><span class="line">    n = num - <span class="number">1</span></span><br><span class="line">    k = <span class="built_in">len</span>(knots) - n - <span class="number">1</span>  <span class="comment"># degree of b-spline</span></span><br><span class="line"></span><br><span class="line">    N = <span class="built_in">len</span>(t)</span><br><span class="line">    P = np.zeros((N, dims))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        u = t[idx]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">            P[idx, :] += control_points[i, :] * cal_B(i, k, knots, u)</span><br><span class="line">    <span class="keyword">return</span> P</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 体验 https://superjerryshen.github.io/b-spline-demos/##/uniform-b-spline-of-order-3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">    control_points = np.array([[<span class="number">50</span>, <span class="number">50</span>], [<span class="number">100</span>, <span class="number">300</span>], [<span class="number">300</span>, <span class="number">100</span>], [<span class="number">380</span>, <span class="number">200</span>], [<span class="number">400</span>, <span class="number">600</span>], [<span class="number">500</span>, <span class="number">400</span>], [<span class="number">300</span>, <span class="number">600</span>]])</span><br><span class="line">    </span><br><span class="line">    N = <span class="number">500</span></span><br><span class="line">    t = np.linspace(<span class="number">0.0</span>, <span class="number">1.0</span>, N)</span><br><span class="line"></span><br><span class="line">    uniform_knots = uniform_node(control_points)</span><br><span class="line">    quasi_knots = quasi_uniform_node(control_points)</span><br><span class="line">    piecewise_knots = piecewise_node(control_points)</span><br><span class="line">    non_knots = non_uniform_node(control_points)</span><br><span class="line"></span><br><span class="line">    P_uniform = cal_curve(control_points, uniform_knots, t)</span><br><span class="line">    P_quasi = cal_curve(control_points, quasi_knots, t)</span><br><span class="line">    P_piecewise = cal_curve(control_points, piecewise_knots, t)</span><br><span class="line">    P_non = cal_curve(control_points, non_knots, t)</span><br><span class="line"></span><br><span class="line">    fig, axs = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 均匀 会闭合</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].plot(P_uniform[:, <span class="number">0</span>], P_uniform[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">0</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 准均匀</span></span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].plot(P_quasi[:, <span class="number">0</span>], P_quasi[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;quasi&quot;</span>)</span><br><span class="line">    axs[<span class="number">0</span>, <span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 分段</span></span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].plot(P_piecewise[:, <span class="number">0</span>], P_piecewise[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;piecewise&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>, <span class="number">0</span>].legend()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">## HJ 非均匀</span></span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].scatter(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, facecolors=<span class="string">&quot;none&quot;</span>, label=<span class="string">&quot;control points&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(control_points[:, <span class="number">0</span>], control_points[:, <span class="number">1</span>], color=<span class="string">&quot;C0&quot;</span>, linewidth=<span class="number">0.2</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].plot(P_non[:, <span class="number">0</span>], P_non[:, <span class="number">1</span>], color=<span class="string">&quot;C3&quot;</span>, label=<span class="string">&quot;non uniform&quot;</span>)</span><br><span class="line">    axs[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>效果：<br />
+<img src="BSpline.png" alt="BSpline" /></p>
+<p>todo：<br />
+很诡异的一点，在 <code>cal_curve</code> 函数中计算 <span
+class="math inline">\(k\)</span> 的时候，满足 <span
+class="math inline">\(k=m-n-1\)</span>
+的时候，后三种样条曲线都不经过首尾控制点，这是不符合预期的，但是用 <span
+class="math inline">\(k = (m+1) - n - 1\)</span>
+的时候，却和正常预期的结果一样，不知道是哪里出问题了。<br />
+有空了再来填补空缺</p>
+<h2 id="参考">6. 参考</h2>
+<p><strong>[1]</strong> <a
+href="https://b23.tv/e93CqZR">计算机图形学-中国农大-赵明-B站
+8.5.1~8.6.2</a><br />
+<strong>[2]</strong> <a
+href="https://blog.csdn.net/deepsprings/article/details/107828889?spm=1001.2014.3001.5506">详解样条曲线-CSDN</a><br />
+<strong>[3]</strong> <a
+href="https://zhuanlan.zhihu.com/p/686518292">B样条曲线和Nurbs曲线
+图文并茂的理解节点和节点区间-知乎</a><br />
+<strong>[4]</strong>《计算几何算法与实现》—— 孔令德</p>
+]]></content>
+      <categories>
+        <category>计算机图形学</category>
+      </categories>
+      <tags>
+        <tag>B样条</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 中的 markdown 语法</title>
+    <url>/2025/01/07/Hexo%E4%B8%AD%E7%9A%84md%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h2 id="页内跳转">1. 页内跳转</h2>
+<p>跳转到地方后面加上
+<code>&lt;span id="jump"&gt;&lt;/span&gt;</code><br />
+需要跳转的地方 <code>[跳转到](#jump)</code><br />
+注：<code>jump</code> 字段不能有中文、空格</p>
+<h2 id="博客嵌入图片">2. 博客嵌入图片</h2>
+<p>在 Hexo 的 <code>_config.yml</code> 文件下设置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>此后当新建 <code>.md</code>
+文件时，会在同级目录下自动生成一个同名文件夹，里面课以用于存放附件（如图片等）。<br />
+此时图片引用语法： <code>![文本](图片名字)</code></p>
+<h2 id="html-插入图片">3. html 插入图片</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片路径&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;说明&quot;</span> <span class="attr">width</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">height</span>=<span class="string">&quot;像素或者百分比&quot;</span> <span class="attr">loading</span>=<span class="string">&quot;lazy&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图例<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="数学公式以及编号问题">4. 数学公式以及编号问题</h2>
+<p>渲染引擎：MathJax<br />
+插件：hexo-renderer-pandoc<br />
+参数（位于<code>_config.next.yml</code>）：<code>mathjax.tags = all</code></p>
+<p>写行间公式的时候，两个 <code>$$</code>
+一定要分别紧靠开头和结尾，并且中间不能有空行，否则在网页上会看见开头和结尾的两个
+<code>$$</code> 符号（虽然公式可以正常渲染出来）。</p>
+<p>在上述环境下，hexo 会自动给每个公式进行编号，当然也可以用
+<code>\tag&#123;&#125;</code> 自己设置编号。如果使用 <code>\tag&#123;&#125;</code>
+自定义编号，那么 hexo
+依然会跳过这个公式并且对后面的公式进行自动编号。<br />
+当公式不需要编号的时候，可以用 <code>\nonumber</code> 或
+<code>\notag</code> 来标记；此外，也可以使用 带 <code>*</code> 的
+<code>equation</code> 环境来取消对公式的编号。</p>
+<p>对于公式引用，Next 官方文档中提到可以用 <code>\label&#123;&#125;</code>
+和对应的 <code>\eqref&#123;&#125;</code> 来进行相应的公式引用。</p>
+<p>参考：<br />
+[1] <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations">Next
+官方文档</a><br />
+[2] <a
+href="https://docs.mathjax.org/en/latest/input/tex/eqnumbers.html">MathJax
+公式编号说明</a></p>
+<h2 id="参考文献符号问题">5. 参考文献符号问题</h2>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="strong">**[1]**</span> 小明著.小明的书[M]</span><br></pre></td></tr></table></figure>
+<p>这里的英文句号会被渲染为中文的圆圈句号,改用
+<code>&lt;span&gt;.&lt;/span&gt;</code> 插入<code>html</code>即可</p>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
       </tags>
   </entry>
 </search>
