@@ -5,7 +5,8 @@
     <url>/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 <h2 id="绘图基础">1. 绘图基础</h2>
-<p>本文介绍如何使用OpenCV进行基础图形绘制，包括直线、椭圆、矩形、圆形和填充多边形的实现方法。所有代码均使用C++语法，并明确标注命名空间。</p>
+<p>本文介绍如何使用OpenCV进行基础图
+形绘制，包括直线、椭圆、矩形、圆形和填充多边形的实现方法。所有代码均使用C++语法，并明确标注命名空间。</p>
 <h3 id="核心数据结构">1.1. 核心数据结构</h3>
 <h4 id="cvpoint">1.1.1. cv::Point</h4>
 <p>表示二维坐标系中的点，可通过以下两种方式定义：</p>
