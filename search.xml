@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>OpenCV入门学习-图像处理（上）</title>
-    <url>/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <title>OpenCV入门学习-图像处理（一）</title>
+    <url>/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 <h2 id="绘图基础">绘图基础</h2>
 <p>本文介绍如何使用OpenCV进行基础图形绘制，包括直线、椭圆、矩形、圆形和填充多边形的实现方法。所有代码均使用C++语法，并明确标注命名空间。</p>
@@ -655,7 +655,7 @@ class="math inline">\(G_{i} = \tilde{G}_i + L_i\)</span>.</li>
 <p>用一张图来说明图像金字塔 <img src="图像金字塔.svg"
 alt="图像金字塔" /></p>
 <p>图中拉普拉斯金字塔中的图像实际上对比度很低，所以这里通过
-<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/#Gamma">Gamma 校正</a>
+<a href="#Gamma">Gamma 校正</a>
 使得对比度提高了一些，看的时候方便一些。</p>
 <h4 id="示例代码-6">示例代码</h4>
 <p>以下代码展示了上图的产生过程：</p>
@@ -691,6 +691,144 @@ OpenCV 中，虽然未直接提供拉普拉斯金字塔的函数，但通过组�
 <code>cv::pyrUp</code>、<code>cv::pyrDown</code>
 和矩阵运算即可实现其功能。理解二者的协同作用，将为图像处理任务（如超分辨率、图像融合）提供重要的技术支撑。</p>
 <hr />
+<h2 id="基本阈值操作">基本阈值操作</h2>
+<h3 id="阈值处理基础">阈值处理基础</h3>
+<p>阈值处理是图像分割中最简单的方法之一，其核心思想是通过比较像素强度与阈值来区分目标区域与背景。OpenCV
+提供的 <code>cv::threshold</code>
+s函数支持五种阈值操作类型，可将图像转换为二值化或特定处理后的形式。</p>
+<h3 id="基本阈值操作类型">基本阈值操作类型</h3>
+<h4 id="二值化阈值binary-threshold">二值化阈值（Binary Threshold）</h4>
+<p><span class="math display">\[
+dst(x, y) =
+\begin{cases}
+\max{Val} &amp; \text{if } src(x, y) &gt; \text{thresh} \\
+0 &amp; \text{otherwise}
+\end{cases} \nonumber
+\]</span> 当像素强度超过阈值时设为最大值（如255），否则设为0。</p>
+<h4 id="反向二值化阈值binary-inverted">反向二值化阈值（Binary
+Inverted）</h4>
+<p><span class="math display">\[
+dst(x,y) =
+\begin{cases}
+0 &amp; \text{if } src(x,y) &gt; \text{thresh} \\
+\max{Val} &amp; \text{otherwise}
+\end{cases} \nonumber
+\]</span> 与二值化阈值相反，超过阈值的像素设为0，其余设为最大值。</p>
+<h4 id="截断阈值truncate">截断阈值（Truncate）</h4>
+<p><span class="math display">\[
+dst(x,y) =
+\begin{cases}
+\text{thresh} &amp; \text{if } src(x,y) &gt; \text{thresh} \\
+src(x,y) &amp; \text{otherwise}
+\end{cases} \nonumber
+\]</span> 超过阈值的像素被截断为阈值，其余保持不变。</p>
+<h4 id="零阈值threshold-to-zero">零阈值（Threshold to Zero）</h4>
+<p><span class="math display">\[
+dst(x,y) =
+\begin{cases}
+src(x,y) &amp; \text{if } src(x,y) &gt; \text{thresh} \\
+0 &amp; \text{otherwise}
+\end{cases} \nonumber
+\]</span> 低于阈值的像素设为0，其余保留原值。</p>
+<h4 id="反向零阈值threshold-to-zero-inverted">反向零阈值（Threshold to
+Zero Inverted）</h4>
+<p><span class="math display">\[
+dst(x,y) =
+\begin{cases}
+0 &amp; \text{if } src(x,y) &gt; \text{thresh} \\
+src(x,y) &amp; \text{otherwise}
+\end{cases} \nonumber
+\]</span> 超过阈值的像素设为0，其余保留原值。</p>
+<hr />
+<h3 id="代码实现与解析">代码实现与解析</h3>
+<p>以下是一个完整的阈值处理示例代码，支持通过滑动条动态调整参数：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/highgui.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgcodecs.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgproc.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> threshold_value = <span class="number">8</span>;</span><br><span class="line"><span class="type">int</span> threshold_type = <span class="number">3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_value = <span class="number">255</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_type = <span class="number">4</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_binary_value = <span class="number">255</span>;</span><br><span class="line"></span><br><span class="line">Mat src, src_gray, dst;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* window_name = <span class="string">&quot;Threshold Demo&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 滑动条回调函数</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">Threshold_Demo</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    cv::<span class="built_in">threshold</span>(src_gray, dst, threshold_value, max_binary_value, threshold_type);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(window_name, dst);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">imageName</span><span class="params">(<span class="string">&quot;iamge.png&quot;</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (argc &gt; <span class="number">1</span>) imageName = argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取并转换图像为灰度图</span></span><br><span class="line">    src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(imageName), cv::IMREAD_COLOR);</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;无法读取图像: &quot;</span> &lt;&lt; imageName &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cv::<span class="built_in">cvtColor</span>(src, src_gray, cv::COLOR_BGR2GRAY);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建窗口和滑动条</span></span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(window_name, cv::WINDOW_AUTOSIZE);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;type&quot;</span>, window_name, &amp;threshold_type, max_type, Threshold_Demo);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;size&quot;</span>, window_name, &amp;threshold_value, max_value, Threshold_Demo);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Threshold_Demo</span>(<span class="number">0</span>, <span class="number">0</span>);  <span class="comment">// 初始化</span></span><br><span class="line">    cv::<span class="built_in">waitKey</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结-2">总结</h3>
+<p>阈值处理是OpenCV中基础的图像分割技术，适用于目标检测、背景分离等场景。通过灵活选择阈值类型和参数，开发者可以快速实现不同需求的分割效果。</p>
+<hr />
+<h2 id="hsv-通道的阈值操作">HSV 通道的阈值操作</h2>
+<h3 id="理论基础-1">理论基础</h3>
+<p>与传统的<code>cv::threshold</code>函数不同，<code>cv::inRange</code>允许通过设定像素值的上下限范围来提取目标区域。HSV（Hue,
+Saturation,
+Value）颜色空间因其色相（Hue）通道能独立表示颜色类型，常用于基于颜色的图像分割任务：</p>
+<ul>
+<li><strong>Hue（色相）</strong>：表示颜色类型，范围为0-180（OpenCV中常将0-360度映射到此范围）。<br />
+</li>
+<li><strong>Saturation（饱和度）</strong>：从灰度（低饱和度）到纯色（高饱和度）。<br />
+</li>
+<li><strong>Value（明度）</strong>：表示颜色亮度。</li>
+</ul>
+<p>颜色空间转换公式（RGB 到 HSV）可通过 <code>cv::cvtColor</code>
+实现，具体计算遵循标准转换规则： <span class="math display">\[
+\begin{align*}
+H &amp;= \text{arctan2}(\sqrt{3}(G - B), 2R - G - B) \\\\
+S &amp;= \frac{\max(R, G, B) - \min(R, G, B)}{\max(R, G, B)} \\\\
+V &amp;= \max(R, G, B)\\
+\end{align*}
+\]</span></p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="RGB Space.png" alt="RGB Space" width="80" height="80" loading="lazy"/></div><div class="group-picture-column"><img src="HSV Space.png" alt="HSV Space" width="80" height="80" loading="lazy"/></div></div></div>
+<h3 id="代码实现-1">代码实现</h3>
+<p>以下示例演示如何通过实时视频流进行阈值分割：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/highgui.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgproc.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/videoio.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义全局变量</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_value_H = <span class="number">180</span>;  <span class="comment">// Hue范围映射为0-180</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> max_value = <span class="number">255</span>;</span><br><span class="line"><span class="type">const</span> String window_capture_name = <span class="string">&quot;Video Capture&quot;</span>;</span><br><span class="line"><span class="type">const</span> String window_detection_name = <span class="string">&quot;Object Detection&quot;</span>;</span><br><span class="line"><span class="type">int</span> low_H = <span class="number">0</span>, low_S = <span class="number">0</span>, low_V = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> high_H = max_value_H, high_S = max_value, high_V = max_value;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Trackbar回调函数，确保阈值范围合法</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_low_H_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    low_H = std::<span class="built_in">min</span>(high_H - <span class="number">1</span>, low_H);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;Low H&quot;</span>, window_detection_name, low_H);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_high_H_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    high_H = std::<span class="built_in">max</span>(high_H, low_H + <span class="number">1</span>);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;High H&quot;</span>, window_detection_name, high_H);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_low_S_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    low_S = std::<span class="built_in">min</span>(high_S - <span class="number">1</span>, low_S);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;Low S&quot;</span>, window_detection_name, low_S);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_high_S_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    high_S = std::<span class="built_in">max</span>(high_S, low_S + <span class="number">1</span>);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;High S&quot;</span>, window_detection_name, high_S);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_low_V_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    low_V = std::<span class="built_in">min</span>(high_V - <span class="number">1</span>, low_V);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;Low V&quot;</span>, window_detection_name, low_V);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">on_high_V_thresh_trackbar</span><span class="params">(<span class="type">int</span>, <span class="type">void</span>*)</span> </span>&#123;</span><br><span class="line">    high_V = std::<span class="built_in">max</span>(high_V, low_V + <span class="number">1</span>);</span><br><span class="line">    cv::<span class="built_in">setTrackbarPos</span>(<span class="string">&quot;High V&quot;</span>, window_detection_name, high_V);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 捕获摄像头画面 或 视频文件</span></span><br><span class="line">    cv::VideoCapture cap;</span><br><span class="line">    cap.<span class="built_in">open</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (!cap.<span class="built_in">isOpened</span>()) &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;Error: Unable to open video capture!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建显示窗口</span></span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(window_capture_name);</span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(window_detection_name);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建HSV阈值调节Trackbar</span></span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;Low H&quot;</span>, window_detection_name, &amp;low_H, max_value_H, on_low_H_thresh_trackbar);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;High H&quot;</span>, window_detection_name, &amp;high_H, max_value_H, on_high_H_thresh_trackbar);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;Low S&quot;</span>, window_detection_name, &amp;low_S, max_value, on_low_S_thresh_trackbar);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;High S&quot;</span>, window_detection_name, &amp;high_S, max_value, on_high_S_thresh_trackbar);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;Low V&quot;</span>, window_detection_name, &amp;low_V, max_value, on_low_V_thresh_trackbar);</span><br><span class="line">    cv::<span class="built_in">createTrackbar</span>(<span class="string">&quot;High V&quot;</span>, window_detection_name, &amp;high_V, max_value, on_high_V_thresh_trackbar);</span><br><span class="line"></span><br><span class="line">    cv::Mat frame, frame_HSV, frame_threshold;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="comment">// 捕获视频帧</span></span><br><span class="line">        cap &gt;&gt; frame;</span><br><span class="line">        <span class="keyword">if</span> (frame.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            std::cerr &lt;&lt; <span class="string">&quot;Error: Captured frame is empty!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 转换到HSV颜色空间</span></span><br><span class="line">        cv::<span class="built_in">cvtColor</span>(frame, frame_HSV, cv::COLOR_BGR2HSV);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 应用阈值分割</span></span><br><span class="line">        cv::<span class="built_in">inRange</span>(frame_HSV, cv::<span class="built_in">Scalar</span>(low_H, low_S, low_V), cv::<span class="built_in">Scalar</span>(high_H, high_S, high_V), frame_threshold);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示结果</span></span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_capture_name, frame);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_detection_name, frame_threshold);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 按&#x27;q&#x27;或&#x27;ESC&#x27;键退出</span></span><br><span class="line">        <span class="type">char</span> key = (<span class="type">char</span>)cv::<span class="built_in">waitKey</span>(<span class="number">30</span>);</span><br><span class="line">        <span class="keyword">if</span> (key == <span class="string">&#x27;q&#x27;</span> || key == <span class="number">27</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="低hlow-h"><strong>1. 低H（Low H）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>色相（Hue）</strong> 的
+<strong>最低阈值</strong>。</li>
+<li><strong>范围</strong>：0-180（OpenCV中Hue范围为0-180，而非0-360）。</li>
+<li><strong>功能</strong>：<br />
+通过滑动条调整，选择目标颜色的起始色相值。例如，若要检测红色（Hue约0-10或160-180），可将
+<code>Low H</code> 设为0或160。</li>
+</ul>
+<h4 id="高hhigh-h"><strong>2. 高H（High H）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>色相（Hue）</strong> 的
+<strong>最高阈值</strong>。</li>
+<li><strong>范围</strong>：0-180。</li>
+<li><strong>功能</strong>：<br />
+定义目标颜色的终止色相值。例如，检测红色时，若
+<code>Low H=160</code>，则 <code>High H=180</code>
+可覆盖红色的色相范围。</li>
+</ul>
+<h4 id="低slow-s"><strong>3. 低S（Low S）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>饱和度（Saturation）</strong> 的
+<strong>最低阈值</strong>。</li>
+<li><strong>范围</strong>：0-255。</li>
+<li><strong>功能</strong>：<br />
+饱和度表示颜色的纯度。低饱和度接近灰色，高饱和度接近纯色。<br />
+通过提高 <code>Low S</code>，可过滤掉灰度区域（如阴影或白色背景）。</li>
+</ul>
+<h4 id="高shigh-s"><strong>4. 高S（High S）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>饱和度（Saturation）</strong> 的
+<strong>最高阈值</strong>。</li>
+<li><strong>范围</strong>：0-255。</li>
+<li><strong>功能</strong>：<br />
+限制颜色的最大饱和度。通常保持
+<code>High S=255</code>，表示允许所有高饱和度颜色参与检测。</li>
+</ul>
+<h4 id="低vlow-v"><strong>5. 低V（Low V）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>明度（Value）</strong> 的
+<strong>最低阈值</strong>。</li>
+<li><strong>范围</strong>：0-255。</li>
+<li><strong>功能</strong>：<br />
+明度表示颜色亮度。通过调整
+<code>Low V</code>，可过滤掉过暗区域。例如，<code>Low V=50</code>
+会排除亮度低于50的像素。</li>
+</ul>
+<h4 id="高vhigh-v"><strong>6. 高V（High V）</strong></h4>
+<ul>
+<li><strong>作用</strong>：设置 <strong>明度（Value）</strong> 的
+<strong>最高阈值</strong>。</li>
+<li><strong>范围</strong>：0-255。</li>
+<li><strong>功能</strong>：<br />
+限制颜色的最大亮度。通常保持
+<code>High V=255</code>，允许所有亮度区域参与检测。</li>
+</ul>
+<h3 id="运行结果">运行结果</h3>
+<p>程序运行后，两个窗口分别显示原始视频和阈值处理后的二值图像。通过调节滑动条可实时观察不同阈值范围对检测效果的影响，适用于动态环境下的颜色目标跟踪。</p>
+<hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
 href="https://docs.opencv.org/4.x/d7/da8/tutorial_table_of_content_imgproc.html">OpenCV
@@ -705,10 +843,10 @@ href="https://docs.opencv.org/4.x/d7/da8/tutorial_table_of_content_imgproc.html"
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-核心功能（下）</title>
-    <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+    <title>OpenCV入门学习-核心功能（二）</title>
+    <url>/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<a href="/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/" title="OpenCV入门学习-核心功能（上）">OpenCV入门学习-核心功能（上）</a>
+<a href="/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/" title="OpenCV入门学习-核心功能（一）">OpenCV入门学习-核心功能（一）</a>
 <hr />
 <h2 id="调整图像的对比度和亮度">1. 调整图像的对比度和亮度</h2>
 <p>OpenCV
@@ -764,7 +902,7 @@ Gamma 校正优化。</p>
 </figure>
 <h4 id="实现代码">1.4.1. 实现代码</h4>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建查找表</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">lookupTable</span><span class="params">(<span class="number">1</span>, <span class="number">256</span>, CV_8U)</span></span>;</span><br><span class="line">uchar* p = lookupTable.<span class="built_in">ptr</span>();</span><br><span class="line"><span class="type">double</span> gamma = <span class="number">0.4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; ++i) &#123;</span><br><span class="line">    <span class="comment">// 四舍五入，饱和时截断</span></span><br><span class="line">    p[i] = cv::<span class="built_in">saturate_cast</span>&lt;uchar&gt;(<span class="built_in">pow</span>(i / <span class="number">255.0</span>, gamma) * <span class="number">255.0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用 Gamma 校正</span></span><br><span class="line">cv::Mat corrected;</span><br><span class="line">cv::<span class="built_in">LUT</span>(image, lookupTable, corrected);</span><br></pre></td></tr></table></figure>
-<p><a href="/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/#ch2">查找表 LUT</a></p>
+<p><a href="/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/#ch2">查找表 LUT</a></p>
 <h3 id="性能优化提示">1.5. 性能优化提示</h3>
 <ul>
 <li><strong>避免逐像素操作</strong>：优先使用内置函数（如
@@ -1084,8 +1222,8 @@ href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">Op
       </tags>
   </entry>
   <entry>
-    <title>OpenCV入门学习-核心功能（上）</title>
-    <url>/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <title>OpenCV入门学习-核心功能（一）</title>
+    <url>/2025/01/24/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
 <p>环境：</p>
 <ul>
@@ -1673,7 +1811,7 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <h3 id="总结-3">5.5. 总结</h3>
 <p>通过 <code>cv::addWeighted</code> 函数，OpenCV
 为图像混合提供了一种简洁高效的实现方式。掌握这一技术后，可以进一步探索更复杂的图像处理任务，如图像融合、遮罩处理等。</p>
-<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%8B%EF%BC%89/" title="OpenCV入门学习-核心功能（下）">OpenCV入门学习-核心功能（下）</a>
+<a href="/2025/01/27/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89/" title="OpenCV入门学习-核心功能（二）">OpenCV入门学习-核心功能（二）</a>
 <hr />
 <h2 id="参考资料">6. 参考资料</h2>
 <p><strong>[1]</strong> <a
