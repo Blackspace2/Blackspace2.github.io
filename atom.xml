@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-03-16T11:57:04.461Z</updated>
+  <updated>2025-03-16T12:19:47.093Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -17,14 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>OpenCV入门学习-图像处理（二）</title>
+    <link href="https://blackspace2.github.io/2025/03/16/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://blackspace2.github.io/2025/03/16/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2025-03-16T04:06:57.419Z</published>
+    <updated>2025-03-16T12:19:47.093Z</updated>
+    
+    
+    <summary type="html">线性滤波 |</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="计算机视觉" scheme="https://blackspace2.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="C/C++" scheme="https://blackspace2.github.io/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>OpenCV入门学习-图像处理（一）</title>
     <link href="https://blackspace2.github.io/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://blackspace2.github.io/2025/02/06/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/</id>
     <published>2025-02-05T23:30:37.123Z</published>
-    <updated>2025-03-16T11:57:04.461Z</updated>
+    <updated>2025-03-16T12:05:36.061Z</updated>
     
     
-    <summary type="html">绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作 | 图像金字塔</summary>
+    <summary type="html">绘图基础 | 随机数生成与文本绘制 | 图像平滑 | 形态学操作 | 图像金字塔 | 阈值操作</summary>
     
     
     
