@@ -28,7 +28,7 @@
 <meta property="og:description" content="线性滤波 |">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-16T04:06:57.419Z">
-<meta property="article:modified_time" content="2025-03-28T03:46:19.593Z">
+<meta property="article:modified_time" content="2025-03-28T05:08:00.874Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -130,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
@@ -144,6 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">线性滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%BF%90%E7%AE%97%E4%B8%8E%E6%A0%B8"><span class="nav-text">相关运算与核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%92%E4%B8%80%E5%8C%96%E7%9B%92%E5%BC%8F%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">归一化盒式滤波器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A4%E6%B3%A2%E5%99%A8%E5%BA%94%E7%94%A8"><span class="nav-text">滤波器应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -169,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -255,7 +256,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-28 11:46:19" itemprop="dateModified" datetime="2025-03-28T11:46:19+08:00">2025-03-28</time>
+      <time title="修改时间：2025-03-28 13:08:00" itemprop="dateModified" datetime="2025-03-28T13:08:00+08:00">2025-03-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,14 +282,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>59</span>
+      <span>615</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
   
 </div>
@@ -317,6 +318,108 @@
 <li>C++ (ISO C++ 14 标准)</li>
 </ul>
 <hr />
+<h2 id="线性滤波器">线性滤波器</h2>
+<p>涵盖以下内容：</p>
+<ul>
+<li>使用OpenCV的<code>cv::filter2D()</code>函数创建自定义线性滤波器<br />
+</li>
+<li>理解图像处理中核（Kernel）的概念及相关运算（Correlation）<br />
+</li>
+<li>实现归一化盒式滤波器（Normalized Box
+Filter）并观察不同核尺寸的效果</li>
+</ul>
+<h2 id="理论基础">理论基础</h2>
+<h3 id="相关运算与核">相关运算与核</h3>
+<p>在图像处理中，<strong>相关运算</strong>（Correlation）是核与图像局部区域进行加权求和的操作。核是一个固定大小的数值矩阵，其中心通常定义为锚点（Anchor
+Point）。</p>
+<p>核的工作流程如下：</p>
+<ol type="1">
+<li>将核的锚点对准图像中的目标像素<br />
+</li>
+<li>核系数与对应像素值相乘后求和<br />
+</li>
+<li>将结果写入输出图像的锚点位置<br />
+</li>
+<li>遍历所有像素完成计算</li>
+</ol>
+<p>数学表达式为：<br />
+<span class="math display">\[  
+H(x, y) = \sum_{i=0}^{M_i-1} \sum_{j=0}^{M_j-1} I(x + i - a_i, y + j -
+a_j) K(i, j) \nonumber  
+\]</span></p>
+<h3 id="归一化盒式滤波器">归一化盒式滤波器</h3>
+<p>以尺寸为3×3的归一化盒式滤波器为例，核矩阵为：<br />
+<span class="math display">\[  
+K = \frac{1}{9} \begin{bmatrix}  
+1 &amp; 1 &amp; 1 \\  
+1 &amp; 1 &amp; 1 \\  
+1 &amp; 1 &amp; 1  
+\end{bmatrix} \nonumber  
+\]</span><br />
+其作用是计算局部像素的平均值，实现图像模糊效果。</p>
+<hr />
+<h2 id="代码实现">代码实现</h2>
+<p>以下代码展示了如何使用<code>cv::filter2D()</code>实现不同尺寸的归一化盒式滤波器：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/imgproc.hpp&quot;</span><span class="pp">  </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/imgcodecs.hpp&quot;</span><span class="pp">  </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/highgui.hpp&quot;</span><span class="pp">  </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span><span class="op">**</span> argv<span class="op">)</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 加载图像  </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat src <span class="op">=</span> cv<span class="op">::</span>imread<span class="op">(</span>cv<span class="op">::</span>samples<span class="op">::</span>findFile<span class="op">(</span>argc <span class="op">&gt;=</span><span class="dv">2</span> <span class="op">?</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">:</span> <span class="st">&quot;lena.jpg&quot;</span><span class="op">));</span>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>src<span class="op">.</span>empty<span class="op">())</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;Error opening image</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXIT_FAILURE<span class="op">;</span>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 初始化参数  </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat dst<span class="op">,</span> kernel<span class="op">;</span>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Point anchor<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">);</span>  </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> delta <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ddepth <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">char</span><span class="op">*</span> window_name <span class="op">=</span> <span class="st">&quot;filter2D Demo&quot;</span><span class="op">;</span>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 循环应用不同尺寸的核  </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ind <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>  </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">&#123;</span>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 核尺寸在[3, 11]范围内按奇数递增  </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> kernel_size <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="op">(</span>ind <span class="op">%</span> <span class="dv">5</span><span class="op">);</span>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        kernel <span class="op">=</span> cv<span class="op">::</span>Mat<span class="op">::</span>ones<span class="op">(</span>kernel_size<span class="op">,</span> kernel_size<span class="op">,</span> CV_32F<span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="dt">float</span><span class="op">)(</span>kernel_size <span class="op">*</span> kernel_size<span class="op">);</span>  </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 应用滤波器  </span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">::</span>filter2D<span class="op">(</span>src<span class="op">,</span> dst<span class="op">,</span> ddepth<span class="op">,</span> kernel<span class="op">,</span> anchor<span class="op">,</span> delta<span class="op">,</span> cv<span class="op">::</span>BORDER_DEFAULT<span class="op">);</span>  </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">::</span>imshow<span class="op">(</span>window_name<span class="op">,</span> dst<span class="op">);</span>  </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 按ESC退出  </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">char</span> c <span class="op">=</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span>cv<span class="op">::</span>waitKey<span class="op">(</span><span class="dv">500</span><span class="op">);</span>  </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> <span class="dv">27</span><span class="op">)</span> <span class="cf">break</span><span class="op">;</span>  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        ind<span class="op">++;</span>  </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXIT_SUCCESS<span class="op">;</span>  </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span>  </span></code></pre></div>
+<h2 id="滤波器应用">滤波器应用</h2>
+<p>使用<code>cv::filter2D</code>进行滤波操作：</p>
+<ul>
+<li><code>src</code>：输入图像<br />
+</li>
+<li><code>dst</code>：输出图像<br />
+</li>
+<li><code>ddepth</code>：输出图像深度（-1表示与输入一致）<br />
+</li>
+<li><code>kernel</code>：自定义核<br />
+</li>
+<li><code>anchor</code>：核锚点位置（默认中心）<br />
+</li>
+<li><code>delta</code>：输出像素值的额外偏移量</li>
+</ul>
+<hr />
+<hr />
+<h2 id="参考资料">参考资料</h2>
+<p><strong>[1]</strong> <a
+target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/de/d7a/tutorial_table_of_content_core.html">OpenCV
+官方文档</a></p>
 
     </div>
 
@@ -443,13 +546,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">34k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:05</span>
+    <span title="站点阅读时长">1:53</span>
   </span>
 </div>
 <div class="busuanzi-count">

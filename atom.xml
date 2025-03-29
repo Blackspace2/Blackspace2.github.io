@@ -6,7 +6,7 @@
   <link href="https://blackspace2.github.io/atom.xml" rel="self"/>
   
   <link href="https://blackspace2.github.io/"/>
-  <updated>2025-03-28T03:46:19.593Z</updated>
+  <updated>2025-03-28T05:08:00.874Z</updated>
   <id>https://blackspace2.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blackspace2.github.io/2025/03/16/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>https://blackspace2.github.io/2025/03/16/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
     <published>2025-03-16T04:06:57.419Z</published>
-    <updated>2025-03-28T03:46:19.593Z</updated>
+    <updated>2025-03-28T05:08:00.874Z</updated>
     
     
     <summary type="html">线性滤波 |</summary>
@@ -145,27 +145,6 @@
     <category term="后方交会" scheme="https://blackspace2.github.io/tags/%E5%90%8E%E6%96%B9%E4%BA%A4%E4%BC%9A/"/>
     
     <category term="摄影测量" scheme="https://blackspace2.github.io/tags/%E6%91%84%E5%BD%B1%E6%B5%8B%E9%87%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>支持向量机-SVM</title>
-    <link href="https://blackspace2.github.io/2025/01/18/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/"/>
-    <id>https://blackspace2.github.io/2025/01/18/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM/</id>
-    <published>2025-01-18T08:11:15.685Z</published>
-    <updated>2025-03-04T08:35:58.061Z</updated>
-    
-    
-    <summary type="html">概要| 符号定义 | 推导</summary>
-    
-    
-    
-    <category term="机器学习" scheme="https://blackspace2.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="机器学习" scheme="https://blackspace2.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="SVM" scheme="https://blackspace2.github.io/tags/SVM/"/>
     
   </entry>
   
