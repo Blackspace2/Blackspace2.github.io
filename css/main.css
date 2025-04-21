@@ -488,7 +488,7 @@ td {
   position: absolute;
 }
 .highlight-fold {
-  max-height: 800px;
+  max-height: 600px;
   overflow-y: hidden !important;
 }
 .highlight-fold .expand-btn,
@@ -1240,7 +1240,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #fad;
+    background: #ffde49;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);

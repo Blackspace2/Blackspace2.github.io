@@ -18,17 +18,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":800},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blackspace2.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":600},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"twikoo","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1}},"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="线性滤波 |">
+    <meta name="description" content="线性滤波 | 图像边界扩展">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV入门学习-图像处理（二）">
 <meta property="og:url" content="https://blackspace2.github.io/2025/03/16/OpenCV%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="Peace">
-<meta property="og:description" content="线性滤波 |">
+<meta property="og:description" content="线性滤波 | 图像边界扩展">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-16T04:06:57.419Z">
-<meta property="article:modified_time" content="2025-03-28T05:08:00.874Z">
+<meta property="article:modified_time" content="2025-04-21T13:51:51.136Z">
 <meta property="article:author" content="smile">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="C&#x2F;C++">
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">线性滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%BF%90%E7%AE%97%E4%B8%8E%E6%A0%B8"><span class="nav-text">相关运算与核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%92%E4%B8%80%E5%8C%96%E7%9B%92%E5%BC%8F%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">归一化盒式滤波器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A4%E6%B3%A2%E5%99%A8%E5%BA%94%E7%94%A8"><span class="nav-text">滤波器应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">线性滤波器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%BF%90%E7%AE%97%E4%B8%8E%E6%A0%B8"><span class="nav-text">相关运算与核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%92%E4%B8%80%E5%8C%96%E7%9B%92%E5%BC%8F%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="nav-text">归一化盒式滤波器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E8%BE%B9%E6%A1%86%E7%B1%BB%E5%9E%8B"><span class="nav-text">支持的边框类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%A7%A3%E6%9E%90"><span class="nav-text">代码实现与解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -231,7 +231,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="OpenCV入门学习-图像处理（二） | Peace">
-      <meta itemprop="description" content="线性滤波 |">
+      <meta itemprop="description" content="线性滤波 | 图像边界扩展">
     </span>
 
       <header class="post-header">
@@ -256,7 +256,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-28 13:08:00" itemprop="dateModified" datetime="2025-03-28T13:08:00+08:00">2025-03-28</time>
+      <time title="修改时间：2025-04-21 21:51:51" itemprop="dateModified" datetime="2025-04-21T21:51:51+08:00">2025-04-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,19 +282,19 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>615</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>4 分钟</span>
     </span>
   
 </div>
 
-            <div class="post-description">线性滤波 |</div>
+            <div class="post-description">线性滤波 | 图像边界扩展</div>
           
         </div>
       </header>
@@ -359,47 +359,6 @@ K = \frac{1}{9} \begin{bmatrix}
 其作用是计算局部像素的平均值，实现图像模糊效果。</p>
 <hr />
 <h2 id="代码实现">代码实现</h2>
-<p>以下代码展示了如何使用<code>cv::filter2D()</code>实现不同尺寸的归一化盒式滤波器：</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/imgproc.hpp&quot;</span><span class="pp">  </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/imgcodecs.hpp&quot;</span><span class="pp">  </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;opencv2/highgui.hpp&quot;</span><span class="pp">  </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span><span class="op">**</span> argv<span class="op">)</span> <span class="op">&#123;</span>  </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 加载图像  </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat src <span class="op">=</span> cv<span class="op">::</span>imread<span class="op">(</span>cv<span class="op">::</span>samples<span class="op">::</span>findFile<span class="op">(</span>argc <span class="op">&gt;=</span><span class="dv">2</span> <span class="op">?</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">:</span> <span class="st">&quot;lena.jpg&quot;</span><span class="op">));</span>  </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>src<span class="op">.</span>empty<span class="op">())</span> <span class="op">&#123;</span>  </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;Error opening image</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span>  </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXIT_FAILURE<span class="op">;</span>  </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 初始化参数  </span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Mat dst<span class="op">,</span> kernel<span class="op">;</span>  </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">::</span>Point anchor<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">);</span>  </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> delta <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>  </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ddepth <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>  </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">char</span><span class="op">*</span> window_name <span class="op">=</span> <span class="st">&quot;filter2D Demo&quot;</span><span class="op">;</span>  </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 循环应用不同尺寸的核  </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ind <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>  </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="kw">true</span><span class="op">)</span> <span class="op">&#123;</span>  </span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 核尺寸在[3, 11]范围内按奇数递增  </span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> kernel_size <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="op">(</span>ind <span class="op">%</span> <span class="dv">5</span><span class="op">);</span>  </span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        kernel <span class="op">=</span> cv<span class="op">::</span>Mat<span class="op">::</span>ones<span class="op">(</span>kernel_size<span class="op">,</span> kernel_size<span class="op">,</span> CV_32F<span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="dt">float</span><span class="op">)(</span>kernel_size <span class="op">*</span> kernel_size<span class="op">);</span>  </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 应用滤波器  </span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">::</span>filter2D<span class="op">(</span>src<span class="op">,</span> dst<span class="op">,</span> ddepth<span class="op">,</span> kernel<span class="op">,</span> anchor<span class="op">,</span> delta<span class="op">,</span> cv<span class="op">::</span>BORDER_DEFAULT<span class="op">);</span>  </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        cv<span class="op">::</span>imshow<span class="op">(</span>window_name<span class="op">,</span> dst<span class="op">);</span>  </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 按ESC退出  </span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">char</span> c <span class="op">=</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span>cv<span class="op">::</span>waitKey<span class="op">(</span><span class="dv">500</span><span class="op">);</span>  </span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> <span class="dv">27</span><span class="op">)</span> <span class="cf">break</span><span class="op">;</span>  </span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        ind<span class="op">++;</span>  </span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span>  </span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXIT_SUCCESS<span class="op">;</span>  </span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span>  </span></code></pre></div>
-<h2 id="滤波器应用">滤波器应用</h2>
 <p>使用<code>cv::filter2D</code>进行滤波操作：</p>
 <ul>
 <li><code>src</code>：输入图像<br />
@@ -414,7 +373,44 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 </li>
 <li><code>delta</code>：输出像素值的额外偏移量</li>
 </ul>
+<p>以下代码展示了如何使用<code>cv::filter2D()</code>实现不同尺寸的归一化盒式滤波器：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/highgui.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgcodecs.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opencv2/imgproc.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 加载图像</span></span><br><span class="line">    cv::Mat src = cv::<span class="built_in">imread</span>(cv::samples::<span class="built_in">findFile</span>(argc &gt;= <span class="number">2</span> ? argv[<span class="number">1</span>] : <span class="string">&quot;cat.png&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Error opening image\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化参数</span></span><br><span class="line">    cv::Mat dst, kernel;</span><br><span class="line">    <span class="function">cv::Point <span class="title">anchor</span><span class="params">(<span class="number">-1</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="type">double</span> delta = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ddepth = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* window_name = <span class="string">&quot;filter2D Demo&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环应用不同尺寸的核</span></span><br><span class="line">    <span class="type">int</span> ind = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="comment">// 核尺寸在[3, 11]范围内按奇数递增</span></span><br><span class="line">        <span class="type">int</span> kernel_size = <span class="number">3</span> + <span class="number">2</span> * (ind % <span class="number">5</span>);</span><br><span class="line">        kernel = cv::Mat::<span class="built_in">ones</span>(kernel_size, kernel_size, CV_32F) / (<span class="type">float</span>)(kernel_size * kernel_size);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 应用滤波器</span></span><br><span class="line">        cv::<span class="built_in">filter2D</span>(src, dst, ddepth, kernel, anchor, delta, cv::BORDER_DEFAULT);</span><br><span class="line">        cv::<span class="built_in">imshow</span>(window_name, dst);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 按ESC退出</span></span><br><span class="line">        <span class="type">char</span> c = (<span class="type">char</span>)cv::<span class="built_in">waitKey</span>(<span class="number">500</span>);</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="number">27</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        ind++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 添加图像边框</span><br><span class="line"></span><br><span class="line">在图像处理中，为图像添加边框（padding）是常见的预处理操作。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 核心函数与边框类型</span><br><span class="line"></span><br><span class="line">#### 函数原型  </span><br><span class="line"></span><br><span class="line">```<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cv::copyMakeBorder</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    cv::InputArray src, </span></span></span><br><span class="line"><span class="params"><span class="function">    cv::OutputArray dst,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> top, <span class="type">int</span> bottom, <span class="type">int</span> left, <span class="type">int</span> right,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int</span> borderType,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> cv::Scalar&amp; value = cv::Scalar()</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="支持的边框类型">支持的边框类型</h4>
+<ol type="1">
+<li><strong>常数填充（<code>BORDER_CONSTANT</code>）</strong><br />
+使用固定颜色填充边框，默认值为黑色（0）。<br />
+</li>
+<li><strong>边缘复制（<code>BORDER_REPLICATE</code>）</strong><br />
+将图像边缘的像素值复制到扩展区域。</li>
+</ol>
 <hr />
+<h3 id="代码实现与解析">代码实现与解析</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgcodecs.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取图像</span></span><br><span class="line">    cv::Mat src = cv::<span class="built_in">imread</span>(<span class="string">&quot;cat.png&quot;</span>, cv::IMREAD_COLOR);</span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Error: Image not loaded.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化参数</span></span><br><span class="line">    <span class="type">int</span> borderType = cv::BORDER_CONSTANT;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* windowName = <span class="string">&quot;Border Demo&quot;</span>;</span><br><span class="line">    cv::<span class="built_in">namedWindow</span>(windowName, cv::WINDOW_AUTOSIZE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算边框大小（占原图尺寸的5%）</span></span><br><span class="line">    <span class="type">int</span> top = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(<span class="number">0.05</span> * src.rows);</span><br><span class="line">    <span class="type">int</span> bottom = top;</span><br><span class="line">    <span class="type">int</span> left = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(<span class="number">0.05</span> * src.cols);</span><br><span class="line">    <span class="type">int</span> right = left;</span><br><span class="line"></span><br><span class="line">    <span class="function">cv::RNG <span class="title">rng</span><span class="params">(<span class="number">12345</span>)</span></span>;  <span class="comment">// 随机数生成器</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="comment">// 生成随机颜色</span></span><br><span class="line">        <span class="function">cv::Scalar <span class="title">color</span><span class="params">(rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>))</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加边框</span></span><br><span class="line">        cv::Mat dst;</span><br><span class="line">        cv::<span class="built_in">copyMakeBorder</span>(src, dst, top, bottom, left, right, borderType, color);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 显示结果</span></span><br><span class="line">        cv::<span class="built_in">imshow</span>(windowName, dst);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理键盘输入</span></span><br><span class="line">        <span class="type">char</span> key = <span class="built_in">static_cast</span>&lt;<span class="type">char</span>&gt;(cv::<span class="built_in">waitKey</span>(<span class="number">500</span>));</span><br><span class="line">        <span class="keyword">if</span> (key == <span class="number">27</span>)</span><br><span class="line">            <span class="keyword">break</span>;  <span class="comment">// ESC退出</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (key == <span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">            borderType = cv::BORDER_CONSTANT;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (key == <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">            borderType = cv::BORDER_REPLICATE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>步骤说明</strong></p>
+<ol type="1">
+<li><strong>图像读取与校验</strong>
+<ul>
+<li>使用<code>cv::imread</code>加载图像，并通过<code>src.empty()</code>检查是否加载成功。<br />
+</li>
+</ul></li>
+<li><strong>窗口创建</strong>
+<ul>
+<li>调用<code>cv::namedWindow</code>创建显示窗口。<br />
+</li>
+</ul></li>
+<li><strong>边框尺寸计算</strong>
+<ul>
+<li>边框高度和宽度通过原图尺寸的5%确定：<br />
+<span
+class="math display">\[\nonumber\begin{array}{l}\mathrm{top}=0.05\times
+\mathrm{src}.\mathrm{rows}\\\mathrm{left}=0.05\times
+\mathrm{src}.\mathrm{cols}\\ \end{array}\]</span></li>
+</ul></li>
+<li><strong>动态交互</strong>
+<ul>
+<li>按<code>c</code>切换为随机颜色的常数边框，按<code>r</code>切换为边缘复制模式，按<code>ESC</code>退出程序。</li>
+</ul></li>
+</ol>
 <hr />
 <h2 id="参考资料">参考资料</h2>
 <p><strong>[1]</strong> <a
@@ -552,7 +548,7 @@ target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/de/d7a/tutorial
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:53</span>
+    <span title="站点阅读时长">1:54</span>
   </span>
 </div>
 <div class="busuanzi-count">
