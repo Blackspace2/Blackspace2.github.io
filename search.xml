@@ -29,8 +29,8 @@
 <li>实现归一化盒式滤波器（Normalized Box
 Filter）并观察不同核尺寸的效果</li>
 </ul>
-<h2 id="理论基础">理论基础</h2>
-<h3 id="相关运算与核">相关运算与核</h3>
+<h3 id="理论基础">理论基础</h3>
+<h4 id="相关运算与核">相关运算与核</h4>
 <p>在图像处理中，<strong>相关运算</strong>（Correlation）是核与图像局部区域进行加权求和的操作。核是一个固定大小的数值矩阵，其中心通常定义为锚点（Anchor
 Point）。</p>
 <p>核的工作流程如下：</p>
@@ -48,7 +48,7 @@ Point）。</p>
 H(x, y) = \sum_{i=0}^{M_i-1} \sum_{j=0}^{M_j-1} I(x + i - a_i, y + j -
 a_j) K(i, j) \nonumber  
 \]</span></p>
-<h3 id="归一化盒式滤波器">归一化盒式滤波器</h3>
+<h4 id="归一化盒式滤波器">归一化盒式滤波器</h4>
 <p>以尺寸为3×3的归一化盒式滤波器为例，核矩阵为：<br />
 <span class="math display">\[  
 K = \frac{1}{9} \begin{bmatrix}  
@@ -59,7 +59,7 @@ K = \frac{1}{9} \begin{bmatrix}
 \]</span><br />
 其作用是计算局部像素的平均值，实现图像模糊效果。</p>
 <hr />
-<h2 id="代码实现">代码实现</h2>
+<h3 id="代码实现">代码实现</h3>
 <p>使用<code>cv::filter2D</code>进行滤波操作：</p>
 <ul>
 <li><code>src</code>：输入图像<br />
